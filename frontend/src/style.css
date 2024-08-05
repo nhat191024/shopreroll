@@ -66,11 +66,16 @@
     --p-content-hover-background: var(--p-surface-800);
     --p-content-hover-color: var(--p-surface-0);
     --p-highlight-background: color-mix(in srgb, var(--p-primary-400), transparent 84%);
-    --p-highlight-color: rgba(255,255,255,.87);
+    --p-highlight-color: rgba(255, 255, 255, .87);
     --p-highlight-focus-background: color-mix(in srgb, var(--p-primary-400), transparent 76%);
-    --p-highlight-focus-color: rgba(255,255,255,.87);
+    --p-highlight-focus-color: rgba(255, 255, 255, .87);
     --p-text-color: var(--p-surface-0);
     --p-text-hover-color: var(--p-surface-0);
     --p-text-muted-color: var(--p-surface-400);
     --p-text-hover-muted-color: var(--p-surface-300);
+}
+
+* {
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
 }
