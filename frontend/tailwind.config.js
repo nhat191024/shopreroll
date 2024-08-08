@@ -7,10 +7,6 @@ export default {
     "./presets/**/*.{js,vue,ts}",
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
-  plugins: [primeui],
-  theme: {
-    extend: {
-    },
-  }
+  plugins: [primeui]
 }
 
