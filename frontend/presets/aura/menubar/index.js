@@ -1,11 +1,12 @@
 export default {
     root: {
         class: [
-            'relative',
-
+            'sticky top-0 z-50',
+            'w-full',
             // Flexbox
             'flex',
             'items-center',
+            'justify-between',
 
             // Spacing
             'p-2',
@@ -21,38 +22,38 @@ export default {
     rootList: ({ props }) => ({
         class: [
             // Flexbox
-            'sm:flex',
+            'md:flex',
             'items-center',
             'flex-wrap',
-            'flex-col sm:flex-row',
+            'flex-col md:flex-row',
             { hidden: !props?.mobileActive, flex: props?.mobileActive },
 
             // Position
-            'absolute sm:relative',
+            'absolute md:relative',
             'top-full left-0',
-            'sm:top-auto sm:left-auto',
+            'md:top-auto md:left-auto',
 
             // Size
-            'w-full sm:w-auto',
+            'w-full md:w-auto',
 
             // Spacing
             'm-0',
-            'p-1 sm:py-0 sm:p-0',
+            'p-1 md:py-0 md:p-0',
             'list-none',
 
             // Shape
-            'shadow-md sm:shadow-none',
+            'shadow-md md:shadow-none',
             'border-0',
 
             // Color
-            'bg-surface-0 dark:bg-surface-900 sm:bg-transparent',
+            'bg-surface-0 dark:bg-surface-900 md:bg-transparent',
 
             // Misc
             'outline-none'
         ]
     }),
     item: {
-        class: 'sm:relative sm:w-auto w-full static my-[2px] [&:first-child]:mt-0'
+        class: 'md:relative md:w-auto w-full static my-[2px] [&:first-child]:mt-0'
     },
     itemContent: ({ context }) => ({
         class: [
@@ -92,8 +93,8 @@ export default {
 
             // Size
             {
-                'pl-9 sm:pl-5': context.level === 1,
-                'pl-14 sm:pl-5': context.level === 2
+                'pl-9 md:pl-5': context.level === 1,
+                'pl-14 md:pl-5': context.level === 2
             },
             'leading-none',
 
@@ -110,7 +111,7 @@ export default {
     submenuIcon: ({ props }) => ({
         class: [
             {
-                'ml-auto sm:ml-2': props.root,
+                'ml-auto md:ml-2': props.root,
                 'ml-auto': !props.root
             }
         ]
@@ -128,13 +129,13 @@ export default {
             'list-none',
 
             // Shape
-            'shadow-none sm:shadow-md',
+            'shadow-none md:shadow-md',
             'border border-surface-200 dark:border-surface-700',
 
             // Position
-            'static sm:absolute',
+            'static md:absolute',
             'z-10',
-            { 'sm:absolute sm:left-full sm:top-0': props.level > 1 },
+            { 'md:absolute md:left-full md:top-0': props.level > 1 },
 
             // Color
             'bg-surface-0 dark:bg-surface-900'
@@ -146,7 +147,7 @@ export default {
     button: {
         class: [
             // Flexbox
-            'flex sm:hidden',
+            'flex md:hidden',
             'items-center justify-center',
 
             // Size
@@ -172,7 +173,10 @@ export default {
             'no-underline'
         ]
     },
+    start: {
+        class: 'order-1 md:order-first'
+    },
     end: {
-        class: 'ml-auto self-center'
+        class: 'order-last self-center'
     }
 };
