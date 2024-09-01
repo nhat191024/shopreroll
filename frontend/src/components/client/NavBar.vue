@@ -116,19 +116,6 @@ const userItem = ref([
         route: '/register',
         login: false
     },
-
-    {
-        label: 'Lịch sử nạp tiền',
-        icon: 'pi pi-user',
-        route: '/deposit',
-        login: true
-    },
-    {
-        label: 'Lịch sử mua hàng',
-        icon: 'pi pi-history',
-        route: '/transaction',
-        login: true
-    },
     {
         label: 'Đổi mật khẩu',
         icon: 'pi pi-key',
