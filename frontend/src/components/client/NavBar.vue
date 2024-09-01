@@ -5,13 +5,18 @@
                 <img src="/logo.png" alt="logo" width="150">
             </router-link>
         </template>
-        <template #item="{ item, props }">
+        <template #item="{ item, props, hasSubmenu }">
             <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
                 <a :href="href" v-bind="props.action" @click="navigate">
                     <span :class="item.icon"></span>
                     <span class="ml-2">{{ item.label }}</span>
                 </a>
             </router-link>
+            <a v-else :href="item.url" :target="item.target" v-bind="props.action">
+                <span :class="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+                <span v-if="hasSubmenu" class="pi pi-fw pi-angle-down ml-2"></span>
+            </a>
         </template>
         <template #end>
             <div class="border border-1 border-black rounded-full p-2 flex justify-center items-center"
@@ -51,17 +56,50 @@ const navItems = ref([
     {
         label: 'Nạp tiền',
         icon: 'pi pi-wallet',
-        route: '/deposit'
+        items: [
+            {
+                label: 'Nạp thẻ cào',
+                icon: 'pi pi-wallet',
+                route: '/deposit'
+            },
+            {
+                label: 'Nạp qua ngân hàng',
+                icon: 'pi pi-wallet',
+                route: '/deposit-bank'
+            }
+        ]
     },
     {
         label: 'Nạp game',
         icon: 'pi pi-money-bill',
-        route: '/game'
+        items: [
+            {
+                label: 'Genshin Impact',
+                icon: 'pi pi-money-bill',
+                route: '/top-up/genshin-impact'
+            },
+            {
+                label: 'Zenless Zone Zero',
+                icon: 'pi pi-money-bill',
+                route: '/top-up/Zenless-zone-zero'
+            }
+        ]
     },
     {
         label: 'Lịch sử',
         icon: 'pi pi-history',
-        route: '/transaction'
+        items: [
+            {
+                label: 'Lịch sử nạp tiền',
+                icon: 'pi pi-history',
+                route: '/deposit'
+            },
+            {
+                label: 'Lịch sử mua hàng',
+                icon: 'pi pi-history',
+                route: '/transaction'
+            }
+        ]
     }
 ]);
 
