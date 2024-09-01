@@ -9,14 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@unhead/vue": "^1.10.0",
     "@vueuse/core": "^10.11.0",
     "axios": "^1.7.2",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.2",
     "tailwindcss-primeui": "^0.3.4",
+    "vee-validate": "^4.13.2",
     "vue": "^3.4.31",
     "vue-query": "^1.26.0",
-    "vue-router": "^4.4.0"
+    "vue-recaptcha": "^3.0.0-alpha.6",
+    "vue-router": "^4.4.0",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",
