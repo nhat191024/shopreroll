@@ -4,7 +4,7 @@
             <iframe class="w-full h-40 md:h-96 xl:h-full"
                 src="https://www.youtube.com/embed/OizK-VT4aj8?si=16HBObssgGa8zgqi" title="YouTube video player"
                 frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allow="web-share"
                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <div class="my-4 xl:w-2/5">
                 <p class="text-2xl font-medium text-primary-400 drop-shadow-2xl text-center">Top Nạp Tiền</p>
@@ -12,7 +12,7 @@
                     <table class="w-full h-full">
                         <tr v-for="(item, index) in data" :key="index">
                             <td class="text-black pb-2">
-                                <Avatar :label="index + 1" shape="circle"
+                                <Avatar :label="`${index + 1}`" shape="circle"
                                     style="background-color: #fef08a; font-weight: 400;" />
                             </td>
                             <td class="pb-2 text-ellipsis overflow-hidden">{{ item.name }}</td>
