@@ -20,7 +20,7 @@ export default {
             'min-w-[2.5rem]',
 
             // Color
-            'bg-transparent dark:bg-surface-900',
+            'bg-white dark:bg-surface-900',
             'text-surface-800 dark:text-white/80',
             'border-surface-300 dark:border-surface-700'
         ]

@@ -1,6 +1,6 @@
 <template>
     <Navbar></Navbar>
-    <img src="/bg.webp" alt="" class=" fixed h-dvh w-dvw z-0 object-cover">
+    <img src="/bg.jpg" alt="" class=" fixed h-dvh w-dvw z-0 object-cover">
     <router-view></router-view>
     <Footer></Footer>
 </template>
