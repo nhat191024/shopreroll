@@ -8,7 +8,7 @@
                     Shop Bán Acc Honkai Star Rail và Genshin Uy Tín hàng đầu Việt Nam
                 </p>
             </div>
-            <div class="flex flex-col md:flex-row items-center justify-center mt-10 md:mt-16 gap-5">
+            <div class="flex flex-col sm:flex-row items-center justify-center mt-10 md:mt-16 gap-5">
                 <Button label="Hỗ trợ " severity="info" raised as="a" href="#" target="_blank" size="large"></Button>
                 <Button label="Nạp tiền" severity="info" raised as="a" href="#" target="_blank" size="large"></Button>
                 <Button label="Nạp game" severity="info" raised as="a" href="#" target="_blank" size="large"></Button>
