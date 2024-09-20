@@ -19,4 +19,9 @@ class account_bill extends Model
     {
         return $this->belongsTo(user::class);
     }
+
+    public function GameAccount()
+    {
+        return $this->belongsTo(game_account::class);
+    }
 }
