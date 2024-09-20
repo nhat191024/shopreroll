@@ -22,4 +22,9 @@ class reroll_sub_category extends Model
     {
         return $this->belongsTo(reroll_category::class);
     }
+
+    public function RerollPackage()
+    {
+        return $this->hasMany(reroll_package::class);
+    }
 }

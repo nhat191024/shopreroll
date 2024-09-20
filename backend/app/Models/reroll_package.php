@@ -13,4 +13,9 @@ class reroll_package extends Model
         'name',
         'price',
     ];
+
+    public function RerollSubCategory()
+    {
+        return $this->belongsTo(reroll_sub_category::class);
+    }
 }
