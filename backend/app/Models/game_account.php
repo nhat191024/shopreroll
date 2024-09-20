@@ -21,4 +21,9 @@ class game_account extends Model
         'description',
         'status',
     ];
+
+    public function Creator()
+    {
+        return $this->belongsTo(user::class);
+    }
 }
