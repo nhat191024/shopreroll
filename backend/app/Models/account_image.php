@@ -13,4 +13,9 @@ class account_image extends Model
         'image',
         'status',
     ];
+
+    public function GameAccount()
+    {
+        return $this->belongsTo(game_account::class);
+    }
 }

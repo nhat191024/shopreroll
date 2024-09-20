@@ -41,4 +41,9 @@ class game_account extends Model
     {
         return $this->hasMany(account_hero::class);
     }
+
+    public function AccountImage()
+    {
+        return $this->hasMany(account_image::class);
+    }
 }
