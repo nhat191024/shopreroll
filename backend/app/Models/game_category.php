@@ -19,4 +19,9 @@ class game_category extends Model
     {
         return $this->belongsTo(game::class);
     }
+
+    public function GameAccount()
+    {
+        return $this->hasMany(game_account::class);
+    }
 }

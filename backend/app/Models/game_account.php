@@ -26,4 +26,9 @@ class game_account extends Model
     {
         return $this->belongsTo(user::class);
     }
+
+    public function GameCategory()
+    {
+        return $this->belongsTo(game_category::class);
+    }
 }
