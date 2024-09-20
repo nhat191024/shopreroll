@@ -13,4 +13,9 @@ class hero extends Model
         'price',
         'status',
     ];
+
+    public function Game()
+    {
+        return $this->belongsTo(game::class);
+    }
 }

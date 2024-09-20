@@ -17,4 +17,9 @@ class game extends Model
     {
         return $this->hasMany(weapon::class);
     }
+
+    public function GameHero()
+    {
+        return $this->hasMany(hero::class);
+    }
 }
