@@ -14,4 +14,9 @@ class game_category extends Model
         'image',
         'status',
     ];
+
+    public function Game()
+    {
+        return $this->belongsTo(game::class);
+    }
 }

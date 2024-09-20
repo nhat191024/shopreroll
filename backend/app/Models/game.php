@@ -22,4 +22,9 @@ class game extends Model
     {
         return $this->hasMany(hero::class);
     }
+
+    public function GameCategory()
+    {
+        return $this->hasMany(game_category::class);
+    }
 }
