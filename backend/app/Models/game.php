@@ -13,5 +13,8 @@ class game extends Model
         'status',
     ];
 
-
+    public function GameWeapon()
+    {
+        return $this->hasMany(weapon::class);
+    }
 }
