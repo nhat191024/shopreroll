@@ -20,4 +20,9 @@ class recharge_bill extends Model
         'note',
         'status',
     ];
+
+    public function RechargePackage()
+    {
+        return $this->belongsTo(recharge_package::class);
+    }
 }

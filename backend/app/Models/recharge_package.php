@@ -20,4 +20,9 @@ class recharge_package extends Model
     {
         return $this->belongsTo(game_recharge::class);
     }
+
+    public function RechargeBills()
+    {
+        return $this->hasMany(recharge_bill::class);
+    }
 }
