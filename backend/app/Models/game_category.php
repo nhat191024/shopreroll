@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class game_category extends Model
 {
-    use HasFactory;
+    protected $table = 'game_categories';
+    protected $fillable = [
+        'game_id',
+        'name',
+        'image',
+        'status',
+    ];
 }
