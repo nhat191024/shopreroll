@@ -17,4 +17,9 @@ class account_weapon extends Model
     {
         return $this->belongsTo(account::class);
     }
+
+    public function Weapon()
+    {
+        return $this->belongsTo(weapon::class);
+    }
 }

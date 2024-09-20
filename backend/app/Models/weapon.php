@@ -18,4 +18,9 @@ class weapon extends Model
     {
         return $this->belongsTo(game::class);
     }
+
+    public function AccountWeapon()
+    {
+        return $this->hasMany(account_weapon::class);
+    }
 }
