@@ -21,6 +21,11 @@ class recharge_bill extends Model
         'status',
     ];
 
+    public function Buyer()
+    {
+        return $this->belongsTo(user::class);
+    }
+
     public function RechargePackage()
     {
         return $this->belongsTo(recharge_package::class);
