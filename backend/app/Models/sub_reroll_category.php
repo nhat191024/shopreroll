@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class sub_reroll_category extends Model
 {
-    protected $table = 'sub_reroll_categories';
+    protected $table = 'reroll_sub_categories';
     protected $fillable = [
         'reroll_category_id',
         'name',

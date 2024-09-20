@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('reroll_packages', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sub_reroll_category_id');
+            $table->unsignedBigInteger('reroll_sub_category_id');
             $table->string('name');
             $table->integer('price');
             $table->timestamps();
 
-            $table->foreign('sub_reroll_category_id')->references('id')->on('sub_reroll_categories')->onDelete('cascade');
+            $table->foreign('reroll_sub_category_id')->references('id')->on('reroll_sub_categories')->onDelete('cascade');
         });
     }
 

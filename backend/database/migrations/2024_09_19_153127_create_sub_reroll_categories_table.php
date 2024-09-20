@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_reroll_categories', function (Blueprint $table) {
+        Schema::create('reroll_sub_categories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('reroll_category_id');
             $table->string('name');
