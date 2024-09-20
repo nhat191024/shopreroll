@@ -17,4 +17,9 @@ class reroll_sub_category extends Model
         'image',
         'status',
     ];
+
+    public function RerollCategory()
+    {
+        return $this->belongsTo(reroll_category::class);
+    }
 }
