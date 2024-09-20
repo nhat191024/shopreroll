@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(game_account::class);
     }
+
+    public function BillAccount()
+    {
+        return $this->hasMany(account_bill::class);
+    }
 }

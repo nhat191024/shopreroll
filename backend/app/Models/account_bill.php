@@ -14,4 +14,9 @@ class account_bill extends Model
         'price',
         'status',
     ];
+
+    public function Buyer()
+    {
+        return $this->belongsTo(user::class);
+    }
 }
