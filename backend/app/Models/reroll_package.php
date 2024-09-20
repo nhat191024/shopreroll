@@ -23,4 +23,9 @@ class reroll_package extends Model
     {
         return $this->hasMany(reroll_key::class);
     }
+
+    public function RerollBill()
+    {
+        return $this->hasMany(reroll_bill::class);
+    }
 }

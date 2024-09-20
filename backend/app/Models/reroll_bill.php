@@ -15,4 +15,9 @@ class reroll_bill extends Model
         'price',
         'status',
     ];
+
+    public function RerollPackage()
+    {
+        return $this->belongsTo(reroll_package::class);
+    }
 }
