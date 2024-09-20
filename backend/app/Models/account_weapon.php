@@ -12,4 +12,9 @@ class account_weapon extends Model
         'account_id',
         'weapon_id',
     ];
+
+    public function Account()
+    {
+        return $this->belongsTo(account::class);
+    }
 }
