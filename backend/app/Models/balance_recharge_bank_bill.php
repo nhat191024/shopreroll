@@ -17,4 +17,9 @@ class balance_recharge_bank_bill extends Model
         'description',
         'status',
     ];
+
+    public function Buyer()
+    {
+        return $this->belongsTo(user::class);
+    }
 }

@@ -69,4 +69,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(reroll_bill::class);
     }
+
+    public function BalanceRechargeBankBill()
+    {
+        return $this->hasMany(balance_recharge_bank_bill::class);
+    }
 }
