@@ -17,4 +17,9 @@ class account_hero extends Model
     {
         return $this->belongsTo(game_account::class);
     }
+
+    public function Hero()
+    {
+        return $this->belongsTo(hero::class);
+    }
 }
