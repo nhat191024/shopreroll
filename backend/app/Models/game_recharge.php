@@ -15,4 +15,9 @@ class game_recharge extends Model
         'image',
         'status',
     ];
+
+    public function RechargePackages()
+    {
+        return $this->hasMany(recharge_package::class);
+    }
 }

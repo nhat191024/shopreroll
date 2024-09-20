@@ -15,4 +15,9 @@ class recharge_package extends Model
         'description',
         'status',
     ];
+
+    public function GameRecharge()
+    {
+        return $this->belongsTo(game_recharge::class);
+    }
 }
