@@ -20,4 +20,9 @@ class reroll_bill extends Model
     {
         return $this->belongsTo(reroll_package::class);
     }
+
+    public function RerollKey()
+    {
+        return $this->belongsTo(reroll_key::class);
+    }
 }

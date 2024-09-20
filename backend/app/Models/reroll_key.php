@@ -17,4 +17,9 @@ class reroll_key extends Model
     {
         return $this->belongsTo(reroll_package::class);
     }
+
+    public function RerollBill()
+    {
+        return $this->hasMany(reroll_bill::class);
+    }
 }
