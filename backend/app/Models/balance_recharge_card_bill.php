@@ -18,4 +18,9 @@ class balance_recharge_card_bill extends Model
         'balance_added',
         'status',
     ];
+
+    public function Buyer()
+    {
+        return $this->belongsTo(user::class);
+    }
 }
