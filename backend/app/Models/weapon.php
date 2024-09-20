@@ -9,8 +9,8 @@ class weapon extends Model
 {
     protected $table = 'weapons';
     protected $fillable = [
+        'game_id',
         'name',
-        'price',
         'status',
     ];
 
