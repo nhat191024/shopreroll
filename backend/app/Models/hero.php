@@ -9,8 +9,8 @@ class hero extends Model
 {
     protected $table = 'heroes';
     protected $fillable = [
+        'game_id',
         'name',
-        'price',
         'status',
     ];
 
