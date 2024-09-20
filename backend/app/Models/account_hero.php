@@ -12,4 +12,9 @@ class account_hero extends Model
         'account_id',
         'hero_id',
     ];
+
+    public function Account()
+    {
+        return $this->belongsTo(game_account::class);
+    }
 }

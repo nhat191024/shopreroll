@@ -36,4 +36,9 @@ class game_account extends Model
     {
         return $this->hasMany(account_weapon::class);
     }
+
+    public function AccountHero()
+    {
+        return $this->hasMany(account_hero::class);
+    }
 }
