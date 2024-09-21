@@ -11,6 +11,7 @@ class reroll_category extends Model
     protected $fillable = [
         'name',
         'image',
+        'note',
         'status',
     ];
 
