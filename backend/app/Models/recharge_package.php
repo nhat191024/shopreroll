@@ -12,7 +12,6 @@ class recharge_package extends Model
         'game_recharge_id',
         'name',
         'price',
-        'description',
         'status',
     ];
 
