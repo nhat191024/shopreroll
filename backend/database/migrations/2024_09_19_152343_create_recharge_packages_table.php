@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('game_recharge_id');
             $table->string('name');
             $table->string('price');
-            $table->string('description');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
