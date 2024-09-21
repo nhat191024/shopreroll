@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reroll_category_id');
             $table->string('name');
             $table->string('tutorial');
-            $table->string('id_youtube');
+            $table->string('id_youtube')->nullable();
             $table->string('file_download_link')->nullable();
             $table->string('image');
             $table->tinyInteger('status')->default(0);
