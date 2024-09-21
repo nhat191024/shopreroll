@@ -1,0 +1,371 @@
+{
+    "user": [
+        {
+            "name": "Acc Admin Demo 1",
+            "email": "adminDemo2@gmail.com",
+            "username": "adminDemo1",
+            "password": "$2a$10$3",
+            "phone": "0123456789",
+            "role": 1,
+            "balance": 1000000,
+            "avatar": "DefaultAvatar.png"
+        },
+        {
+            "name": "Acc Admin Demo 2",
+            "email": "adminDemo2@gmail.com",
+            "username": "adminDemo2",
+            "password": "$2a$10$3",
+            "phone": "0123456789",
+            "role": 1,
+            "balance": 1000000,
+            "avatar": "DefaultAvatar.png"
+        },
+        {
+            "name": "Acc Collaborator Demo 1",
+            "email": "collaboratorDemo1@gmail.com",
+            "username": "collaboratorDemo1",
+            "password": "$2a$10$3",
+            "phone": "0123456789",
+            "role": 2,
+            "balance": 1000000,
+            "avatar": "DefaultAvatar.png"
+        },
+        {
+            "name": "Acc Collaborator Demo 2",
+            "email": "collaboratorDemo2@gmail.com",
+            "username": "collaboratorDemo2",
+            "password": "$2a$10$3",
+            "phone": "0123456789",
+            "role": 2,
+            "balance": 1000000,
+            "avatar": "DefaultAvatar.png"
+        },
+        {
+            "name": "Acc Customer Demo 1",
+            "email": "customerDemo1@gmail.com",
+            "username": "customerDemo1",
+            "password": "$2a$10$3",
+            "phone": "0123456789",
+            "role": 0,
+            "balance": 1000000,
+            "avatar": "DefaultAvatar.png"
+        },
+        {
+            "name": "Acc Customer Demo 2",
+            "email": "customerDemo2@gmail.com",
+            "username": "customerDemo2",
+            "password": "$2a$10$3",
+            "phone": "0123456789",
+            "role": 0,
+            "balance": 1000000,
+            "avatar": "DefaultAvatar.png"
+        }
+    ],
+    "game_recharge": [
+        {
+            "name": "Genshin Impact",
+            "tutorial": "Sau khi lên đơn, quý khách vui lòng nhắn zalo shop 0386496488  và chờ shop gọi lấy code vào game, sau khi lấy code, đừng đổi pass hay ấn delete thiết bị của shop, đợi khi nào trạng thái đơn trên shop ghi hoàn thành rồi hãy đổi pass, đừng delete thiết bị, để lần sau nạp khỏi cần mã",
+            "id_youtube": "zVVa7ELqr-o",
+            "image": "GenshinRecharge.png"
+        },
+        {
+            "name": "Zenless Zone Zero",
+            "tutorial": "Sau khi lên đơn, quý khách vui lòng nhắn zalo shop 0386496488  và chờ shop gọi lấy code vào game, sau khi lấy code, đừng đổi pass hay ấn delete thiết bị của shop, đợi khi nào trạng thái đơn trên shop ghi hoàn thành rồi hãy đổi pass, đừng delete thiết bị, để lần sau nạp khỏi cần mã",
+            "id_youtube": "zVVa7ELqr-o",
+            "image": "ZZZRecharge.png"
+        }
+    ],
+    "game_recharge_package": [
+        {
+            "id_game_recharge": 1,
+            "name": "Không Nguyệt Chúc Phúc",
+            "price": 100000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "Nhật Ký Hành Trình",
+            "price": 210000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "Bài Ca Trân Châu",
+            "price": 410000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "60 Đá Sáng Thế",
+            "price": 25000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "300 Đá Sáng Thế",
+            "price": 105000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "980 Đá Sáng Thế",
+            "price": 305000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "1980 Đá Sáng Thế",
+            "price": 620000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "3280 Đá Sáng Thế",
+            "price": 970000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "6480 Đá Sáng Thế",
+            "price": 1980000
+        },
+        {
+            "id_game_recharge": 2,
+            "name": "Hội Viên Inter-Knot",
+            "price": 100000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "Kế Hoạch Trưởng Thành",
+            "price": 210000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "Kế Hoạch Cao Cấp",
+            "price": 410000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "60 Film Trắng Đen",
+            "price": 25000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "300 Film Trắng Đen",
+            "price": 105000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "980  Film Trắng Đen",
+            "price": 305000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "1980  Film Trắng Đen",
+            "price": 620000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "3280  Film Trắng Đen",
+            "price": 970000
+        },
+        {
+            "id_game_recharge": 1,
+            "name": "6480  Film Trắng Đen",
+            "price": 1950000
+        }
+    ],
+    "recharge_bill": [
+        {
+            "id_user": 5,
+            "id_game_recharge_package": 1,
+            "UID": 96692797165,
+            "username": "accountDemo1",
+            "password": "passwordDemo1",
+            "server": "SEA",
+            "username_in_game": "usernameInGame1",
+            "phone_number": "0123456789",
+            "note": "note1"
+        },
+        {
+            "id_user": 6,
+            "id_game_recharge_package": 2,
+            "UID": 96692797165,
+            "username": "accountDemo2",
+            "password": "passwordDemo2",
+            "server": "SEA",
+            "username_in_game": "usernameInGame2",
+            "phone_number": "0123456789",
+            "note": "note2"
+        }
+    ],
+    "reroll_category": [
+        {
+            "name": "ACC Zenless Zone Zero",
+            "image": "ZZZLogo.webp"
+        },
+        {
+            "name": "ACC Honkai Star Rail",
+            "image": "HKRLogo.webp"
+        }
+    ],
+    "reroll_sub_category": [
+        {
+            "reroll_category_id": 1,
+            "name": "Reroll Cấp 4 Main Random",
+            "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
+            "image": "ZZZReroll1.png"
+        },
+        {
+            "reroll_category_id": 1,
+            "name": "Reroll Cấp 8",
+            "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
+            "image": "ZZZReroll2.webp"
+        },
+        {
+            "reroll_category_id": 1,
+            "name": "Reroll Cấp 22 Main Nữ",
+            "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
+            "image": "ZZZReroll3.jpg"
+        },
+        {
+            "reroll_category_id": 2,
+            "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
+            "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
+            "image": "HSRReroll1.webp"
+        },
+        {
+            "reroll_category_id": 2,
+            "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
+            "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
+            "image": "HSRReroll2.webp"
+        },
+        {
+            "reroll_category_id": 2,
+            "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
+            "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
+            "image": "HSRReroll3.webp"
+        }
+    ],
+    "reroll_package": [
+        {
+            "reroll_sub_categories_id": 1,
+            "name": "Random Main",
+            "price": 1000
+        },
+        {
+            "reroll_sub_categories_id": 2,
+            "name": "Random Main",
+            "price": 4000
+        },
+        {
+            "reroll_sub_categories_id": 3,
+            "name": "Random Main",
+            "price": 12000
+        },
+        {
+            "reroll_sub_categories_id": 4,
+            "name": "Random Main",
+            "price": 35000
+        },
+        {
+            "reroll_sub_categories_id": 5,
+            "name": "Random Main",
+            "price": 55000
+        },
+        {
+            "reroll_sub_categories_id": 6,
+            "name": "Random Main",
+            "price": 70000
+        }
+    ],
+    "reroll_key": [
+        {
+            "reroll_package_id": 1,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 1,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 2,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 2,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 3,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 3,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 4,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 4,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 5,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 5,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 6,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        },
+        {
+            "reroll_package_id": 6,
+            "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
+        }
+    ],
+    "reroll_bill": [
+        {
+            "user_id": 5,
+            "reroll_package_id": 1,
+            "reroll_key_id": 1,
+            "price": 1000
+        },
+        {
+            "user_id": 6,
+            "reroll_package_id": 2,
+            "reroll_key_id": 3,
+            "price": 4000
+        }
+    ],
+    "game": [
+        {
+            "name": "Genshin Impact"
+        },
+        {
+            "name": "Honkai Star Rail"
+        },
+        {
+            "name": "Zenless Zone Zero"
+        }
+    ],
+    "game_category": [
+        {
+            "game_id": 1,
+            "name": "Reroll limited",
+            "image": "GSCate1.jpg"
+        },
+        {
+            "game_id": 1,
+            "name": "Acc Vip",
+            "image": "GSCate2.jpg"
+        },
+        {
+            "game_id": 1,
+            "name": "Acc thường",
+            "image": "GSCate3.jpg"
+        },
+        {
+            "game_id": 1,
+            "name": "Reroll thường",
+            "image": "GSCate3.jpg"
+        }
+    ]
+}
