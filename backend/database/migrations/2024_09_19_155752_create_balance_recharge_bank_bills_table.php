@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('balance_recharge_bank_bills', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('bank_name');
+            $table->string('bank');
             $table->integer('amount');
             $table->integer('balance_before');
             $table->integer('balance_after');
-            $table->text('description');
+            $table->text('note')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
