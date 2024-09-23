@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('server');
             $table->integer('price_in');
             $table->integer('price_out');
-            $table->text('description');
+            $table->text('note');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
