@@ -9,7 +9,7 @@ class reroll_package extends Model
 {
     protected $table = 'reroll_packages';
     protected $fillable = [
-        'sub_reroll_category_id',
+        'reroll_sub_category_id',
         'name',
         'price',
     ];
