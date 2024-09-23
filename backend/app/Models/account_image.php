@@ -9,7 +9,7 @@ class account_image extends Model
 {
     protected $table = 'account_images';
     protected $fillable = [
-        'game_account_id',
+        'account_id',
         'image',
     ];
 
