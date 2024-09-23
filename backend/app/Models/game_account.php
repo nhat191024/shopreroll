@@ -18,7 +18,7 @@ class game_account extends Model
         'server',
         'price_in',
         'price_out',
-        'description',
+        'note',
         'status',
     ];
 
