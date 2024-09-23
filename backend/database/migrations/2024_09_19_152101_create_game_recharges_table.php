@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('game_recharges', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('tutorial');
+            $table->text('tutorial');
             $table->string('id_youtube');
             $table->string('image');
             $table->tinyInteger('status')->default(0);
