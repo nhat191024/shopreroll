@@ -10,8 +10,8 @@ class balance_recharge_card_bill extends Model
     protected $table = 'balance_recharge_card_bills';
     protected $fillable = [
         'user_id',
-        'card_number',
-        'card_serial',
+        'number',
+        'serial',
         'mobil_carrier',
         'amount_fake',
         'amount_real',
