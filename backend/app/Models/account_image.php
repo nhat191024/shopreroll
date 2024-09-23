@@ -11,7 +11,6 @@ class account_image extends Model
     protected $fillable = [
         'game_account_id',
         'image',
-        'status',
     ];
 
     public function GameAccount()
