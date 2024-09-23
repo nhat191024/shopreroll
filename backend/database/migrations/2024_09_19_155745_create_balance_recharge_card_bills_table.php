@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('balance_recharge_card_bills', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('card_number');
-            $table->string('card_serial');
-            $table->string('mobil_carrier');
+            $table->string('number');
+            $table->string('serial');
+            $table->string('mobile_carrier');
             $table->integer('amount_fake');
             $table->integer('amount_real');
             $table->integer('balance_added');
