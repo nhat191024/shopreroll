@@ -12,6 +12,7 @@ class weapon extends Model
         'game_id',
         'name',
         'status',
+        'image',
     ];
 
     public function Game()

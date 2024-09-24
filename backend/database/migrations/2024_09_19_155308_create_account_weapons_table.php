@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('account_id');
             $table->unsignedBigInteger('weapon_id');
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('account_id')->references('id')->on('game_accounts')->onDelete('cascade');
