@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class hero extends Model
 {
-    protected $table = 'heroes';
+    protected $table = 'heros';
     protected $fillable = [
         'game_id',
         'name',
         'status',
+        'image',
     ];
 
     public function Game()

@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('heroes', function (Blueprint $table) {
+        Schema::create('heros', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
             $table->string('name');
             $table->tinyInteger('status')->default(0);
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games');
