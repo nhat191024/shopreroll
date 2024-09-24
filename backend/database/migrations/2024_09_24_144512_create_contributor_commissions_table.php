@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('contributor_commissions', function (Blueprint $table) {
             $table->id();
             $table->string('game');
-            $table->string('commission_percentage');
+            $table->integer('commission_percentage')->default(100);
             $table->unsignedBigInteger('contributor_id');
             $table->timestamps();
 
