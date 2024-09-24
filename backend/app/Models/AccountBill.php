@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class account_bill extends Model
+class AccountBill extends Model
 {
     protected $table = 'account_bills';
     protected $fillable = [
@@ -22,6 +21,6 @@ class account_bill extends Model
 
     public function GameAccount()
     {
-        return $this->belongsTo(game_account::class);
+        return $this->belongsTo(GameAccount::class);
     }
 }
