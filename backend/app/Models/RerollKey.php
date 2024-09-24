@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reroll_key extends Model
+class RerollKey extends Model
 {
     protected $table = 'reroll_keys';
     protected $fillable = [
@@ -15,11 +15,11 @@ class reroll_key extends Model
 
     public function RerollPackage()
     {
-        return $this->belongsTo(reroll_package::class);
+        return $this->belongsTo(RerollPackage::class);
     }
 
     public function RerollBill()
     {
-        return $this->hasMany(reroll_bill::class);
+        return $this->hasMany(RerollBill::class);
     }
 }
