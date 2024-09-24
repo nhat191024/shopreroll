@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(balance_recharge_card_bill::class);
     }
+
+    public function ContributorCommission()
+    {
+        return $this->hasMany(contributor_commission::class);
+    }
 }
