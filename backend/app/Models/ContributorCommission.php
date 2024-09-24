@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class contributor_commission extends Model
+class ContributorCommission extends Model
 {
     protected $table = 'contributor_commissions';
     protected $fillable = [
