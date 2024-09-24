@@ -5,23 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class game_category extends Model
+class Weapon extends Model
 {
-    protected $table = 'game_categories';
+    protected $table = 'weapons';
     protected $fillable = [
         'game_id',
         'name',
-        'image',
         'status',
+        'image',
     ];
 
     public function Game()
     {
-        return $this->belongsTo(game::class);
+        return $this->belongsTo(Game::class);
     }
 
-    public function GameAccount()
+    public function AccountWeapon()
     {
-        return $this->hasMany(game_account::class);
+        return $this->hasMany(AccountWeapon::class);
     }
 }

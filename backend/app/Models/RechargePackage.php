@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class recharge_package extends Model
+class RechargePackage extends Model
 {
     protected $table = 'recharge_packages';
     protected $fillable = [
@@ -17,11 +16,11 @@ class recharge_package extends Model
 
     public function GameRecharge()
     {
-        return $this->belongsTo(game_recharge::class);
+        return $this->belongsTo(GameRecharge::class);
     }
 
     public function RechargeBills()
     {
-        return $this->hasMany(recharge_bill::class);
+        return $this->hasMany(RechargeBill::class);
     }
 }

@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class game_account extends Model
+class GameAccount extends Model
 {
     protected $table = 'game_accounts';
     protected $fillable = [
@@ -24,31 +23,31 @@ class game_account extends Model
 
     public function Creator()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
     public function GameCategory()
     {
-        return $this->belongsTo(game_category::class);
+        return $this->belongsTo(GameCategory::class);
     }
 
     public function AccountWeapon()
     {
-        return $this->hasMany(account_weapon::class);
+        return $this->hasMany(AccountWeapon::class);
     }
 
     public function AccountHero()
     {
-        return $this->hasMany(account_hero::class);
+        return $this->hasMany(AccountHero::class);
     }
 
     public function AccountImage()
     {
-        return $this->hasMany(account_image::class);
+        return $this->hasMany(AccountImage::class);
     }
 
     public function AccountBill()
     {
-        return $this->hasMany(account_bill::class);
+        return $this->hasMany(AccountBill::class);
     }
 }

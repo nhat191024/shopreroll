@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class account_weapon extends Model
+class AccountWeapon extends Model
 {
     protected $table = 'account_weapons';
     protected $fillable = [
@@ -15,7 +15,7 @@ class account_weapon extends Model
 
     public function Account()
     {
-        return $this->belongsTo(account::class);
+        return $this->belongsTo(GameAccount::class);
     }
 
     public function Weapon()

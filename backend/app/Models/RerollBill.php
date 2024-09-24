@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reroll_bill extends Model
+class RerollBill extends Model
 {
     protected $table = 'reroll_bills';
     protected $fillable = [
@@ -18,16 +17,16 @@ class reroll_bill extends Model
 
     public function Buyer()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
     public function RerollPackage()
     {
-        return $this->belongsTo(reroll_package::class);
+        return $this->belongsTo(RerollPackage::class);
     }
 
     public function RerollKey()
     {
-        return $this->belongsTo(reroll_key::class);
+        return $this->belongsTo(RerollKey::class);
     }
 }

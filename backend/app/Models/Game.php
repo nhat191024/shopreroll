@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class game extends Model
+class Game extends Model
 {
     protected $table = 'games';
     protected $fillable = [
@@ -15,16 +14,16 @@ class game extends Model
 
     public function GameWeapon()
     {
-        return $this->hasMany(weapon::class);
+        return $this->hasMany(Weapon::class);
     }
 
     public function GameHero()
     {
-        return $this->hasMany(hero::class);
+        return $this->hasMany(Hero::class);
     }
 
     public function GameCategory()
     {
-        return $this->hasMany(game_category::class);
+        return $this->hasMany(GameCategory::class);
     }
 }

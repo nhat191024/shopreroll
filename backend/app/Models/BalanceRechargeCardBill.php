@@ -5,23 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class account_bill extends Model
+class BalanceRechargeCardBill extends Model
 {
-    protected $table = 'account_bills';
+    protected $table = 'balance_recharge_card_bills';
     protected $fillable = [
         'user_id',
-        'account_id',
-        'price',
+        'number',
+        'serial',
+        'mobil_carrier',
+        'amount_fake',
+        'amount_real',
+        'balance_added',
         'status',
     ];
 
     public function Buyer()
     {
         return $this->belongsTo(user::class);
-    }
-
-    public function GameAccount()
-    {
-        return $this->belongsTo(game_account::class);
     }
 }

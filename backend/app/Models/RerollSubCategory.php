@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class reroll_sub_category extends Model
+class RerollSubCategory extends Model
 {
     protected $table = 'reroll_sub_categories';
     protected $fillable = [
@@ -20,11 +19,11 @@ class reroll_sub_category extends Model
 
     public function RerollCategory()
     {
-        return $this->belongsTo(reroll_category::class);
+        return $this->belongsTo(RerollCategory::class);
     }
 
     public function RerollPackage()
     {
-        return $this->hasMany(reroll_package::class);
+        return $this->hasMany(RerollPackage::class);
     }
 }

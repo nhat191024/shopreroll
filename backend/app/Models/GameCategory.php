@@ -2,17 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class weapon extends Model
+class GameCategory extends Model
 {
-    protected $table = 'weapons';
+    protected $table = 'game_categories';
     protected $fillable = [
         'game_id',
         'name',
-        'status',
         'image',
+        'status',
     ];
 
     public function Game()
@@ -20,8 +19,8 @@ class weapon extends Model
         return $this->belongsTo(game::class);
     }
 
-    public function AccountWeapon()
+    public function GameAccount()
     {
-        return $this->hasMany(account_weapon::class);
+        return $this->hasMany(GameAccount::class);
     }
 }

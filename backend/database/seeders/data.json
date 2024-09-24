@@ -61,6 +61,80 @@
             "avatar": "DefaultAvatar.png"
         }
     ],
+    "contributor_commission": [
+        {
+            "game":  "Genshin Impact",
+            "contributor_id": 1
+        },
+        {
+            "game":  "Genshin Impact",
+            "contributor_id": 2
+        },
+        {
+            "game":  "Genshin Impact",
+            "contributor_id": 3
+        },
+        {
+            "game":  "Genshin Impact",
+            "contributor_id": 4
+        },
+        {
+            "game": "Genshin Impact",
+            "contributor_id": 5
+        },
+        {
+            "game": "Genshin Impact",
+            "contributor_id": 6
+        },
+        {
+            "game":  "Honkai Star Rail",
+            "contributor_id": 1
+        },
+        {
+            "game":  "Honkai Star Rail",
+            "contributor_id": 2
+        },
+        {
+            "game":  "Honkai Star Rail",
+            "contributor_id": 3
+        },
+        {
+            "game":  "Honkai Star Rail",
+            "contributor_id": 4
+        },
+        {
+            "game": "Honkai Star Rail",
+            "contributor_id": 5
+        },
+        {
+            "game": "Honkai Star Rail",
+            "contributor_id": 6
+        },
+        {
+            "game":  "Zenless Zone Zero",
+            "contributor_id": 1
+        },
+        {
+            "game":  "Zenless Zone Zero",
+            "contributor_id": 2
+        },
+        {
+            "game":  "Zenless Zone Zero",
+            "contributor_id": 3
+        },
+        {
+            "game":  "Zenless Zone Zero",
+            "contributor_id": 4
+        },
+        {
+            "game": "Zenless Zone Zero",
+            "contributor_id": 5
+        },
+        {
+            "game": "Zenless Zone Zero",
+            "contributor_id": 6
+        }
+    ],
     "game_recharge": [
         {
             "name": "Genshin Impact",
