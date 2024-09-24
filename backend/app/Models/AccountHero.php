@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class account_hero extends Model
+class AccountHero extends Model
 {
     protected $table = 'account_heros';
     protected $fillable = [
@@ -15,7 +14,7 @@ class account_hero extends Model
 
     public function Account()
     {
-        return $this->belongsTo(game_account::class);
+        return $this->belongsTo(GameAccount::class);
     }
 
     public function Hero()
