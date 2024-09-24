@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account_heroes', function (Blueprint $table) {
+        Schema::create('account_heros', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('account_id');
             $table->unsignedBigInteger('hero_id');
             $table->timestamps();
 
             $table->foreign('account_id')->references('id')->on('game_accounts')->onDelete('cascade');
-            $table->foreign('hero_id')->references('id')->on('heroes')->onDelete('cascade');
+            $table->foreign('hero_id')->references('id')->on('heros')->onDelete('cascade');
         });
     }
 
