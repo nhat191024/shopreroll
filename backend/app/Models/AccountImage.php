@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class account_image extends Model
+class AccountImage extends Model
 {
     protected $table = 'account_images';
     protected $fillable = [
@@ -15,6 +15,6 @@ class account_image extends Model
 
     public function GameAccount()
     {
-        return $this->belongsTo(game_account::class);
+        return $this->belongsTo(GameAccount::class);
     }
 }
