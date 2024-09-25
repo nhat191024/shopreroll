@@ -16,23 +16,21 @@ class RerollCategoryService
         return RerollCategory::where('id', $id)->first();
     }
 
-    public function add($name, $image, $note, $status)
+    public function add($name, $image, $note)
     {
         RerollCategory::create([
             'name'=> $name,
             'image'=> $image,
             'note'=> $note,
-            'status'=> $status
         ]);
     }
 
-    public function edit($id, $name, $image, $note, $status)
+    public function edit($id, $name, $note)
     {
         $rollCategory = RerollCategory::where('id', $id)->first();
-        $rollCategory->$name;
-        $rollCategory->$image;
-        $rollCategory->$note;
-        $rollCategory->$status;
+        $rollCategory['name'] = $name;
+        $rollCategory['note'] = $note;
+        // $rollCategory['status'] = $status;
         $rollCategory->save();
     }
 
@@ -41,6 +39,8 @@ class RerollCategoryService
     // }
 
     public function delete($idRerollCategory) {
-        RerollCategory::destroy($idRerollCategory);
+        $rollCategory = RerollCategory::where('id', $idRerollCategory)->first();
+        $rollCategory['status'] = 1;
+        $rollCategory->save();
     }
 }
