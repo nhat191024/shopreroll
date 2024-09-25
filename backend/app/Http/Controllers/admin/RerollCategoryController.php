@@ -16,24 +16,25 @@ class RerollCategoryController extends Controller
 
     public function index() {
         $allRerollCategory = $this->rerollCategoryService->getAll();
-        return view('admin.rerollcategory.rerollcategory');
+        return view('admin.rerollcategory.rerollcategory',compact('allRerollCategory'));
         // return dd($allRerollCategory);
     }
 
-    // public function showAddCategory() {
-    //     return view('admin.rerollcategory.add_allRerollCategoryService');
-    // }
+    public function showAddRerollCategory() {
+        return view('admin.rerollcategory.add_rerollcategory');
+    }
 
     public function addRerollCategory(Request $request) {
         $request->validate([
             'name'=> 'required',
             'image'=> 'required',
             'note'=> 'required',
-            'status'=> 'required'
         ]);
+        
         // Public Folder
-        $this->rerollCategoryService->add($request->name, $request->image, $request->note, $request->status);
-        // return redirect(route('admin.rerollcategory.index'))->with('success', 'Thêm danh mục thành công');
+        $this->rerollCategoryService->add($request->name, $request->image, $request->note, 0);
+        return redirect(route('admin.reroll_category.index'))->with('success', 'Thêm danh mục thành công');
+        // return redirect(route('admin.rerollcategory.rerollcategory'));
     }
 
     public function showEditCategory(Request $request) {
