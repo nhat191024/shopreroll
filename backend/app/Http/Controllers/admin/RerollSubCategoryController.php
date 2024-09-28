@@ -34,7 +34,7 @@ class RerollSubCategoryController extends Controller
             'tutorial' => 'required',
             'reroll_category_id' => 'required', // Assuming this is required
         ]);
-        
+
         $this->rerollSubCategoryService->add(
             $request->reroll_category_id,
             $request->name,
@@ -50,8 +50,8 @@ class RerollSubCategoryController extends Controller
     public function showEditRerollSubCategory(Request $request) {
         $idRerollSubCategory = $request->id;
         $rerollSubCategoryInfo = $this->rerollSubCategoryService->getById($idRerollSubCategory);
-        $allRerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.rerollsubcategory.edit_rerollsubcategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'allRerollCategories'));
+        $rerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
+        return view('admin.rerollsubcategory.edit_rerollsubcategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'rerollCategories'));
     }
 
     public function editRerollSubCategory(Request $request) {
@@ -63,7 +63,7 @@ class RerollSubCategoryController extends Controller
         ]);
         // dd($request);
         $rerollSubCategory = $this->rerollSubCategoryService->getById($request->id);
-        
+
         if (!$rerollSubCategory) {
             return redirect(route('admin.reroll_sub_category.index'))->with('error', 'Danh mục không tìm thấy');
         }
