@@ -18,22 +18,25 @@ class RerollSubCategoryService
 
     public function add($rerollCategoryId, $name, $tutorial, $idYoutube, $fileDownloadLink, $image)
     {
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('image/thumb/'), $imageName);
+
         RerollSubCategory::create([
             'reroll_category_id' => $rerollCategoryId,
             'name' => $name,
             'tutorial' => $tutorial,
             'id_youtube' => $idYoutube,
             'file_download_link' => $fileDownloadLink,
-            'image' => $image,
+            'image' => $imageName,
         ]);
-        
+
     }
 
     public function edit($id, $rerollCategoryId, $name, $tutorial, $idYoutube, $fileDownloadLink)
     {
         // Find the RerollSubCategory by ID
         $rerollSubCategory = RerollSubCategory::find($id);
-    
+
         // Check if the record exists
         if ($rerollSubCategory) {
             $rerollSubCategory->reroll_category_id = $rerollCategoryId;
@@ -41,7 +44,7 @@ class RerollSubCategoryService
             $rerollSubCategory->tutorial = $tutorial;
             $rerollSubCategory->id_youtube = $idYoutube;
             $rerollSubCategory->file_download_link = $fileDownloadLink;
-    
+
             // Save the changes
             $rerollSubCategory->save();
         } else {
@@ -49,7 +52,7 @@ class RerollSubCategoryService
             throw new \Exception("RerollSubCategory not found");
         }
     }
-    
+
 
     public function checkHasChildren($idRerollSubCategory) {
         $subCategory = RerollSubCategory::find($idRerollSubCategory);
