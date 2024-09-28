@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\RerollCategoryController;
+use App\Http\Controllers\admin\RerollSubCategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +26,13 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [RerollCategoryController::class, 'editRerollCategory'])->name('admin.reroll_category.edit');
         Route::get('/edit/{id}', [RerollCategoryController::class, 'showEditRerollCategory'])->name('admin.reroll_category.show_edit');
         Route::get('/delete/{id}', [RerollCategoryController::class, 'deleteRerollCategory'])->name('admin.reroll_category.delete');
-        
+    });
+    Route::prefix('/reroll-sub-category')->group(function () {
+        Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.reroll_sub_category.index');
+        Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.reroll_sub_category.show_add');
+        Route::post('/add', [RerollSubCategoryController::class, 'addRerollSubCategory'])->name('admin.reroll_sub_category.add');
+        Route::post('/edit', [RerollSubCategoryController::class, 'editRerollSubCategory'])->name('admin.reroll_sub_category.edit');
+        Route::get('/edit/{id}', [RerollSubCategoryController::class, 'showEditRerollSubCategory'])->name('admin.reroll_sub_category.show_edit');
+        Route::get('/delete/{id}', [RerollSubCategoryController::class, 'deleteRerollSubCategory'])->name('admin.reroll_sub_category.delete');
     });
 });

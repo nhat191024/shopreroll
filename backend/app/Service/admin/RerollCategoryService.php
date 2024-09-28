@@ -34,9 +34,9 @@ class RerollCategoryService
         $rollCategory->save();
     }
 
-    // public function checkHasChildren($idCategory) {
-    //     return RerollCategory::find($idCategory)->products()->get()->count() > 0;
-    // }
+    public function checkHasChildren($idCategory) {
+        return RerollCategory::find($idCategory)->SubRerollCategory()->get()->count() > 0;
+    }
 
     public function delete($idRerollCategory) {
         $rollCategory = RerollCategory::where('id', $idRerollCategory)->first();

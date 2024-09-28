@@ -55,13 +55,11 @@ class RerollCategoryController extends Controller
 
     public function deleteRerollCategory(Request $request) {
         $id = $request->id;
-        // if(!$this->categoryService->checkHasChildren($id)) {
-        //     $this->categoryService->delete($id);
-        //     return redirect(route('admin.category.index'))->with('success', 'Xóa danh mục thành công') ;
-        // }
-        // return redirect(route('admin.category.index'))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
+        if(!$this->rerollCategoryService->checkHasChildren($id)) {
             $this->rerollCategoryService->delete($id);
             return redirect(route('admin.reroll_category.index'))->with('success', 'Xóa danh mục thành công') ;
+        }
+        return redirect(route('admin.reroll_category.index'))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
     }
 
 }
