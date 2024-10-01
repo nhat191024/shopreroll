@@ -22,18 +22,37 @@ class UserController extends Controller
         $allUser = $this->userService->getAll();
         return view('admin.user.user', compact('allUser'));
     }
+    public function addview(){
+        return view('admin.user.add');
+    }
+    public function addUser(Request $request){
+         $this->userService->addAcount($request);
+        // return ($test);
+        // dd($request->all());
+        // return redirect()->route('admin.user.index')->with('success', 'User added successfully');
+    }
     public function show($id){
         $user = $this->userService->getById($id);
         return view('admin.user.edit', compact('user'));
     }
-    public function edit($id, Request $request){
-        if ($request->input('action') === 'editBalance') {
-        $this->userService->editbalance($id, $request);
-        // dd($request->all());
-        return redirect()->route('admin.user.index')->with('success', 'Balance updated successfully');
-        }else if($request->input('action') === 'editRole'){
-            $this->userService->editRole($id, $request);
-            return redirect()->route('admin.user.index')->with('success', 'Role updated successfully');
+    public function edit($id, Request $request)
+    {
+        switch ($request->input('action')) {
+            case 'editBalance':
+                $this->userService->editbalance($id, $request);
+                return redirect()->route('admin.user.index')->with('success', 'Balance updated successfully');
+            
+            case 'editRole':
+                $this->userService->editRole($id, $request);
+                return redirect()->route('admin.user.index')->with('success', 'Role updated successfully');
+            
+            case 'changePass':
+                $this->userService->changePass($id, $request);
+                return redirect()->route('admin.user.index')->with('success', 'Password updated successfully');
+            
+            default:
+                return redirect()->route('admin.user.index')->with('error', 'Invalid action');
         }
     }
+    
 }
