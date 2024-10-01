@@ -13,7 +13,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="">Thêm tài khoản</a>
+                    <a class="btn btn-primary" href="{{route('admin.user.addView')}}">Thêm tài khoản</a>
 
                 </div>
                 <div class="card-body">
@@ -46,8 +46,8 @@
                                         <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Cộng tác viên' : 'Người mua') }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-warning" href="{{route('admin.user.editView',['id'=>$item->id])}}">Sửa</a>
-                                            <a class="btn btn-danger" href="" 
-                                            onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a>
+                                            {{-- <a class="btn btn-danger" href="" 
+                                            onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a> --}}
                                         </td>
                                     </tr>
                                 @endforeach
