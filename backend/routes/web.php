@@ -38,10 +38,9 @@ Route::prefix('admin')->group(function () {
     });
     Route::prefix('/user')->group(function(){
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
-        // Route::get('/add', [UserController::class,'showAddUser'])->name('admin.user.show_add');
-        // Route::post('/add', [UserController::class, 'addUser'])->name('admin.user.add');
+        Route::get('/add', [UserController::class,'addview'])->name('admin.user.addView');
+        Route::post('/add', [UserController::class, 'addUser'])->name('admin.user.add');
         Route::post('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::get('/{id}', [UserController::class,'show'])->name('admin.user.editView');
-        // Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
     });
 });
