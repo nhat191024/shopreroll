@@ -25,6 +25,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ url('') . '/' }}css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles1.css"  rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
