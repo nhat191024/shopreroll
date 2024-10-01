@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.master01')
 @section('main')
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -13,28 +13,18 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.user.show_add') }}">Thêm tài khoản</a>
+                    <a class="btn btn-primary" href="">Thêm tài khoản</a>
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-block">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-block">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>STT</th>
                                     <th>Username</th>
+                                    <th>Số dư</th>
                                     <th>Quyền</th>
-                                    <th>Chi nhánh</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
@@ -42,21 +32,23 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>Username</th>
+                                    <th>Số dư</th>
                                     <th>Quyền</th>
-                                    <th>Chi nhánh</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allUser as $key => $item)
+                                @foreach ($allUser as $item)
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td>{{ $item->username }}</td>
-                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Nhân viên' : 'Bếp') }}</td>
-                                        <td>{{ $item->branch->name }}</td>
-                                        <td class="text-center"><a class="btn btn-warning" href="{{route('admin.user.show_edit', ['id' => $item->id])}}">Sửa</a> <a
-                                                class="btn btn-danger" href="{{route('admin.user.delete', ['id' => $item->id])}}"
-                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a></td>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item['balance'] }}</td>
+                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Cộng tác viên' : 'Người mua') }}</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-warning" href="{{route('admin.user.editView',['id'=>$item->id])}}">Sửa</a>
+                                            <a class="btn btn-danger" href="" 
+                                            onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
