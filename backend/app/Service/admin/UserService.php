@@ -4,48 +4,47 @@ namespace App\Service\admin;
 
 use App\Models\Food;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserService
 {
     public function getAll()
     {
-        $user = User::where('status', 1)->get();
-        return $user;
+        $users = User::whereIn('role',[0,2])->get();
+        return $users;
     }
 
     public function getById($id) {
-        return Food::where('id', $id)->first();
+        return User::find($id);
     }
 
     public function add($categoryId, $foodName, $foodPrice, $foodImage)
     {
-        Food::create([
-            'category_id' => $categoryId,
-            'name' => $foodName,
-            'price' => $foodPrice,
-            'image' => $foodImage
-        ]);
+       
     }
 
-    public function edit($id, $categoryId, $foodName, $foodPrice, $foodImage)
+    public function editRole($id, Request $request)
     {
-        $food = Food::where('id', $id)->first();
-        $food->category_id = $categoryId;
-        $food->name = $foodName;
-        $food->price = $foodPrice;
-        if ($foodImage != null) {
-            $food->image = $foodImage;
+        $user = User::where('id', $id)->first();
+        $user->role = $request->input('role');
+        $user->save();
+        return $user;       
+    }
+        public function editbalance($id,Request $request){
+            
+            $user = User::where('id', $id)->first();
+            if (!$user) {
+                return response()->json(['message' => 'User not found'], 404);
+            }
+            $balance = $request->input('balance');
+            $plusbalance = $request->input('plusbalance');
+            if (isset($balance) && isset($plusbalance)) {
+                $user->balance =  $balance + $plusbalance;
+                $user->save();
+            return response()->json(['message' => 'Balance updated successfully'], 200);
+            }
+            return response()->json(['message' => 'Invalid data provided'], 400);
+
         }
-        $food->save();
-    }
 
-    public function checkHasChildren($idFood) {
-        return Food::find($idFood)->dish()->get()->count() > 0;
     }
-
-    public function delete($idFood) {
-        $food = Food::find($idFood);
-        $food->status = 0;
-        $food->save();
-    }
-}
