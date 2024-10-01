@@ -7,7 +7,6 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Cộng tiền </h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
@@ -15,21 +14,23 @@
                     <form action="{{ route('admin.user.edit', ['id' => $user->id]) }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
+                        <h1 class="h3 mb-2 text-gray-800">Cập nhật thông tin </h1>
                         <div class="row ">
                             <div class="form-group col-6 ">
                                 <label for="">ID tài khoản</label>
                                 <input required type="text" class="form-control" id="" aria-describedby=""
-                                    name="email" value="{{ $user['id'] }}" readonly>
+                                    name="id" value="{{ $user['id'] }}" readonly>
                             </div>
                             <div class="form-group col-6 ">
-                                <label for="">Cộng tiền </label>
+                                <label for="">Cộng tiền (Nhập số âm để trừ tiền)</label>
                                 <input type="number" class="form-control" id="" aria-describedby=""
                                     name="plusbalance" placeholder="Nhập số tiền muốn thêm ">
+
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Tên người dùng</label>
                                 <input required type="text" class="form-control" id="" aria-describedby=""
-                                    name="email" value="{{ $user['name'] }}" readonly>
+                                    name="name" value="{{ $user['name'] }}" readonly>
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Quyền hạn </label>
@@ -55,7 +56,7 @@
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">E-mail tài khoản</label>
-                                <input required type="text" class="form-control" id="" aria-describedby=""
+                                <input required type="email" class="form-control" id="" aria-describedby=""
                                     name="email" value="{{ $user['email'] }}" readonly>
                             </div>
                             <div class="form-group col-6 ">
@@ -63,17 +64,21 @@
                                 <input required type="number" class="form-control" id="" aria-describedby=""
                                     name="phone" value="{{ $user['phone'] }}" readonly>
                             </div>
+                            <div class="form-group col-12 ">
+                            <h1 class="h3 mb-2 text-gray-800">Thay đổi mật khẩu </h1>
+                                <label for="">Mật khẩu mới của tài khoản</label>
+                                <input required type="password" class="form-control" id="" aria-describedby=""
+                                    name="password" placeholder="Nhập mật khẩu mới">
+                            </div>
                         </div>
                         <input type="hidden" name="id" value="{{ $user->id }}">
-
                         <button class="btn btn-success mt-4" type="submit" name="action" value="editBalance">Cộng/Trừ
                             tiền</button>
                         <button class="btn btn-warning mt-4" type="submit" name="action" value="editRole">Sửa quyền
                             hạn</button>
-
+                        <button class="btn btn-primary mt-4" type="submit" name="action" value="changePass">Đổi mật khẩu</button>
 
                     </form>
-
                 </div>
             </div>
         </div>
