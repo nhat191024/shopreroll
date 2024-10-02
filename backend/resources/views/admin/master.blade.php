@@ -136,12 +136,12 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Danh mục</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.product.index') }}">
+            <li class="nav-item {{ Request::is('admin/gameAccount*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.gameAccount.index') }}">
                     <i class="fas fa-fw fa-cookie"></i>
-                    <span>Sản phẩm</span></a>
+                    <span>Tài khoản Game</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/banner*') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Request::is('admin/banner*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.banner.index') }}">
                     <i class="fas fa-fw fa-clipboard"></i>
                     <span>Banner</span></a>
@@ -186,7 +186,7 @@
                 <a class="nav-link" href="{{ route('admin.blog.index') }}">
                     <i class="fas fa-fw fa-blog"></i>
                     <span>Quản lý Blog</span></a>
-            </li>
+            </li> --}}
 
             {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.method.index') }}">
@@ -316,8 +316,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="dropdown-item text-center small text-gray-600" href="{{ route('admin.bill.index') }}">Xem toàn bộ
-                                    đơn hàng</a>
+                                {{-- <a class="dropdown-item text-center small text-gray-600" href="{{ route('admin.bill.index') }}">Xem toàn bộ
+                                    đơn hàng</a> --}}
                             </div>
                         </li>
 
@@ -354,9 +354,9 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="dropdown-item text-center small text-gray-600"
+                                {{-- <a class="dropdown-item text-center small text-gray-600"
                                     href="{{ route('admin.message.index') }}">Xem thêm tin nhắn
-                                </a>
+                                </a> --}}
                             </div>
                         </li>
 
@@ -366,8 +366,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
+                                {{-- <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span> --}}
                                 <img class="img-profile rounded-circle"
                                     src="{{ url('') . '/' }}img/undraw_profile.svg">
                             </a>
