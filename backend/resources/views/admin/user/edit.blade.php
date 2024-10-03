@@ -65,7 +65,7 @@
                                     name="phone" value="{{ $user['phone'] }}" readonly>
                             </div>
                             <div class="form-group col-12 ">
-                            <h1 class="h3 mb-2 text-gray-800">Thay đổi mật khẩu </h1>
+                                <h1 class="h3 mb-2 text-gray-800">Thay đổi mật khẩu </h1>
                                 <label for="">Mật khẩu mới của tài khoản</label>
                                 <input required type="password" class="form-control" id="" aria-describedby=""
                                     name="password" placeholder="Nhập mật khẩu mới">
@@ -76,7 +76,8 @@
                             tiền</button>
                         <button class="btn btn-warning mt-4" type="submit" name="action" value="editRole">Sửa quyền
                             hạn</button>
-                        <button class="btn btn-primary mt-4" type="submit" name="action" value="changePass">Đổi mật khẩu</button>
+                        <button class="btn btn-primary mt-4" type="submit" name="action" value="changePass">Đổi mật
+                            khẩu</button>
 
                     </form>
                 </div>
