@@ -36,11 +36,11 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [RerollSubCategoryController::class, 'showEditRerollSubCategory'])->name('admin.reroll_sub_category.show_edit');
         Route::get('/delete/{id}', [RerollSubCategoryController::class, 'deleteRerollSubCategory'])->name('admin.reroll_sub_category.delete');
     });
-    Route::prefix('/user')->group(function(){
+    Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
-        Route::get('/add', [UserController::class,'addview'])->name('admin.user.addView');
+        Route::get('/add', [UserController::class, 'showAddForm'])->name('admin.user.show');
         Route::post('/add', [UserController::class, 'addUser'])->name('admin.user.add');
         Route::post('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-        Route::get('/{id}', [UserController::class,'show'])->name('admin.user.editView');
+        Route::get('/{id}', [UserController::class, 'show'])->name('admin.user.editView');
     });
 });
