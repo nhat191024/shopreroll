@@ -131,12 +131,18 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
+            <li class="nav-item {{ Request::is('admin/game*') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.game.index') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Game</span></a>
+            </li>
             <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Danh mục</span></a>
+                    <span>Category</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
+           
+            {{-- <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.product.index') }}">
                     <i class="fas fa-fw fa-cookie"></i>
                     <span>Sản phẩm</span></a>
@@ -186,7 +192,7 @@
                 <a class="nav-link" href="{{ route('admin.blog.index') }}">
                     <i class="fas fa-fw fa-blog"></i>
                     <span>Quản lý Blog</span></a>
-            </li>
+            </li> --}}
 
             {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.method.index') }}">
@@ -288,7 +294,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
@@ -319,10 +325,10 @@
                                 <a class="dropdown-item text-center small text-gray-600" href="{{ route('admin.bill.index') }}">Xem toàn bộ
                                     đơn hàng</a>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
@@ -358,12 +364,12 @@
                                     href="{{ route('admin.message.index') }}">Xem thêm tin nhắn
                                 </a>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        {{-- <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
@@ -380,7 +386,7 @@
                                     Logout
                                 </a>
                             </div>
-                        </li>
+                        </li> --}}
                     </ul>
 
                 </nav>

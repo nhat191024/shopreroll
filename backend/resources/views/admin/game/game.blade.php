@@ -9,11 +9,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Danh mục game</h1>
+            <h1 class="h3 mb-2 text-gray-800">Tên game</h1>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.category.show_add') }}">Thêm danh mục mới</a>
+                    <a class="btn btn-primary" href="{{ route('admin.game.show_add') }}">Thêm game</a>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -31,36 +32,27 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên danh mục (Tiếng Việt)</th>
-                                    <th>Ảnh danh mục</th>
-                                    <th>Tên game</th>
+                                    <th>Tên trò chơi</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên danh mục (Tiếng Việt)</th>
-                                    <th>Ảnh danh mục</th>
-                                    <th>Tên game</th>
+                                    <th>Tên trò chơi</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @php
-                                    $key = 0;
-                                @endphp
-                                @foreach ($categories as $item)
+                                @foreach ($allGame as $key => $item)
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td><img width="200px" src="{{ url('image/thumb') . "/" . $item->image }}" alt=""></td>
-                                        <td>{{ $item->Game->name }}</td>
+                                        <td>{{ $item['name'] }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-warning" href="{{route('admin.category.show_edit', ['id' => $item->id])}}">
+                                            <a class="btn btn-warning" href="{{route('admin.game.show_edit', ['id' => $item->id])}}">
                                                 Sửa
                                             </a>
-                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xoá danh mục: {{ $item->name }}?\nLƯU Ý: Nếu trong danh mục này còn tồn tại sản phẩm, việc xoá sẽ không thể thực hiện!')) { window.location.href = '{{route('admin.category.delete', ['id' => $item->id])}}'; }">
+                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xoá danh mục: {{ $item->name }}?\nLƯU Ý: Nếu trong danh mục này còn tồn tại sản phẩm, việc xoá sẽ không thể thực hiện!')) { window.location.href = '{{route('admin.game.delete', ['id' => $item->id])}}'; }">
                                                 Xoá
                                             </a>
 
