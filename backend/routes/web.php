@@ -20,12 +20,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
     });
     Route::prefix('/reroll-category')->group(function () {
-        Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.reroll_category.index');
-        Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('admin.reroll_category.show_add');
-        Route::post('/add', [RerollCategoryController::class, 'addRerollCategory'])->name('admin.reroll_category.add');
-        Route::post('/edit', [RerollCategoryController::class, 'editRerollCategory'])->name('admin.reroll_category.edit');
-        Route::get('/edit/{id}', [RerollCategoryController::class, 'showEditRerollCategory'])->name('admin.reroll_category.show_edit');
-        Route::get('/delete/{id}', [RerollCategoryController::class, 'deleteRerollCategory'])->name('admin.reroll_category.delete');
+        Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.RerollCategory.index');
+        Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('admin.RerollCategory.showAdd');
+        Route::post('/add', [RerollCategoryController::class, 'addRerollCategory'])->name('admin.RerollCategory.add');
+        Route::post('/edit', [RerollCategoryController::class, 'editRerollCategory'])->name('admin.RerollCategory.edit');
+        Route::get('/edit/{id}', [RerollCategoryController::class, 'showEditRerollCategory'])->name('admin.RerollCategory.ShowEdit');
+        Route::get('/ChangeStatus/{id}', [RerollCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollCategory.ChangeStatus');
     });
     Route::prefix('/reroll-sub-category')->group(function () {
         Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.reroll_sub_category.index');

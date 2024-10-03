@@ -38,9 +38,9 @@ class RerollCategoryService
         return RerollCategory::find($idCategory)->SubRerollCategory()->get()->count() > 0;
     }
 
-    public function delete($idRerollCategory) {
-        $rollCategory = RerollCategory::where('id', $idRerollCategory)->first();
-        $rollCategory['status'] = 1;
-        $rollCategory->save();
+    public function ChangeStatus($id, $status) {
+        $rerollCategory = RerollCategory::where('id', $id)->first();
+        $rerollCategory->status = $status;
+        $rerollCategory->save();
     }
 }
