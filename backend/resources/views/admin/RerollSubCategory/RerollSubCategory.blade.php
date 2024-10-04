@@ -48,7 +48,6 @@
                             </tfoot>
                             <tbody>
                                 @foreach ($allRerollSubCategory as $key => $item)
-                                @if ($item->status ==0)
                                     <tr>
                                         <td>{{ $item['id'] }}</td>
                                         <td>{{ $item['name'] }}</td>
@@ -56,20 +55,20 @@
                                         <td class="text-center"><img width="200px" src="{{ asset('image/thumb/' . $item['image']) }}"
                                                 alt=""></td>
                                         <td class="text-center">
-                                            {{-- @if (!$item->deleted_at) --}}
+                                            @if ($item->status == 0)
+                                                <a class="btn btn-success"
+                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollSubCategory.ChangeStatus', $item->id) }}'; }">
+                                                    Hiện </a>
+                                            @else
                                                 <a class="btn btn-danger"
-                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xóa item {{$item['id']}} chứ?')) { window.location.href = '{{ route('admin.reroll_sub_category.delete', ['id' => $item->id]) }}'; }">
+                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollSubCategory.ChangeStatus', $item->id) }}'; }">
                                                     Ẩn </a>
-                                            {{-- @endif --}}
-                                            {{-- @if ($item->deleted_at) --}}
-                                                <a class="btn btn-info"
-                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn sửa item {{$item['id']}} chứ?')) { window.location.href = '{{ route('admin.reroll_sub_category.show_edit', ['id' => $item->id]) }}'; }">
-                                                    Sửa </a>
-                                            {{-- @endif --}}
+                                            @endif
+                                            <a class="btn btn-info" href="{{ route('admin.RerollSubCategory.ShowEdit', $item->id) }}">Sửa</a>
+                                            
                                         </td>
 
                                     </tr>
-                                @endif
                                 @endforeach
                             </tbody>
                         </table>

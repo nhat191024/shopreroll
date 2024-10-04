@@ -13,7 +13,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.reroll_category.show_add') }}">Thêm Reroll Category</a>
+                    <a class="btn btn-primary" href="{{ route('admin.RerollCategory.showAdd') }}">Thêm Reroll Category</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -65,6 +65,9 @@
                                                     Ẩn </a>
                                             @endif
                                             <a class="btn btn-info" href="{{ route('admin.RerollCategory.ShowEdit', $item->id) }}">Sửa</a>
+                                            <a class="btn btn-info"
+                                            href="{{ route('admin.RerollCategory.Detail', ['id' => $item->id]) }}">Chi
+                                            tiết</a>
                                         </td>
                                     </tr>
                                 @endforeach
