@@ -29,7 +29,7 @@ class UserController extends Controller
         $this->userService->addAccount($request);
         // return ($test);
         // dd($request->all());
-        // return redirect()->route('admin.user.index')->with('success', 'User added successfully');
+        return redirect()->route('admin.user.index')->with('success', 'User added successfully');
     }
     public function show($id)
     {
@@ -38,21 +38,25 @@ class UserController extends Controller
     }
     public function edit($id, Request $request)
     {
-        switch ($request->input('action')) {
-            case 'editBalance':
-                $this->userService->editBalance($id, $request);
-                return redirect()->route('admin.user.index')->with('success', 'Balance updated successfully');
-
-            case 'editRole':
-                $this->userService->editRole($id, $request);
-                return redirect()->route('admin.user.index')->with('success', 'Role updated successfully');
-
-            case 'changePass':
-                $this->userService->changePass($id, $request);
-                return redirect()->route('admin.user.index')->with('success', 'Password updated successfully');
-
-            default:
-                return redirect()->route('admin.user.index')->with('error', 'Invalid action');
+        $user = $this->userService->getById($id);
+    
+        if (!$user) {
+            return redirect()->route('admin.user.index')->with('error', 'User not found');
         }
+    
+        if ($request->has('addedBalance')) {
+            $this->userService->editBalance($id, $request);
+        }
+    
+        if ($request->has('role')) {
+            $this->userService->editRole($id, $request);
+        }
+    
+        if ($request->filled('password')) {
+            $this->userService->changePass($id, $request);
+        }
+    
+        return redirect()->route('admin.user.index')->with('success', 'Information updated successfully');
     }
+    
 }
