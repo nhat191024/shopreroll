@@ -16,25 +16,25 @@
                         @csrf
                         <div class="row ">
                             <div class="form-group col-6 ">
-                                <label for="">tài khoản người dùng</label>
+                                <label for="">Tên đăng nhập</label>
                                 <input required type="text" class="form-control" id="" aria-describedby=""
                                     name="username" placeholder="Nhập tài khoản đăng nhập ">
                             </div>
                             <div class="form-group col-6 ">
-                                <label for="">mật khẩu người dùng</label>
+                                <label for="">Mật khẩu</label>
                                 <input required type="text" class="form-control" id="" aria-describedby=""
                                     name="password" placeholder="Nhập mật khẩu đăng nhập">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Tên người dùng</label>
                                 <input required type="text" class="form-control" id="" aria-describedby=""
-                                    name="name" placeholder="Nhập tên người dùng">
+                                    name="name" placeholder="Nhập họ và tên">
                             </div>
                             <div class="form-group col-6 ">
-                                <label for="">Quyền hạn </label>
+                                <label for="">Vai trò  </label>
                                 <select name="role" class="form-control" aria-label="Default select example" required>
-                                    <option value="">Chọn quyền </option>
-                                    <option value="1" >Quản trị viên</option>
+                                    <option value="">Chọn Vai trò </option>
+                                    <option value="1">Quản trị viên</option>
                                     <option value="2">Cộng tác viên</option>
                                     <option value="0">Khách Hàng</option>
                                     <option value="3">Bị chặn</option>
@@ -42,21 +42,21 @@
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Số dư </label>
-                                <input  type="number" class="form-control" id="" aria-describedby=""
-                                    name="balance" placeholder="Nhập số dư (Không bắt buộc)" value="0">
+                                <input type="number" class="form-control" id="" aria-describedby="" name="balance"
+                                    placeholder="Nhập số dư (Không bắt buộc)" value="0">
                             </div>
                             <div class="form-group col-6 ">
-                                <label for="">E-mail tài khoản</label>
+                                <label for="">E-mail</label>
                                 <input required type="email" class="form-control" id="" aria-describedby=""
-                                    name="email">
+                                    name="email" placeholder="Nhập E-mail">
                             </div>
                             <div class="form-group col-6 ">
-                                <label for="">Số điện thoại tài khoản</label>
-                                <input required type="number" class="form-control" id="" aria-describedby=""
-                                    name="phone">
+                                <label for="">Số điện thoại</label>
+                                <input required type="text" class="form-control" id="" aria-describedby=""
+                                    name="phone" placeholder="Nhập số điện thoại">
                             </div>
                         </div>
-                        <button class="btn btn-success mt-4" type="submit" >Thêm mới</button>
+                        <button class="btn btn-success mt-4" type="submit">Thêm</button>
 
 
                     </form>

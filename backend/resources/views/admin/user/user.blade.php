@@ -22,18 +22,18 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Username</th>
-                                    <th>Số dư</th>
-                                    <th>Quyền</th>
+                                    <th>Họ và tên</th>
+                                    <th>Số dư hiện tại</th>
+                                    <th>Vai trò</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Username</th>
-                                    <th>Số dư</th>
-                                    <th>Quyền</th>
+                                    <th>Họ và tên</th>
+                                    <th>Số dư hiện tại</th>
+                                    <th>Vai trò</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </tfoot>
@@ -42,8 +42,8 @@
                                     <tr>
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item['balance'] }}</td>
-                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Cộng tác viên' : 'Người mua') }}
+                                        <td>{{ number_format($item['balance'], 0, ',', '.')}} VND</td>
+                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Cộng tác viên' : ($item['role'] == 3 ? 'Bị chặn' :'Người mua')) }}
                                         </td>
                                         <td class="text-center">
                                             <a class="btn btn-warning"
