@@ -3,13 +3,15 @@
 namespace App\Service\admin;
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
 
 class UserService
 {
+    use SoftDeletes;
     public function getAll()
     {
-        $users = User::get();
+        $users = User::withTrashed()->get();
         return $users;
     }
 
@@ -33,20 +35,29 @@ class UserService
 
     public function editBalance($id, Request $request)
     {
+        $request->validate([
+            'addedBalance' => 'required|numeric|digits_between:1,10', 
+        ], [
+            'addedBalance.digits_between' => 'Số dư không được vượt quá 10 chữ số',
+        ]);
+        
         $user = User::where('id', $id)->first();
         if (!$user) {
-        return redirect()->route('admin.user.index')->with('message', 'User not found');
+            return redirect()->route('admin.user.index')->with('message', 'Không tìm thấy tài khoản');
         }
         $balance = $user->balance;
         $addedBalance = $request->input('addedBalance');
         if (isset($balance) && isset($addedBalance)) {
-            $user->balance =  $balance + $addedBalance;
+            if($addedBalance + $balance < 0) {
+                return redirect()->route('admin.user.edit', ['id' => $id])->with('message', 'Số dư tài khoản không đủ để trừ');
+            }
+            $user->balance = $balance + $addedBalance;
             $user->save();
             return $user;
         }
-        return redirect()->route('admin.user.edit')->with('message', 'Invalid data provided');
-
+        return redirect()->route('admin.user.edit', ['id' => $id])->with('message', 'Dữ liệu không hợp lệ');
     }
+    
 
     public function changePass($id, Request $request)
     {
@@ -59,7 +70,7 @@ class UserService
         ]
         );
         if (!$user) {
-        return redirect()->route('admin.user.index')->with('message', 'User not found');
+        return redirect()->route('admin.user.index')->with('message', 'Không tìm thấy tài khoản');
         }
         if($request->input('password')==null) {
             $user->password = User::find($id)->value('password');
@@ -72,20 +83,31 @@ class UserService
     public function addAccount(Request $request)
     {
         $request->validate([
+            'name' => 'required',
             'username' => 'required|string|unique:users,username',
             'password'=> 'required|string',
             'email'=> 'required|string|unique:users,email',
-            'phone'=> 'required|string',
+            'phone'=> 'required|numeric|unique:users,phone|digits:10',
             'role'=> 'required|integer',
+            'balance'=> 'required|numeric|digits_between:1,10',
         ],
         [
             'username.required' => 'required',
             'username.unique' => 'username already exists',
             'email.unique' => 'Email already exists',
             'phone.required' => 'required',
+            'phone.unique' => 'Phone already exists',
+            'phone.numeric' => 'Phone should be numeric',
+            'phone.digits' => 'Phone should be 10 digits',
+            'password.required' => 'required',
+            'email.required' => 'required',
+            'name.required' => 'required',
             'role.required' => 'required',
-        ]
-        );
+            'balance.required' => 'required',
+            'balance.numeric' => 'Balance should be numeric',
+            'balance.digits_between' => 'Balance should have between 1 and 10 digits',
+        ]);
+        
         $user = new User();
         $user->username = $request->input('username');
         $user->name = $request->input('name');
@@ -97,5 +119,20 @@ class UserService
         $user->save();
         return $user;
     }
-    
+    public function disable($id){
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return redirect()->route('admin.user.index')->with('message', 'Vô hiệu hoá thành công');
+        }
+        return redirect()->route('admin.user.index')->with('message', 'Không tìm thấy tài khoản');
+    }
+    public function store($id){
+        $user = User::withTrashed()->find($id);
+        if ($user) {
+            $user->restore();
+            return redirect()->route('admin.user.index')->with('message', 'Khôi phục thành công');
+        }
+        return redirect()->route('admin.user.index')->with('message', 'Không tìm thấy tài khoản');
+    }
 }
