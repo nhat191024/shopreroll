@@ -17,17 +17,17 @@
                         <div class="row ">
                             <div class="form-group col-6 ">
                                 <label for="">Tên đăng nhập</label>
-                                <input required type="text" class="form-control" id="" aria-describedby=""
-                                    name="username" placeholder="Nhập tài khoản đăng nhập ">
+                                <input required type="text" class="form-control" 
+                                    name="username" placeholder="Nhập tài khoản ">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Mật khẩu</label>
-                                <input required type="text" class="form-control" id="" aria-describedby=""
-                                    name="password" placeholder="Nhập mật khẩu đăng nhập">
+                                <input required type="text" class="form-control" 
+                                    name="password" placeholder="Nhập mật khẩu">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Tên người dùng</label>
-                                <input required type="text" class="form-control" id="" aria-describedby=""
+                                <input required type="text" class="form-control" 
                                     name="name" placeholder="Nhập họ và tên">
                             </div>
                             <div class="form-group col-6 ">
@@ -42,17 +42,17 @@
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Số dư </label>
-                                <input type="number" class="form-control" id="" aria-describedby="" name="balance"
+                                <input type="number" class="form-control"  name="balance"
                                     placeholder="Nhập số dư (Không bắt buộc)" value="0">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">E-mail</label>
-                                <input required type="email" class="form-control" id="" aria-describedby=""
+                                <input required type="email" class="form-control" 
                                     name="email" placeholder="Nhập E-mail">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Số điện thoại</label>
-                                <input required type="text" class="form-control" id="" aria-describedby=""
+                                <input required type="text" class="form-control" 
                                     name="phone" placeholder="Nhập số điện thoại">
                             </div>
                         </div>

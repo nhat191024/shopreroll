@@ -25,7 +25,8 @@
                                     <th>Họ và tên</th>
                                     <th>Số dư hiện tại</th>
                                     <th>Vai trò</th>
-                                    <th>Chức năng</th>
+                                    <th>Trạng thái</th>
+                                    <th><center>Chức năng</center></th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -34,7 +35,8 @@
                                     <th>Họ và tên</th>
                                     <th>Số dư hiện tại</th>
                                     <th>Vai trò</th>
-                                    <th>Chức năng</th>
+                                    <th>Trạng thái</th>
+                                    <th><center>Chức năng</center></th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -45,15 +47,36 @@
                                         <td>{{ number_format($item['balance'], 0, ',', '.')}} VND</td>
                                         <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Cộng tác viên' : ($item['role'] == 3 ? 'Bị chặn' :'Người mua')) }}
                                         </td>
+                                        <td>
+                                            @if($item->deleted_at)
+                                            <h5><span class="badge badge-pill badge-danger">Vô hiệu hoá</span></h5>
+                                            @else
+                                            <h5><span class="badge badge-pill badge-success ">Đang sử dụng</span></h5>
+                                            @endif
+                                        </td>
                                         <td class="text-center">
-                                            <a class="btn btn-warning"
-                                                href="{{ route('admin.user.editView', ['id' => $item->id]) }}">Sửa</a>
-                                            {{-- <a class="btn btn-danger" href="" 
-                                            onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a> --}}
+                                            @if($item->deleted_at)
+                                                <a class="btn btn-success"
+                                                   href="{{ route('admin.user.store', ['id' => $item->id]) }}">
+                                                    Khôi phục
+                                                </a>
+                                            @else
+                                                <a class="btn btn-warning"
+                                                   href="{{ route('admin.user.editView', ['id' => $item->id]) }}">
+                                                    Sửa
+                                                </a>
+                            
+                                                <a class="btn btn-danger" 
+                                                   href="{{ route('admin.user.disable', ['id' => $item->id]) }}" 
+                                                   onclick="return confirm('Bạn chắc chắn chứ?')"> 
+                                                    Vô hiệu hoá 
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
