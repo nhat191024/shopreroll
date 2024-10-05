@@ -27,21 +27,19 @@ class UserController extends Controller
     public function addUser(Request $request)
     {
         $this->userService->addAccount($request);
-        // return ($test);
-        // dd($request->all());
-        return redirect()->route('admin.user.index')->with('success', 'User added successfully');
+        return redirect()->route('admin.user.index')->with('success', 'Thêm tài khoản thành công');
     }
-    public function show($id)
+    public function showUser($id)
     {
         $user = $this->userService->getById($id);
         return view('admin.user.edit', compact('user'));
     }
-    public function edit($id, Request $request)
+    public function editUser($id, Request $request)
     {
         $user = $this->userService->getById($id);
     
         if (!$user) {
-            return redirect()->route('admin.user.index')->with('error', 'User not found');
+            return redirect()->route('admin.user.index')->with('error', 'Không tìm thấy tài khoản');
         }
     
         if ($request->has('addedBalance')) {
@@ -56,7 +54,16 @@ class UserController extends Controller
             $this->userService->changePass($id, $request);
         }
     
-        return redirect()->route('admin.user.index')->with('success', 'Information updated successfully');
+        return redirect()->route('admin.user.index')->with('success', 'Cập nhập thành công ');
+    }
+    public function disableUser($id) {
+        $this->userService->disable($id);
+        return redirect()->route('admin.user.index')->with('success', 'Vô hiệu tài khoản thành công');
+    }
+    public function storeUser($id) {
+        $this->userService->store($id);
+        return redirect()->route('admin.user.index')->with('message', 'Khôi phục thành công');
+
     }
     
 }
