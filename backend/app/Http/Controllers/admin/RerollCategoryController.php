@@ -16,12 +16,12 @@ class RerollCategoryController extends Controller
 
     public function index() {
         $allRerollCategory = $this->rerollCategoryService->getAll();
-        return view('admin.rerollcategory.rerollcategory',compact('allRerollCategory'));
+        return view('admin.RerollCategory.RerollCategory',compact('allRerollCategory'));
         // return dd($allRerollCategory);
     }
 
     public function showAddRerollCategory() {
-        return view('admin.rerollcategory.add_rerollcategory');
+        return view('admin.RerollCategory.AddRerollCategory');
     }
 
     public function addRerollCategory(Request $request) {
@@ -30,18 +30,23 @@ class RerollCategoryController extends Controller
             'image'=> 'required',
             'note'=> 'required',
         ]);
-        
+
         // Public Folder
         $this->rerollCategoryService->add($request->name, $request->image, $request->note);
-        return redirect(route('admin.reroll_category.index'))->with('success', 'Thêm danh mục thành công');
+        return redirect(route('admin.RerollCategory.index'))->with('success', 'Thêm danh mục thành công');
     }
 
     public function showEditRerollCategory(Request $request) {
         $id = $request->id;
         $rerollCategoryInfo = $this->rerollCategoryService->getById($id);
-        return view('admin.rerollcategory.edit_rerollcategory', compact('id', 'rerollCategoryInfo'));
+        return view('admin.RerollCategory.EditRerollCategory', compact('id', 'rerollCategoryInfo'));
     }
 
+    public function detailRerollCategory(Request $request) {
+        $id = $request->id;
+        $allRerollSubCategory = $this->rerollCategoryService->getChildren($id);
+        return view('admin.RerollCategory.EditRerollCategory', compact('allRerollSubCategory'));
+    }
     public function editRerollCategory(Request $request) {
         $request->validate([
             'id'=> 'required',
@@ -50,16 +55,22 @@ class RerollCategoryController extends Controller
         ]);
         // Public Folder
         $this->rerollCategoryService->edit($request->id, $request->name, $request->note);
-        return redirect(route('admin.reroll_category.index'))->with('success', 'Sửa danh mục thành công');
+        return redirect(route('admin.RerollCategory.index'))->with('success', 'Sửa danh mục thành công');
     }
 
-    public function deleteRerollCategory(Request $request) {
+    public function ChangeCategoryStatus(Request $request) {
         $id = $request->id;
-        if(!$this->rerollCategoryService->checkHasChildren($id)) {
-            $this->rerollCategoryService->delete($id);
-            return redirect(route('admin.reroll_category.index'))->with('success', 'Xóa danh mục thành công') ;
+        $rerollCategoryInfo = $this->rerollCategoryService->getById($id);
+        if($rerollCategoryInfo->status==0){
+            $this->rerollCategoryService->ChangeStatus($id, 1);
+            return redirect(route('admin.RerollCategory.index'))->with('success', 'Hiện danh mục thành công');
         }
-        return redirect(route('admin.reroll_category.index'))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
-    }
+        else if(!$this->rerollCategoryService->checkHasChildren($id)) {
+            $this->rerollCategoryService->ChangeStatus($id, 0);
+            return redirect(route('admin.RerollCategory.index'))->with('success', 'Ẩn danh mục thành công');
+        }else{
+            return redirect(route('admin.RerollCategory.index'))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
+        }
+        }
 
 }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('game_accounts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('creator_id'); 
+            $table->unsignedBigInteger('creator_id');
             $table->unsignedBigInteger('game_category_id');
             $table->string('title');
             $table->string('username');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('price_in');
             $table->integer('price_out');
             $table->text('note');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
