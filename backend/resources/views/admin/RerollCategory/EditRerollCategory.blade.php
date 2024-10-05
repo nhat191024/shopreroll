@@ -12,7 +12,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.reroll_category.edit') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.RerollCategory.ShowEdit', $rerollCategoryInfo->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="productName">Tên Reroll Category</label>

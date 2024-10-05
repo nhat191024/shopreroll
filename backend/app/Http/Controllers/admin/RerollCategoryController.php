@@ -21,7 +21,7 @@ class RerollCategoryController extends Controller
     }
 
     public function showAddRerollCategory() {
-        return view('admin.RerollCategory.add_rerollCategory');
+        return view('admin.RerollCategory.AddRerollCategory');
     }
 
     public function addRerollCategory(Request $request) {
@@ -39,12 +39,13 @@ class RerollCategoryController extends Controller
     public function showEditRerollCategory(Request $request) {
         $id = $request->id;
         $rerollCategoryInfo = $this->rerollCategoryService->getById($id);
-        return view('admin.RerollCategory.ShowEdit', compact('id', 'rerollCategoryInfo'));
+        return view('admin.RerollCategory.EditRerollCategory', compact('id', 'rerollCategoryInfo'));
     }
+
     public function detailRerollCategory(Request $request) {
         $id = $request->id;
         $allRerollSubCategory = $this->rerollCategoryService->getChildren($id);
-        return view('admin.rerollsubcategory.rerollsubcategory', compact('allRerollSubCategory'));
+        return view('admin.RerollCategory.EditRerollCategory', compact('allRerollSubCategory'));
     }
     public function editRerollCategory(Request $request) {
         $request->validate([
