@@ -1,4 +1,4 @@
-@extends('admin.master')
+@extends('admin.master01')
 @section('main')
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -13,53 +13,70 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.user.show_add') }}">Thêm tài khoản</a>
+                    <a class="btn btn-primary" href="{{ route('admin.user.show') }}">Thêm tài khoản</a>
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        @if ($message = Session::get('success'))
-                            <div class="alert alert-success alert-block">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
-                        @if ($message = Session::get('error'))
-                            <div class="alert alert-danger alert-block">
-                                <strong>{{ $message }}</strong>
-                            </div>
-                        @endif
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Username</th>
-                                    <th>Quyền</th>
-                                    <th>Chi nhánh</th>
-                                    <th>Chức năng</th>
+                                    <th>Họ và tên</th>
+                                    <th>Số dư hiện tại</th>
+                                    <th>Vai trò</th>
+                                    <th>Trạng thái</th>
+                                    <th><center>Chức năng</center></th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Username</th>
-                                    <th>Quyền</th>
-                                    <th>Chi nhánh</th>
-                                    <th>Chức năng</th>
+                                    <th>Họ và tên</th>
+                                    <th>Số dư hiện tại</th>
+                                    <th>Vai trò</th>
+                                    <th>Trạng thái</th>
+                                    <th><center>Chức năng</center></th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allUser as $key => $item)
+                                @foreach ($allUser as $item)
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td>{{ $item->username }}</td>
-                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Nhân viên' : 'Bếp') }}</td>
-                                        <td>{{ $item->branch->name }}</td>
-                                        <td class="text-center"><a class="btn btn-warning" href="{{route('admin.user.show_edit', ['id' => $item->id])}}">Sửa</a> <a
-                                                class="btn btn-danger" href="{{route('admin.user.delete', ['id' => $item->id])}}"
-                                                onclick="confirm('Bạn chắc chắn chứ?')"> Xóa </a></td>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ number_format($item['balance'], 0, ',', '.')}} VND</td>
+                                        <td>{{ $item['role'] == 1 ? 'admin' : ($item['role'] == 2 ? 'Cộng tác viên' : ($item['role'] == 3 ? 'Bị chặn' :'Người mua')) }}
+                                        </td>
+                                        <td>
+                                            @if($item->deleted_at)
+                                            <h5><span class="badge badge-pill badge-danger">Vô hiệu hoá</span></h5>
+                                            @else
+                                            <h5><span class="badge badge-pill badge-success ">Đang sử dụng</span></h5>
+                                            @endif
+                                        </td>
+                                        <td class="text-center">
+                                            @if($item->deleted_at)
+                                                <a class="btn btn-success"
+                                                   href="{{ route('admin.user.store', ['id' => $item->id]) }}">
+                                                    Khôi phục
+                                                </a>
+                                            @else
+                                                <a class="btn btn-warning"
+                                                   href="{{ route('admin.user.editView', ['id' => $item->id]) }}">
+                                                    Sửa
+                                                </a>
+                            
+                                                <a class="btn btn-danger" 
+                                                   href="{{ route('admin.user.disable', ['id' => $item->id]) }}" 
+                                                   onclick="return confirm('Bạn chắc chắn chứ?')"> 
+                                                    Vô hiệu hoá 
+                                                </a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
+                            
                         </table>
                     </div>
                 </div>
