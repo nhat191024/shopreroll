@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('id_youtube')->nullable();
             $table->string('file_download_link')->nullable();
             $table->string('image');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('reroll_category_id')->references('id')->on('reroll_categories')->onDelete('cascade');
