@@ -40,7 +40,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'showAddForm'])->name('admin.user.show');
         Route::post('/add', [UserController::class, 'addUser'])->name('admin.user.add');
-        Route::post('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
-        Route::get('/{id}', [UserController::class, 'show'])->name('admin.user.editView');
+        Route::post('/edit/{id}', [UserController::class, 'editUser'])->name('admin.user.edit');
+        Route::get('/{id}', [UserController::class, 'showUser'])->name(name: 'admin.user.editView');
+        Route::get('/disable/{id}', [UserController::class, 'disableUser'])->name('admin.user.disable');
+        Route::get('/store/{id}', [UserController::class, 'storeUser'])->name('admin.user.store');
     });
 });
