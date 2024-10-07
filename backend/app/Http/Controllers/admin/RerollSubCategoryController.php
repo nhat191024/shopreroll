@@ -79,19 +79,22 @@ class RerollSubCategoryController extends Controller
 
         return redirect(route('admin.reroll_sub_category.index'))->with('success', 'Sửa danh mục thành công');
     }
-
+    public function detailRerollSubCategory(Request $request) {
+        $idRerollPackage = $request->id;
+        $allRerollPackagies = $this->rerollSubCategoryService->getChildren($idRerollPackage);
+        return view('admin.RerollPackage.RerollPackage', compact('allRerollPackagies'));}
     public function ChangeCategoryStatus(Request $request) {
         $id = $request->id;
         $subCategoryInfo = $this->rerollSubCategoryService->getById($id);
         if($subCategoryInfo->status==0){
             $this->rerollSubCategoryService->ChangeStatus($id, 1);
-            return redirect(route('admin.RerollSubCategory.index'))->with('success', 'Hiện danh mục thành công');
+            return redirect(route('admin.reroll_sub_category.index'))->with('success', 'Hiện danh mục thành công');
         }
         else if(!$this->rerollSubCategoryService->checkHasChildren($id)) {
             $this->rerollSubCategoryService->ChangeStatus($id, 0);
-            return redirect(route('admin.RerollSubCategory.index'))->with('success', 'Ẩn danh mục thành công');
+            return redirect(route('admin.reroll_sub_category.index'))->with('success', 'Ẩn danh mục thành công');
         }else{
-            return redirect(route('admin.RerollSubCategory.index'))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
+            return redirect(route('admin.reroll_sub_category.index'))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
         }
         }
 }
