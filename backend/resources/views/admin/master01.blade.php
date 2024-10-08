@@ -18,6 +18,7 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
     <!-- Custom fonts for this template -->
     <link href="{{ url('') . '/' }}vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -29,7 +30,6 @@
 
     <!-- Custom styles for this page -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -46,7 +46,7 @@
                 <div class="sidebar-brand-icon ">
                     <img src="{{ asset('img/logo.svg') }}" width="60%">
                 </div>
-                <div class="sidebar-brand-text mx-3">ODOUCEURS</div>
+                <div class="sidebar-brand-text mx-3">Shop game</div>
             </a>
 
             <!-- Divider -->
@@ -100,7 +100,8 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Chức năng
+                
+                <h6>Chức năng</h6>
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -132,62 +133,123 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            <li class="#">
+            <div id="menuAccordion">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarGame" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarGame">
+                        <i class="fas fa-fw fa-table"></i><span data-key="t-layouts">Danh mục game</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarGame" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarReroll" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarReroll"><i class="fa-solid fa-dice"></i>
+                      <span data-key="t-layouts">Danh mục reroll</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarReroll" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact reroll</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact reroll</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail reroll</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#account" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="account">                
+                        <i class="fa-solid fa-gamepad"></i>     
+                      <span data-key="t-layouts">Tài khoản</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="account" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Star Rail account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#characters" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="characters">                
+                        <i class="fa-solid fa-person"></i>
+                      <span data-key="t-layouts">Character</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="characters" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin characters</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai characters</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Star rail characters</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#weapon" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="weapon">                
+                        <i class="fa-solid fa-wand-sparkles"></i>
+                      <span data-key="t-layouts">Vũ khí</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="weapon" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin vũ khí</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai vũ khí</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Star rail vũ khí</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.user.index')}}">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Tài khoản người dùng</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Danh mục</span></a>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Lịch sử giao dịch</span></a>
             </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-cookie"></i>
-                    <span>Sản phẩm</span></a>
-            </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Banner</span></a>
-            </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-pen-fancy"></i>
-                    <span>About Us</span></a>
-            </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-money-bill"></i>
-                    <span>Hóa đơn</span></a>
-            </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-bell "></i>
-                    <span>Tin nhắn KH</span></a>
-            </li>
-            <li class="#">
+            <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-chevron-circle-right"></i>
-                    <span>Quản lý size</span></a>
+                    <i class="fa-regular fa-envelope"></i>
+                    <span>Tin nhắn khách hàng</span></a>
             </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-birthday-cake"></i>
-                    <span>Quản lý phụ kiện</span></a>
-            </li>
-            <li class="#">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Băng rôn quảng cáo SP</span></a>
-            </li>
-            <li class="#">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-money-check"></i>
-                    <span>Voucher</span>
-                </a>
-            </li>
-            <li class="#">
-                <a class="#">
-                    <i class="fas fa-fw fa-blog"></i>
-                    <span>Quản lý Blog</span></a>
-            </li>
+
 
             {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('admin.method.index') }}">
@@ -443,8 +505,10 @@
             <script src="{{ url('') . '/' }}js/demo/datatables-demo.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-
             <script src="{{ url('') . '/' }}js/admin/blog.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
