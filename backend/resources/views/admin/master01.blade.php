@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link rel="icon" type="image/svg+xml" href="{{ asset('img/logo.svg') }} " />
-    <title>ODOUCEURS - Quản lý</title>
+    <title>Shop game- Quản lý</title>
 
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 
