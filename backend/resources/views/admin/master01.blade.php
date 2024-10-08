@@ -54,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item  {{ Request::is('admin') ? 'active' : '' }}">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route ('admin.dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang tổng quan</span></a>
             </li>
@@ -232,23 +232,23 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('admin.user.index')}}">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Tài khoản người dùng</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Lịch sử giao dịch</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>Tin nhắn khách hàng</span></a>
+                </li>
             </div>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.user.index')}}">
-                    <i class="fa-solid fa-users"></i>
-                    <span>Tài khoản người dùng</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    <span>Lịch sử giao dịch</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fa-regular fa-envelope"></i>
-                    <span>Tin nhắn khách hàng</span></a>
-            </li>
+
 
 
             {{-- <li class="nav-item">
