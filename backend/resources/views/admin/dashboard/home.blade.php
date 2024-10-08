@@ -1,4 +1,4 @@
-@extends('admin.master01');
+@extends('admin.master01')
 @section('main')
 
     <body>
