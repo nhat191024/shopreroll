@@ -17,6 +17,14 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        return view('admin.dashboard.home');
+        $day = $this->dashboardService->getRevenueByDay();
+        $week = $this->dashboardService->getRevenueByWeek();
+        $month = $this->dashboardService->getRevenueByMonth();
+        //  dd($month);
+        $year = $this->dashboardService->getRevenueByYear();
+        $data = $this->dashboardService->getTotalRevenueForYear();
+        return view('admin.dashboard.home', compact('day', 'week','month','year','data'));
+
+        // return view('admin.dashboard.home')->with('data',$this->dashboardService->getDashboard());
     }
 }
