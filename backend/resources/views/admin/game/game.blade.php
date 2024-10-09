@@ -34,6 +34,7 @@
                                     <th>STT</th>
                                     <th>Tên trò chơi</th>
                                     <th>Chức năng</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -41,6 +42,7 @@
                                     <th>STT</th>
                                     <th>Tên trò chơi</th>
                                     <th>Chức năng</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -48,14 +50,16 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item['name'] }}</td>
+                                        <td>{{ $item['status'] == 1 ? "Hoạt động" : "Đã ẩn" }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-warning" href="{{route('admin.game.show_edit', ['id' => $item->id])}}">
                                                 Sửa
                                             </a>
+                                            @if ($item->status != 0)
                                             <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xoá danh mục: {{ $item->name }}?\nLƯU Ý: Nếu trong danh mục này còn tồn tại sản phẩm, việc xoá sẽ không thể thực hiện!')) { window.location.href = '{{route('admin.game.delete', ['id' => $item->id])}}'; }">
                                                 Xoá
                                             </a>
-
+                                            @endif
                                     </td>
                                     </tr>
                                 @endforeach
