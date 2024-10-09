@@ -2,41 +2,48 @@
 
 namespace App\Service\admin;
 
-use App\Models\game_category;
+use App\Models\GameCategory;
 
 class CategoryService
 {
     public function getAll()
     {
-        $category = Categories::all();
+        $category = GameCategory::all();
         return $category;
     }
 
-    public function getById($id) {
-        return Categories::where('id', $id)->first();
+    public function getById($id)
+    {
+        return GameCategory::where('id', $id)->first();
     }
 
-    public function add($categoryName, $categoryName_en)
+    public function add($categoryName, $image, $gameId)
     {
-        Categories::create([
+        GameCategory::create([
             'name' => $categoryName,
-            'name_en' => $categoryName_en
+            'image' => $image,
+            'game_id' => $gameId
         ]);
     }
 
-    public function edit($id, $categoryName, $categoryName_en)
+    public function edit($id, $categoryName, $image, $gameId)
     {
-        $category = Categories::where('id', $id)->first();
+        $category = GameCategory::where('id', $id)->first();
         $category->name = $categoryName;
-        $category->name_en = $categoryName_en;
+        if ($image != null) {
+            $category->image = $image;
+        }
+        $category->game_id = $gameId;
         $category->save();
     }
 
-    public function checkHasChildren($idCategory) {
-        return Categories::find($idCategory)->products()->get()->count() > 0;
+    public function checkHasChildren($idCategory)
+    {
+        return GameCategory::find($idCategory)->GameAccount()->get()->count() > 0;
     }
 
-    public function delete($idCategory) {
-        Categories::destroy($idCategory);
+    public function delete($idCategory)
+    {
+        GameCategory::destroy($idCategory);
     }
 }

@@ -17,14 +17,27 @@
                         <div class="form-group">
                             <label for="">Tên danh mục (Tiếng Việt)</label>
                             <input required type="text" class="form-control" id="" aria-describedby=""
-                                name="category_name" placeholder="Nhập tên danh mục bằng Tiếng Việt" value="{{ $categoryInfo->name }}">
+                                name="category_name" placeholder="Nhập tên danh mục bằng Tiếng Việt" value="{{ $gameCategoryInfo['name'] }}">
                         </div>
                         <div class="form-group">
-                            <label for="">Tên danh mục (Tiếng Anh)</label>
-                            <input required type="text" class="form-control" id="" aria-describedby=""
-                                name="category_name_en" placeholder="Nhập tên danh mục bằng Tiếng Anh" value="{{ $categoryInfo->name_en }}">
+                            <label for="category_image">Hình ảnh danh mục (Bỏ trống nếu không muốn cập nhật ảnh)</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="category_image" name="category_image">
+                                <label class="custom-file-label" for="category_image">Chọn ảnh</label>
+
+                            </div>
                         </div>
-                        <input type="hidden" name="id" value="{{ $id }}">
+                        <div class="form-group">
+                            <label for="game_id">Chọn game</label>
+                            <select required class="form-control" id="game_id" name="game_id">
+                                @foreach ($game as $item)
+                                    <option value="{{ $item->id }}" {{ $item['id'] == $gameCategoryInfo['game_id'] ? "selected" : ""  }}>
+                                        {{ $item->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <input type="hidden" name="category_id" value="{{ $id }}">
                         <button class="btn btn-success mt-4" type="submit">Lưu thay đổi</button>
                     </form>
 
