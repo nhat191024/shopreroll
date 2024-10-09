@@ -3,13 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +18,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
+        'phone',
+        'role',
+        'balance',
+        'avatar',
     ];
 
     /**
@@ -37,11 +41,46 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+    // protected function casts(): array
+    // {
+    //     return [
+    //         'email_verified_at' => 'datetime',
+    //         'password' => 'hashed',
+    //     ];
+    // }
+
+    public function GameAccount()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(game_account::class);
+    }
+
+    public function BillAccount()
+    {
+        return $this->hasMany(account_bill::class);
+    }
+
+    public function BillRecharge()
+    {
+        return $this->hasMany(recharge_bill::class);
+    }
+
+    public function RerollBill()
+    {
+        return $this->hasMany(reroll_bill::class);
+    }
+
+    public function BalanceRechargeBankBill()
+    {
+        return $this->hasMany(balance_recharge_bank_bill::class);
+    }
+
+    public function BalanceRechargeCardBill()
+    {
+        return $this->hasMany(balance_recharge_card_bill::class);
+    }
+
+    public function ContributorCommission()
+    {
+        return $this->hasMany(contributor_commission::class);
     }
 }
