@@ -44,6 +44,8 @@ class CategoryService
 
     public function delete($idCategory)
     {
-        GameCategory::destroy($idCategory);
+        $category = GameCategory::where('id', $idCategory)->first();
+        $category->status = 0;
+        $category->save();
     }
 }

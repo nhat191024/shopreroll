@@ -38,6 +38,8 @@ class GameService
 
     public function delete($idgame)
     {
-        Game::destroy($idgame);
+        $game = Game::where('id', $idgame)->first();
+        $game->status = 0;
+        $game->save();
     }
 }
