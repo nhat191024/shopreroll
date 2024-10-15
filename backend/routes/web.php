@@ -21,6 +21,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [CategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
     });
+    
     Route::prefix('/reroll-category')->group(function () {
         Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.RerollCategory.index');
         Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('admin.RerollCategory.showAdd');
@@ -30,6 +31,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/detail/{id}', [RerollCategoryController::class, 'detailRerollCategory'])->name('admin.RerollCategory.Detail');
         Route::get('/ChangeStatus/{id}', [RerollCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollCategory.ChangeStatus');
     });
+
     Route::prefix('/reroll-sub-category')->group(function () {
         Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.reroll_sub_category.index');
         Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.reroll_sub_category.show_add');
@@ -39,6 +41,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/detail/{id}', [RerollSubCategoryController::class, 'detailRerollSubCategory'])->name('admin.RerollSubCategory.Detail');
         Route::get('/ChangeStatus/{id}', [RerollSubCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollSubCategory.ChangeStatus');
     });
+
     Route::prefix('/reroll-package')->group(function () {
         Route::get('/', [RerollPackageController::class, 'index'])->name('admin.RerollPackage.index');
         Route::get('/add', [RerollPackageController::class, 'showAddRerollPackage'])->name('admin.RerollPackage.showAdd');
@@ -47,6 +50,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [RerollPackageController::class, 'showEditRerollPackage'])->name('admin.RerollPackage.showEdit');
         Route::get('/delete/{id}', [RerollPackageController::class, 'deleteRerollPackage'])->name('admin.RerollPackage.delete');
     });
+
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'showAddForm'])->name('admin.user.show');
