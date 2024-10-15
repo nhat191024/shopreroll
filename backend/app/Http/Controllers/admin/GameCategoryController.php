@@ -5,16 +5,16 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Models\GameCategory;
-use App\Service\admin\CategoryService;
+use App\Service\admin\GameCategoryService;
 use App\Service\admin\GameService;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class GameCategoryController extends Controller
 {
     private $categoryService;
     private $gameService;
     //
-    public function __construct(CategoryService $categoryService, GameService $gameService)
+    public function __construct(GameCategoryService $categoryService, GameService $gameService)
     {
         $this->categoryService = $categoryService;
         $this->gameService = $gameService;

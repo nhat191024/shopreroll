@@ -4,7 +4,7 @@ namespace App\Service\admin;
 
 use App\Models\GameCategory;
 
-class CategoryService
+class GameCategoryService
 {
     public function getAll()
     {
