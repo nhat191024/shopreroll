@@ -8,17 +8,19 @@ var ctx = document.getElementById("myPieChart");
 // Calculate total
 var total = accountBillWeek + percentRerollWeek + percentRechargeWeek;
 
-// If total is 0, set data to show an empty circle
-var data = total === 0 ? [1, 1, 1] : [accountBillWeek, percentRerollWeek, percentRechargeWeek];
+var data = total === 0 ? [1] : [accountBillWeek, percentRerollWeek, percentRechargeWeek];
+var labels = total === 0 ? ["Chưa có số liệu"] : ["Mua tài Khoản", "Mua acc reroll", "Nạp trong game"];
+var backgroundColor = total === 0 ? ['#d3d3d3'] : ['#4e73df', '#1cc88a', '#36b9cc'];  
+var hoverBackgroundColor = total === 0 ? ['#a9a9a9'] : ['#2e59d9', '#17a673', '#2c9faf'];  
 
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Mua tài Khoản", "Mua acc reroll", "Nạp trong game"],
+    labels: labels,
     datasets: [{
-      data: data, 
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: data,
+      backgroundColor: backgroundColor,
+      hoverBackgroundColor: hoverBackgroundColor,
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
@@ -35,9 +37,12 @@ var myPieChart = new Chart(ctx, {
       caretPadding: 10,
       callbacks: {
         label: function(tooltipItem, data) {
-          var label = data.labels[tooltipItem.index]; 
-          var currentValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index]; 
-          return label + ': ' + currentValue + '%'; 
+          if (total === 0) {
+            return "Chưa có số liệu";
+          }
+          var label = data.labels[tooltipItem.index];
+          var currentValue = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          return label + ': ' + currentValue + '%';
         }
       }
     },
