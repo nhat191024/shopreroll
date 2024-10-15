@@ -64,10 +64,12 @@
                                                     onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollCategory.ChangeStatus', $item->id) }}'; }">
                                                     Ẩn </a>
                                             @endif
-                                            <a class="btn btn-info" href="{{ route('admin.RerollCategory.ShowEdit', $item->id) }}">Sửa</a>
                                             <a class="btn btn-info"
-                                            href="{{ route('admin.RerollCategory.Detail', ['id' => $item->id]) }}">Chi
-                                            tiết</a>
+                                                href="{{ route('admin.RerollCategory.ShowEdit', $item->id) }}">Sửa</a>
+                                            <a class="btn btn-info"
+                                                href="{{ route('admin.RerollCategory.Detail', ['id' => $item->id]) }}">
+                                                Chi tiết
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
