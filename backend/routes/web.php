@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/add', [GameController::class, 'addGame'])->name('admin.game.add');
         Route::post('/edit', [GameController::class, 'editGame'])->name('admin.game.edit');
         Route::get('/edit/{id}', [GameController::class, 'showEditGame'])->name('admin.game.show_edit');
-        Route::get('/delete/{id}', [GameController::class, 'deleteGame'])->name('admin.game.delete');
+        Route::get('/delete/{id}', [GameController::class, 'ChangeGameStatus'])->name('admin.game.ChangeGameStatus');
     });
 
     Route::prefix('/game-category')->group(function () {
