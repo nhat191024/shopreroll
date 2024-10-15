@@ -61,13 +61,17 @@ class GameRechargePackageController extends Controller
         return redirect(route('admin.package.index'))->with('success', 'Sửa gói nạp thành công');
     }
 
-    public function ChangeGameRechargePackageStatus(Request $request)
+    public function ChangeGameRechargePackageStatus($id, $status)
     {
-        $id = $request->id;
-        if (!$this->rechargePackageService->checkHasChildren($id)) {
-            $this->rechargePackageService->delete($id);
-            return redirect(route('admin.package.index'))->with('success', 'Xóa gói nạp thành công');
+        switch ($status) {
+            case 1:
+                $this->rechargePackageService->ChangeStatus($id, 1);
+                return redirect()->back()->with('success', 'Hiện game thành công');
+                break;
+            case 0:
+                $this->rechargePackageService->ChangeStatus($id, 0);
+                return redirect()->back()->with('success', 'Ẩn game thành công');
+                break;
         }
-        return redirect(route('admin.package.index'))->with('error', 'Gói nạp đang có sản phẩm không thể xóa');
     }
 }
