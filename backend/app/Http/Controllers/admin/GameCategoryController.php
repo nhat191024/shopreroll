@@ -14,10 +14,10 @@ class GameCategoryController extends Controller
     private $categoryService;
     private $gameService;
     //
-    public function __construct(GameCategoryService $categoryService, GameService $gameService)
+    public function __construct()
     {
-        $this->categoryService = $categoryService;
-        $this->gameService = $gameService;
+        $this->categoryService = app(GameCategoryService::class);
+        $this->gameService = app(GameService::class);
     }
 
     public function index()
