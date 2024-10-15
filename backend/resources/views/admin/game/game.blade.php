@@ -55,6 +55,7 @@
                                             <a class="btn btn-warning"
                                                 href="{{ route('admin.game.show_edit', ['id' => $item->id]) }}"> Sửa
                                             </a>
+
                                             @if ($item->status == 0)
                                                 <a class="btn btn-success"
                                                     onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 1]) }}'; }">
@@ -64,6 +65,10 @@
                                                     onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 0]) }}'; }">
                                                     Ẩn </a>
                                             @endif
+
+                                            <a class="btn btn-primary"
+                                                href="{{ route('admin.GameCategory.index', ['id' => $item->id]) }}"> Danh mục
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
