@@ -44,7 +44,7 @@ class GameRechargeController extends Controller
     {
         $id = $request->id;
         $gameRechargeInfo = $this->gameRechargeService->getById($id);
-        return view('admin.gameRecharge.edit_recharge', compact('id', 'gameRechargeInfo'));
+        return view('admin.GameRecharge.edit_recharge', compact('id', 'gameRechargeInfo'));
     }
 
     public function editRecharge(Request $request)
@@ -64,7 +64,7 @@ class GameRechargeController extends Controller
             }
         }
         $this->gameRechargeService->edit($request->id, $request->name, $request->tutorial, $request->id_youtube, $imageName);
-        return redirect(route('admin.recharge.index'))->with('success', 'Sửa game recharge thành công');
+        return redirect(route('admin.GameRecharge.index'))->with('success', 'Sửa game recharge thành công');
     }
 
     public function ChangeGameStatus($id, $status)
