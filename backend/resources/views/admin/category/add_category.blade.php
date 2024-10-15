@@ -20,9 +20,21 @@
                                 name="category_name" placeholder="Nhập tên danh mục bằng Tiếng Việt">
                         </div>
                         <div class="form-group">
-                            <label for="">Tên danh mục (Tiếng Anh)</label>
-                            <input required type="text" class="form-control" id="" aria-describedby=""
-                                name="category_name_en" placeholder="Nhập tên danh mục bằng Tiếng Anh">
+                            <label for="category_image">Hình ảnh danh mục</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="category_image" name="category_image">
+                                <label class="custom-file-label" for="category_image">Chọn ảnh</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_id">Chọn game</label>
+                            <select class="form-control" id="product_id" name="game_id">
+                                @foreach ($game as $item)
+                                    <option value="{{ $item->id }}">
+                                        {{ $item->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <button class="btn btn-success mt-4" type="submit">Thêm danh mục</button>
                     </form>

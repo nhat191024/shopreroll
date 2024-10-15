@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -65,18 +65,18 @@
                                                    href="{{ route('admin.user.editView', ['id' => $item->id]) }}">
                                                     Sửa
                                                 </a>
-                            
-                                                <a class="btn btn-danger" 
-                                                   href="{{ route('admin.user.disable', ['id' => $item->id]) }}" 
-                                                   onclick="return confirm('Bạn chắc chắn chứ?')"> 
-                                                    Vô hiệu hoá 
+
+                                                <a class="btn btn-danger"
+                                                   href="{{ route('admin.user.disable', ['id' => $item->id]) }}"
+                                                   onclick="return confirm('Bạn chắc chắn chứ?')">
+                                                    Vô hiệu hoá
                                                 </a>
                                             @endif
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
-                            
+
                         </table>
                     </div>
                 </div>

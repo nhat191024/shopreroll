@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
     <!-- Content Wrapper -->
 
@@ -17,17 +17,17 @@
                         <div class="row ">
                             <div class="form-group col-6 ">
                                 <label for="">Tên đăng nhập</label>
-                                <input required type="text" class="form-control" 
+                                <input required type="text" class="form-control"
                                     name="username" placeholder="Nhập tài khoản ">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Mật khẩu</label>
-                                <input required type="text" class="form-control" 
+                                <input required type="text" class="form-control"
                                     name="password" placeholder="Nhập mật khẩu">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Tên người dùng</label>
-                                <input required type="text" class="form-control" 
+                                <input required type="text" class="form-control"
                                     name="name" placeholder="Nhập họ và tên">
                             </div>
                             <div class="form-group col-6 ">
@@ -47,12 +47,12 @@
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">E-mail</label>
-                                <input required type="email" class="form-control" 
+                                <input required type="email" class="form-control"
                                     name="email" placeholder="Nhập E-mail">
                             </div>
                             <div class="form-group col-6 ">
                                 <label for="">Số điện thoại</label>
-                                <input required type="text" class="form-control" 
+                                <input required type="text" class="form-control"
                                     name="phone" placeholder="Nhập số điện thoại">
                             </div>
                         </div>
