@@ -37,12 +37,12 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('/game-recharge')->group(function () {
-        Route::get('/', [GameRechargeController::class, 'index'])->name('admin.recharge.index');
-        Route::get('/add', [GameRechargeController::class, 'showAddRecharge'])->name('admin.recharge.show_add');
-        Route::post('/add', [GameRechargeController::class, 'addRecharge'])->name('admin.recharge.add');
-        Route::post('/edit', [GameRechargeController::class, 'editRecharge'])->name('admin.recharge.edit');
-        Route::get('/edit/{id}', [GameRechargeController::class, 'showEditRecharge'])->name('admin.recharge.show_edit');
-        Route::get('/ChangeStatus/{id}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.recharge.ChangeGameStatus');
+        Route::get('/', [GameRechargeController::class, 'index'])->name('admin.GameRecharge.index');
+        Route::get('/add', [GameRechargeController::class, 'showAddRecharge'])->name('admin.GameRecharge.showAdd');
+        Route::post('/add', [GameRechargeController::class, 'addRecharge'])->name('admin.GameRecharge.add');
+        Route::post('/edit', [GameRechargeController::class, 'editRecharge'])->name('admin.GameRecharge.edit');
+        Route::get('/edit/{id}', [GameRechargeController::class, 'showEditRecharge'])->name('admin.GameRecharge.showEdit');
+        Route::get('/ChangeStatus/{id}/{status}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.GameRecharge.ChangeGameRechargeStatus');
     });
 
     Route::prefix('/recharge-package')->group(function () {
