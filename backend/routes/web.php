@@ -21,7 +21,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [CategoryController::class, 'editCategory'])->name('admin.category.edit');
         Route::get('/edit/{id}', [CategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
-
+    });
+    
     Route::prefix('/game')->group(function () {
         Route::get('/', [GameController::class, 'index'])->name('admin.game.index');
         Route::get('/add', [GameController::class, 'showAddGame'])->name('admin.game.show_add');
@@ -29,8 +30,8 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [GameController::class, 'editGame'])->name('admin.game.edit');
         Route::get('/edit/{id}', [GameController::class, 'showEditGame'])->name('admin.game.show_edit');
         Route::get('/delete/{id}', [GameController::class, 'deleteGame'])->name('admin.game.delete');
-      });
-      
+    });
+
     Route::prefix('/reroll-category')->group(function () {
         Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.RerollCategory.index');
         Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('admin.RerollCategory.showAdd');
