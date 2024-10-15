@@ -19,12 +19,12 @@ class GameController extends Controller
     public function index()
     {
         $allGame = $this->gameService->getAll();
-        return view('admin.game.game', compact('allGame'));
+        return view('admin.game.Game', compact('allGame'));
     }
 
     public function showAddGame()
     {
-        return view('admin.game.add_game');
+        return view('admin.game.AddGame');
     }
 
     public function addGame(Request $request)
@@ -41,7 +41,7 @@ class GameController extends Controller
     {
         $id = $request->id;
         $gameInfo = $this->gameService->getById($id);
-        return view('admin.game.edit_game', compact('id', 'gameInfo'));
+        return view('admin.game.EditGame', compact('id', 'gameInfo'));
     }
 
     public function editGame(Request $request)
