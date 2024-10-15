@@ -25,10 +25,10 @@ class GameRechargePackageController extends Controller
         return view('admin.gameRechargePackage.GameRechargePackage', compact('rechargePackages', 'gameRechargeName'));
     }
 
-    public function showAddRechargePackage()
+    public function showAddGameRechargePackage()
     {
         $gameRecharge = $this->gameRechargeService->getAll();
-        return view('admin.rechargePackage.add_recharge_package', compact('gameRecharge'));
+        return view('admin.gameRechargePackage.AddGameRechargePackage', compact('gameRecharge'));
     }
 
     public function addRechargePackage(Request $request)
