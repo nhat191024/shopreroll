@@ -43,7 +43,7 @@
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allRerollPackagies as $key => $item)
+                                @foreach ($allRerollPackages as $key => $item)
                                     <tr>
                                         <td>{{ $item['id'] }}</td>
                                         <td>{{ $item['name'] }}</td>
