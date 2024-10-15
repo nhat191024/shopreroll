@@ -9,7 +9,6 @@ use App\Http\Controllers\admin\RerollCategoryController;
 use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
 use App\Http\Controllers\admin\UserController;
-use App\Models\RechargePackage;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
