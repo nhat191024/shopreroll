@@ -55,13 +55,21 @@ class GameController extends Controller
         return redirect(route('admin.game.index'))->with('success', 'Sửa game thành công');
     }
 
-    public function deleteGame(Request $request)
+    public function ChangeGameStatus($id, $status)
     {
-        $id = $request->id;
-        if (!$this->gameService->checkHasChildren($id)) {
-            $this->gameService->delete($id);
-            return redirect(route('admin.game.index'))->with('success', 'Xóa game thành công');
+        if ($this->gameService->checkHasChildren($id)) {
+            return redirect(route('admin.game.index'))->with('error', 'Game này đang có sản phẩm không thể xóa');
         }
-        return redirect(route('admin.game.index'))->with('error', 'Game này đang có sản phẩm không thể xóa');
+
+        switch ($status) {
+            case 1:
+                $this->gameService->ChangeStatus($id, 1);
+                return redirect(route('admin.game.index'))->with('success', 'Hiện game thành công');
+                break;
+            case 0:
+                $this->gameService->ChangeStatus($id, 0);
+                return redirect(route('admin.game.index'))->with('success', 'Ẩn game thành công');
+                break;
+        }
     }
 }
