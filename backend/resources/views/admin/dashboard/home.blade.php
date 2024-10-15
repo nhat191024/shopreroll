@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
 
     <body>
@@ -145,7 +145,7 @@
             var accountBillWeek = ({{ $week['percentAccountWeek'] }}) ;
             var percentRerollWeek = ({{ $week['percentRerollWeek'] }});
             var percentRechargeWeek = ({{ $week['percentRechargeWeek'] }});
-            var test = @json($data); 
+            var test = @json($data);
             console.log(test);
         </script>
         <script>
