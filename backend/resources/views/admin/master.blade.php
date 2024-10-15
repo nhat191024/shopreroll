@@ -75,7 +75,7 @@
                         <span>Game</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.recharge.index') }}">
+                    <a class="nav-link" href="{{ route('admin.GameRecharge.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Nạp Game</span></a>
                 </li>
