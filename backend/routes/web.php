@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('/reroll-sub-category')->group(function () {
-        Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.reroll_sub_category.index');
+        Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.rerollSubCategory.index');
         Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.rerollSubCategory.showAdd');
         Route::post('/add', [RerollSubCategoryController::class, 'addRerollSubCategory'])->name('admin.rerollSubCategory.add');
         Route::post('/edit', [RerollSubCategoryController::class, 'editRerollSubCategory'])->name('admin.rerollSubCategory.edit');
