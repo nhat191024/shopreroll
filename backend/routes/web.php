@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\GameController;
 use App\Http\Controllers\admin\RerollCategoryController;
@@ -14,7 +15,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
-
+    Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
     Route::prefix('/category')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/add', [CategoryController::class, 'showAddCategory'])->name('admin.category.show_add');
