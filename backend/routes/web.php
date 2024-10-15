@@ -24,6 +24,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [CategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
     });
+    
     Route::prefix('/game-recharge')->group(function () {
         Route::get('/', [GameRechargeController::class, 'index'])->name('admin.recharge.index');
         Route::get('/add', [GameRechargeController::class, 'showAddRecharge'])->name('admin.recharge.show_add');
@@ -60,6 +61,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/detail/{id}', [RerollCategoryController::class, 'detailRerollCategory'])->name('admin.RerollCategory.Detail');
         Route::get('/ChangeStatus/{id}', [RerollCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollCategory.ChangeStatus');
     });
+
     Route::prefix('/reroll-sub-category')->group(function () {
         Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.RerollSubCategory.index');
         Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.reroll_sub_category.show_add');
@@ -68,6 +70,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [RerollSubCategoryController::class, 'showEditRerollSubCategory'])->name('admin.reroll_sub_category.show_edit');
         Route::get('/ChangeStatus/{id}', [RerollSubCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollSubCategory.ChangeStatus');
     });
+
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'showAddForm'])->name('admin.user.show');
