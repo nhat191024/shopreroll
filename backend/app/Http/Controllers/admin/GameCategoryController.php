@@ -20,10 +20,10 @@ class GameCategoryController extends Controller
         $this->gameService = app(GameService::class);
     }
 
-    public function index()
+    public function index($id)
     {
-        $categories = $this->categoryService->getAll();
-        return view('admin.category.category', compact('categories'));
+        $categories = $this->categoryService->getByGameId($id);
+        return view('admin.gameCategory.GameCategory', compact('categories'));
     }
 
     public function showAddCategory()
