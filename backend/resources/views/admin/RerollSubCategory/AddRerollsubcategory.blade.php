@@ -12,7 +12,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.reroll_sub_category.add') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.rerollSubCategory.add') }}" method="post" enctype="multipart/form-data">
 
                             @csrf
                             <label for="">Tên Reroll Category</label>
