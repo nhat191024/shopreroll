@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
     <!-- Content Wrapper -->
 
@@ -12,7 +12,18 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.reroll_category.add') }}" method="post" enctype="multipart/form-data">
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('admin.RerollCategory.add') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <label for="">Tên Reroll Category</label>
                         <input maxlength="255" required type="text" class="form-control" id="productName"

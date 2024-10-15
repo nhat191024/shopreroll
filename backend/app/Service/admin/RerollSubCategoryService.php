@@ -58,7 +58,10 @@ class RerollSubCategoryService
         $subCategory = RerollSubCategory::find($idRerollSubCategory);
         return RerollSubCategory::find($idRerollSubCategory)->RerollPackage()->get()->count() >0;
     }
-
+    public function getChildren($idRerollSubCategory) {
+        $subCategory = RerollSubCategory::find($idRerollSubCategory);
+        return RerollSubCategory::find($idRerollSubCategory)->RerollPackage()->get();
+    }
     public function ChangeStatus($id, $status) {
         $subCategory = RerollSubCategory::where('id', $id)->first();
         $subCategory->status = $status;

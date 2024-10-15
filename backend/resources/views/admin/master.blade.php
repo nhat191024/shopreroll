@@ -25,6 +25,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ url('') . '/' }}css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles1.css"  rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -53,7 +54,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item  {{ Request::is('admin') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('') . '/' }}admin">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang tổng quan</span></a>
             </li>
@@ -131,65 +132,59 @@
             </li> --}}
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item {{ Request::is('admin/game*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.game.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Game</span></a>
-            </li>
             <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.category.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Category</span></a>
             </li>
-           
-            {{-- <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.product.index') }}">
                     <i class="fas fa-fw fa-cookie"></i>
                     <span>Sản phẩm</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/banner*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.banner.index') }}">
+            <li class="#">
+                <a class="#">
                     <i class="fas fa-fw fa-clipboard"></i>
                     <span>Banner</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/about*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.about.index') }}">
+            <li class="#">
+                <a class="#">
                     <i class="fas fa-fw fa-pen-fancy"></i>
                     <span>About Us</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/bill*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.bill.index') }}">
+            <li class="#">
+                <a class="#">
                     <i class="fas fa-fw fa-money-bill"></i>
                     <span>Hóa đơn</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/message*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.message.index') }}">
+            <li class="#">
+                <a class="#">
                     <i class="fas fa-fw fa-bell "></i>
                     <span>Tin nhắn KH</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/variation*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.variation.index') }}">
+            <li class="#">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chevron-circle-right"></i>
                     <span>Quản lý size</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/accessory*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.accessory.index') }}">
+            <li class="#">
+                <a class="#">
                     <i class="fas fa-fw fa-birthday-cake"></i>
                     <span>Quản lý phụ kiện</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/promotion*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.promotion.index') }}">
+            <li class="#">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>Băng rôn quảng cáo SP</span></a>
             </li>
-            <li class="nav-item {{ Request::is('admin/voucher*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.voucher.index') }}">
+            <li class="#">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-money-check"></i>
                     <span>Voucher</span>
                 </a>
             </li>
-            <li class="nav-item {{ Request::is('admin/blog*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.blog.index') }}">
+            <li class="#">
+                <a class="#">
                     <i class="fas fa-fw fa-blog"></i>
                     <span>Quản lý Blog</span></a>
             </li> --}}
@@ -322,7 +317,7 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="dropdown-item text-center small text-gray-600" href="{{ route('admin.bill.index') }}">Xem toàn bộ
+                                <a class="dropdown-item text-center small text-gray-600" href="#">Xem toàn bộ
                                     đơn hàng</a>
                             </div>
                         </li> --}}
@@ -361,7 +356,7 @@
                                     </a>
                                 </div>
                                 <a class="dropdown-item text-center small text-gray-600"
-                                    href="{{ route('admin.message.index') }}">Xem thêm tin nhắn
+                                    href="#">Xem thêm tin nhắn
                                 </a>
                             </div>
                         </li> --}}
@@ -373,7 +368,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->email }}</span>
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">#</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ url('') . '/' }}img/undraw_profile.svg">
                             </a>
@@ -424,7 +419,7 @@
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-primary" href="{{ url('') . '/' }}logout">Logout</a>
+                            <a class="btn btn-primary" href="#">Logout</a>
                         </div>
                     </div>
                 </div>

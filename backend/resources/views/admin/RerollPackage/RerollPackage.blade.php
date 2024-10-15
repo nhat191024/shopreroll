@@ -9,11 +9,11 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Danh sách Reroll Category</h1>
+            <h1 class="h3 mb-2 text-gray-800">Danh sách Reroll Package</h1>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.showAdd') }}">Thêm Reroll Sub Category</a>
+                    <a class="btn btn-primary" href="{{ route('admin.RerollPackage.showAdd') }}">Thêm Reroll Package</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -31,41 +31,29 @@
                             <thead>
                                 <tr>
                                     <th>Mã</th>
-                                    <th class="col-2">Tên Reroll Sub Category</th>
-                                    <th class="col-3">Hướng dẫn</th>
-                                    <th>Ảnh</th>
-                                <th>Chức năng</th>
+                                    <th class="col-2">Tên</th>
+                                    <th class="col-3">Giá</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Mã</th>
-                                    <th class="col-2">Tên Reroll Sub Category</th>
-                                    <th class="col-3">Hướng dẫn</th>
-                                    <th>Ảnh</th>
-                                <th>Chức năng</th>
+                                    <th class="col-2">Tên</th>
+                                    <th class="col-3">Giá</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allRerollSubCategory as $key => $item)
+                                @foreach ($allRerollPackages as $key => $item)
                                     <tr>
                                         <td>{{ $item['id'] }}</td>
                                         <td>{{ $item['name'] }}</td>
-                                        <td>{{ $item['tutorial'] }}</td>
-                                        <td class="text-center"><img width="200px" src="{{ asset('image/thumb/' . $item['image']) }}"
-                                                alt=""></td>
+                                        <td>{{ $item['price'] }}</td>
                                         <td class="text-center">
-                                            @if ($item->status == 0)
-                                                <a class="btn btn-success"
-                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollSubCategory.ChangeStatus', $item->id) }}'; }">
-                                                    Hiện </a>
-                                            @else
-                                                <a class="btn btn-danger"
-                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollSubCategory.ChangeStatus', $item->id) }}'; }">
-                                                    Ẩn </a>
-                                            @endif
-                                            <a class="btn btn-info" href="{{ route('admin.RerollSubCategory.ShowEdit', $item->id) }}">Sửa</a>
-                                            <a class="btn btn-info" href="{{ route('admin.RerollSubCategory.Detail', $item->id) }}">Chi tiết</a>
+                                            <a class="btn btn-danger"
+                                            onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollPackage.delete', $item->id) }}'; }">
+                                            Xóa </a>
+                                            <a class="btn btn-info" href="{{ route('admin.RerollPackage.showEdit', $item->id) }}">Sửa</a>
+
                                         </td>
 
                                     </tr>
