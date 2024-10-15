@@ -47,10 +47,10 @@ class GameCategoryService
         return GameCategory::find($idCategory)->GameAccount()->get()->count() > 0;
     }
 
-    public function delete($idCategory)
+    public function ChangeStatus($id, $status)
     {
-        $category = GameCategory::where('id', $idCategory)->first();
-        $category->status = 0;
+        $category = GameCategory::where('id', $id)->first();
+        $category->status = $status;
         $category->save();
     }
 }
