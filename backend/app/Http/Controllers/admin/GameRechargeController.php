@@ -61,13 +61,18 @@ class GameRechargeController extends Controller
         return redirect(route('admin.recharge.index'))->with('success', 'Sửa game recharge thành công');
     }
 
-    public function deleteRecharge(Request $request)
+    public function ChangeGameStatus(Request $request)
     {
         $id = $request->id;
-        if (!$this->gameRechargeService->checkHasChildren($id)) {
-            $this->gameRechargeService->delete($id);
-            return redirect(route('admin.recharge.index'))->with('success', 'Xóa game recharge thành công');
+        $game = $this->gameRechargeService->getById($id);
+        if ($game->status == 0) {
+            $this->gameRechargeService->ChangeStatus($id, 1);
+            return redirect(route('admin.recharge.index'))->with('success', 'Hiện game recharge thành công');
+        } else if (!$this->gameRechargeService->checkHasChildren($id)) {
+            $this->gameRechargeService->ChangeStatus($id, 0);
+            return redirect(route('admin.recharge.index'))->with('success', 'Ẩn game recharge thành công');
+        } else {
+            return redirect(route('admin.recharge.index'))->with('error', 'Game recharge đang có sản phẩm không thể xóa');
         }
-        return redirect(route('admin.recharge.index'))->with('error', 'Game recharge đang có sản phẩm không thể xóa');
     }
 }
