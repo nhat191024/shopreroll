@@ -45,10 +45,10 @@ class GameRechargePackageService
         return RechargePackage::find($id)->RechargeBills()->get()->count() > 0;
     }
 
-    public function delete($id)
+    public function ChangeStatus($id, $status)
     {
         $rechargePackage = RechargePackage::where('id', $id)->first();
-        $rechargePackage->status = 0;
+        $rechargePackage->status = $status;
         $rechargePackage->save();
     }
 }
