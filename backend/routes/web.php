@@ -21,7 +21,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [CategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
     });
-    
+
     Route::prefix('/reroll-category')->group(function () {
         Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.RerollCategory.index');
         Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('admin.RerollCategory.showAdd');
@@ -34,9 +34,9 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('/reroll-sub-category')->group(function () {
         Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.reroll_sub_category.index');
-        Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.reroll_sub_category.show_add');
-        Route::post('/add', [RerollSubCategoryController::class, 'addRerollSubCategory'])->name('admin.reroll_sub_category.add');
-        Route::post('/edit', [RerollSubCategoryController::class, 'editRerollSubCategory'])->name('admin.reroll_sub_category.edit');
+        Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.rerollSubCategory.showAdd');
+        Route::post('/add', [RerollSubCategoryController::class, 'addRerollSubCategory'])->name('admin.rerollSubCategory.add');
+        Route::post('/edit', [RerollSubCategoryController::class, 'editRerollSubCategory'])->name('admin.rerollSubCategory.edit');
         Route::get('/edit/{id}', [RerollSubCategoryController::class, 'showEditRerollSubCategory'])->name('admin.RerollSubCategory.ShowEdit');
         Route::get('/detail/{id}', [RerollSubCategoryController::class, 'detailRerollSubCategory'])->name('admin.RerollSubCategory.Detail');
         Route::get('/ChangeStatus/{id}', [RerollSubCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollSubCategory.ChangeStatus');
