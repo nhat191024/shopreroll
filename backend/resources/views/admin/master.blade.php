@@ -132,16 +132,36 @@
                     <span>Charts</span></a>
             </li> --}}
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item {{ Request::is('admin/game*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.game.index') }}">
+            <!-- Nav Item - Game Dropdown -->
+            <li
+                class="nav-item dropdown {{ Request::is('admin/game*') || Request::is('admin/category*') ? 'active' : '' }}">
+                <a class="nav-link dropdown-toggle" href="#" id="gameDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Game</span></a>
+                    <span>Game</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="gameDropdown">
+                    <a class="dropdown-item {{ Request::is('admin/game*') ? 'active' : '' }}"
+                        href="{{ route('admin.game.index') }}">Game</a>
+                    <a class="dropdown-item {{ Request::is('admin/category*') ? 'active' : '' }}"
+                        href="{{ route('admin.category.index') }}">Game Category</a>
+                </div>
             </li>
-            <li class="nav-item {{ Request::is('admin/category*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.category.index') }}">
+
+            <!-- Nav Item - Game Recharge Dropdown -->
+            <li
+                class="nav-item dropdown {{ Request::is('admin/game-recharge*') || Request::is('admin/recharge-package*') ? 'active' : '' }}">
+                <a class="nav-link dropdown-toggle" href="#" id="rechargeDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Category</span></a>
+                    <span>Recharge</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="rechargeDropdown">
+                    <a class="dropdown-item {{ Request::is('admin/game-recharge*') ? 'active' : '' }}"
+                        href="{{ route('admin.recharge.index') }}">Game Recharge</a>
+                    <a class="dropdown-item {{ Request::is('admin/recharge-package*') ? 'active' : '' }}"
+                        href="{{ route('admin.package.index') }}">Recharge Package</a>
+                </div>
             </li>
 
             {{-- <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
