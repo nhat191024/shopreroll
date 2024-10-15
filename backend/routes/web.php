@@ -28,12 +28,12 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('/game-category')->group(function () {
-        Route::get('/', [GameCategoryController::class, 'index'])->name('admin.category.index');
-        Route::get('/add', [GameCategoryController::class, 'showAddCategory'])->name('admin.category.show_add');
-        Route::post('/add', [GameCategoryController::class, 'addCategory'])->name('admin.category.add');
-        Route::post('/edit', [GameCategoryController::class, 'editCategory'])->name('admin.category.edit');
-        Route::get('/edit/{id}', [GameCategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
-        Route::get('/ChangeStatus/{id}', [GameCategoryController::class, 'ChangeGameCategoryStatus'])->name('admin.category.delete');
+        Route::get('/{id}', [GameCategoryController::class, 'index'])->name('admin.GameCategory.index');
+        Route::get('/add', [GameCategoryController::class, 'showAddCategory'])->name('admin.GameCategory.showAdd');
+        Route::post('/add', [GameCategoryController::class, 'addCategory'])->name('admin.GameCategory.add');
+        Route::post('/edit', [GameCategoryController::class, 'editCategory'])->name('admin.GameCategory.edit');
+        Route::get('/edit/{id}', [GameCategoryController::class, 'showEditCategory'])->name('admin.GameCategory.showEdit');
+        Route::get('/ChangeStatus/{id}/{status}', [GameCategoryController::class, 'ChangeGameCategoryStatus'])->name('admin.GameCategory.ChangeStatus');
     });
 
     Route::prefix('/game-recharge')->group(function () {
