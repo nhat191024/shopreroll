@@ -18,10 +18,10 @@ class GameRechargePackageController extends Controller
         $this->gameRechargeService = app(GameRechargeService::class);
     }
 
-    public function index()
+    public function index($id)
     {
-        $rechargePackages = $this->rechargePackageService->getAll();
-        return view('admin.rechargePackage.recharge_package', compact('rechargePackages'));
+        $rechargePackages = $this->rechargePackageService->getByGameRechargeId($id);
+        return view('admin.gameRechargePackage.GameRechargePackage', compact('rechargePackages'));
     }
 
     public function showAddRechargePackage()
@@ -61,7 +61,7 @@ class GameRechargePackageController extends Controller
         return redirect(route('admin.package.index'))->with('success', 'Sửa gói nạp thành công');
     }
 
-    public function deleteRechargePackage(Request $request)
+    public function ChangeGameRechargePackageStatus(Request $request)
     {
         $id = $request->id;
         if (!$this->rechargePackageService->checkHasChildren($id)) {
