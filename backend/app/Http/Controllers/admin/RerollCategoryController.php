@@ -49,7 +49,7 @@ class RerollCategoryController extends Controller
     {
         $id = $request->id;
         $allRerollSubCategory = $this->rerollCategoryService->getChildren($id);
-        return view('admin.RerollCategory.EditRerollCategory', compact('allRerollSubCategory'));
+        return view('admin.RerollSubcategory.RerollSubcategory', compact('allRerollSubCategory'));
     }
 
     public function editRerollCategory(Request $request)
