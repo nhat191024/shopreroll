@@ -1,10 +1,9 @@
 <?php
-
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\GameController;
 use App\Http\Controllers\admin\GameCategoryController;
 use App\Http\Controllers\admin\GameRechargeController;
-use App\Http\Controllers\admin\RechargePackageController;
+use App\Http\Controllers\admin\GameRechargePackageController;
 use App\Http\Controllers\admin\RerollCategoryController;
 use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
@@ -45,13 +44,13 @@ Route::prefix('admin')->group(function () {
         Route::get('/ChangeStatus/{id}/{status}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.GameRecharge.ChangeGameRechargeStatus');
     });
 
-    Route::prefix('/recharge-package')->group(function () {
-        Route::get('/', [RechargePackageController::class, 'index'])->name('admin.package.index');
-        Route::get('/add', [RechargePackageController::class, 'showAddRechargePackage'])->name('admin.package.show_add');
-        Route::post('/add', [RechargePackageController::class, 'addRechargePackage'])->name('admin.package.add');
-        Route::post('/edit', [RechargePackageController::class, 'editRechargePackage'])->name('admin.package.edit');
-        Route::get('/edit/{id}', [RechargePackageController::class, 'showEditRechargePackage'])->name('admin.package.show_edit');
-        Route::get('/delete/{id}', [RechargePackageController::class, 'deleteRechargePackage'])->name('admin.package.delete');
+    Route::prefix('/game-recharge-package')->group(function () {
+        Route::get('/{id}', [GameRechargePackageController::class, 'index'])->name('admin.GameRechargePackage.index');
+        Route::get('/add', [GameRechargePackageController::class, 'showAddRechargePackage'])->name('admin.GameRechargePackage.showAdd');
+        Route::post('/add', [GameRechargePackageController::class, 'addRechargePackage'])->name('admin.GameRechargePackage.add');
+        Route::post('/edit', [GameRechargePackageController::class, 'editRechargePackage'])->name('admin.GameRechargePackage.edit');
+        Route::get('/edit/{id}', [GameRechargePackageController::class, 'showEditRechargePackage'])->name('admin.GameRechargePackage.showEdit');
+        Route::get('/delete/{id}', [GameRechargePackageController::class, 'deleteRechargePackage'])->name('admin.GameRechargePackage.delete');
     });
 
     Route::prefix('/reroll-category')->group(function () {
