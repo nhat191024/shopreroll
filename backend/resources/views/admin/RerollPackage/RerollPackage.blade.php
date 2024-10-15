@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -53,7 +53,7 @@
                                             onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollPackage.delete', $item->id) }}'; }">
                                             Xóa </a>
                                             <a class="btn btn-info" href="{{ route('admin.RerollPackage.showEdit', $item->id) }}">Sửa</a>
-                                            
+
                                         </td>
 
                                     </tr>

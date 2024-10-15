@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
     <div class="container-fluid">
         <div class="card shadow mb-4">

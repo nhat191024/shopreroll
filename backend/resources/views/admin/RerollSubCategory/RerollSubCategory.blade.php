@@ -1,4 +1,4 @@
-@extends('admin.master01')
+@extends('admin.master')
 @section('main')
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -13,7 +13,7 @@
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.reroll_sub_category.show_add') }}">Thêm Reroll Sub Category</a>
+                    <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.showAdd') }}">Thêm Reroll Sub Category</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
