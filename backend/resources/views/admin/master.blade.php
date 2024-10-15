@@ -70,23 +70,14 @@
             <!-- Nav Item - Tables -->
             <div id="menuAccordion">
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarGame" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarGame">
-                        <i class="fas fa-fw fa-table"></i><span data-key="t-layouts">Danh mục game</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarGame" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <a class="nav-link" href="{{ route('admin.game.index') }}">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Game</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.recharge.index') }}">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Nạp Game</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarReroll" data-bs-toggle="collapse" role="button"
