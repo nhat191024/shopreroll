@@ -76,7 +76,7 @@
                                             @endif
 
                                             <a class="btn btn-primary"
-                                                href="{{ route('admin.admin.GameRechargePackage.index', $item->id) }}">
+                                                href="{{ route('admin.GameRechargePackage.index', $item->id) }}">
                                                 Packages
                                             </a>
                                         </td>
