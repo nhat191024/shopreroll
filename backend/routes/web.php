@@ -46,11 +46,11 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('/game-recharge-package')->group(function () {
         Route::get('/{id}', [GameRechargePackageController::class, 'index'])->name('admin.GameRechargePackage.index');
-        Route::get('/add', [GameRechargePackageController::class, 'showAddRechargePackage'])->name('admin.GameRechargePackage.showAdd');
+        Route::get('/add', [GameRechargePackageController::class, 'showAddGameRechargePackage'])->name('admin.GameRechargePackage.showAdd');
         Route::post('/add', [GameRechargePackageController::class, 'addRechargePackage'])->name('admin.GameRechargePackage.add');
         Route::post('/edit', [GameRechargePackageController::class, 'editRechargePackage'])->name('admin.GameRechargePackage.edit');
         Route::get('/edit/{id}', [GameRechargePackageController::class, 'showEditRechargePackage'])->name('admin.GameRechargePackage.showEdit');
-        Route::get('/delete/{id}', [GameRechargePackageController::class, 'deleteRechargePackage'])->name('admin.GameRechargePackage.delete');
+        Route::get('/ChangeStatus/{id}/{status}', [GameRechargePackageController::class, 'ChangeGameRechargePackageStatus'])->name('admin.GameRechargePackage.ChangeGameRechargePackageStatus');
     });
 
     Route::prefix('/reroll-category')->group(function () {
