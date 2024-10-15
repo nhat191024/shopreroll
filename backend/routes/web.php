@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\GameController;
 use App\Http\Controllers\admin\RerollCategoryController;
 use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
 use App\Http\Controllers\admin\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,6 +22,15 @@ Route::prefix('admin')->group(function () {
         Route::post('/edit', [CategoryController::class, 'editCategory'])->name('admin.category.edit');
         Route::get('/edit/{id}', [CategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
         Route::get('/delete/{id}', [CategoryController::class, 'deleteCategory'])->name('admin.category.delete');
+    });
+
+    Route::prefix('/game')->group(function () {
+        Route::get('/', [GameController::class, 'index'])->name('admin.game.index');
+        Route::get('/add', [GameController::class, 'showAddGame'])->name('admin.game.show_add');
+        Route::post('/add', [GameController::class, 'addGame'])->name('admin.game.add');
+        Route::post('/edit', [GameController::class, 'editGame'])->name('admin.game.edit');
+        Route::get('/edit/{id}', [GameController::class, 'showEditGame'])->name('admin.game.show_edit');
+        Route::get('/delete/{id}', [GameController::class, 'deleteGame'])->name('admin.game.delete');
     });
 
     Route::prefix('/reroll-category')->group(function () {
