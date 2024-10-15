@@ -24,7 +24,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/add', [GameController::class, 'addGame'])->name('admin.game.add');
         Route::post('/edit', [GameController::class, 'editGame'])->name('admin.game.edit');
         Route::get('/edit/{id}', [GameController::class, 'showEditGame'])->name('admin.game.show_edit');
-        Route::get('/delete/{id}', [GameController::class, 'ChangeGameStatus'])->name('admin.game.ChangeGameStatus');
+        Route::get('/ChangeStatus/{id}', [GameController::class, 'ChangeGameStatus'])->name('admin.game.ChangeStatus');
     });
 
     Route::prefix('/game-category')->group(function () {
@@ -33,7 +33,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/add', [GameCategoryController::class, 'addCategory'])->name('admin.category.add');
         Route::post('/edit', [GameCategoryController::class, 'editCategory'])->name('admin.category.edit');
         Route::get('/edit/{id}', [GameCategoryController::class, 'showEditCategory'])->name('admin.category.show_edit');
-        Route::get('/delete/{id}', [GameCategoryController::class, 'deleteCategory'])->name('admin.category.delete');
+        Route::get('/ChangeStatus/{id}', [GameCategoryController::class, 'ChangeGameCategoryStatus'])->name('admin.category.delete');
     });
 
     Route::prefix('/game-recharge')->group(function () {
@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/add', [GameRechargeController::class, 'addRecharge'])->name('admin.recharge.add');
         Route::post('/edit', [GameRechargeController::class, 'editRecharge'])->name('admin.recharge.edit');
         Route::get('/edit/{id}', [GameRechargeController::class, 'showEditRecharge'])->name('admin.recharge.show_edit');
-        Route::get('/ChangeGameStatus/{id}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.recharge.ChangeGameStatus');
+        Route::get('/ChangeStatus/{id}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.recharge.ChangeGameStatus');
     });
 
     Route::prefix('/recharge-package')->group(function () {
