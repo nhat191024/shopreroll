@@ -36,18 +36,21 @@ class GameRechargeService
         $gameRecharge->image = $image;
         $gameRecharge->save();
     }
-    public function delete($id)
-    {
-        $gameRecharge = GameRecharge::where('id', $id)->first();
-        $gameRecharge->status = 0;
-        $gameRecharge->save();
-    }
+
     public function checkHasChildren($id)
     {
         return GameRecharge::find($id)->RechargePackages()->get()->count() > 0;
     }
+
     public function getChildren($id)
     {
         return GameRecharge::find($id)->RechargePackages()->get();
+    }
+
+    public function ChangeStatus($id, $status)
+    {
+        $gameRecharge = GameRecharge::where('id', $id)->first();
+        $gameRecharge->status = $status;
+        $gameRecharge->save();
     }
 }
