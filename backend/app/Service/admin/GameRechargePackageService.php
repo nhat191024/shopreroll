@@ -4,7 +4,7 @@ namespace App\Service\admin;
 
 use App\Models\RechargePackage;
 
-class RechargePackageService
+class GameRechargePackageService
 {
     public function getAll()
     {
@@ -16,6 +16,12 @@ class RechargePackageService
     {
         return RechargePackage::where('id', $id)->first();
     }
+
+    public function getByGameRechargeId($game_recharge_id)
+    {
+        return RechargePackage::where('game_recharge_id', $game_recharge_id)->get();
+    }
+
     public function add($game_recharge_id, $name, $price)
     {
         RechargePackage::create([

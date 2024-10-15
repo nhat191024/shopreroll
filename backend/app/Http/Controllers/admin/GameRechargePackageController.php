@@ -4,18 +4,18 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Service\admin\GameRechargeService;
-use App\Service\admin\RechargePackageService;
+use App\Service\admin\GameRechargePackageService;
 use Illuminate\Http\Request;
 
-class RechargePackageController extends Controller
+class GameRechargePackageController extends Controller
 {
     private $rechargePackageService;
     private $gameRechargeService;
-    //
-    public function __construct(RechargePackageService $rechargePackageService, GameRechargeService $gameRechargeService)
+
+    public function __construct()
     {
-        $this->rechargePackageService = $rechargePackageService;
-        $this->gameRechargeService = $gameRechargeService;
+        $this->rechargePackageService = app(GameRechargePackageService::class);
+        $this->gameRechargeService = app(GameRechargeService::class);
     }
 
     public function index()
