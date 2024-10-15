@@ -42,7 +42,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/add', [GameRechargeController::class, 'addRecharge'])->name('admin.recharge.add');
         Route::post('/edit', [GameRechargeController::class, 'editRecharge'])->name('admin.recharge.edit');
         Route::get('/edit/{id}', [GameRechargeController::class, 'showEditRecharge'])->name('admin.recharge.show_edit');
-        Route::get('/delete/{id}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.recharge.delete');
+        Route::get('/ChangeGameStatus/{id}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.recharge.ChangeGameStatus');
     });
 
     Route::prefix('/recharge-package')->group(function () {
