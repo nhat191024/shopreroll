@@ -21,7 +21,8 @@ class GameRechargePackageController extends Controller
     public function index($id)
     {
         $rechargePackages = $this->rechargePackageService->getByGameRechargeId($id);
-        return view('admin.gameRechargePackage.GameRechargePackage', compact('rechargePackages'));
+        $gameRechargeName = $this->gameRechargeService->getById($id)->name;
+        return view('admin.gameRechargePackage.GameRechargePackage', compact('rechargePackages', 'gameRechargeName'));
     }
 
     public function showAddRechargePackage()
