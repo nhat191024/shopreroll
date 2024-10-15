@@ -57,11 +57,11 @@
                                             </a>
                                             @if ($item->status == 0)
                                                 <a class="btn btn-success"
-                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollCategory.ChangeStatus', $item->id) }}'; }">
+                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 1]) }}'; }">
                                                     Hiện </a>
                                             @else
                                                 <a class="btn btn-danger"
-                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollCategory.ChangeStatus', $item->id) }}'; }">
+                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 0]) }}'; }">
                                                     Ẩn </a>
                                             @endif
                                         </td>
