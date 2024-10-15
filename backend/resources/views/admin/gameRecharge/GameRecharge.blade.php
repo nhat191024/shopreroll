@@ -30,12 +30,12 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>STT</th>
-                                    <th>Trò chơi</th>
-                                    <th>Hướng dẫn</th>
+                                    <th style="width: 2%;">STT</th>
+                                    <th style="width: 10%;">Trò chơi</th>
+                                    <th style="width: 25%;">Hướng dẫn</th>
                                     <th>ID Youtube</th>
-                                    <th>Ảnh</th>
-                                    <th>Trạng thái</th>
+                                    <th style="width: 30%;">Ảnh</th>
+                                    <th style="width: 7%;">Trạng thái</th>
                                     <th>Chức năng</th>
                                 </tr>
                             </thead>
@@ -55,9 +55,9 @@
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item['name'] }}</td>
-                                        <td width="150px">{{ $item['tutorial'] }}</td>
+                                        <td>{{ $item['tutorial'] }}</td>
                                         <td>{{ $item['id_youtube'] }}</td>
-                                        <td><img width="100px" src="{{ url('image/thumb') . '/' . $item->image }}"
+                                        <td><img width="600px" src="{{ url('image/thumb') . '/' . $item->image }}"
                                                 alt=""></td>
                                         <td>{{ $item['status'] == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                         <td class="text-center">
@@ -74,6 +74,11 @@
                                                     onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameRecharge.ChangeGameRechargeStatus', [$item->id, 0]) }}'; }">
                                                     Ẩn </a>
                                             @endif
+
+                                            <a class="btn btn-primary"
+                                                href="{{ route('admin.admin.GameRechargePackage.index', $item->id) }}">
+                                                Packages
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
