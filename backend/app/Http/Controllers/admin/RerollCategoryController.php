@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class RerollCategoryController extends Controller
 {
     private $rerollCategoryService;
-    //
+
     public function __construct(RerollCategoryService $rerollCategoryService)
     {
         $this->rerollCategoryService = $rerollCategoryService;
@@ -19,7 +19,6 @@ class RerollCategoryController extends Controller
     {
         $allRerollCategory = $this->rerollCategoryService->getAll();
         return view('admin.RerollCategory.RerollCategory', compact('allRerollCategory'));
-        // return dd($allRerollCategory);
     }
 
     public function showAddRerollCategory()
@@ -35,7 +34,6 @@ class RerollCategoryController extends Controller
             'note' => 'required',
         ]);
 
-        // Public Folder
         $this->rerollCategoryService->add($request->name, $request->image, $request->note);
         return redirect(route('admin.RerollCategory.index'))->with('success', 'Thêm danh mục thành công');
     }
@@ -61,7 +59,7 @@ class RerollCategoryController extends Controller
             'name' => 'required',
             'note' => 'required'
         ]);
-        // Public Folder
+
         $this->rerollCategoryService->edit($request->id, $request->name, $request->note);
         return redirect(route('admin.RerollCategory.index'))->with('success', 'Sửa danh mục thành công');
     }
