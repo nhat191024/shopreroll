@@ -26,7 +26,7 @@
     <!-- Custom styles for this template -->
     <link href="{{ url('') . '/' }}css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles1.css"  rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
     <!-- Custom styles for this page -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -54,199 +54,136 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item  {{ Request::is('admin') ? 'active' : '' }}">
-                <a class="nav-link" href="{{route ('admin.dashboard')}}">
+                <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang tổng quan</span></a>
             </li>
-
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            {{-- <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('') . '/' }}#" data-toggle="collapse"
-                    data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="{{ url('') . '/' }}buttons.html">Buttons</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}cards.html">Cards</a>
-                    </div>
-                </div>
-            </li> --}}
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            {{-- <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('') . '/' }}#" data-toggle="collapse"
-                    data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="{{ url('') . '/' }}utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-
                 <h6>Chức năng</h6>
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            {{-- <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ url('') . '/' }}#" data-toggle="collapse"
-                    data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="{{ url('') . '/' }}login.html">Login</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}register.html">Register</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="{{ url('') . '/' }}404.html">404 Page</a>
-                        <a class="collapse-item" href="{{ url('') . '/' }}blank.html">Blank Page</a>
+            <!-- Nav Item - Tables -->
+            <div id="menuAccordion">
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarGame" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarGame">
+                        <i class="fas fa-fw fa-table"></i><span data-key="t-layouts">Danh mục game</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarGame" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </li> --}}
-
-            <!-- Nav Item - Charts -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ url('') . '/' }}charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li> --}}
-
-            <!-- Nav Item - Game Dropdown -->
-            <li
-                class="nav-item dropdown {{ Request::is('admin/game*') || Request::is('admin/category*') ? 'active' : '' }}">
-                <a class="nav-link dropdown-toggle" href="#" id="gameDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Game</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="gameDropdown">
-                    <a class="dropdown-item {{ Request::is('admin/game*') ? 'active' : '' }}"
-                        href="{{ route('admin.game.index') }}">Game</a>
-                    <a class="dropdown-item {{ Request::is('admin/category*') ? 'active' : '' }}"
-                        href="{{ route('admin.category.index') }}">Game Category</a>
-                </div>
-            </li>
-
-            <!-- Nav Item - Game Recharge Dropdown -->
-            <li
-                class="nav-item dropdown {{ Request::is('admin/game-recharge*') || Request::is('admin/recharge-package*') ? 'active' : '' }}">
-                <a class="nav-link dropdown-toggle" href="#" id="rechargeDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Recharge</span>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="rechargeDropdown">
-                    <a class="dropdown-item {{ Request::is('admin/game-recharge*') ? 'active' : '' }}"
-                        href="{{ route('admin.recharge.index') }}">Game Recharge</a>
-                    <a class="dropdown-item {{ Request::is('admin/recharge-package*') ? 'active' : '' }}"
-                        href="{{ route('admin.package.index') }}">Recharge Package</a>
-                </div>
-            </li>
-
-            {{-- <li class="nav-item {{ Request::is('admin/product*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.product.index') }}">
-                    <i class="fas fa-fw fa-cookie"></i>
-                    <span>Sản phẩm</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/banner*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.banner.index') }}">
-                    <i class="fas fa-fw fa-clipboard"></i>
-                    <span>Banner</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/about*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.about.index') }}">
-                    <i class="fas fa-fw fa-pen-fancy"></i>
-                    <span>About Us</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/bill*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.bill.index') }}">
-                    <i class="fas fa-fw fa-money-bill"></i>
-                    <span>Hóa đơn</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/message*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.message.index') }}">
-                    <i class="fas fa-fw fa-bell "></i>
-                    <span>Tin nhắn KH</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/variation*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.variation.index') }}">
-                    <i class="fas fa-fw fa-chevron-circle-right"></i>
-                    <span>Quản lý size</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/accessory*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.accessory.index') }}">
-                    <i class="fas fa-fw fa-birthday-cake"></i>
-                    <span>Quản lý phụ kiện</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/promotion*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.promotion.index') }}">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Băng rôn quảng cáo SP</span></a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/voucher*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.voucher.index') }}">
-                    <i class="fas fa-fw fa-money-check"></i>
-                    <span>Voucher</span>
-                </a>
-            </li>
-            <li class="nav-item {{ Request::is('admin/blog*') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.blog.index') }}">
-                    <i class="fas fa-fw fa-blog"></i>
-                    <span>Quản lý Blog</span></a>
-            </li> --}}
-
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.method.index') }}">
-                    <i class="fas fa-fw fa-cookie"></i>
-                    <span>Cách thức nấu</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.branch.index') }}">
-                    <i class="fas fa-fw fa-warehouse"></i>
-                    <span>Chi nhánh</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.kitchen.index') }}">
-                    <i class="fas fa-fw fa-dumpster-fire"></i>
-                    <span>Bếp</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.table.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Bàn</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.dish.index') }}">
-                    <i class="fas fa-fw fa-cloud-meatball"></i>
-                    <span>Món ăn</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin.user.index') }}">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Quản lý tài khoản</span></a>
-            </li> --}}
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarReroll" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="sidebarReroll"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Danh mục reroll</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarReroll" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact reroll</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact reroll</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail
+                                    reroll</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#account" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Tài khoản</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="account" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai account</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Star Rail account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#characters" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="characters">
+                        <i class="fa-solid fa-person"></i>
+                        <span data-key="t-layouts">Character</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="characters" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin characters</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai characters</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Star rail characters</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#weapon" data-bs-toggle="collapse" role="button"
+                        aria-expanded="false" aria-controls="weapon">
+                        <i class="fa-solid fa-wand-sparkles"></i>
+                        <span data-key="t-layouts">Vũ khí</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="weapon" data-bs-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Genshin vũ khí</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">HonKai vũ khí</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link" data-key="t-horizontal">Star rail vũ khí</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.user.index') }}">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Tài khoản người dùng</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Lịch sử giao dịch</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="fa-regular fa-envelope"></i>
+                        <span>Tin nhắn khách hàng</span></a>
+                </li>
+            </div>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -268,24 +205,11 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
-                        <button type="button" id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <button type="button" id="sidebarToggleTop"
+                            class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
-
-                    <!-- Topbar Search -->
-                    {{-- <form
-                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
-                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
-                                        <i class="fas fa-search fa-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -381,8 +305,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="dropdown-item text-center small text-gray-600"
-                                    href="#">Xem thêm tin nhắn
+                                <a class="dropdown-item text-center small text-gray-600" href="#">Xem thêm tin
+                                    nhắn
                                 </a>
                             </div>
                         </li>
@@ -393,8 +317,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">#</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">#</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ url('') . '/' }}img/undraw_profile.svg">
                             </a>
