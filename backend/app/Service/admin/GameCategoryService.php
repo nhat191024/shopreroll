@@ -17,6 +17,11 @@ class GameCategoryService
         return GameCategory::where('id', $id)->first();
     }
 
+    public function getByGameId($gameId)
+    {
+        return GameCategory::where('game_id', $gameId)->get();
+    }
+
     public function add($categoryName, $image, $gameId)
     {
         GameCategory::create([
