@@ -33,7 +33,6 @@
                                     <th>STT</th>
                                     <th>Tên danh mục (Tiếng Việt)</th>
                                     <th>Ảnh danh mục</th>
-                                    <th>Tên game</th>
                                     <th>Trạng thái</th>
                                     <th>Chức năng</th>
                                 </tr>
@@ -43,7 +42,6 @@
                                     <th>STT</th>
                                     <th>Tên danh mục (Tiếng Việt)</th>
                                     <th>Ảnh danh mục</th>
-                                    <th>Tên game</th>
                                     <th>Trạng thái</th>
                                     <th>Chức năng</th>
                                 </tr>
@@ -58,7 +56,6 @@
                                         <td>{{ $item->name }}</td>
                                         <td><img width="200px" src="{{ url('image/thumb') . '/' . $item->image }}"
                                                 alt=""></td>
-                                        <td>{{ $item->Game->name }}</td>
                                         <td>{{ $item->status == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-warning"
