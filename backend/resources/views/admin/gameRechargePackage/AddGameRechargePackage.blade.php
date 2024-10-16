@@ -7,12 +7,12 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Thêm gói nạp trò chơi</h1>
+        <h1 class="h3 mb-2 text-gray-800">Thêm gói nạp</h1>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.package.add') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.GameRechargePackage.add') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Tên gói nạp</label>
@@ -22,9 +22,9 @@
                         <div class="form-group">
                             <label for="">Giá trị gói nạp</label>
                             <input required type="number" class="form-control" id="" aria-describedby=""
-                                name="price" placeholder="Nhập giá trị gói nạp">
+                                name="price" placeholder="Nhập giá trị gói nạp" min="1" max="9999999">
                         </div>
-                        
+
                         <div class="form-group">
                             <label for="product_id">Chọn trò chơi</label>
                             <select class="form-control" id="product_id" name="game_recharge_id">
