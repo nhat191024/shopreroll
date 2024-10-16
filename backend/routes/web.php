@@ -27,7 +27,7 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('/game-category')->group(function () {
-        Route::get('/{id}', [GameCategoryController::class, 'index'])->name('admin.GameCategory.index');
+        Route::get('/list/{id}', [GameCategoryController::class, 'index'])->name('admin.GameCategory.index');
         Route::get('/add', [GameCategoryController::class, 'showAddCategory'])->name('admin.GameCategory.showAdd');
         Route::post('/add', [GameCategoryController::class, 'addCategory'])->name('admin.GameCategory.add');
         Route::post('/edit', [GameCategoryController::class, 'editCategory'])->name('admin.GameCategory.edit');
