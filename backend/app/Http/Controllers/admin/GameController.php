@@ -19,12 +19,12 @@ class GameController extends Controller
     public function index()
     {
         $allGame = $this->gameService->getAll();
-        return view('admin.game.game', compact('allGame'));
+        return view('admin.game.Game', compact('allGame'));
     }
 
     public function showAddGame()
     {
-        return view('admin.game.add_game');
+        return view('admin.game.AddGame');
     }
 
     public function addGame(Request $request)
@@ -41,7 +41,7 @@ class GameController extends Controller
     {
         $id = $request->id;
         $gameInfo = $this->gameService->getById($id);
-        return view('admin.game.edit_game', compact('id', 'gameInfo'));
+        return view('admin.game.EditGame', compact('id', 'gameInfo'));
     }
 
     public function editGame(Request $request)
@@ -55,13 +55,21 @@ class GameController extends Controller
         return redirect(route('admin.game.index'))->with('success', 'Sửa game thành công');
     }
 
-    public function deleteGame(Request $request)
+    public function ChangeGameStatus($id, $status)
     {
-        $id = $request->id;
-        if (!$this->gameService->checkHasChildren($id)) {
-            $this->gameService->delete($id);
-            return redirect(route('admin.game.index'))->with('success', 'Xóa game thành công');
+        if ($this->gameService->checkHasChildren($id)) {
+            return redirect(route('admin.game.index'))->with('error', 'Game này đang có sản phẩm không thể xóa');
         }
-        return redirect(route('admin.game.index'))->with('error', 'Game này đang có sản phẩm không thể xóa');
+
+        switch ($status) {
+            case 1:
+                $this->gameService->ChangeStatus($id, 1);
+                return redirect(route('admin.game.index'))->with('success', 'Hiện game thành công');
+                break;
+            case 0:
+                $this->gameService->ChangeStatus($id, 0);
+                return redirect(route('admin.game.index'))->with('success', 'Ẩn game thành công');
+                break;
+        }
     }
 }

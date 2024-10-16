@@ -36,8 +36,10 @@ class GameService
         return Game::find($idgame)->GameCategory()->get()->count() > 0;
     }
 
-    public function delete($idgame)
+    public function ChangeStatus($id, $status)
     {
-        Game::destroy($idgame);
+        $game = Game::where('id', $id)->first();
+        $game->status = $status;
+        $game->save();
     }
 }
