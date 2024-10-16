@@ -12,7 +12,7 @@
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.recharge.edit') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.GameRecharge.edit') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Tên trò chơi</label>
