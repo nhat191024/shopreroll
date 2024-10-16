@@ -23,7 +23,7 @@ class GameRechargeController extends Controller
 
     public function showAddRecharge()
     {
-        return view('admin.gameRecharge.add_recharge');
+        return view('admin.gameRecharge.AddGameRecharge');
     }
 
     public function addRecharge(Request $request)
@@ -44,7 +44,7 @@ class GameRechargeController extends Controller
     {
         $id = $request->id;
         $gameRechargeInfo = $this->gameRechargeService->getById($id);
-        return view('admin.GameRecharge.edit_recharge', compact('id', 'gameRechargeInfo'));
+        return view('admin.gameRecharge.EditGameRecharge', compact('id', 'gameRechargeInfo'));
     }
 
     public function editRecharge(Request $request)
