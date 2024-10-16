@@ -9,11 +9,11 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Gói nạp</h1>
+            <h1 class="h3 mb-2 text-gray-800">Gói nạp {{ $gameRechargeName }}</h1>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.package.show_add') }}">Thêm gói nạp mới</a>
+                    <a class="btn btn-primary" href="{{ route('admin.GameRechargePackage.showAdd') }}">Thêm gói nạp mới</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -31,9 +31,8 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên danh mục (Tiếng Việt)</th>
-                                    <th>Ảnh danh mục</th>
-                                    <th>Tên game</th>
+                                    <th>Tên gói nạp</th>
+                                    <th>Giá</th>
                                     <th>Trạng thái</th>
                                     <th>Chức năng</th>
                                 </tr>
@@ -41,12 +40,10 @@
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên danh mục (Tiếng Việt)</th>
-                                    <th>Ảnh danh mục</th>
-                                    <th>Tên game</th>
+                                    <th>Tên gói nạp</th>
+                                    <th>Giá</th>
                                     <th>Trạng thái</th>
                                     <th>Chức năng</th>
-                                    
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -58,18 +55,22 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->price }}</td>
-                                        <td>{{ $item->GameRecharge->name }}</td>
-                                        <td>{{ $item->status == 1 ? "Hoạt động" : "Đã ẩn" }}</td>
+                                        <td>{{ $item->status == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                         <td class="text-center">
-                                            <a class="btn btn-warning" href="{{route('admin.package.show_edit', ['id' => $item->id])}}">
+                                            <a class="btn btn-warning"
+                                                href="{{ route('admin.GameRechargePackage.showEdit', ['id' => $item->id]) }}">
                                                 Sửa
                                             </a>
-                                            @if ($item -> status != 0)
-                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xoá gói nạp: {{ $item->name }}?\nLƯU Ý: Nếu trong gói nạp này còn tồn tại sản phẩm, việc xoá sẽ không thể thực hiện!')) { window.location.href = '{{route('admin.package.delete', ['id' => $item->id])}}'; }">
-                                                Xoá
-                                            </a>
+                                            @if ($item->status == 0)
+                                                <a class="btn btn-success"
+                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameRechargePackage.ChangeGameRechargePackageStatus', [$item->id, 1]) }}'; }">
+                                                    Hiện </a>
+                                            @else
+                                                <a class="btn btn-danger"
+                                                    onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameRechargePackage.ChangeGameRechargePackageStatus', [$item->id, 0]) }}'; }">
+                                                    Ẩn </a>
                                             @endif
-                                    </td>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
