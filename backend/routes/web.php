@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\ApiController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\GameController;
 use App\Http\Controllers\admin\GameCategoryController;
@@ -91,4 +93,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/disable/{id}', [UserController::class, 'disableUser'])->name('admin.user.disable');
         Route::get('/store/{id}', [UserController::class, 'storeUser'])->name('admin.user.store');
     });
+    Route::prefix('/char')->group(function(){
+        Route::get('/GI',[ApiController::class,'indexGenshinImpactChar'])->name('admin.api.GI');
+        Route::get('/ZZZ',[ApiController::class,'indexZenlessZoneZeroChar'])->name('admin.api.ZZZ');
+        Route::get('/HSR',[ApiController::class,'indexHonkaiStarRailChar'])->name('admin.api.HSR');
+    });
+    Route::prefix('/weapon')->group(function (){
+        Route::get('/GI',[ApiController::class,'indexGenshinImpactWeapon'])->name('admin.api.weapon.GI');
+        Route::get('/ZZZ',[ApiController::class,'indexZenlessZoneZeroWeapon'])->name('admin.api.weapon.ZZZ');
+        Route::get('/HSR',[ApiController::class,'indexHonkaiStarRailWeapon'])->name('admin.api.weapon.HSR');
+    }
+);
 });
