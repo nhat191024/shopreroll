@@ -25,7 +25,7 @@ class GameRechargePackageController extends Controller
         return view('admin.gameRechargePackage.GameRechargePackage', compact('rechargePackages', 'gameRechargeName'));
     }
 
-    public function showAddGameRechargePackage()
+    public function ShowAddGameRechargePackage()
     {
         $gameRecharge = $this->gameRechargeService->getAll();
         return view('admin.gameRechargePackage.AddGameRechargePackage', compact('gameRecharge'));
@@ -39,7 +39,7 @@ class GameRechargePackageController extends Controller
             'price' => 'required'
         ]);
         $this->rechargePackageService->add($request->game_recharge_id, $request->name, $request->price);
-        return redirect()->route('admin.package.index')->with('success', 'Thêm gói nạp thành công');
+        return redirect()->route('admin.GameRechargePackage.index', $request->game_recharge_id)->with('success', 'Thêm gói nạp thành công');
     }
 
     public function showEditRechargePackage(Request $request)
@@ -47,7 +47,7 @@ class GameRechargePackageController extends Controller
         $id = $request->id;
         $game = $this->gameRechargeService->getAll();
         $package = $this->rechargePackageService->getById($id);
-        return view('admin.rechargePackage.edit_recharge_package', compact('id', 'game', 'package'));
+        return view('admin.gameRechargePackage.EditGameRechargePackage', compact('id', 'game', 'package'));
     }
 
     public function editRechargePackage(Request $request)
@@ -59,7 +59,7 @@ class GameRechargePackageController extends Controller
             'id' => 'required'
         ]);
         $this->rechargePackageService->edit($request->id, $request->game_recharge_id, $request->name, $request->price);
-        return redirect(route('admin.package.index'))->with('success', 'Sửa gói nạp thành công');
+        return redirect(route('admin.GameRechargePackage.index', $request->game_recharge_id))->with('success', 'Sửa gói nạp thành công');
     }
 
     public function ChangeGameRechargePackageStatus($id, $status)
