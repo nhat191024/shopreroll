@@ -45,7 +45,7 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::prefix('/game-recharge-package')->group(function () {
-        Route::get('/{id}', [GameRechargePackageController::class, 'index'])->name('admin.GameRechargePackage.index');
+        Route::get('/list/{id}', [GameRechargePackageController::class, 'index'])->name('admin.GameRechargePackage.index');
         Route::get('/add', [GameRechargePackageController::class, 'showAddGameRechargePackage'])->name('admin.GameRechargePackage.showAdd');
         Route::post('/add', [GameRechargePackageController::class, 'addRechargePackage'])->name('admin.GameRechargePackage.add');
         Route::post('/edit', [GameRechargePackageController::class, 'editRechargePackage'])->name('admin.GameRechargePackage.edit');
