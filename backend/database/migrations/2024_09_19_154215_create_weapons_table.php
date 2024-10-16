@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('game_id');
             $table->string('name');
             $table->tinyInteger('status')->default(1);
+            $table->string('image')->nullable();
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games')->onDelete('cascade');
