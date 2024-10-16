@@ -76,10 +76,6 @@ class GameCategoryController extends Controller
 
     public function ChangeGameCategoryStatus($id, $status)
     {
-        if ($this->gameCategoryService->checkHasChildren($id)) {
-            return redirect()->back()->with('error', 'Danh mục đang có sản phẩm không thể xóa');
-        }
-
         switch ($status) {
             case 1:
                 $this->gameCategoryService->ChangeStatus($id, 1);
