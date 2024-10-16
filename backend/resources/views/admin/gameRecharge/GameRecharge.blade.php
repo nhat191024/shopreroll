@@ -57,7 +57,7 @@
                                         <td>{{ $item['name'] }}</td>
                                         <td>{{ $item['tutorial'] }}</td>
                                         <td>{{ $item['id_youtube'] }}</td>
-                                        <td><img width="600px" src="{{ url('image/thumb') . '/' . $item->image }}"
+                                        <td><img width="100%" src="{{ url('image/thumb') . '/' . $item->image }}"
                                                 alt=""></td>
                                         <td>{{ $item['status'] == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                         <td class="text-center">
