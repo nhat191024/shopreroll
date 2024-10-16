@@ -30,7 +30,7 @@ class GameCategoryController extends Controller
     public function showAddCategory()
     {
         $game = $this->gameService->getAll();
-        return view('admin.category.add_category', compact('game'));
+        return view('admin.gameCategory.AddGameCategory', compact('game'));
     }
 
     public function addCategory(Request $request)
@@ -43,7 +43,7 @@ class GameCategoryController extends Controller
         $imageName = time() . '_' . $request->category_image->getClientOriginalName();
         $request->category_image->move(public_path('image/thumb'), $imageName);
         $this->gameCategoryService->add($request->category_name, $imageName, $request->game_id);
-        return redirect()->route('admin.category.index')->with('success', 'Thêm danh mục thành công');
+        return redirect()->route('admin.GameCategory.index', $request->game_id)->with('success', 'Thêm danh mục thành công');
     }
 
     public function showEditCategory(Request $request)
@@ -51,7 +51,7 @@ class GameCategoryController extends Controller
         $id = $request->id;
         $game = $this->gameService->getAll();
         $gameCategoryInfo = $this->gameCategoryService->getById($id);
-        return view('admin.category.edit_category', compact('id', 'game', 'gameCategoryInfo'));
+        return view('admin.gameCategory.EditGameCategory', compact('id', 'game', 'gameCategoryInfo'));
     }
 
     public function editCategory(Request $request)
@@ -71,7 +71,7 @@ class GameCategoryController extends Controller
             }
         }
         $this->gameCategoryService->edit($request->category_id, $request->category_name, $imageName, $request->game_id);
-        return redirect(route('admin.category.index'))->with('success', 'Sửa danh mục thành công');
+        return redirect(route('admin.GameCategory.index', $request->game_id))->with('success', 'Sửa danh mục thành công');
     }
 
     public function ChangeGameCategoryStatus($id, $status)
