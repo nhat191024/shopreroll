@@ -127,9 +127,9 @@ class ApiService
         }
     }
     // WEAPON CRAWL DATA
-    public function getGenshinImpactWeapons(): array
+public function getGenshinImpactWeapons(): array
 {
-    $url = 'https://genshin.gg/weapons'; // URL chứa thông tin vũ khí
+    $url = 'https://genshin-builds.com/vi/weapons';  // URL chứa thông tin vũ khí
     $gameId = 1; // ID cho Genshin Impact
 
     try {
@@ -139,14 +139,13 @@ class ApiService
 
         $weapons = [];
 
-        $crawler->filter('div.table-image-wrapper')->each(function (Crawler $node) use (&$weapons, $gameId) {
-            // Lấy tên vũ khí từ thẻ alt của ảnh
-            $weaponName = $node->filter('img')->attr('alt');
-            // Hoặc lấy tên vũ khí từ văn bản bên trong div (nếu cần)
-            $weaponNameText = $node->text();
-
-            // Lấy URL ảnh của vũ khí
+        // Lọc dữ liệu trong div chứa ảnh và tên
+        $crawler->filter('div.flex.flex-row.justify-center.rounded-t-lg')->each(function (Crawler $node) use (&$weapons, $gameId) {
+            // Lấy URL ảnh từ thẻ img
             $weaponImage = $node->filter('img')->attr('src');
+
+            // Lấy tên vũ khí từ thẻ h3
+            $weaponName = $node->nextAll()->filter('h3')->text();
 
             $weapons[] = [
                 'name' => trim($weaponName),
@@ -168,6 +167,7 @@ class ApiService
         throw new \Exception('Error fetching Genshin Impact weapons: ' . $e->getMessage());
     }
 }
+
 public function getHonkaiStarRailWeapons(): array
 {
     $url = 'https://genshin.gg/star-rail/light-cones'; // URL chứa thông tin Light Cones Honkai: Star Rail
