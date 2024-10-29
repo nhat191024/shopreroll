@@ -19,6 +19,7 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>UID</th>
+                                    <th>Tên khách nạp</th>
                                     <th>Username</th>
                                     <th>Server</th>
                                     <th>Character Name</th>
@@ -31,6 +32,7 @@
                                 <tr>
                                     <th>STT</th>
                                     <th>UID</th>
+                                    <th>Tên khách nạp</th>
                                     <th>Username</th>
                                     <th>Server</th>
                                     <th>Character Name</th>
@@ -44,6 +46,7 @@
                                     <tr>
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $bill->UID }}</td>
+                                        <td>{{ $bill->User ? $bill->User->name : 'N/A' }}</td>
                                         <td>{{ $bill->username }}</td>
                                         <td>{{ $bill->server }}</td>
                                         <td>{{ $bill->character_name }}</td>

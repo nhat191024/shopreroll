@@ -20,9 +20,9 @@ class RechargeBill extends Model
         'status',
     ];
 
-    public function Buyer()
+    public function User()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 
     public function RechargePackage()
