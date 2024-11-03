@@ -6,10 +6,12 @@ use App\Http\Controllers\admin\GameController;
 use App\Http\Controllers\admin\GameCategoryController;
 use App\Http\Controllers\admin\GameRechargeController;
 use App\Http\Controllers\admin\GameRechargePackageController;
+use App\Http\Controllers\admin\RechargeBillController;
 use App\Http\Controllers\admin\RerollCategoryController;
 use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
 use App\Http\Controllers\admin\UserController;
+use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +20,10 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    // Route Recharge-bill
+    Route::prefix('/recharge-bill')->group(function () {
+        Route::get('/', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
+    });
 
     Route::prefix('/game')->group(function () {
         Route::get('/', [GameController::class, 'index'])->name('admin.game.index');
