@@ -386,6 +386,7 @@
             <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
             <script src="{{ url('') . '/' }}js/admin/blog.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="{{ url('') . '/' }}js/admin/main.js"></script>
 
 </body>
 
