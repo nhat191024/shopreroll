@@ -46,34 +46,6 @@ class ApiController extends Controller
     }
     
 
-
-    // WEAPON CONTROLLER
-    // public function indexGenshinImpactWeapon(){
-    //     try {
-    //         $weapons = $this->apiService->getGenshinImpactWeapons();
-    //         return response()->json(['success' => true, 'data' => $weapons]);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
-    //     }
-    // }
-
-    // public function indexHonkaiStarRailWeapon(){
-    //     try {
-    //         $weapons = $this->apiService->getHonkaiStarRailWeapons();
-    //         return response()->json(['success' => true, 'data' => $weapons]);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
-    //     }
-    // }
-
-    // public function indexZenlessZoneZeroWeapon(){
-    //     try {
-    //         $weapons = $this->apiService->getZenlessZoneZeroWeapons();
-    //         return response()->json(['success' => true, 'data' => $weapons]);
-    //     } catch (\Exception $e) {
-    //         return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
-    //     }
-    // }
     public function indexGameWeapons($slug)
 {
     try {
