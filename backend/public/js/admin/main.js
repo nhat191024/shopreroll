@@ -1,51 +1,49 @@
-// Thay đổi file label khi người dùng chọn file
 $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();
     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 });
 
-// Lấy danh sách heroes và weapons khi thay đổi danh mục game
-$('#game_category').on('change', function () {
-    var categoryId = $(this).val();
-    if (categoryId) {
-        $.ajax({
-            url: '/admin/game-account/get-game-details/' + categoryId,
-            type: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                if (response.success) {
-                    // Cập nhật danh sách heroes
-                    $('#hero').empty();
-                    if (response.data.heroes && response.data.heroes.length > 0) {
-                        $.each(response.data.heroes, function (key, hero) {
-                            $('#hero').append('<option value="' + hero.id + '">' + hero.name + '</option>');
-                        });
-                    } else {
-                        $('#hero').append('<option value="">Không có tướng</option>');
-                    }
-
-                    // Cập nhật danh sách weapons
-                    $('#weapon1').empty();
-                    if (response.data.weapons && response.data.weapons.length > 0) {
-                        $.each(response.data.weapons, function (key, weapon) {
-                            console.log('<option value="' + weapon.id + '">' + weapon.name + '</option>');
-                            $('#weapon1').append('<option value="' + weapon.id + '">' + weapon.name + '</option>');
-                        });
-                    } else {
-                        $('#weapon1').append('<option value="">Không có vũ khí</option>');
-                    }
-                } else {
-                    alert(response.message);
-                }
-            },
-            error: function () {
-                alert('Đã xảy ra lỗi khi tải thông tin chi tiết.');
-            }
-        });
-    }
-});
-
-// Khởi tạo giá trị ban đầu khi trang được tải
+// Enable Selectpicker for searching heroes and weapons
 $(document).ready(function () {
-    $('#game_category').trigger('change');
+    $('.selectpicker').selectpicker();
+
+    // Function to load heroes and weapons based on the selected game category
+    function loadGameDetails(categoryId) {
+        if (categoryId) {
+            $.ajax({
+                url: '/admin/game-account/get-game-details/' + categoryId,
+                type: 'GET',
+                success: function (response) {
+                    if (response.success) {
+                        var heroesOptions = '';
+                        var weaponsOptions = '';
+
+                        $.each(response.data.heroes, function (key, hero) {
+                            heroesOptions += '<option value="' + hero.id + '">' + hero.name + '</option>';
+                        });
+                        $('#heroes').html(heroesOptions);
+                        $('#heroes').selectpicker('refresh');
+
+                        $.each(response.data.weapons, function (key, weapon) {
+                            weaponsOptions += '<option value="' + weapon.id + '">' + weapon.name + '</option>';
+                        });
+                        $('#weapons1').html(weaponsOptions);
+                        $('#weapons1').selectpicker('refresh');
+                    }
+                }
+            });
+        }
+    }
+
+    // Trigger the change event when the game category changes
+    $('#game_category').change(function () {
+        var categoryId = $(this).val();
+        loadGameDetails(categoryId);
+    });
+
+    // Load game details on page load if there's a pre-selected game category
+    var initialCategoryId = $('#game_category').val();
+    if (initialCategoryId) {
+        loadGameDetails(initialCategoryId);
+    }
 });

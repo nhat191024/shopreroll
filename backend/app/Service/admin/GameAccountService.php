@@ -6,6 +6,10 @@ use App\Models\Hero;
 use App\Models\Weapon;
 use App\Models\GameAccount;
 use App\Models\GameCategory;
+use App\Models\AccountHero;
+use App\Models\AccountWeapon;
+use App\Models\AccountImage;
+use Illuminate\Support\Facades\Storage;
 
 class GameAccountService
 {
@@ -19,7 +23,7 @@ class GameAccountService
         return GameCategory::all();
     }
 
-    public function addGameAccount($data)
+    public function addGameAccount($data, $images)
     {
         try {
             $gameAccount = new GameAccount();
@@ -32,19 +36,41 @@ class GameAccountService
             $gameAccount->price_in = $data['price_in'] ?? 0;
             $gameAccount->price_out = $data['price_out'];
             $gameAccount->note = $data['note'] ?? null;
-            $gameAccount->creator_id  = 1;
-
-            if (isset($data['account_image'])) {
-                $gameAccount->account_image = $data['account_image'];
-            }
+            $gameAccount->status = $data['status'];
             $gameAccount->save();
+
+            // Save heroes
+            foreach ($data['heroes'] as $heroId) {
+                $accountHero = new AccountHero();
+                $accountHero->account_id = $gameAccount->id;
+                $accountHero->hero_id = $heroId;
+                $accountHero->save();
+            }
+
+            // Save weapons
+            foreach ($data['weapons'] as $weaponId) {
+                $accountWeapon = new AccountWeapon();
+                $accountWeapon->account_id = $gameAccount->id;
+                $accountWeapon->weapon_id = $weaponId;
+                $accountWeapon->save();
+            }
+
+            // Save images
+            foreach ($images as $image) {
+                $path = $image->store('public/account_images');
+                $accountImage = new AccountImage();
+                $accountImage->account_id = $gameAccount->id;
+                $accountImage->image_path = $path;
+                $accountImage->save();
+            }
+
             return $gameAccount;
         } catch (\Exception $e) {
             throw new \Exception('Không thể thêm tài khoản game: ' . $e->getMessage());
         }
     }
 
-    public function editGameAccount($id, $data)
+    public function editGameAccount($id, $data, $images)
     {
         try {
             $gameAccount = GameAccount::findOrFail($id);
@@ -58,8 +84,40 @@ class GameAccountService
             $gameAccount->price_out = $data['price_out'];
             $gameAccount->note = $data['note'] ?? null;
             $gameAccount->status = $data['status'];
-
             $gameAccount->save();
+
+            // Update heroes
+            AccountHero::where('account_id', $id)->delete();
+            foreach ($data['heroes'] as $heroId) {
+                $accountHero = new AccountHero();
+                $accountHero->account_id = $gameAccount->id;
+                $accountHero->hero_id = $heroId;
+                $accountHero->save();
+            }
+
+            // Update weapons
+            AccountWeapon::where('account_id', $id)->delete();
+            foreach ($data['weapons'] as $weaponId) {
+                $accountWeapon = new AccountWeapon();
+                $accountWeapon->account_id = $gameAccount->id;
+                $accountWeapon->weapon_id = $weaponId;
+                $accountWeapon->save();
+            }
+
+            // Update images
+            AccountImage::where('account_id', $id)->each(function ($accountImage) {
+                Storage::delete($accountImage->image_path);
+                $accountImage->delete();
+            });
+
+            foreach ($images as $image) {
+                $path = $image->store('public/account_images');
+                $accountImage = new AccountImage();
+                $accountImage->account_id = $gameAccount->id;
+                $accountImage->image_path = $path;
+                $accountImage->save();
+            }
+
             return $gameAccount;
         } catch (\Exception $e) {
             throw new \Exception('Không thể cập nhật tài khoản game: ' . $e->getMessage());

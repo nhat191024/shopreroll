@@ -28,6 +28,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
+
                 <form action="{{ route('admin.gameAccount.add') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -46,20 +47,20 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="server">Server</label>
-                                <select class="form-control" id="server" name="server">
-                                    <option value="ASIA">ASIA</option>
-                                    <option value="EUROPE">EUROPE</option>
-                                    <option value="AMERICA">AMERICA</option>
-                                    <option value="TW">TW</option>
-                                    <option value="HK">HK</option>
-                                    <option value="MO">MO</option>
+                                <label for="game_category">Chọn danh mục game</label>
+                                <select class="form-control" id="game_category" name="game_category_id">
+                                    @foreach ($gameCategories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}
+                                            ({{ $category->Game->name }})
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="hero">Tướng</label>
-                                <select class="form-control" id="hero" name="hero_id">
+                                <label for="heroes">Tướng</label>
+                                <select class="form-control selectpicker" id="heroes" name="heroes[]" multiple
+                                    data-live-search="true">
                                     <!-- Heroes options sẽ được cập nhật qua JavaScript -->
                                 </select>
                             </div>
@@ -71,10 +72,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="account_image">Ảnh</label>
+                                <label for="account_images">Ảnh</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="account_image" name="account_image">
-                                    <label class="custom-file-label" for="account_image">Chọn ảnh</label>
+                                    <input type="file" class="custom-file-input" id="account_images"
+                                        name="account_images[]" multiple>
+                                    <label class="custom-file-label" for="account_images">Chọn ảnh</label>
                                 </div>
                             </div>
                         </div>
@@ -93,18 +95,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="game_category">Chọn danh mục game</label>
-                                <select class="form-control" id="game_category" name="game_category_id">
-                                    @foreach ($gameCategories as $category)
-                                        <option value="{{ $category->id }} ">{{ $category->name }}
-                                            ({{ $category->Game->name }})</option>
-                                    @endforeach
+                                <label for="server">Server</label>
+                                <select class="form-control" id="server" name="server">
+                                    <option value="ASIA">ASIA</option>
+                                    <option value="EUROPE">EUROPE</option>
+                                    <option value="AMERICA">AMERICA</option>
+                                    <option value="TW">TW</option>
+                                    <option value="HK">HK</option>
+                                    <option value="MO">MO</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="weapon">Vũ khí</label>
-                                <select class="form-control" id="weapon1" name="weapon_id">
+                                <label for="weapons">Vũ khí</label>
+                                <select class="form-control selectpicker" id="weapons1" name="weapons[]" multiple
+                                    data-live-search="true">
                                     <!-- Weapons options sẽ được cập nhật qua JavaScript -->
                                 </select>
                             </div>
