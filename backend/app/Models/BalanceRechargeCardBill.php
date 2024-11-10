@@ -12,15 +12,15 @@ class BalanceRechargeCardBill extends Model
         'user_id',
         'number',
         'serial',
-        'mobil_carrier',
+        'mobile_carrier',
         'amount_fake',
         'amount_real',
         'balance_added',
         'status',
     ];
 
-    public function Buyer()
+    public function User()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 }

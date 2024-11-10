@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\ApiController;
+use App\Http\Controllers\admin\BalanceRechargeBankBillController;
+use App\Http\Controllers\admin\BalanceRechargeCardBillController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\GameController;
 use App\Http\Controllers\admin\GameCategoryController;
@@ -23,6 +25,14 @@ Route::prefix('admin')->group(function () {
     // Route Recharge-bill
     Route::prefix('/recharge-bill')->group(function () {
         Route::get('/', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
+    });
+
+    Route::prefix('/balance-recharge-bank-bill')->group(function () {
+        Route::get('/', [BalanceRechargeBankBillController::class, 'index'])->name('admin.BalanceRechargeBankBill.index');
+    });
+
+    Route::prefix('/balance-recharge-card-bill')->group(function () {
+        Route::get('/', [BalanceRechargeCardBillController::class, 'index'])->name('admin.BalanceRechargeCardBill.index');
     });
 
     Route::prefix('/game')->group(function () {
@@ -101,5 +111,4 @@ Route::prefix('admin')->group(function () {
     });
     Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
     Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
-
 });
