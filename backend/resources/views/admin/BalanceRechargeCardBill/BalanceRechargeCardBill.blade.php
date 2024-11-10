@@ -22,7 +22,7 @@
                                     <th>Số thẻ</th>
                                     <th>Số serial</th>
                                     <th>Nhà mạng</th>
-                                    <th>Giá trị dự kiến</th>
+                                    <th>Giá trị nhập</th>
                                     <th>Giá trị thực</th>
                                     <th>Số tiền được cộng</th>
                                     <th>Trạng thái</th>
@@ -35,7 +35,7 @@
                                     <th>Số thẻ</th>
                                     <th>Số serial</th>
                                     <th>Nhà mạng</th>
-                                    <th>Giá trị dự kiến</th>
+                                    <th>Giá trị nhập</th>
                                     <th>Giá trị thực</th>
                                     <th>Số tiền được cộng</th>
                                     <th>Trạng thái</th>
