@@ -37,11 +37,15 @@ class GameAccountController extends Controller
             'password' => 'required|string|min:6',
             'server' => 'required|string',
             'ar' => 'required|integer',
-            'game_category_id' => 'required',
+            'game_category_id' => 'required|exists:game_categories,id',
             'price_in' => 'nullable|numeric',
             'price_out' => 'required|numeric',
             'note' => 'nullable|string',
-            'account_image' => 'nullable|image',
+            'account_images' => 'required|image',
+            'heroes' => 'required|array',
+            'heroes.*' => 'exists:heros,id',
+            'weapons' => 'required|array',
+            'weapons.*' => 'exists:weapons,id',
         ]);
 
         if ($validator->fails()) {
@@ -50,7 +54,8 @@ class GameAccountController extends Controller
 
         try {
             $data = $request->all();
-            $this->gameAccountService->addGameAccount($data);
+            $images = $request->file('account_images', []);
+            $this->gameAccountService->addGameAccount($data, $images);
             return redirect()->route('admin.gameAccount.index')->with('success', 'Thêm tài khoản game thành công');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Lỗi: ' . $e->getMessage())->withInput();

@@ -23,17 +23,18 @@ $('#game_category').on('change', function () {
                     } else {
                         $('#hero').append('<option value="">Không có tướng</option>');
                     }
+                    $('#hero').selectpicker('refresh');  // Làm mới selectpicker cho heroes
 
                     // Cập nhật danh sách weapons
                     $('#weapon1').empty();
                     if (response.data.weapons && response.data.weapons.length > 0) {
                         $.each(response.data.weapons, function (key, weapon) {
-                            console.log('<option value="' + weapon.id + '">' + weapon.name + '</option>');
                             $('#weapon1').append('<option value="' + weapon.id + '">' + weapon.name + '</option>');
                         });
                     } else {
                         $('#weapon1').append('<option value="">Không có vũ khí</option>');
                     }
+                    $('#weapon1').selectpicker('refresh');  // Làm mới selectpicker cho weapons
                 } else {
                     alert(response.message);
                 }
@@ -48,4 +49,9 @@ $('#game_category').on('change', function () {
 // Khởi tạo giá trị ban đầu khi trang được tải
 $(document).ready(function () {
     $('#game_category').trigger('change');
+
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
 });

@@ -2,6 +2,9 @@
 
 namespace App\Service\admin;
 
+use App\Models\AccountHero;
+use App\Models\AccountImage;
+use App\Models\AccountWeapon;
 use App\Models\Hero;
 use App\Models\Weapon;
 use App\Models\GameAccount;
@@ -19,7 +22,7 @@ class GameAccountService
         return GameCategory::all();
     }
 
-    public function addGameAccount($data)
+    public function addGameAccount($data, $images)
     {
         try {
             $gameAccount = new GameAccount();
@@ -32,17 +35,41 @@ class GameAccountService
             $gameAccount->price_in = $data['price_in'] ?? 0;
             $gameAccount->price_out = $data['price_out'];
             $gameAccount->note = $data['note'] ?? null;
-            $gameAccount->creator_id  = 1;
-
-            if (isset($data['account_image'])) {
-                $gameAccount->account_image = $data['account_image'];
-            }
+            $gameAccount->creator_id = 1;
             $gameAccount->save();
+
+            // Save heroes
+            foreach ($data['heroes'] as $heroId) {
+                AccountHero::create([
+                    'account_id' => $gameAccount->id,
+                    'hero_id' => $heroId,
+                ]);
+            }
+
+            // Save weapons
+            foreach ($data['weapons'] as $weaponId) {
+                AccountWeapon::create([
+                    'account_id' => $gameAccount->id,
+                    'weapon_id' => $weaponId,
+                ]);
+            }
+
+            if ($images) {
+                // Đổi tên ảnh để đảm bảo tính duy nhất
+                $fileName = time() . '_' . uniqid() . '.' . $images->getClientOriginalExtension();
+                $path = 'account_images/' . $fileName;
+                // Lưu ảnh vào public/account_images
+                $images->move(public_path('image/account_images'), $fileName);
+                // Cập nhật đường dẫn ảnh vào trường account_image của gameAccount
+                $gameAccount->account_image = $path;
+                $gameAccount->save();  // Lưu thay đổi vào cơ sở dữ liệu
+            }
             return $gameAccount;
         } catch (\Exception $e) {
             throw new \Exception('Không thể thêm tài khoản game: ' . $e->getMessage());
         }
     }
+
 
     public function editGameAccount($id, $data)
     {

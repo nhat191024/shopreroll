@@ -59,7 +59,8 @@
 
                             <div class="form-group">
                                 <label for="hero">Tướng</label>
-                                <select class="form-control" id="hero" name="hero_id">
+                                <select class="form-control selectpicker" id="hero" name="heroes[]" multiple
+                                    data-live-search="true">
                                     <!-- Heroes options sẽ được cập nhật qua JavaScript -->
                                 </select>
                             </div>
@@ -73,7 +74,7 @@
                             <div class="form-group">
                                 <label for="account_image">Ảnh</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="account_image" name="account_image">
+                                    <input type="file" class="custom-file-input" id="account_image" name="account_images">
                                     <label class="custom-file-label" for="account_image">Chọn ảnh</label>
                                 </div>
                             </div>
@@ -97,14 +98,16 @@
                                 <select class="form-control" id="game_category" name="game_category_id">
                                     @foreach ($gameCategories as $category)
                                         <option value="{{ $category->id }} ">{{ $category->name }}
-                                            ({{ $category->Game->name }})</option>
+                                            ({{ $category->Game->name }})
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="weapon">Vũ khí</label>
-                                <select class="form-control" id="weapon1" name="weapon_id">
+                                <select class="form-control selectpicker" id="weapon1" name="weapons[]" multiple
+                                    data-live-search="true">
                                     <!-- Weapons options sẽ được cập nhật qua JavaScript -->
                                 </select>
                             </div>
