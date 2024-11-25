@@ -75,7 +75,12 @@ class GameAccountController extends Controller
             'price_in' => 'nullable|numeric',
             'price_out' => 'required|numeric',
             'note' => 'nullable|string',
-            'account_image' => 'nullable|image',
+            'status' => 'required|boolean',
+            'account_images.*' => 'nullable|image',
+            'heroes' => 'required|array',
+            'heroes.*' => 'exists:heroes,id',
+            'weapons' => 'required|array',
+            'weapons.*' => 'exists:weapons,id',
         ]);
 
         if ($validator->fails()) {
@@ -84,7 +89,8 @@ class GameAccountController extends Controller
 
         try {
             $data = $request->all();
-            $this->gameAccountService->editGameAccount($id, $data);
+            $images = $request->file('account_images', []);
+            $this->gameAccountService->editGameAccount($id, $data, $images);
             return redirect()->route('admin.gameAccount.index')->with('success', 'Cập nhật tài khoản game thành công');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Lỗi: ' . $e->getMessage())->withInput();
