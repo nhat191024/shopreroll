@@ -50,12 +50,9 @@
                             <div class="form-group">
                                 <label for="server">Server</label>
                                 <select class="form-control" id="server" name="server">
-                                    <option value="ASIA" {{ $gameAccount->server == 'ASIA' ? 'selected' : '' }}>ASIA
-                                    </option>
-                                    <option value="EUROPE" {{ $gameAccount->server == 'EUROPE' ? 'selected' : '' }}>EUROPE
-                                    </option>
-                                    <option value="AMERICA" {{ $gameAccount->server == 'AMERICA' ? 'selected' : '' }}>
-                                        AMERICA</option>
+                                    <option value="ASIA" {{ $gameAccount->server == 'ASIA' ? 'selected' : '' }}>ASIA</option>
+                                    <option value="EUROPE" {{ $gameAccount->server == 'EUROPE' ? 'selected' : '' }}>EUROPE</option>
+                                    <option value="AMERICA" {{ $gameAccount->server == 'AMERICA' ? 'selected' : '' }}>AMERICA</option>
                                     <option value="TW" {{ $gameAccount->server == 'TW' ? 'selected' : '' }}>TW</option>
                                     <option value="HK" {{ $gameAccount->server == 'HK' ? 'selected' : '' }}>HK</option>
                                     <option value="MO" {{ $gameAccount->server == 'MO' ? 'selected' : '' }}>MO</option>
@@ -63,11 +60,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="hero">Tướng</label>
-                                <select class="form-control" id="hero" name="hero_id">
-                                    <!-- Heroes options sẽ được cập nhật qua JavaScript -->
-                                    <option value="{{ $gameAccount->hero_id }}" selected>
-                                        {{ $gameAccount->hero->name ?? 'Chọn Tướng' }}</option>
+                                <label for="heroes">Tướng</label>
+                                <select class="form-control selectpicker" id="hero" name="heroes[]" multiple data-live-search="true">
+                                    @foreach ($heroes as $hero)
+                                        <option value="{{ $hero->id }}" {{ in_array($hero->id, $selectedHeroes) ? 'selected' : '' }}>
+                                            {{ $hero->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -84,7 +83,7 @@
                                     <label class="custom-file-label" for="account_image">Chọn ảnh</label>
                                 </div>
                                 @if ($gameAccount->account_image)
-                                    <img src="{{ asset('storage/' . $gameAccount->account_image) }}" alt="Account Image"
+                                    <img src="{{ url('image/' . $gameAccount->account_image)}}" alt="Account Image"
                                         class="img-thumbnail mt-2" width="150">
                                 @endif
                             </div>
@@ -101,7 +100,7 @@
                             <div class="form-group">
                                 <label for="ar">AR</label>
                                 <input required type="number" class="form-control" name="ar"
-                                    value="{{ $gameAccount->ar }}" placeholder="Nhập AR">
+                                    value="{{ $gameAccount->AR }}" placeholder="Nhập AR">
                             </div>
 
                             <div class="form-group">
@@ -117,11 +116,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="weapon">Vũ khí</label>
-                                <select class="form-control" id="weapon1" name="weapon_id">
-                                    <!-- Weapons options sẽ được cập nhật qua JavaScript -->
-                                    <option value="{{ $gameAccount->weapon_id }}" selected>
-                                        {{ $gameAccount->weapon->name ?? 'Chọn Vũ Khí' }}</option>
+                                <label for="weapons">Vũ khí</label>
+                                <select class="form-control selectpicker" id="weapon1" name="weapons[]" multiple data-live-search="true">
+                                    @foreach ($weapons as $weapon)
+                                        <option value="{{ $weapon->id }}" {{ in_array($weapon->id, $selectedWeapons) ? 'selected' : '' }}>
+                                            {{ $weapon->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -144,3 +145,7 @@
         </div>
     </div>
 @endsection
+<script>
+    window.selectedHeroes = @json($selectedHeroes);
+    window.selectedWeapons = @json($selectedWeapons);
+</script>

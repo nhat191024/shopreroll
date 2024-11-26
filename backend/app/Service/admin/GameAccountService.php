@@ -58,7 +58,7 @@ class GameAccountService
             if ($images) {
                 // Đổi tên ảnh để đảm bảo tính duy nhất
                 $fileName = time() . '_' . uniqid() . '.' . $images->getClientOriginalExtension();
-                $path = 'account_images/' . $fileName;
+                $path = 'image/account_images/' . $fileName;
                 // Lưu ảnh vào public/account_images
                 $images->move(public_path('image/account_images'), $fileName);
                 // Cập nhật đường dẫn ảnh vào trường account_image của gameAccount
@@ -72,10 +72,12 @@ class GameAccountService
     }
 
 
-    public function editGameAccount($id, $data)
+    public function editGameAccount($id, $data, $images)
     {
         try {
             $gameAccount = GameAccount::findOrFail($id);
+
+            // Update game account details
             $gameAccount->title = $data['title'];
             $gameAccount->username = $data['username'];
             $gameAccount->password = bcrypt($data['password']);
@@ -85,39 +87,42 @@ class GameAccountService
             $gameAccount->price_in = $data['price_in'] ?? 0;
             $gameAccount->price_out = $data['price_out'];
             $gameAccount->note = $data['note'] ?? null;
-            $gameAccount->status = $data['status'];
+            // Update image if a new one is uploaded
+            if ($images) {
+                // Delete old image if it exists
+                if ($gameAccount->account_image) {
+                    $oldImagePath = public_path($gameAccount->account_image);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                // Save new image
+                $fileName = time() . '_' . uniqid() . '.' . $images->getClientOriginalExtension();
+                $path = 'account_images/' . $fileName;
+                $images->move(public_path('image/account_images'), $fileName);
+                $gameAccount->account_image = $path;
+            }
+
+            // Save game account
             $gameAccount->save();
 
             // Update heroes
             AccountHero::where('account_id', $id)->delete();
             foreach ($data['heroes'] as $heroId) {
-                $accountHero = new AccountHero();
-                $accountHero->account_id = $gameAccount->id;
-                $accountHero->hero_id = $heroId;
-                $accountHero->save();
+                AccountHero::create([
+                    'account_id' => $gameAccount->id,
+                    'hero_id' => $heroId,
+                ]);
             }
 
             // Update weapons
             AccountWeapon::where('account_id', $id)->delete();
             foreach ($data['weapons'] as $weaponId) {
-                $accountWeapon = new AccountWeapon();
-                $accountWeapon->account_id = $gameAccount->id;
-                $accountWeapon->weapon_id = $weaponId;
-                $accountWeapon->save();
-            }
-
-            // Update images
-            AccountImage::where('account_id', $id)->each(function ($accountImage) {
-                Storage::delete($accountImage->image_path);
-                $accountImage->delete();
-            });
-
-            foreach ($images as $image) {
-                $path = $image->store('public/account_images');
-                $accountImage = new AccountImage();
-                $accountImage->account_id = $gameAccount->id;
-                $accountImage->image_path = $path;
-                $accountImage->save();
+                AccountWeapon::create([
+                    'account_id' => $gameAccount->id,
+                    'weapon_id' => $weaponId,
+                ]);
             }
 
             return $gameAccount;
@@ -128,7 +133,7 @@ class GameAccountService
 
     public function getGameAccountById($id)
     {
-        return GameAccount::findOrFail($id);
+        return GameAccount::with(['AccountHero', 'AccountWeapon'])->findOrFail($id);
     }
 
     public function disableGameAccount($id)

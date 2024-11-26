@@ -75,34 +75,52 @@ class GameAccountController extends Controller
             'price_in' => 'nullable|numeric',
             'price_out' => 'required|numeric',
             'note' => 'nullable|string',
-            'status' => 'required|boolean',
-            'account_images.*' => 'nullable|image',
+            'account_image' => 'nullable|image',
             'heroes' => 'required|array',
-            'heroes.*' => 'exists:heroes,id',
+            'heroes.*' => 'exists:heros,id',
             'weapons' => 'required|array',
             'weapons.*' => 'exists:weapons,id',
         ]);
-
+        
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         try {
             $data = $request->all();
-            $images = $request->file('account_images', []);
-            $this->gameAccountService->editGameAccount($id, $data, $images);
+            $images = $request->file('account_image'); // Lấy ảnh từ Request
+            $this->gameAccountService->editGameAccount($id, $data, $images); // Chuyển dữ liệu sang Service
             return redirect()->route('admin.gameAccount.index')->with('success', 'Cập nhật tài khoản game thành công');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Lỗi: ' . $e->getMessage())->withInput();
         }
     }
 
+
     public function showEditForm($id)
     {
         $gameAccount = $this->gameAccountService->getGameAccountById($id);
         $gameCategories = $this->gameAccountService->getAllGameCategories();
-        return view('admin.game_accounts.edit', compact('gameAccount', 'gameCategories'));
+
+        // Lấy các hero và weapon đã chọn để đổ ra form edit
+        $selectedHeroes = $gameAccount->AccountHero->pluck('hero_id')->toArray();
+        $selectedWeapons = $gameAccount->AccountWeapon->pluck('weapon_id')->toArray();
+        // Lấy tất cả heroes và weapons có liên quan đến danh mục game được chọn
+        $gameCategoryId = $gameAccount->game_category_id;
+        $gameDetails = $this->gameAccountService->getGameDetails($gameCategoryId);
+        $heroes = $gameDetails['heroes'];
+        $weapons = $gameDetails['weapons'];
+
+        return view('admin.game_accounts.edit', compact(
+            'gameAccount',
+            'gameCategories',
+            'heroes',
+            'weapons',
+            'selectedHeroes',
+            'selectedWeapons'
+        ));
     }
+
 
     public function disableGameAccount($id)
     {
