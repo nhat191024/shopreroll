@@ -23,11 +23,8 @@ Route::get('/', function () {
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-    // Route Recharge-bill
-    Route::prefix('/recharge-bill')->group(function () {
-        Route::get('/', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
-    });
 
+    Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
     Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('admin.BalanceRechargeBankBill.index');
     Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('admin.BalanceRechargeCardBill.index');
 
