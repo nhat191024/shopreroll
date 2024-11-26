@@ -28,13 +28,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
     });
 
-    Route::prefix('/balance-recharge-bank-bill')->group(function () {
-        Route::get('/', [BalanceRechargeBankBillController::class, 'index'])->name('admin.BalanceRechargeBankBill.index');
-    });
-
-    Route::prefix('/balance-recharge-card-bill')->group(function () {
-        Route::get('/', [BalanceRechargeCardBillController::class, 'index'])->name('admin.BalanceRechargeCardBill.index');
-    });
+    Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('admin.BalanceRechargeBankBill.index');
+    Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('admin.BalanceRechargeCardBill.index');
 
     Route::prefix('/game')->group(function () {
         Route::get('/', [GameController::class, 'index'])->name('admin.game.index');
