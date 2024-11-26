@@ -11,6 +11,7 @@ class RerollKey extends Model
     protected $fillable = [
         'key',
         'status',
+        'reroll_package_id'
     ];
 
     public function RerollPackage()

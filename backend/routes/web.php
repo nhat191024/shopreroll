@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\RechargeBillController;
 use App\Http\Controllers\admin\RerollCategoryController;
 use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
+use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
@@ -96,8 +97,18 @@ Route::prefix('admin')->group(function () {
         Route::get('/add', [RerollPackageController::class, 'showAddRerollPackage'])->name('admin.RerollPackage.showAdd');
         Route::post('/add', [RerollPackageController::class, 'addRerollPackage'])->name('admin.RerollPackage.add');
         Route::post('/edit', [RerollPackageController::class, 'editRerollPackage'])->name('admin.RerollPackage.edit');
+
         Route::get('/edit/{id}', [RerollPackageController::class, 'showEditRerollPackage'])->name('admin.RerollPackage.showEdit');
         Route::get('/delete/{id}', [RerollPackageController::class, 'deleteRerollPackage'])->name('admin.RerollPackage.delete');
+        Route::get('/detail/{id}', [RerollPackageController::class, 'detailRerollPackage'])->name('admin.RerollPackage.detail');
+        Route::prefix('/detail/{idPackage}/reroll-key')->group(function () {
+            Route::get('/', [RerollKeyController::class, 'index'])->name('admin.RerollKey.index');
+            Route::get('/add', [RerollKeyController::class, 'showAddRerollKey'])->name('admin.rerollKey.showAdd');
+            Route::post('/add', [RerollKeyController::class, 'addRerollKey'])->name('admin.rerollKey.add');
+            Route::post('/edit', [RerollKeyController::class, 'editRerollKey'])->name('admin.rerollKey.edit');
+            Route::get('/edit/{idKey}', [RerollKeyController::class, 'showEditRerollKey'])->name('admin.RerollKey.ShowEdit');
+            Route::get('/delete/{idKey}', [RerollKeyController::class, 'deleteRerollPackage'])->name('admin.RerollKey.delete');
+        });
     });
 
     Route::prefix('/user')->group(function () {

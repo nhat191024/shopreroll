@@ -53,6 +53,9 @@ class RerollPackageService
     public function checkHasChildren($idRerollPackage) {
         return RerollPackage::find($idRerollPackage)->RerollKey()->get()->count() >0;
     }
+    public function getChildren($idRerollPackage) {
+        return RerollPackage::find($idRerollPackage)->RerollKey()->get();
+    }
 
     public function delete($id) {
         RerollPackage::destroy($id);
