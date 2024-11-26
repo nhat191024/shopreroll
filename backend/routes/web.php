@@ -87,8 +87,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/add', [RerollPackageController::class, 'showAddRerollPackage'])->name('admin.RerollPackage.showAdd');
         Route::post('/add', [RerollPackageController::class, 'addRerollPackage'])->name('admin.RerollPackage.add');
         Route::post('/edit', [RerollPackageController::class, 'editRerollPackage'])->name('admin.RerollPackage.edit');
-        
-        Route::get('/edit/{id}', [RerollPackageController::class, 'showEditRerollPackage'])->name('admin.RerollPackage.showEdit');  
+
+        Route::get('/edit/{id}', [RerollPackageController::class, 'showEditRerollPackage'])->name('admin.RerollPackage.showEdit');
         Route::get('/delete/{id}', [RerollPackageController::class, 'deleteRerollPackage'])->name('admin.RerollPackage.delete');
         Route::get('/detail/{id}', [RerollPackageController::class, 'detailRerollPackage'])->name('admin.RerollPackage.detail');
         Route::prefix('/detail/{idPackage}/reroll-key')->group(function () {
@@ -101,15 +101,6 @@ Route::prefix('admin')->group(function () {
         });
     });
 
-    // Route::prefix('/reroll-key')->group(function () {
-    //     Route::get('/', [RerollKeyController::class, 'index'])->name('admin.RerollKey.index');
-    //     Route::get('/add', [RerollKeyController::class, 'showAddRerollKey'])->name('admin.rerollKey.showAdd');
-    //     Route::post('/add', [RerollKeyController::class, 'addRerollKey'])->name('admin.rerollKey.add');
-    //     Route::post('/edit', [RerollKeyController::class, 'editRerollKey'])->name('admin.rerollKey.edit');
-    //     Route::get('/edit/{id}', [RerollKeyController::class, 'showEditRerollKey'])->name('admin.RerollKey.ShowEdit');
-    //     Route::get('/ChangeStatus/{id}', [RerollKeyController::class, 'ChangeKeyStatus'])->name('admin.RerollKey.ChangeStatus');
-    // });
-    
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'showAddForm'])->name('admin.user.show');
