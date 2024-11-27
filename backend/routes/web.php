@@ -24,7 +24,6 @@ Route::get('/', function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
     Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('admin.BalanceRechargeBankBill.index');
     Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('admin.BalanceRechargeCardBill.index');
 
@@ -36,6 +35,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [GameController::class, 'showEditGame'])->name('admin.game.show_edit');
         Route::get('/ChangeStatus/{id}/{status}', [GameController::class, 'ChangeGameStatus'])->name('admin.game.ChangeStatus');
     });
+    Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
+    Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
 
     Route::prefix('/game-category')->group(function () {
         Route::get('/list/{id}', [GameCategoryController::class, 'index'])->name('admin.GameCategory.index');
@@ -63,6 +64,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [GameRechargePackageController::class, 'showEditRechargePackage'])->name('admin.GameRechargePackage.showEdit');
         Route::get('/ChangeStatus/{id}/{status}', [GameRechargePackageController::class, 'ChangeGameRechargePackageStatus'])->name('admin.GameRechargePackage.ChangeGameRechargePackageStatus');
     });
+
+    Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
 
     Route::prefix('/reroll-category')->group(function () {
         Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.RerollCategory.index');
@@ -112,6 +115,4 @@ Route::prefix('admin')->group(function () {
         Route::get('/disable/{id}', [UserController::class, 'disableUser'])->name('admin.user.disable');
         Route::get('/store/{id}', [UserController::class, 'storeUser'])->name('admin.user.store');
     });
-    Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
-    Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
 });
