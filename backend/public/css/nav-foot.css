@@ -1,0 +1,497 @@
+.nav-fixed {
+    position: fixed;
+    right: 10px;
+    bottom: 140px;
+    z-index: 999;
+    list-style-type: none;
+}
+.nav-fixed li {
+    margin-bottom: 5px;
+}
+.nav-fixed-phone img,
+.nav-fixed-edit img,
+.nav-fixed-face img {
+    width: 16px;
+    height: auto;
+}
+.nav-fixed-zalo img {
+    width: 63px;
+    height: auto;
+}
+.nav-fixed-phone a {
+    background-color: #347d78;
+}
+.nav-fixed-edit a {
+    background-color: #4ca84f;
+}
+.nav-fixed-face a {
+    background-color: #1877f2;
+}
+
+.nav-fixed li a {
+    width: 50px;
+    height: 50px;
+}
+
+.nav-fixed-phone a,
+.nav-fixed-edit a,
+.nav-fixed-face a,
+.nav-fixed-zalo a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 100%;
+    -webkit-box-shadow: 0 0 15px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 15px rgb(0 0 0 / 16%);
+}
+
+.dropdown-submenu > a::after {
+    margin-right: -0.5rem;
+    margin-top: -1rem;
+}
+
+a {
+    color: #a63700;
+    text-shadow: 0 0 10px #9e664a, 0 0 20px #eeebe0, 0 0 40px #ede9de !important;
+}
+.h.h4.link-active {
+    text-shadow: 0 0 10px #9e664a, 0 0 20px #eeebe0, 0 0 40px #ede9de !important;
+}
+a.nav-link.menu-header {
+    text-shadow: 0 0 10px #9e664a, 0 0 20px #eeebe0, 0 0 40px #ede9de !important;
+}
+h1.guide__title {
+    text-shadow: 0 0 10px #9e664a, 0 0 20px #eeebe0, 0 0 40px #ede9de !important;
+}
+h2#recharge_service {
+    text-shadow: 0 0 10px #9e664a, 0 0 20px #eeebe0, 0 0 40px #ede9de !important;
+}
+span.link-active {
+    text-shadow: 0 0 10px #9e664a, 0 0 20px #eeebe0, 0 0 40px #ede9de !important;
+}
+
+[class*="sidebar-dark-"] .nav-sidebar > .nav-item > .nav-treeview {
+    background-color: #2a2f33;
+}
+.nav-example {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+}
+.nav-slider {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+}
+#myslider {
+    width: 100%;
+    height: 100%;
+}
+a.slide-button {
+    position: absolute;
+    padding: 300px 0px 0px 15px;
+    top: 0px;
+    left: 0px;
+    z-index: 12;
+    width: 30px;
+    height: 330px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    box-sizing: border-box;
+}
+.icon-slide-button {
+    top: 47%;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+}
+#next-button {
+    left: auto;
+    right: 0px;
+}
+.img_slide {
+    width: 100%;
+    height: 327px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.bg_main {
+    background-color: rgba(255, 255, 255, 0.66);
+    border-radius: 0.25rem;
+}
+#top-tab {
+    padding: 0.5rem 1rem;
+    color: #fdb603;
+    font-weight: bold;
+}
+
+.card-custom {
+    border: none;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: transform 0.2s;
+    margin-bottom: 0;
+}
+
+.card-custom:hover {
+    transform: scale(1.05);
+}
+
+.card-img-top {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-top: 15px;
+}
+@media (max-width: 576px) {
+    .card-img-top {
+        width: 70px;
+        height: 70px;
+    }
+
+    .card-text {
+        font-size: 12px;
+    }
+}
+
+body {
+    background: #000
+        url(https://shopreroll.com/style/genshi/img/background/light-bg-genshin.webp)
+        no-repeat fixed;
+    background-size: cover;
+}
+a:hover {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+    color: #fff;
+}
+@media (min-width: 1400px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        max-width: 1390px;
+    }
+}
+.link-active {
+    text-shadow: 0 0 10px #69e0ff, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
+}
+.fs-4 {
+    font-size: 1.5rem !important;
+}
+.nav-header {
+    background-color: rgb(8 8 8 / 79%);
+}
+#nav-user {
+    color: #ffeaaa;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #b68967;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.nav-tabs .nav-link {
+    color: rgb(182, 137, 103);
+}
+.nav-tabs {
+    border-bottom: 1px solid rgb(215 196 139 / 29%);
+}
+.main-header {
+    position: sticky;
+    top: 0;
+    box-shadow: 3px 3px 8px rgb(0 0 0 / 23%), -5px -5px 8px #fdfcfc;
+    font-size: 17px;
+}
+.menu-header {
+    color: #e9ebf1;
+    font-weight: bold;
+}
+.card {
+    background-color: rgb(255 255 255 / 86%);
+}
+.shine-active {
+    text-shadow: 0 0 10px #69e0ff, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+}
+@media (max-width: 1536px) {
+    .btn-pretty {
+        height: 49px;
+        width: 188px;
+    }
+}
+@media (max-width: 1024px) {
+    .btn-pretty {
+        height: 46px;
+        width: 185px;
+    }
+}
+@media (max-width: 640px) {
+    .btn-pretty {
+        height: 43px;
+        width: 182px;
+    }
+}
+
+.genshin-product .img-banner {
+    width: calc(100% + -16.9px);
+    max-height: 190px;
+    border-radius: 4px;
+}
+.wrapper.product-wrapper {
+    padding-top: 9px;
+    margin-right: 3px;
+}
+
+.search-frm {
+    position: sticky;
+    top: 80px;
+    background-image: url(style/genshi/img/bg-acc-of-list.webp);
+    background-position: center;
+    background-size: 100% 100% !important;
+}
+.info-line {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.info-line section {
+    padding: 7px 0;
+    line-height: 17px;
+    font-weight: 700;
+    margin: auto;
+}
+.info-line section label {
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 100%;
+    font-size: 0.8em;
+    display: inline-block;
+}
+.info-line section .more-detail {
+    font-size: 0.8em;
+    margin: auto;
+}
+.info-line .hero-details .hero-icon {
+    width: 35px;
+    height: 35px;
+    background-size: cover;
+    background-position: center center;
+    content: " ";
+    cursor: pointer;
+    display: inline-block;
+}
+span.more-detail {
+    word-wrap: break-word;
+    max-width: 312px;
+}
+.ribbon-wrapper .ribbon {
+    text-transform: unset;
+}
+.city__icon {
+    width: 87px;
+}
+.banner-top {
+    background: rgb(27 25 60 / 58%);
+    color: #fff;
+}
+#space_header {
+    margin-bottom: 71px;
+}
+#footer_bottom {
+    background-color: #022030;
+}
+footer {
+    background: #080808;
+    color: #fff;
+    margin-right: -6px;
+    margin-left: -8px;
+    border-top: 1px solid #151515;
+}
+.card {
+    box-shadow: unset;
+}
+.item-image,
+.item-image-key,
+.item-image-acc {
+    position: relative;
+    height: 190px;
+}
+.item-image img,
+.item-image-key img,
+.item-image-acc img {
+    width: calc(100% + -12.5px);
+    margin: 0px -10px 0 7.5px;
+    max-height: 190px;
+    border-radius: 4px;
+}
+.item-caption h3 {
+    text-transform: uppercase;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 1.4rem;
+}
+.list_flower {
+    width: 0.72rem;
+    height: 0.8rem;
+    background-image: url(style/images/flower_beautiful.webp);
+    display: inline-block;
+    background-size: 100% 100%;
+    margin-right: 3px;
+}
+.input-group.row {
+    border: 1px solid #d8bcaf;
+    border-radius: 0.25rem;
+}
+
+.product-image-thumb {
+    padding: 0.125rem;
+}
+.header-notice {
+    background: rgba(131, 131, 131, 0.28);
+    max-width: 706px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    color: #eee;
+}
+.genshin-product:hover,
+.item-bounder:hover {
+    margin-top: -10px;
+    padding-bottom: 10px;
+}
+.price_cate {
+    backdrop-filter: blur(10px);
+    padding: 0.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    font-size: 1.11rem;
+}
+.text_price_cate_discount {
+    color: #dc3545;
+    text-shadow: 0.5px 0.5px #2b2b2b;
+}
+.text_price_cate {
+    color: #ea0a0a;
+}
+.ribbon.bg-primary {
+    background: linear-gradient(
+        90deg,
+        #ff0000 0%,
+        rgb(0 0 0) 45%,
+        #ff0000 100%
+    );
+}
+.ribbon-wrapper .ribbon::after,
+.ribbon-wrapper .ribbon::before {
+    border-top: unset;
+}
+.image-container {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container img {
+    width: 96%;
+    position: absolute;
+    top: 0;
+    left: 2%;
+}
+.carousel-item {
+    backdrop-filter: blur(5px);
+}
+@media screen and (max-width: 768px) {
+    .carousel-inner iframe {
+        max-height: 220px;
+    }
+}
+.btn-pretty {
+    border: none;
+    background: url(/image/avatar/khung.png) no-repeat top left;
+    color: #967852;
+    font-weight: bold;
+    font-size: 19px;
+    height: 52px;
+    width: 191px;
+    margin: 3px 0 3px 0;
+    background-size: contain;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-background-position: center;
+    background-position: center;
+    -webkit-background-size: contain;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.btn-pretty:hover{
+    text-shadow: 0 0 10px #69e0ff, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
+@media (max-width: 1536px) {
+    .btn-pretty {
+        height: 49px;
+        width: 188px;
+    }
+}
+@media (max-width: 1024px) {
+    .btn-pretty {
+        height: 46px;
+        width: 185px;
+    }
+}
+@media (max-width: 640px) {
+    .btn-pretty {
+        height: 43px;
+        width: 182px;
+    }
+}
+.guide__title {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px #5853ad, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
+}
+.guide__title:not(:empty)::before, .guide__title:not(:empty)::after {
+    content: "";
+    width: 322px;
+    height: 15px;
+    background: url('https://example.com/new-image.png') center/cover no-repeat;
+}
+.guide__title::before {
+    margin-right: 36px;
+}
+.guide__title::after {
+    margin-left: 36px;
+    transform: rotate(
+        180deg
+    );
+}
