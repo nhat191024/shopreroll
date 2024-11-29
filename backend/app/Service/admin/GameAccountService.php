@@ -13,14 +13,22 @@ use Illuminate\Support\Facades\Storage;
 
 class GameAccountService
 {
-    public function getAllGameAccounts()
+    public function getAllGameAccounts($categoryId = null)
     {
-        return GameAccount::all();
+        // Khởi tạo truy vấn
+        $query = GameAccount::with(['gameCategory', 'creator']);
+
+        // Nếu có categoryId, thêm điều kiện lọc
+        if ($categoryId) {
+            $query->where('game_category_id', $categoryId);
+        }
+
+        return $query->get();
     }
 
     public function getAllGameCategories()
     {
-        return GameCategory::all();
+        return GameCategory::with(['Game'])->get();
     }
 
     public function addGameAccount($data, $images)

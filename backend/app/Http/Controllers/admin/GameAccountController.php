@@ -16,10 +16,13 @@ class GameAccountController extends Controller
         $this->gameAccountService = $gameAccountService;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $gameAccounts = $this->gameAccountService->getAllGameAccounts();
-        return view('admin.game_accounts.index', compact('gameAccounts'));
+        $categoryId = $request->get('category_id');
+        $gameAccounts = $this->gameAccountService->getAllGameAccounts($categoryId);
+        $gameCategories = $this->gameAccountService->getAllGameCategories(); // Lấy tất cả danh mục để sử dụng trong form lọc
+
+        return view('admin.game_accounts.index', compact('gameAccounts', 'gameCategories'));
     }
 
     public function showAddForm()
@@ -81,7 +84,7 @@ class GameAccountController extends Controller
             'weapons' => 'required|array',
             'weapons.*' => 'exists:weapons,id',
         ]);
-        
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
