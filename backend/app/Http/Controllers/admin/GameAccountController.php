@@ -19,10 +19,13 @@ class GameAccountController extends Controller
     public function index(Request $request)
     {
         $categoryId = $request->get('category_id');
-        $gameAccounts = $this->gameAccountService->getAllGameAccounts($categoryId);
+        $status = $request->get('status', 1); // Mặc định lấy trạng thái là 1 (Hoạt động)
+
+        // Lấy danh sách game accounts với điều kiện lọc
+        $gameAccounts = $this->gameAccountService->getAllGameAccounts($categoryId, $status);
         $gameCategories = $this->gameAccountService->getAllGameCategories(); // Lấy tất cả danh mục để sử dụng trong form lọc
 
-        return view('admin.game_accounts.index', compact('gameAccounts', 'gameCategories'));
+        return view('admin.game_accounts.index', compact('gameAccounts', 'gameCategories', 'categoryId', 'status'));
     }
 
     public function showAddForm()

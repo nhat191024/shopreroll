@@ -84,7 +84,7 @@
                                 </div>
                                 @if ($gameAccount->account_image)
                                     <img src="{{ url('image/' . $gameAccount->account_image)}}" alt="Account Image"
-                                        class="img-thumbnail mt-2" width="150">
+                                        class="img-thumbnail mt-2" width="200">
                                 @endif
                             </div>
                         </div>

@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Storage;
 
 class GameAccountService
 {
-    public function getAllGameAccounts($categoryId = null)
+    public function getAllGameAccounts($categoryId = null, $status = 1)
     {
-        // Khởi tạo truy vấn
-        $query = GameAccount::with(['gameCategory', 'creator']);
+        // Khởi tạo truy vấn với điều kiện trạng thái mặc định là 1 (Hoạt động)
+        $query = GameAccount::with(['gameCategory', 'creator'])
+            ->where('status', $status);
 
-        // Nếu có categoryId, thêm điều kiện lọc
+        // Nếu có categoryId, thêm điều kiện lọc theo danh mục
         if ($categoryId) {
             $query->where('game_category_id', $categoryId);
         }
@@ -148,8 +149,7 @@ class GameAccountService
     {
         try {
             $gameAccount = GameAccount::findOrFail($id);
-            $gameAccount->status = false;
-            $gameAccount->save();
+            $gameAccount->delete();
         } catch (\Exception $e) {
             throw new \Exception('Không thể vô hiệu hóa tài khoản game: ' . $e->getMessage());
         }
