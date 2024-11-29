@@ -125,9 +125,9 @@
 
                         <a href='/' style="color: inherit;text-shadow:unset">shopreroll.com</a>
                     </div>
-                    <p><span
-                            class="text-white font-system-ui"><b>Chúng
-                                tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của bạn lên
+                    <p><span class="text-white font-system-ui"><b>Chúng
+                                tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của bạn
+                                lên
                                 hàng đầu</b></span><br></p>
                     <p class="mt-3 small">
                         © shopreroll.com
@@ -140,7 +140,8 @@
                     <div class="h h4 link-active">Chúng tôi
                     </div>
                     <p class="m-0">
-                    <p><span class="text-white font-system-ui"><b>Tất Cả Khách Hàng mua acc trên Shop Đều được Bảo hành 100%
+                    <p><span class="text-white font-system-ui"><b>Tất Cả Khách Hàng mua acc trên Shop Đều được Bảo hành
+                                100%
                                 .<br>Khách hàng mua acc trên shop phải chủ động đổi |mật khẩu| và |mail| ngay trong vòng
                                 24h ngoài 24h shop ko chịu trách nhiệm.</b></span><br></p>
                     </p>
@@ -166,12 +167,19 @@
     </div>
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <ul class="nav-fixed">
-        <li class="nav-fixed-zalo"> <a target="_blank" href="https://zalo.me/0386496488"><img
-                    src="style/images/icon/zalo.png" alt=""></a></li>
-        <li class="nav-fixed-face"> <a target="_blank" href="https://www.facebook.com/dat.ds.3"><i
-                    style="color: white" class="fab fa-facebook-f fa-lg"></i></a></li>
-        <li class="nav-fixed-phone"> <a href="tel:0386496488"><i style="color: white"
-                    class="fa fa-phone fa-lg"></i></a></li>
+        <li class="nav-fixed-zalo">
+            <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
+        </li>
+        <li class="nav-fixed-face">
+            <a target="_blank" href="https://www.facebook.com/dat.ds.3">
+                <i style="color: white"class="fab fa-facebook-f fa-lg"></i>
+            </a>
+        </li>
+        <li class="nav-fixed-phone">
+            <a href="tel:0386496488">
+                <i style="color: white" class="fa fa-phone fa-lg"></i>
+            </a>
+        </li>
     </ul>
 
     <!-- jQuery -->
