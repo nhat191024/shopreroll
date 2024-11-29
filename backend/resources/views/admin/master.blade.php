@@ -126,16 +126,20 @@
                         <span data-key="t-layouts">Character</span>
                     </a>
                     <div class="collapse menu-dropdown" id="characters" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column"><li class="nav-item">
-                            <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}" class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
-                        </li>
-                        
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}"
+                                    class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}"
+                                    class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}"
+                                    class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
@@ -148,15 +152,18 @@
                     <div class="collapse menu-dropdown" id="weapon" data-bs-parent="#menuAccordion">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'genshin-impact']) }}" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                                <a href="{{ route('admin.weapon', ['slug' => 'genshin-impact']) }}" class="nav-link"
+                                    data-key="t-horizontal">Genshin Impact</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'honkai-star-rail']) }}" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
+                                <a href="{{ route('admin.weapon', ['slug' => 'honkai-star-rail']) }}"
+                                    class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'zenless-zone-zero']) }}" class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
+                                <a href="{{ route('admin.weapon', ['slug' => 'zenless-zone-zero']) }}"
+                                    class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </li>
