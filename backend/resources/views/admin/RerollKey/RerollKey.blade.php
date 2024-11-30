@@ -3,17 +3,15 @@
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Danh sách Reroll Package</h1>
+            <h1 class="h3 mb-2 text-gray-800">Danh sách Reroll Key</h1>
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ route('admin.RerollPackage.showAdd') }}">Thêm Reroll Package</a>
+                    <a class="btn btn-primary" href="{{ route('admin.rerollKey.showAdd', ['idPackage' => $idPackage]) }}">Thêm Reroll Key</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -30,32 +28,29 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Mã</th>
-                                    <th class="col-2">Tên</th>
-                                    <th class="col-3">Giá</th>
+                                    <th>ID</th>
+                                    <th class="col-4">Key</th>
+                                    <th class="col-3 text-center">Hành động</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>Mã</th>
-                                    <th class="col-2">Tên</th>
-                                    <th class="col-3">Giá</th>
+                                    <th>ID</th>
+                                    <th class="col-4">Key</th>
+                                    <th class="col-3 text-center">Hành động</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allRerollPackagies as $key => $item)
+                                @foreach ($allRerollKeys as $key => $item)
                                     <tr>
-                                        <td>{{ $item['id'] }}</td>
-                                        <td>{{ $item['name'] }}</td>
-                                        <td>{{ $item['price'] }}</td>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->key }}</td>
                                         <td class="text-center">
                                             <a class="btn btn-danger"
-                                            onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollPackage.delete', $item->id) }}'; }">
+                                            onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->id }} chứ?')) { window.location.href = '{{ route('admin.RerollKey.delete', ['idPackage' => $idPackage, 'idKey' => $item->id]) }}'; }">
                                             Xóa </a>
-                                            <a class="btn btn-info" href="{{ route('admin.RerollPackage.showEdit', $item->id) }}">Sửa</a>
-                                            <a class="btn btn-info" href="{{ route('admin.RerollPackage.detail', $item->id) }}">Chi tiết</a>
+                                            <a class="btn btn-info" href="{{ route('admin.RerollKey.ShowEdit', ['idPackage' => $idPackage, 'idKey' => $item->id]) }}">Sửa</a>
                                         </td>
-
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -70,9 +65,6 @@
     </div>
     <!-- End of Main Content -->
 
-
-
-    </div>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({

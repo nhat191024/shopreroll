@@ -86,7 +86,9 @@ class RerollPackageController extends Controller
 
         return redirect(route('admin.RerollPackage.index'))->with('success', 'Package updated successfully.');
     }
-
+    public function detailRerollPackage($id) {
+        return redirect(route('admin.RerollKey.index', ['idPackage' => $id]));
+    }
     // Change the visibility status of a package (e.g., toggle between active and inactive)
     public function deleteRerollPackage($id) {
         $rerollPackage = $this->rerollPackageService->getById($id);
