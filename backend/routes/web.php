@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\RechargeBillController;
 use App\Http\Controllers\admin\RerollCategoryController;
 use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
+use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
@@ -106,6 +107,8 @@ Route::prefix('admin')->group(function () {
             Route::get('/delete/{idKey}', [RerollKeyController::class, 'deleteRerollPackage'])->name('admin.RerollKey.delete');
         });
     });
+    
+    Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('admin.RerollBill.index');
 
     Route::prefix('/user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');

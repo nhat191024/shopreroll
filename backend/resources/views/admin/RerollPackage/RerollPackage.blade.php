@@ -33,6 +33,7 @@
                                     <th>Mã</th>
                                     <th class="col-2">Tên</th>
                                     <th class="col-3">Giá</th>
+                                    <th class="col-4">Chức năng</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -40,6 +41,7 @@
                                     <th>Mã</th>
                                     <th class="col-2">Tên</th>
                                     <th class="col-3">Giá</th>
+                                    <th class="col-4">Chức năng</th>
                                 </tr>
                             </tfoot>
                             <tbody>
