@@ -31,14 +31,14 @@ class GameAccount extends Model
         return $this->belongsTo(GameCategory::class);
     }
 
-    public function AccountWeapon()
-    {
-        return $this->hasMany(AccountWeapon::class);
-    }
-
     public function AccountHero()
     {
-        return $this->hasMany(AccountHero::class);
+        return $this->hasMany(AccountHero::class, 'account_id');
+    }
+
+    public function AccountWeapon()
+    {
+        return $this->hasMany(AccountWeapon::class, 'account_id');
     }
 
     public function AccountImage()

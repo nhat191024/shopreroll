@@ -14,6 +14,7 @@ use App\Http\Controllers\admin\RerollSubCategoryController;
 use App\Http\Controllers\admin\RerollPackageController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\admin\GameAccountController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
@@ -114,5 +115,18 @@ Route::prefix('admin')->group(function () {
         Route::get('/{id}', [UserController::class, 'showUser'])->name(name: 'admin.user.editView');
         Route::get('/disable/{id}', [UserController::class, 'disableUser'])->name('admin.user.disable');
         Route::get('/store/{id}', [UserController::class, 'storeUser'])->name('admin.user.store');
+    });
+    Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
+    Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
+
+    Route::prefix('/game-account')->group(function () {
+        Route::get('/', [GameAccountController::class, 'index'])->name('admin.gameAccount.index');
+        Route::get('/add', [GameAccountController::class, 'showAddForm'])->name('admin.gameAccount.showAddForm');
+        Route::post('/add', [GameAccountController::class, 'addGameAccount'])->name('admin.gameAccount.add');
+        Route::post('/edit/{id}', [GameAccountController::class, 'editGameAccount'])->name('admin.gameAccount.edit');
+        Route::get('/edit/{id}', [GameAccountController::class, 'showEditForm'])->name('admin.gameAccount.showEditForm');
+        Route::get('/disable/{id}', [GameAccountController::class, 'disableGameAccount'])->name('admin.gameAccount.disable');
+        Route::get('/store/{id}', [GameAccountController::class, 'storeGameAccount'])->name('admin.gameAccount.store');
+        Route::get('/get-game-details/{categoryId}', [GameAccountController::class, 'getGameDetails'])->name('admin.gameAccount.getGameDetails');
     });
 });
