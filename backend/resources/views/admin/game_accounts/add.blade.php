@@ -1,0 +1,133 @@
+@extends('admin.master')
+@section('main')
+    <div class="container-fluid">
+
+        <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản game</h1>
+
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <!-- Phần hiển thị lỗi -->
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <form action="{{ route('admin.gameAccount.add') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Tiêu đề</label>
+                                <input required type="text" class="form-control" name="title"
+                                    placeholder="Nhập tiêu đề">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">Tên đăng nhập</label>
+                                <input required type="text" class="form-control" name="username"
+                                    placeholder="Tên đăng nhập">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="server">Server</label>
+                                <select class="form-control" id="server" name="server">
+                                    <option value="ASIA">ASIA</option>
+                                    <option value="EUROPE">EUROPE</option>
+                                    <option value="AMERICA">AMERICA</option>
+                                    <option value="TW">TW</option>
+                                    <option value="HK">HK</option>
+                                    <option value="MO">MO</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="hero">Tướng</label>
+                                <select class="form-control selectpicker" id="hero" name="heroes[]" multiple
+                                    data-live-search="true">
+                                    <!-- Heroes options sẽ được cập nhật qua JavaScript -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price_in">Giá nhập khẩu</label>
+                                <input type="number" class="form-control" name="price_in"
+                                    placeholder="Nếu để trống sẽ tự động coi là 0đ">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="account_image">Ảnh</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="account_image" name="account_images">
+                                    <label class="custom-file-label" for="account_image">Chọn ảnh</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Mật khẩu</label>
+                                <input required type="password" class="form-control" name="password"
+                                    placeholder="Mật khẩu sẽ được mã hóa an toàn">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="ar">AR</label>
+                                <input required type="number" class="form-control" name="ar" placeholder="Nhập AR">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="game_category">Chọn danh mục game</label>
+                                <select class="form-control" id="game_category" name="game_category_id">
+                                    @foreach ($gameCategories as $category)
+                                        <option value="{{ $category->id }} ">{{ $category->name }}
+                                            ({{ $category->Game->name }})
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="weapon">Vũ khí</label>
+                                <select class="form-control selectpicker" id="weapon1" name="weapons[]" multiple
+                                    data-live-search="true">
+                                    <!-- Weapons options sẽ được cập nhật qua JavaScript -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="price_out">Giá bán</label>
+                                <input required type="number" class="form-control" name="price_out"
+                                    placeholder="Nhập giá khách mua">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="notes">Ghi chú</label>
+                                <textarea required class="form-control" name="note" rows="4" placeholder="Ghi chú về tài khoản game"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success mt-4" type="submit">Thêm tài khoản game</button>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection

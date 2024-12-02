@@ -173,15 +173,15 @@
                         <span>Tài khoản người dùng</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.RechargeBill.index') }}">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <span>Lịch sử giao dịch</span></a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa-regular fa-envelope"></i>
                         <span>Tin nhắn khách hàng</span></a>
-                </li>
+                </li> --}}
             </div>
 
             <!-- Divider -->
@@ -393,6 +393,7 @@
             <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
             <script src="{{ url('') . '/' }}js/admin/blog.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="{{ url('') . '/' }}js/admin/main.js"></script>
 
 </body>
 
