@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('game_recharge_id');
             $table->string('name');
             $table->string('price');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('game_recharge_id')->references('id')->on('game_recharges')->onDelete('cascade');

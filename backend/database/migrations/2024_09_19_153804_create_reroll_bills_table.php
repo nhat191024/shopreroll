@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('reroll_package_id');
             $table->unsignedBigInteger('reroll_key_id');
             $table->integer('price');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('game_id');
             $table->string('name');
             $table->string('image');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
             $table->foreign('game_id')->references('id')->on('games');

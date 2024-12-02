@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('tutorial');
             $table->string('id_youtube');
             $table->string('image');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
