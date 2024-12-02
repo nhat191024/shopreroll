@@ -166,15 +166,15 @@
                         <span>Tài khoản người dùng</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.RechargeBill.index') }}">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <span>Lịch sử giao dịch</span></a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa-regular fa-envelope"></i>
                         <span>Tin nhắn khách hàng</span></a>
-                </li>
+                </li> --}}
             </div>
 
             <!-- Divider -->
