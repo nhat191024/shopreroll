@@ -22,7 +22,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::prefix('client')->group(function () {
+    Route::get('/', function () {
+        return view('client.layouts.master');
+    });
+});
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
@@ -107,7 +111,7 @@ Route::prefix('admin')->group(function () {
             Route::get('/delete/{idKey}', [RerollKeyController::class, 'deleteRerollPackage'])->name('admin.RerollKey.delete');
         });
     });
-    
+
     Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('admin.RerollBill.index');
 
     Route::prefix('/user')->group(function () {
