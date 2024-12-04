@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
+use App\Http\Controllers\client\HomeController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,9 @@ Route::get('/', function () {
 Route::prefix('client')->group(function () {
     Route::get('/', function () {
         return view('client.layouts.master');
+    });
+    Route::prefix('/home')->group(function () {
+        Route::get('/', [HomeController::class, 'index'])->name('client.home');
     });
 });
 Route::prefix('admin')->group(function () {
