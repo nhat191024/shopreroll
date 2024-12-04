@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/my-account', function () {
+    return view('client.my-account');
+    // return 1;
+});
 Route::prefix('client')->group(function () {
     Route::get('/', function () {
         return view('client.layouts.master');

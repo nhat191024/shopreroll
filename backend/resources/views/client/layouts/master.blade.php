@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/css-my-account.css') }}">
+
     <!-- Theme style -->
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
@@ -109,7 +111,7 @@
             </div>
         </nav>
         <!-- End Navbar -->
-
+        @yield('main')
 
 
     </div>
@@ -172,7 +174,7 @@
         </li>
         <li class="nav-fixed-face">
             <a target="_blank" href="https://www.facebook.com/dat.ds.3">
-                <i style="color: white"class="fab fa-facebook-f fa-lg"></i>
+                <i style="color: white" class="fab fa-facebook-f fa-lg"></i>
             </a>
         </li>
         <li class="nav-fixed-phone">
