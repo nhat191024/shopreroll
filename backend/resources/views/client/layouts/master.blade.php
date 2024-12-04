@@ -110,7 +110,7 @@
         </nav>
         <!-- End Navbar -->
 
-
+    @yield('main')
 
     </div>
     <footer class="mt-5 p-3">
@@ -166,6 +166,7 @@
 
     </div>
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
     <ul class="nav-fixed">
         <li class="nav-fixed-zalo">
             <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
