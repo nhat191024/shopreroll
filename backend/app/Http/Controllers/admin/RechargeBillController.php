@@ -23,4 +23,9 @@ class RechargeBillController extends Controller
         $allRechargeBill = $this->rechargeBillService->getAll();
         return view('admin.RechargeBill.RechargeBill', compact('allRechargeBill'));
     }
+    // Test data 
+    public function indexC(){
+        $allRechargeBill = $this->rechargeBillService->getAll();
+        return view('client.layouts.myAcc', compact('allRechargeBill'));
+    }
 }
