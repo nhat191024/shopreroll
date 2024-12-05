@@ -23,7 +23,9 @@ Route::prefix('client')->group(function () {
     Route::get('/', function () {
         return view('client.layouts.master');
     });
-});
+    // Test data
+    Route::get('/myAcc',[RechargeBillController::class,'indexC'])->name('client.myAcc');
+});   
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
