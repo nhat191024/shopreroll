@@ -19,13 +19,8 @@ use App\Http\Controllers\admin\GameAccountController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::prefix('client')->group(function () {
-    Route::get('/', function () {
-        return view('client.layouts.master');
-    });
+Route::prefix('/')->group(function () {
+    Route::get('/myAcc',[RechargeBillController::class,'indexC'])->name('client.myAcc');
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
