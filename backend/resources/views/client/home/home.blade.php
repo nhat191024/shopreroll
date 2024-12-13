@@ -81,18 +81,7 @@
                                     <div class="tab-pane fade show active" id="toptab" role="tabpanel"
                                         aria-labelledby="toptab">
                                         <ul class="nav nav-user">
-                                            @foreach ([
-                                                ['name' => 'Keith sierra', 'amount' => '22,707,000'],
-                                                ['name' => 'Nam', 'amount' => '13,282,600'],
-                                                ['name' => 'Perawit', 'amount' => '11,111,275'],
-                                                ['name' => 'cau vang', 'amount' => '6,250,000'],
-                                                ['name' => 'Nguyễn Duy', 'amount' => '4,373,010'],
-                                                ['name' => 'Vo phuc khang', 'amount' => '4,310,000'],
-                                                ['name' => 'Dương Quang Ánh', 'amount' => '4,270,000'],
-                                                ['name' => 'bac', 'amount' => '4,218,520'],
-                                                ['name' => 'Nguyễn minh Quang', 'amount' => '3,940,002'],
-                                                ['name' => 'Nguyễn Văn Trường', 'amount' => '3,573,000']
-                                            ] as $index => $user)
+                                            @foreach ([['name' => 'Keith sierra', 'amount' => '22,707,000'], ['name' => 'Nam', 'amount' => '13,282,600'], ['name' => 'Perawit', 'amount' => '11,111,275'], ['name' => 'cau vang', 'amount' => '6,250,000'], ['name' => 'Nguyễn Duy', 'amount' => '4,373,010'], ['name' => 'Vo phuc khang', 'amount' => '4,310,000'], ['name' => 'Dương Quang Ánh', 'amount' => '4,270,000'], ['name' => 'bac', 'amount' => '4,218,520'], ['name' => 'Nguyễn minh Quang', 'amount' => '3,940,002'], ['name' => 'Nguyễn Văn Trường', 'amount' => '3,573,000']] as $index => $user)
                                                 <li class="nav-link w-100" style="padding: .1rem 1rem">
                                                     <div class="row">
                                                         <div class="col-7 text-left"
@@ -140,8 +129,8 @@
                                             <h3 class="text-center title_cate mt-3">{{ $rerollCategory->name }}</h3>
                                             <div class="text-center">{{ $rerollCategory->note }}</div>
                                             <center>
-                                                <a href="#"><button class="btn-pretty mb-4 mt-2">Mua Ngay
-                                                </button></a>
+                                                <a href="#"><button class="btn btn-info mb-4 mt-2">Mua Ngay
+                                                    </button></a>
                                             </center>
                                         </div>
                                     </div>

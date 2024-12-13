@@ -12,17 +12,17 @@
     display: none;
 }
 .item-bounder {
-    margin: 15px 2.5px;
-    padding: 10px;
+    margin: 5px;
+    padding: 2%;
     font-size: 0.9rem;
-    font-family: 'Roboto Condensed', sans-serif;
-    background: #0a0a0a00 url(https://shopreroll.com/style/genshi/img/bg-acc-of-list.webp);
+    font-family: "Roboto Condensed", sans-serif;
+    background: #0a0a0a00 url("/image/avatar/bg-acc-of-list.webp");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     color: rgb(141 97 64);
-    transition: .3s;
+    transition: 0.3s;
 }
-.btn_left{
+.btn_left {
     width: 40%;
     margin-left: -8px;
     margin-bottom: 5px;

@@ -1,3 +1,27 @@
+.navbar-toggler-icon {
+    color: #fff;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #fff;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    color: #ccc;
+}
+
+.btn-pretty {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-pretty:hover {
+    background-color: #0056b3;
+}
 .nav-fixed {
     position: fixed;
     right: 10px;
@@ -167,9 +191,7 @@ a.slide-button {
 }
 
 body {
-    background: #000
-        url(https://shopreroll.com/style/genshi/img/background/light-bg-genshin.webp)
-        no-repeat fixed;
+    background: #000 url("/image/avatar/light-bg-genshin.webp") no-repeat fixed;
     background-size: cover;
 }
 a:hover {
@@ -258,13 +280,6 @@ a:hover {
     margin-right: 3px;
 }
 
-.search-frm {
-    position: sticky;
-    top: 80px;
-    background-image: url(style/genshi/img/bg-acc-of-list.webp);
-    background-position: center;
-    background-size: 100% 100% !important;
-}
 .info-line {
     padding-right: 15px;
     padding-left: 15px;
@@ -329,29 +344,21 @@ footer {
 .item-image-key,
 .item-image-acc {
     position: relative;
-    height: 190px;
+    width: 100%;
 }
 .item-image img,
 .item-image-key img,
 .item-image-acc img {
-    width: calc(100% + -12.5px);
-    margin: 0px -10px 0 7.5px;
-    max-height: 190px;
+    margin: 5%;
     border-radius: 4px;
+    width: 90%;
+    text-align: center;
 }
 .item-caption h3 {
     text-transform: uppercase;
     padding: 0;
     margin-top: 10px;
     font-size: 1.4rem;
-}
-.list_flower {
-    width: 0.72rem;
-    height: 0.8rem;
-    background-image: url(style/images/flower_beautiful.webp);
-    display: inline-block;
-    background-size: 100% 100%;
-    margin-right: 3px;
 }
 .input-group.row {
     border: 1px solid #d8bcaf;
@@ -445,7 +452,7 @@ footer {
     -webkit-justify-content: center;
     justify-content: center;
 }
-.btn-pretty:hover{
+.btn-pretty:hover {
     text-shadow: 0 0 10px #69e0ff, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
     -webkit-transform: scale(1.05);
     -moz-transform: scale(1.05);
@@ -480,18 +487,17 @@ footer {
     color: #fff;
     text-shadow: 0 0 10px #5853ad, 0 0 20px #69e0ff, 0 0 40px #69e0ff;
 }
-.guide__title:not(:empty)::before, .guide__title:not(:empty)::after {
+.guide__title:not(:empty)::before,
+.guide__title:not(:empty)::after {
     content: "";
     width: 322px;
     height: 15px;
-    background: url('https://example.com/new-image.png') center/cover no-repeat;
+    /* background: url("https://example.com/new-image.png") center/cover no-repeat; */
 }
 .guide__title::before {
     margin-right: 36px;
 }
 .guide__title::after {
     margin-left: 36px;
-    transform: rotate(
-        180deg
-    );
+    transform: rotate(180deg);
 }

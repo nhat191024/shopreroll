@@ -18,99 +18,97 @@
     <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Theme style -->
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <link rel="canonical" href="https://shopreroll.com" />
 </head>
-<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-    data-cf-settings="58c421c51abc89ff9fecda8d-|49"></script>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
     <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand-md nav-header mb-4">
             <div class="container">
+                <div class="row w-100">
+                    {{-- Logo --}}
+                    <div class="col-6 col-md-2">
+                        <a href="/" class="navbar-brand"><img src="{{ asset('image/avatar/logo.png') }}"
+                                class="img-fluid" style="width: 60%"></a>
+                    </div>
+                    {{-- Thanh công cụ --}}
+                    <div class="col-6 col-md-10 text-right">
+                        {{-- Toggle --}}
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarCollapse">
+                            <div class="d-flex justify-content-end w-100">
+                                {{-- Trang chủ, Nạp tiền, Lịch sử mua --}}
+                                <ul class="navbar-nav mr-auto d-flex align-items-center flex-wrap">
+                                    {{-- Icon home --}}
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link menu-header shine-active"><i
+                                                class="ficon fa-lg fa fa-home"></i></a>
+                                    </li>
 
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse"
-                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"><i class="fas fa-bars"
-                            style="text-shadow: 2px 2px 2px #000000;color: #fff;"></i></span>
-                </button>
+                                    <li class="nav-item dropdown" id="topUp_balance">
+                                        <a href="#" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" class="nav-link dropdown-toggle menu-header">Nạp
+                                            tiền</a>
+                                        <ul class="dropdown-menu border-0 shadow">
+                                            <li><a href="https://shopreroll.com/user/money/phone-card/send-card"
+                                                    class="dropdown-item"><i class="fas fa-money-check-alt mr-1"></i>
+                                                    Nạp
+                                                    bằng thẻ cào</a></li>
+                                            <li class="dropdown-divider"></li>
+                                            <li><a href="https://shopreroll.com/user/money/auto-bank/info"
+                                                    class="dropdown-item"><i class="fas fa-university mr-1"></i> Nạp
+                                                    bằng
+                                                    bank, ví</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link menu-header">Nạp Game</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a href="#" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false" class="nav-link dropdown-toggle menu-header">Lịch Sử
+                                            Mua</a>
+                                        <ul class="dropdown-menu border-0 shadow">
+                                            <li><a href="https://shopreroll.com/genshin/acc/my-acc"
+                                                    class="dropdown-item"><i class="fas fa-history mr-1"></i>
+                                                    Genshin</a></li>
+                                            <li class="dropdown-divider"></li>
+                                            <li><a href="https://shopreroll.com/key/my-key" class="dropdown-item"><i
+                                                        class="fas fa-history mr-1"></i> Key / Reroll</a></li>
+                                            <li class="dropdown-divider"></li>
+                                            <li><a href="https://shopreroll.com/acc/my-acc" class="dropdown-item"><i
+                                                        class="fas fa-history mr-1"></i> Acc chung</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
 
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link"><img
-                                    src="https://img.upanh.tv/2023/05/17/12312312312-01-01.png" class="img-fluid"
-                                    style="margin-top: -8px;height: 165%"></a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link menu-header shine-active"><i
-                                    class="ficon fa-lg fa fa-home"></i></a>
-                        </li>
-                        <li class="nav-item dropdown" id="topUp_balance">
-                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                class="nav-link dropdown-toggle menu-header ">Nạp tiền
-                            </a>
-                            <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-                                <li><a href="https://shopreroll.com/user/money/phone-card/send-card"
-                                        class="dropdown-item "><i class="fas fa-money-check-alt mr-1"></i> Nạp bằng thẻ
-                                        cào
-                                    </a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a href="https://shopreroll.com/user/money/auto-bank/info" class="dropdown-item"><i
-                                            class="fas fa-university mr-1"></i> Nạp bằng bank, ví
-                                    </a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link menu-header">Nạp Game
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                class="nav-link dropdown-toggle menu-header">Lịch Sử Mua
-                            </a>
-                            <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-                                <li><a href="https://shopreroll.com/genshin/acc/my-acc" class="dropdown-item "><i
-                                            class="fas fa-history mr-1"></i> Genshin
-                                    </a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a href="https://shopreroll.com/key/my-key" class="dropdown-item "><i
-                                            class="fas fa-history mr-1"></i> Key / Reroll</a></li>
-                                <li class="dropdown-divider"></li>
-                                <li><a href="https://shopreroll.com/acc/my-acc" class="dropdown-item"><i
-                                            class="fas fa-history mr-1"></i> Acc chung
-                                    </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-
+                                {{-- Login, Logout --}}
+                                <ul class="navbar-nav ml-auto d-flex align-items-center">
+                                    <li class="nav-item">
+                                        <a href="#"><button class="btn-pretty">Đăng ký</button></a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#"><button class="btn-pretty">Đăng nhập</button></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"
-                    style="position: absolute;right: 0px;">
-                    <li class="nav-item">
-                        <a href="#"><button class="btn-pretty">Đăng ký
-                            </button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#"><button class="btn-pretty">Đăng nhập
-                            </button></a>
-                    </li>
-                </ul>
             </div>
         </nav>
         <!-- End Navbar -->
 
-    @yield('main')
+        @yield('main')
 
     </div>
     <footer class="mt-5 p-3">
@@ -187,14 +185,13 @@
     <script src="style/plugins/jquery/jquery.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script>
     <!-- Bootstrap 4 -->
     <script src="style/plugins/bootstrap/js/bootstrap.bundle.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script>
-
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="58c421c51abc89ff9fecda8d-|49"></script>
 
     <!-- AdminLTE App -->
     <script src="style/dist/js/adminlte.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script>
     <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
 
