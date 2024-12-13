@@ -111,7 +111,7 @@
         <!-- End Navbar -->
 
 
-
+        @yield('main')
     </div>
     <footer class="mt-5 p-3">
         <div class="container-lg">

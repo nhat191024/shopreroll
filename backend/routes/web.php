@@ -26,6 +26,10 @@ Route::prefix('client')->group(function () {
     Route::get('/', function () {
         return view('client.layouts.master');
     });
+
+    Route::get('/reroll', function () {
+        return view('client.RerollSubCategory.index');
+    });
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
