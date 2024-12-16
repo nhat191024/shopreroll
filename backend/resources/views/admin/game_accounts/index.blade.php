@@ -1,5 +1,33 @@
 @extends('admin.master')
 @section('main')
+    <!-- Modal Import Excel -->
+    <div class="modal fade" id="importExcelModal" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('admin.gameAccount.import') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="importExcelModalLabel">Nhập tài khoản từ Excel</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="excelFile">Chọn file Excel</label>
+                            <input type="file" class="form-control" id="excelFile" name="excel_file"
+                                accept=".xls,.xlsx,.csv" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">Tải lên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -13,6 +41,11 @@
                 <div class="card-header py-3 d-flex align-items-center justify-content-between">
                     <div>
                         <a class="btn btn-primary" href="{{ route('admin.gameAccount.showAddForm') }}">Thêm tài khoản</a>
+                        <!-- Nút tải lên file Excel -->
+                        <button type="button" class="btn btn-secondary" data-toggle="modal"
+                            data-target="#importExcelModal">
+                            Nhập từ Excel
+                        </button>
                     </div>
                     <div>
                         <!-- Form lọc danh mục và trạng thái -->

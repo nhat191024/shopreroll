@@ -19,6 +19,7 @@ class GameAccount extends Model
         'price_out',
         'note',
         'status',
+        'account_image'
     ];
 
     public function Creator()
