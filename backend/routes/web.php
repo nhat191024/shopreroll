@@ -112,5 +112,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/disable/{id}', [GameAccountController::class, 'disableGameAccount'])->name('admin.gameAccount.disable');
         Route::get('/store/{id}', [GameAccountController::class, 'storeGameAccount'])->name('admin.gameAccount.store');
         Route::get('/get-game-details/{categoryId}', [GameAccountController::class, 'getGameDetails'])->name('admin.gameAccount.getGameDetails');
+        Route::post('/game-account/import', [GameAccountController::class, 'importFromExcel'])->name('admin.gameAccount.import');
     });
 });

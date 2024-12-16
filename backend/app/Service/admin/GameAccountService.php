@@ -65,14 +65,15 @@ class GameAccountService
             }
 
             if ($images) {
-                // Đổi tên ảnh để đảm bảo tính duy nhất
                 $fileName = time() . '_' . uniqid() . '.' . $images->getClientOriginalExtension();
-                $path = 'image/account_images/' . $fileName;
-                // Lưu ảnh vào public/account_images
+                $relativePath = 'image/account_images/' . $fileName;
+
+                // Lưu ảnh vào thư mục
                 $images->move(public_path('image/account_images'), $fileName);
-                // Cập nhật đường dẫn ảnh vào trường account_image của gameAccount
-                $gameAccount->account_image = $path;
-                $gameAccount->save();  // Lưu thay đổi vào cơ sở dữ liệu
+
+                // Lưu đường dẫn đầy đủ vào cơ sở dữ liệu
+                $gameAccount->account_image = url($relativePath);
+                $gameAccount->save();
             }
             return $gameAccount;
         } catch (\Exception $e) {
@@ -98,19 +99,24 @@ class GameAccountService
             $gameAccount->note = $data['note'] ?? null;
             // Update image if a new one is uploaded
             if ($images) {
-                // Delete old image if it exists
+                // Xóa ảnh cũ nếu tồn tại
                 if ($gameAccount->account_image) {
-                    $oldImagePath = public_path($gameAccount->account_image);
+                    $oldImagePath = public_path('image/' . $gameAccount->account_image);
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
                 }
 
-                // Save new image
+                // Lưu ảnh mới
                 $fileName = time() . '_' . uniqid() . '.' . $images->getClientOriginalExtension();
-                $path = 'account_images/' . $fileName;
+                $relativePath = 'image/account_images/' . $fileName;
+
+                // Lưu ảnh vào thư mục public/image/account_images
                 $images->move(public_path('image/account_images'), $fileName);
-                $gameAccount->account_image = $path;
+
+                // Lưu full URL vào cơ sở dữ liệu
+                $gameAccount->account_image = url($relativePath); // Tạo URL đầy đủ
+                $gameAccount->save();
             }
 
             // Save game account

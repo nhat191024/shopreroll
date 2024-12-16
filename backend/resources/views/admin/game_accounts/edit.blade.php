@@ -83,7 +83,7 @@
                                     <label class="custom-file-label" for="account_image">Chọn ảnh</label>
                                 </div>
                                 @if ($gameAccount->account_image)
-                                    <img src="{{ url('image/' . $gameAccount->account_image)}}" alt="Account Image"
+                                    <img src="{{ $gameAccount->account_image}}" alt="Account Image"
                                         class="img-thumbnail mt-2" width="200">
                                 @endif
                             </div>

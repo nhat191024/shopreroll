@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\GameAccountsImport;
 use Illuminate\Http\Request;
 use App\Service\admin\GameAccountService;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GameAccountController extends Controller
 {
@@ -155,6 +157,30 @@ class GameAccountController extends Controller
             return response()->json(['success' => true, 'data' => $result], 200);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => 'Lỗi: ' . $e->getMessage()], 500);
+        }
+    }
+
+    public function importFromExcel(Request $request)
+    {
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        try {
+            $file = $request->file('excel_file');
+            $import = new GameAccountsImport();
+            Excel::import($import, $file);
+
+            // Lấy danh sách lỗi
+            $errors = $import->getErrors();
+
+            if (!empty($errors)) {
+                return redirect()->back()->with('error', implode('<br>', $errors));
+            }
+
+            return redirect()->route('admin.gameAccount.index')->with('success', 'Nhập tài khoản từ Excel thành công.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Lỗi khi nhập dữ liệu: ' . $e->getMessage());
         }
     }
 }
