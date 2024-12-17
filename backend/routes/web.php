@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
+use App\Http\Controllers\client\RerollSubController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
@@ -27,8 +28,8 @@ Route::prefix('client')->group(function () {
         return view('client.layouts.master');
     });
 
-    Route::get('/reroll', function () {
-        return view('client.RerollSubCategory.index');
+    Route::prefix('/reroll')->group(function () {
+        Route::get('/', [RerollSubController::class, 'index'])->name('client.RerollSub.index');
     });
 });
 Route::prefix('admin')->group(function () {
