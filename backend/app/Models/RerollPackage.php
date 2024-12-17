@@ -13,9 +13,9 @@ class RerollPackage extends Model
         'price',
     ];
 
-    public function RerollSubCategory()
+    public function rerollSubCategory()
     {
-        return $this->belongsTo(RerollSubCategory::class);
+        return $this->belongsTo(RerollSubCategory::class, 'reroll_sub_category_id');
     }
 
     public function RerollKey()

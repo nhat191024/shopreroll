@@ -26,4 +26,9 @@ class RerollSubCategory extends Model
     {
         return $this->hasMany(RerollPackage::class);
     }
+
+    public function rerollPackages()
+    {
+        return $this->hasMany(RerollPackage::class, 'reroll_sub_category_id');
+    }
 }

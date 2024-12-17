@@ -2,6 +2,7 @@
 
 namespace App\Service\admin;
 
+use App\Models\RerollPackage;
 use App\Models\RerollSubCategory;
 
 class RerollSubCategoryService
@@ -12,7 +13,8 @@ class RerollSubCategoryService
         return $rerollSubCategory;
     }
 
-    public function getById($id) {
+    public function getById($id)
+    {
         return RerollSubCategory::where('id', $id)->first();
     }
 
@@ -29,7 +31,6 @@ class RerollSubCategoryService
             'file_download_link' => $fileDownloadLink,
             'image' => $imageName,
         ]);
-
     }
 
     public function edit($id, $rerollCategoryId, $name, $tutorial, $idYoutube, $fileDownloadLink)
@@ -54,15 +55,18 @@ class RerollSubCategoryService
     }
 
 
-    public function checkHasChildren($idRerollSubCategory) {
+    public function checkHasChildren($idRerollSubCategory)
+    {
         $subCategory = RerollSubCategory::find($idRerollSubCategory);
-        return RerollSubCategory::find($idRerollSubCategory)->RerollPackage()->get()->count() >0;
+        return RerollSubCategory::find($idRerollSubCategory)->RerollPackage()->get()->count() > 0;
     }
-    public function getChildren($idRerollSubCategory) {
+    public function getChildren($idRerollSubCategory)
+    {
         $subCategory = RerollSubCategory::find($idRerollSubCategory);
         return RerollSubCategory::find($idRerollSubCategory)->RerollPackage()->get();
     }
-    public function ChangeStatus($id, $status) {
+    public function ChangeStatus($id, $status)
+    {
         $subCategory = RerollSubCategory::where('id', $id)->first();
         $subCategory->status = $status;
         $subCategory->save();
