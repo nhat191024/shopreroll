@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\ApiController;
+use App\Http\Controllers\admin\ApiController;
 use App\Http\Controllers\admin\BalanceRechargeBankBillController;
 use App\Http\Controllers\admin\BalanceRechargeCardBillController;
 use App\Http\Controllers\admin\DashboardController;
