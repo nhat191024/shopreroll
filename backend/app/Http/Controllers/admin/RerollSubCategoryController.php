@@ -89,8 +89,8 @@ class RerollSubCategoryController extends Controller
     public function detailRerollSubCategory(Request $request)
     {
         $idRerollPackage = $request->id;
-        $allRerollPackages = $this->rerollSubCategoryService->getChildren($idRerollPackage);
-        return view('admin.RerollPackage.RerollPackage', compact('allRerollPackages'));
+        $allRerollPackagies = $this->rerollSubCategoryService->getChildren($idRerollPackage);
+        return view('admin.RerollPackage.RerollPackage', compact('allRerollPackagies'));
     }
 
     public function ChangeCategoryStatus(Request $request)

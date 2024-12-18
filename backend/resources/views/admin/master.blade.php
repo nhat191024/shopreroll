@@ -75,29 +75,15 @@
                         <span>Game</span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i
+                            class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.GameRecharge.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Nạp Game</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarReroll" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarReroll"><i class="fa-solid fa-dice"></i>
-                        <span data-key="t-layouts">Danh mục reroll</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarReroll" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact reroll</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact reroll</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail
-                                    reroll</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#account" data-bs-toggle="collapse" role="button"

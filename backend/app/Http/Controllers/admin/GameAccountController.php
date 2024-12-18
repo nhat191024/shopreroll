@@ -21,7 +21,7 @@ class GameAccountController extends Controller
     public function index(Request $request)
     {
         $categoryId = $request->get('category_id');
-        $status = $request->get('status', 1); // Mặc định lấy trạng thái là 1 (Hoạt động)
+        $status = $request->get('status', 1);
 
         // Lấy danh sách game accounts với điều kiện lọc
         $gameAccounts = $this->gameAccountService->getAllGameAccounts($categoryId, $status);

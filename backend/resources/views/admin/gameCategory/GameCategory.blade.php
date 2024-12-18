@@ -71,6 +71,10 @@
                                                     onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameCategory.ChangeStatus', [$item->id, 0]) }}'; }">
                                                     Ẩn </a>
                                             @endif
+                                            <a class="btn btn-secondary"
+                                                href="{{ route('admin.gameAccount.index', ['category_id' => $item->id, 'status' => 1]) }}">
+                                                Chi tiết
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
