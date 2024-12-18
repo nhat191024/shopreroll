@@ -16,9 +16,14 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
+use App\Http\Controllers\LoginController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
-
+Route::prefix('/log')->group(function () {
+    Route::get('/login',[LoginController::class,'index'])->name('login');
+    Route::post('/auth',[LoginController::class,'login'])->name('login.auth');
+    Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+});
 Route::prefix('/')->group(function () {
     Route::get('/myAcc',[RechargeBillController::class,'indexC'])->name('client.myAcc');
 });
