@@ -16,7 +16,7 @@ class GameCategory extends Model
 
     public function Game()
     {
-        return $this->belongsTo(game::class);
+        return $this->belongsTo(Game::class);
     }
 
     public function GameAccount()

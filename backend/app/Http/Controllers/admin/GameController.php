@@ -19,7 +19,7 @@ class GameController extends Controller
     public function index()
     {
         $allGame = $this->gameService->getAll();
-        return view('admin.game.Game', compact('allGame'));
+        return view('admin.game.game', compact('allGame'));
     }
 
     public function showAddGame()
