@@ -13,7 +13,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h1 class="h3 mb-2 text-gray-800">Danh sách vũ khí : {{ $game_name }}</h1>
-                    <a href="{{route('syncWeapons')}}"><button class="btn btn-primary">Đồng bộ dữ liệu nhân vật</button></a>
+                    <a href="{{route('syncWeapons')}}"><button class="btn btn-primary">Đồng bộ dữ liệu vũ khí</button></a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
