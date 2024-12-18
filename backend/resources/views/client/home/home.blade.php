@@ -4,7 +4,8 @@
     <section class="content">
         <div class="container-fluid">
             <div class="text-center">
-                <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon">
+                <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon"
+                    loading="lazy">
             </div>
             <h1 class="guide__title">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
             <main>
@@ -23,7 +24,8 @@
                                                 style="max-width: 40px;
                                                 height: auto;
                                                 margin-bottom: -8px;
-                                                margin-top: -8px;">0386496488
+                                                margin-top: -8px;"
+                                                loading="lazy">0386496488
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" target="_blank"
@@ -122,7 +124,7 @@
                                         <div class="item-image-key">
                                             <a href="#">
                                                 <img src="{{ url('image/thumb') . '/' . $rerollCategory->image }}"
-                                                    alt="...">
+                                                    alt="..." loading="lazy">
                                             </a>
                                         </div>
                                         <div>
@@ -143,7 +145,7 @@
 
 
                     <center><img src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png"
-                            class="city__icon"></center>
+                            class="city__icon" loading="lazy"></center>
                     <h2 id="recharge_service" class="guide__title">NẠP GAMES
                     </h2>
 
@@ -153,7 +155,8 @@
                                 <article class="col-lg-3 col-sm-6 col-6 col-6 item-bounder">
                                     <center>
                                         <a href="#"><img class="item-image-key"
-                                                src="{{ url('image/thumb') . '/' . $gameRecharge->image }}"></a>
+                                                src="{{ url('image/thumb') . '/' . $gameRecharge->image }}"
+                                                loading="lazy"></a>
                                         <h2 class="note__title">{{ $gameRecharge->name }}</h2>
                                         <div class="row g-0 info-line">
                                             <section class="row g-0 text-center">

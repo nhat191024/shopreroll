@@ -12,17 +12,19 @@
         content="Shop acc Honkai Star Rail VIP,Mua bán tài khoản Honkai Star Rail,Mua Acc Genshin Giá Rẻ Nhất,reroll" />
     <base href="https://shopreroll.com">
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="1ffmFhe89aAR2ncAaRmLV5SaAWF3cUlSiHQmJ3GC">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="style/plugins/fontawesome-free/css/all.min.css">
     <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css" media="print"
+        onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        media="print" onload="this.media='all'">
     <!-- Theme style -->
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <link rel="canonical" href="https://shopreroll.com" />
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -34,7 +36,7 @@
                     {{-- Logo --}}
                     <div class="col-6 col-md-2">
                         <a href="/" class="navbar-brand"><img src="{{ asset('image/avatar/logo.png') }}"
-                                class="img-fluid" style="width: 60%"></a>
+                                class="img-fluid" style="width: 60%" loading="lazy"></a>
                     </div>
                     {{-- Thanh công cụ --}}
                     <div class="col-6 col-md-10 text-right">
@@ -115,7 +117,7 @@
         <div class="container-lg">
             <h2 class="guide__title mt-3">
                 <a href="/"><img src="https://img.upanh.tv/2023/05/17/12312312312-01-01.png"
-                        style="margin-top: -8px;height: 45px"></a>
+                        style="margin-top: -8px;height: 45px" loading="lazy"></a>
             </h2>
             <div class="row">
                 <section class="col-12 col-lg-4">
@@ -163,11 +165,10 @@
     </section>
 
     </div>
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
     <ul class="nav-fixed">
         <li class="nav-fixed-zalo">
-            <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
+            <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"
+                    loading="lazy"></a>
         </li>
         <li class="nav-fixed-face">
             <a target="_blank" href="https://www.facebook.com/dat.ds.3">
@@ -182,18 +183,11 @@
     </ul>
 
     <!-- jQuery -->
-    <script src="style/plugins/jquery/jquery.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script>
-    <!-- Bootstrap 4 -->
-    <script src="style/plugins/bootstrap/js/bootstrap.bundle.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script>
-    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-        data-cf-settings="58c421c51abc89ff9fecda8d-|49"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" defer></script>
     <!-- AdminLTE App -->
-    <script src="style/dist/js/adminlte.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js" defer></script>
     <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
 
 </body>
 
