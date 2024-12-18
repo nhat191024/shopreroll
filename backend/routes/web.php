@@ -23,6 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::prefix('client')->group(function () {
+    Route::get('/my-key', function () {
+        return view('client.myKey.index');
+    });
     Route::get('/', function () {
         return view('client.layouts.master');
     });
