@@ -48,7 +48,7 @@ class RerollSubCategoryController extends Controller
             $request->image
         );
 
-        return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Thêm danh mục thành công');
+        return redirect(route('admin.RerollSubCategory.index'))->with('success', 'Thêm danh mục thành công');
     }
 
     public function showEditRerollSubCategory(Request $request)
@@ -56,7 +56,7 @@ class RerollSubCategoryController extends Controller
         $idRerollSubCategory = $request->id;
         $rerollSubCategoryInfo = $this->rerollSubCategoryService->getById($idRerollSubCategory);
         $rerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.rerollSubCategory.EditRerollSubcategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'rerollCategories'));
+        return view('admin.RerollSubCategory.EditRerollSubcategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'rerollCategories'));
     }
 
     public function editRerollSubCategory(Request $request)
