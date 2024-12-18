@@ -27,7 +27,7 @@ class RerollKeyController extends Controller
     public function showAddRerollKey($idPackage)
     {
         $allRerollPackage = $this->RerollPackageService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.AddRerollKey', compact('allRerollPackage', 'idPackage'));
+        return view('admin.RerollKey.addRerollKey', compact('allRerollPackage', 'idPackage'));
     }
 
     public function addRerollKey(Request $request, $idPackage)
