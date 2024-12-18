@@ -15,243 +15,156 @@ class ApiService
     {
         $this->client = new Client();
     }
-    // CHARACTER CRAWL DATA
-    // Lấy nhân vật từ Genshin Impact (ID = 1)
-    public function getGenshinImpactCharacters(): array
+
+    public function hero(): array
     {
-        $url = 'https://genshin.gg/characters';
-        $gameId = 1; // ID cho Genshin Impact
-    
-        try {
-            $response = $this->client->get($url, ['verify' => false]);
-            $html = $response->getBody()->getContents();
-            $crawler = new Crawler($html);
-    
-            $characters = [];
-    
-            $crawler->filter('a.character-portrait')->each(function (Crawler $node) use (&$characters, $gameId) {
-                $characterName = $node->filter('h2.character-name')->text();
-                $characterImage = $node->filter('img.character-icon')->attr('src');
-    
-                $characters[] = [
-                    'name' => trim($characterName),
-                    'image' => trim($characterImage),
-                ];
-    
-                Hero::firstOrCreate(
-                    ['name' => trim($characterName)], 
-                    [
-                        'game_id' => $gameId, 
-                        'image' => trim($characterImage),
-                    ]
-                );
-            });
-    
-            return $characters;
-        } catch (\Exception $e) {
-            throw new \Exception('Error fetching Genshin Impact characters: ' . $e->getMessage());
-        }
-    }
+        $games = [
+            [
+                'gameId' => 1,
+                'url' => 'https://genshin.gg/characters',
+                'itemSelector' => 'a.character-portrait',
+                'nameSelector' => 'h2.character-name',
+                'imageSelector' => 'img.character-icon',
+            ],
+            [
+                'gameId' => 2,
+                'url' => 'https://genshin.gg/star-rail',
+                'itemSelector' => 'a.character-portrait',
+                'nameSelector' => 'h2.character-name',
+                'imageSelector' => 'img.character-icon',
+            ],
+            [
+                'gameId' => 3,
+                'url' => 'https://genshin.gg/zzz',
+                'itemSelector' => 'a.character-portrait',
+                'nameSelector' => 'h2.character-name',
+                'imageSelector' => 'img.character-icon',
+            ],
+        ];
 
-    // Lấy nhân vật từ Honkai Star Rail (ID = 2)
-    public function getHonkaiStarRailCharacters(): array
-    {
-        $url = 'https://genshin.gg/star-rail';
-        $gameId = 2; // ID cho Honkai Star Rail
-    
-        try {
-            $response = $this->client->get($url, ['verify' => false]);
-            $html = $response->getBody()->getContents();
-            $crawler = new Crawler($html);
-    
-            $characters = [];
-    
-            $crawler->filter('a.character-portrait')->each(function (Crawler $node) use (&$characters, $gameId) {
-                $characterName = $node->filter('h2.character-name')->text();
-                $characterImage = $node->filter('img.character-icon')->attr('src');
-    
-                $characters[] = [
-                    'name' => trim($characterName),
-                    'image' => trim($characterImage),
-                ];
-    
-                Hero::firstOrCreate(
-                    ['name' => trim($characterName)], 
-                    [
-                        'game_id' => $gameId, 
-                        'image' => trim($characterImage),
-                    ]
-                );
-            });
-    
-            return $characters;
-        } catch (\Exception $e) {
-            throw new \Exception('Error fetching Honkai Star Rail characters: ' . $e->getMessage());
-        }
-    }
+        $allHeroes = [];
 
-    // Lấy nhân vật từ Zenless Zone Zero (ID = 3)
-    public function getZenlessZoneZeroCharacters(): array
-    {
-        $url = 'https://genshin.gg/zzz';
-        $gameId = 3; // ID cho Zenless Zone Zero
-    
-        try {
-            $response = $this->client->get($url, ['verify' => false]);
-            $html = $response->getBody()->getContents();
-            $crawler = new Crawler($html);
-    
-            $characters = [];
-    
-            $crawler->filter('a.character-portrait')->each(function (Crawler $node) use (&$characters, $gameId) {
-                $characterName = $node->filter('h2.character-name')->text();
-                $characterImage = $node->filter('img.character-icon')->attr('src');
-    
-                $characters[] = [
-                    'name' => trim($characterName),
-                    'image' => trim($characterImage),
-                ];
-    
-                Hero::firstOrCreate(
-                    ['name' => trim($characterName)], 
-                    [
-                        'game_id' => $gameId, 
-                        'image' => trim($characterImage),
-                    ]
-                );
-            });
-    
-            return $characters;
-        } catch (\Exception $e) {
-            throw new \Exception('Error fetching Zenless Zone Zero characters: ' . $e->getMessage());
-        }
-    }
-    // WEAPON CRAWL DATA
-public function getGenshinImpactWeapons(): array
-{
-    $url = 'https://genshin-builds.com/vi/weapons';  // URL chứa thông tin vũ khí
-    $gameId = 1; // ID cho Genshin Impact
+        foreach ($games as $game) {
+            try {
+                $response = $this->client->get($game['url'], ['verify' => false]);
+                $html = $response->getBody()->getContents();
+                $crawler = new Crawler($html);
 
-    try {
-        $response = $this->client->get($url, ['verify' => false]);
-        $html = $response->getBody()->getContents();
-        $crawler = new Crawler($html);
+                $crawler->filter($game['itemSelector'])->each(function (Crawler $node) use (&$allHeroes, $game) {
+                    $heroName = $node->filter($game['nameSelector'])->text();
+                    $heroImage = $node->filter($game['imageSelector'])->attr('src');
 
-        $weapons = [];
+                    $allHeroes[] = [
+                        'name' => trim($heroName),
+                        'image' => trim($heroImage),
+                        'game_id' => $game['gameId'],
+                    ];
 
-        // Lọc dữ liệu trong div chứa ảnh và tên
-        $crawler->filter('div.flex.flex-row.justify-center.rounded-t-lg')->each(function (Crawler $node) use (&$weapons, $gameId) {
-            // Lấy URL ảnh từ thẻ img
-            $weaponImage = $node->filter('img')->attr('src');
-
-            // Lấy tên vũ khí từ thẻ h3
-            $weaponName = $node->nextAll()->filter('h3')->text();
-
-            $weapons[] = [
-                'name' => trim($weaponName),
-                'image' => trim($weaponImage),
-            ];
-
-            // Lưu vào database nếu cần
-            Weapon::firstOrCreate(
-                ['name' => trim($weaponName)],
-                [
-                    'game_id' => $gameId,
-                    'image' => trim($weaponImage),
-                ]
-            );
-        });
-
-        return $weapons;
-    } catch (\Exception $e) {
-        throw new \Exception('Error fetching Genshin Impact weapons: ' . $e->getMessage());
-    }
-}
-
-public function getHonkaiStarRailWeapons(): array
-{
-    $url = 'https://genshin.gg/star-rail/light-cones'; // URL chứa thông tin Light Cones Honkai: Star Rail
-    $gameId = 2; // ID cho game Honkai: Star Rail
-
-    try {
-        $response = $this->client->get($url, ['verify' => false]);
-        $html = $response->getBody()->getContents();
-        $crawler = new Crawler($html);
-
-        $lightCones = [];
-
-        $crawler->filter('div.light-cones-item')->each(function (Crawler $node) use (&$lightCones, $gameId) {
-            // Lấy tên Light Cone từ thẻ alt của ảnh
-            $lightConeName = $node->filter('img')->attr('alt');
-            // Lấy URL ảnh của Light Cone
-            $lightConeImage = $node->filter('img')->attr('src');
-
-            if (!empty($lightConeName) && !empty($lightConeImage)) { // Kiểm tra xem dữ liệu có hợp lệ không
-                $lightCones[] = [
-                    'name' => trim($lightConeName),
-                    'image' => trim($lightConeImage),
-                ];
-
-                // Lưu vào database nếu cần
-                Weapon::firstOrCreate(
-                    ['name' => trim($lightConeName)],
-                    [
-                        'game_id' => $gameId,
-                        'image' => trim($lightConeImage),
-                    ]
-                );
+                    Hero::firstOrCreate(
+                        ['name' => trim($heroName)],
+                        [
+                            'game_id' => $game['gameId'],
+                            'image' => trim($heroImage),
+                        ]
+                    );
+                });
+            } catch (\Exception $e) {
+                throw new \Exception('Error fetching heroes for game ID ' . $game['gameId'] . ': ' . $e->getMessage());
             }
-        });
+        }
 
-        return $lightCones;
-    } catch (\Exception $e) {
-        throw new \Exception('Error fetching Honkai: Star Rail light cones: ' . $e->getMessage());
+        return $allHeroes;
     }
-}
-public function getZenlessZoneZeroWeapons(): array
-{
-    $url = 'https://genshin.gg/zzz/w-engines'; // URL chứa thông tin vũ khí
-    $gameId = 3; // ID cho Genshin Impact
 
-    try {
-        $response = $this->client->get($url, ['verify' => false]);
-        $html = $response->getBody()->getContents();
-        $crawler = new Crawler($html);
+    public function weapon(): array
+    {
+        $games = [
+            [
+                'gameId' => 1,
+                'url' => 'https://genshin.gg/weapons/',
+                'itemSelector' => 'div.table-image-wrapper',
+                'nameSelector' => 'img[alt]',
+                'imageSelector' => 'img',
+            ],
+            [
+                'gameId' => 2,
+                'url' => 'https://genshin.gg/star-rail/light-cones',
+                'itemSelector' => 'div.light-cones-item',
+                'nameSelector' => 'img[alt]', 
+                'imageSelector' => 'img',
+            ],
+            [
+                'gameId' => 3,
+                'url' => 'https://genshin.gg/zzz/w-engines',
+                'itemSelector' => 'div.light-cones-item',
+                'nameSelector' => 'img[alt]', 
+                'imageSelector' => 'img',
+            ],
+        ];
 
-        $weapons = [];
+        $allWeapons = [];
 
-        $crawler->filter('div.light-cones-item')->each(function (Crawler $node) use (&$weapons, $gameId) {
-            // Lấy tên vũ khí từ thẻ alt của ảnh
-            $weaponName = $node->filter('img')->attr('alt');
-            // Hoặc lấy tên vũ khí từ văn bản bên trong div (nếu cần)
-            $weaponNameText = $node->text();
+        foreach ($games as $game) {
+            try {
+                $response = $this->client->get($game['url'], ['verify' => false]);
+                $html = $response->getBody()->getContents();
+                $crawler = new Crawler($html);
 
-            // Lấy URL ảnh của vũ khí
-            $weaponImage = $node->filter('img')->attr('src');
+                $crawler->filter($game['itemSelector'])->each(function (Crawler $node) use (&$allWeapons, $game) {
+                    $weaponName = $node->filter($game['nameSelector'])->attr('alt') ?? $node->filter($game['nameSelector'])->text();
+                    $weaponImage = $node->filter($game['imageSelector'])->attr('src');
 
-            $weapons[] = [
-                'name' => trim($weaponName),
-                'image' => trim($weaponImage),
-            ];
+                    $allWeapons[] = [
+                        'name' => trim($weaponName),
+                        'image' => trim($weaponImage),
+                        'game_id' => $game['gameId'],
+                    ];
 
-            // Lưu vào database nếu cần
-            Weapon::firstOrCreate(
-                ['name' => trim($weaponName)],
-                [
-                    'game_id' => $gameId,
-                    'image' => trim($weaponImage),
-                ]
-            );
-        });
+                    Weapon::firstOrCreate(
+                        ['name' => trim($weaponName)],
+                        [
+                            'game_id' => $game['gameId'],
+                            'image' => trim($weaponImage),
+                        ]
+                    );
+                });
+            } catch (\Exception $e) {
+                throw new \Exception('Error fetching weapons for game ID ' . $game['gameId'] . ': ' . $e->getMessage());
+            }
+        }
 
-        return $weapons;
-    } catch (\Exception $e) {
-        throw new \Exception('Error fetching Genshin Impact weapons: ' . $e->getMessage());
+        return $allWeapons;
     }
-}
-
-
-
-
-
+    public function getGenshinImpactCharacters(){
+        return Hero::where('game_id', 1)->get();
+    }
+    public function getHonkaiStarRailCharacters(){
+        return Hero::where('game_id', 2)->get();
+    }
+    public function getZenlessZoneZeroCharacters(){
+        return Hero::where('game_id', 3)->get();
+    }
+    public function getGenshinImpactWeapons(){
+        return Weapon::where('game_id', 1)->get();
+    }
+    public function getHonkaiStarRailWeapons(){
+        return Weapon::where('game_id', 2)->get();
+    }
+    public function getZenlessZoneZeroWeapons(){
+        return Weapon::where('game_id', 3)->get();
+    }
+    public function syncHeroData()
+    {
+        $this->hero();
+        $this->getGenshinImpactCharacters();
+        $this->getHonkaiStarRailCharacters();
+        $this->getZenlessZoneZeroCharacters();
+    }
+    public function syncWeaponData(){
+        $this->weapon();
+        $this->getGenshinImpactWeapons();
+        $this->getHonkaiStarRailWeapons();
+        $this->getZenlessZoneZeroWeapons();
+    }
+    
 }
