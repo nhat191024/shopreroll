@@ -38,6 +38,8 @@ Route::prefix('admin')->group(function () {
     });
     Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
     Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
+    Route::get('/syncCharacters', [ApiController::class, 'syncHeroData'])->name('syncCharacters');
+    Route::get('/syncWeapons', [ApiController::class, 'syncWeaponData'])->name('syncWeapons');
 
     Route::prefix('/game-category')->group(function () {
         Route::get('/list/{id}', [GameCategoryController::class, 'index'])->name('admin.GameCategory.index');
