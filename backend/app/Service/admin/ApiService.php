@@ -82,7 +82,7 @@ class ApiService
             [
                 'gameId' => 1,
                 'url' => 'https://genshin-builds.com/vi/weapons',
-                'itemSelector' => 'div.flex.flex-row.justify-center.rounded-t-lg',
+                'itemSelector' => 'div.flex flex-row justify-center rounded-t-lg rounded-br-3xl bg-cover genshin-bg-rarity-5',
                 'nameSelector' => 'h3',
                 'imageSelector' => 'img',
             ],
