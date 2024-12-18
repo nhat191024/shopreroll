@@ -27,7 +27,7 @@ class RerollSubCategoryController extends Controller
     public function showAddRerollSubCategory()
     {
         $allRerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.rerollSubCategory.AddRerollSubCategory', compact('allRerollCategories'));
+        return view('admin.RerollSubCategory.AddRerollSubCategory', compact('allRerollCategories'));
     }
 
     public function addRerollSubCategory(Request $request)
