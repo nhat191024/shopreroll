@@ -2,14 +2,18 @@
 <html lang="vi">
 
 <head>
+    <title>Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</title>
     <meta name="description"
         content="Mua bán tài khoản Honkai Star Rail, Shop acc Honkai Star Rail VIP, Reroll uy tín hàng đầu Việt Nam">
     <meta name="keywords"
         content="Shop acc Honkai Star Rail VIP,Mua bán tài khoản Honkai Star Rail,Mua Acc Genshin Giá Rẻ Nhất,reroll" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
+
     <base href="https://shopreroll.com">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,9 +24,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         media="print" onload="this.media='all'">
     <!-- Theme style -->
-    <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <link rel="canonical" href="https://shopreroll.com" />
+
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
 </head>
@@ -106,6 +110,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </nav>
         <!-- End Navbar -->
@@ -121,31 +126,38 @@
             </h2>
             <div class="row">
                 <section class="col-12 col-lg-4">
-                    <div class="h h4 link-active">Về
-
-                        <a href='/' style="color: inherit;text-shadow:unset">shopreroll.com</a>
+                    <div class="h h4 link-active">
+                        Về <a href='/' style="color: inherit;text-shadow:unset">shopreroll.com</a>
                     </div>
-                    <p><span class="text-white font-system-ui"><b>Chúng
-                                tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của bạn
-                                lên
-                                hàng đầu</b></span><br></p>
+                    <p>
+                        <span class="text-white font-system-ui">
+                            <b>
+                                Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
+                                bạn lên hàng đầu
+                            </b>
+                        </span>
+                        <br>
+                    </p>
                     <p class="mt-3 small">
                         © shopreroll.com
                     </p>
-                    <div class="h h5"><i class="fa fa-language"></i> Ngôn ngữ
+                    <div class="h h5">
+                        <i class="fa fa-language"></i> Ngôn ngữ
                     </div>
                 </section>
 
                 <section class="col-12 col-lg-4">
-                    <div class="h h4 link-active">Chúng tôi
-                    </div>
-                    <p class="m-0">
-                    <p><span class="text-white font-system-ui"><b>Tất Cả Khách Hàng mua acc trên Shop Đều được Bảo hành
-                                100%
-                                .<br>Khách hàng mua acc trên shop phải chủ động đổi |mật khẩu| và |mail| ngay trong vòng
-                                24h ngoài 24h shop ko chịu trách nhiệm.</b></span><br></p>
+                    <div class="h h4 link-active">Chúng tôi</div>
+                    <p>
+                        <span class="text-white font-system-ui">
+                            <b>Tất Cả Khách Hàng mua acc trên Shop Đều được Bảo hành 100%.
+                                <br>
+                                Khách hàng mua acc trên shop phải chủ động đổi |mật khẩu| và |mail| ngay trong vòng 24h
+                                ngoài 24h shop ko chịu trách nhiệm.
+                            </b>
+                        </span>
+                        <br>
                     </p>
-
                 </section>
                 <section class="col-12 col-lg-1">
                 </section>
