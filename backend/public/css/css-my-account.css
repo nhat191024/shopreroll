@@ -71,6 +71,44 @@ table.dataTable td.dataTables_empty {
     color: #ffffff;
     border-color: #20c997;
 }
+@media (max-width: 768px) {
+    .dataTables_wrapper .dataTables_paginate {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .dataTables_wrapper .dt-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    table.dataTable {
+        font-size: 1rem; /* Tăng kích thước font chữ */
+    }
+}
+#example1 {
+    font-size: 0.85rem; /* Giảm kích thước chữ */
+}
+
+#example1 th,
+#example1 td {
+    padding: 8px 10px; /* Giảm padding */
+}
+
+@media (max-width: 768px) {
+    #example1 th,
+    #example1 td {
+        padding: 5px 8px; /* Giảm padding hơn nữa trên di động */
+    }
+}
+#example1_wrapper {
+    max-width: 90%; /* Giới hạn chiều rộng bảng */
+    margin: 0 auto; /* Căn giữa bảng */
+}
+
+#example1 {
+    width: 100%; /* Để bảng co dãn linh hoạt */
+}
 
 .dt-buttons .btn:hover {
     background-color: #17a2b8;
