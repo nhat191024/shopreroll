@@ -116,7 +116,7 @@
     $(document).ready(function() {
         const table = $("#example1").DataTable({
             pageLength: 5,
-            responsive: true,
+
             dom: "<'row'<'col-sm-12 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
@@ -124,8 +124,17 @@
             order: [
                 [0, "asc"]
             ],
+            columnDefs: [{
+                    targets: [1, 2, 4],
+                    visible: true
+                },
+                {
+                    targets: [2, 4],
+                    visible: false,
+                    responsivePriority: 3
+                } // Ẩn cột 2 và 4 trên màn hình nhỏ
+            ],
             lengthChange: false,
         });
-
     });
 </script>
