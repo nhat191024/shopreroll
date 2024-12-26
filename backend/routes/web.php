@@ -16,6 +16,7 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
+use App\Http\Controllers\client\MyKeyController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::prefix('client')->group(function () {
-    Route::get('/my-key', function () {
-        return view('client.myKey.index');
+    Route::prefix('/my-key')->group(function () {
+        Route::get('/', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+        Route::get('/test', [MyKeyController::class, 'test'])->name('client.MyKey.test');
+        Route::get('/rawView', [MyKeyController::class, 'rawView'])->name('client.MyKey.rawView');
     });
     Route::get('/', function () {
         return view('client.layouts.master');
