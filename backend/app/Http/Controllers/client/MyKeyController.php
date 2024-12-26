@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
-// use App\Service\client\ProductService;
-// use App\Service\client\ShopService;
+use App\Service\admin\MyKeyService;
 // use Clockwork\Request\Request;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class MyKeyController extends Controller
 {
-
+    private $myKeyService;
     public function __construct()
     {
+        $this->myKeyService = app(MyKeyService::class);
     }
     public function index()
     {
-        return view('client.myKey.index');
+        $keys = $this->myKeyService->getAuthKeys();
+        return view('client.myKey.index', compact('keys'));
+        
     }
 }
