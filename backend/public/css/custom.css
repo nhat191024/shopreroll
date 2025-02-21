@@ -1,0 +1,11 @@
+.btn_left {
+    width: 40%;
+    margin-left: -8px;
+    margin-bottom: 5px;
+    border-top-left-radius: 0.2rem !important;
+    border-bottom-left-radius: 0.2rem !important;
+    background-color: #8a6232;
+    border-color: #805828;
+    color: #e7e7e7;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 82%);
+}
