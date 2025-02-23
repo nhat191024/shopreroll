@@ -29,6 +29,7 @@
 
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles-2.css">
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -134,9 +135,9 @@
             </div>
         </nav>
         <!-- End Navbar -->
-
-        @yield('main')
-
+        <div class="vh-100">
+            @yield('main')
+        </div>
     </div>
     <footer class="mt-5 p-3">
         <div class="container-lg">
@@ -219,4 +220,5 @@
     <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
 </body>
+
 </html>
