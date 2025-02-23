@@ -16,7 +16,7 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
-use App\Http\Controllers\client\HomeController;
+use App\Http\Controllers\client\MyKeyController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
