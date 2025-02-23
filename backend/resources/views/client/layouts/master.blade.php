@@ -15,17 +15,20 @@
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <base href="https://shopreroll.com">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
     <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css" media="print"
+        onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        media="print" onload="this.media='all'">
     <!-- Theme style -->
 
     <link rel="canonical" href="https://shopreroll.com" />
 
-    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-        data-cf-settings="58c421c51abc89ff9fecda8d-|49"></script>
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -150,10 +153,8 @@
                     </div>
                     <p>
                         <span class="text-white font-system-ui">
-                            <b>
-                                Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
-                                bạn lên hàng đầu
-                            </b>
+                            <b>Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
+                                bạn lên hàng đầu</b>
                         </span>
                         <br>
                     </p>
@@ -192,12 +193,9 @@
         </div>
     </footer>
     </div>
-
     </section>
 
     </div>
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
     <ul class="nav-fixed">
         <li class="nav-fixed-zalo">
             <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
@@ -215,16 +213,10 @@
     </ul>
 
     <!-- jQuery -->
-    {{-- <script src="style/plugins/jquery/jquery.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script> --}}
-    <!-- Bootstrap 4 -->
-    {{-- <script src="style/plugins/bootstrap/js/bootstrap.bundle.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script> --}}
-    {{-- <script src="style/dist/js/adminlte.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script> --}}
-    {{-- <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script> --}}
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" defer></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js" defer></script>
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
 </body>
-
 </html>
