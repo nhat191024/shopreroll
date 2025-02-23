@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::get('/myAcc', [RechargeBillController::class, 'indexC'])->name('client.myAcc');
+Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
