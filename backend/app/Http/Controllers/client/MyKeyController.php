@@ -10,14 +10,15 @@ use Illuminate\Http\Request;
 class MyKeyController extends Controller
 {
     private $myKeyService;
+
     public function __construct()
     {
         $this->myKeyService = app(MyKeyService::class);
     }
+
     public function index()
     {
         $keys = $this->myKeyService->getAuthKeys();
         return view('client.myKey.index', compact('keys'));
-        
     }
 }
