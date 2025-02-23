@@ -1,4 +1,4 @@
-@extends('client.layouts.master2')
+@extends('client.layouts.master')
 @section('main')
     <section class="content">
         <div class="container-fluid">
