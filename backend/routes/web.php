@@ -20,19 +20,9 @@ use App\Http\Controllers\client\MyKeyController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::prefix('client')->group(function () {
-    Route::prefix('/my-key')->group(function () {
-        Route::get('/', [MyKeyController::class, 'index'])->name('client.MyKey.index');
-        Route::get('/test', [MyKeyController::class, 'test'])->name('client.MyKey.test');
-        Route::get('/rawView', [MyKeyController::class, 'rawView'])->name('client.MyKey.rawView');
-    });
-    Route::get('/', function () {
-        return view('client.layouts.master');
-    });
-});
+
+Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
 
