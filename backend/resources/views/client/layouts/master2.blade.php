@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="vi">
-  <head>
+
+<head>
     <title>Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</title>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,13 +27,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('') . '/' }}vendor/buttons/buttons.bootstrap4.min.css" >
-          <!-- JavaScript Links -->
-          <script src="{{ url('') . '/' }}vendor/jquery/jquery.min.js"></script>
-                <!-- Custom styles for this template -->
-                <link href="{{ url('') . '/' }}css/styles-2.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('') . '/' }}vendor/buttons/buttons.bootstrap4.min.css">
+    <!-- JavaScript Links -->
+    <script src="{{ url('') . '/' }}vendor/jquery/jquery.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="{{ url('') . '/' }}css/styles-2.css" rel="stylesheet">
 
-      </head>
+</head>
 
 
 
@@ -235,4 +236,3 @@
 </body>
 
 </html>
-
