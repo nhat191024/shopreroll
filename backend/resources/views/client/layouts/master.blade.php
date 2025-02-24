@@ -15,11 +15,14 @@
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <base href="https://shopreroll.com">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Font Awesome -->
     <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css" media="print"
+        onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        media="print" onload="this.media='all'">
     <!-- Theme style -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -28,8 +31,8 @@
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/my-acc.css">
 
-    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
-        data-cf-settings="58c421c51abc89ff9fecda8d-|49"></script>
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -154,10 +157,8 @@
                     </div>
                     <p>
                         <span class="text-white font-system-ui">
-                            <b>
-                                Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
-                                bạn lên hàng đầu
-                            </b>
+                            <b>Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
+                                bạn lên hàng đầu</b>
                         </span>
                         <br>
                     </p>
@@ -195,14 +196,14 @@
             </div>
         </div>
     </footer>
-</div>
-</section>
+    </div>
+    </section>
 
-</div>
-<ul class="nav-fixed">
-    <li class="nav-fixed-zalo">
-        <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
-    </li>
+    </div>
+    <ul class="nav-fixed">
+        <li class="nav-fixed-zalo">
+            <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
+        </li>
         <li class="nav-fixed-face">
             <a target="_blank" href="https://www.facebook.com/dat.ds.3">
                 <i style="color: white"class="fab fa-facebook-f fa-lg"></i>
