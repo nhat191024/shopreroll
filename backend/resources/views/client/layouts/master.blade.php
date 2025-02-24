@@ -27,10 +27,6 @@
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/my-acc.css">
-
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
 </head>
