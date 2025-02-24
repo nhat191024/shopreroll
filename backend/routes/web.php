@@ -17,15 +17,23 @@ use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Models\RechargeBill;
 use Illuminate\Support\Facades\Route;
-Route::prefix('/login')->group(function () {
-    Route::get('/',[LoginController::class,'index'])->name('login');
-    Route::post('/auth',[LoginController::class,'login'])->name('login.auth');
-});
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
-Route::prefix('/')->group(function () {
-    Route::get('/myAcc',[RechargeBillController::class,'indexC'])->name('client.myAcc');
+Route::middleware(['web'])->group(function () {
+    // Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::prefix('/login')->group(function () {
+        Route::get('/',[LoginController::class,'index'])->name('login');
+        Route::post('/auth',[LoginController::class,'login'])->name('login.auth');
+    });
+    Route::prefix('/register')->group(function () {
+        Route::get('/',[RegisterController::class,'index'])->name('register');
+        Route::post('/auth',[RegisterController::class,'register'])->name('register.auth');
+    });
+    Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+    Route::prefix('/')->group(function () {
+        Route::get('/myAcc',[RechargeBillController::class,'indexC'])->name('client.myAcc');
+    });
 });
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
