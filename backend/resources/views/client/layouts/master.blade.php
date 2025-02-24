@@ -26,7 +26,8 @@
     <!-- Theme style -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-
+    {{-- do not remove this my-acc.css file, or the UI will break --}}
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/my-acc.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
 </head>
