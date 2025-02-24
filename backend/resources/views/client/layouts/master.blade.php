@@ -197,7 +197,7 @@
     </footer>
     </div>
 
-    </section>
+</section>
 
 </div>
     <ul class="nav-fixed">
