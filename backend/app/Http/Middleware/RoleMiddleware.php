@@ -20,9 +20,10 @@ class RoleMiddleware
 
         // Check if the user's role is in the allowed roles
         if (!in_array(Auth::user()->role, $roles)) {
-            return abort(403, 'Unauthorized action.');
+            return redirect()->route('client.home')->with('error', 'Vui lòng đăng nhập trước.');
+            // return abort(403, 'Bạn không có quyền truy cập.');
         }
-        
+
         // dd('Current role: '.Auth::user()->role,'Allowed roles: (array below)',$roles);
         return $next($request);
     }
