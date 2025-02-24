@@ -8,25 +8,38 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class LoginService {
+
+    private $FORM_TITLE = 'Đăng nhập';
+    private $WRONG_CREDENTIALS_MESSAGE = 'Thông tin đăng nhập không chính xác';
+    private $ERROR_REDIRECT = '/login';
+    private $SUCCESS_REDIRECT = '/';
+    private $LOGOUT_REDIRECT = '/login';
+
     public function index(){
-    return view('client.layouts.login');
+        if (Auth::check()) {
+            return redirect()->intended('/');
+        }
+        return view('client.auth.login')->with('title', $this->FORM_TITLE);
     }
+
     public function login(Request $request) {
-        $username = $request->input(key: 'username');
+        // Validate moved to UserLoginRequest and Controller class
+        $username = $request->input('username');
         $password = $request->input('password');
         $account = User::where('username', $username)->first();
         if (!$account) {
-            return redirect('/login')->with('error', 'Không tìm thấy tài khoản');
+            return redirect($this->ERROR_REDIRECT)->with('error', $this->WRONG_CREDENTIALS_MESSAGE);
         }
         if (!Hash::check($password, $account->password)) {
-            return redirect('/login')->with('error', 'Thông tin đăng nhập không chính xác');
+            return redirect($this->ERROR_REDIRECT)->with('error', $this->WRONG_CREDENTIALS_MESSAGE);
         }
-        // return redirect('/')->with('message', 'Đăng nhập thành công');
-        return ('đăng nhập thành công');
+        Auth::login($account);
+        return redirect($this->SUCCESS_REDIRECT);
     }
+
     public function logout() {
         Auth::logout();
-        return redirect('/login')->with('message', 'Đăng xuất thành công');
+        return redirect($this->LOGOUT_REDIRECT);
     }
 }
-?>
+
