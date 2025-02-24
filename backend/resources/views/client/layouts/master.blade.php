@@ -22,8 +22,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Theme style -->
     <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    
-    
+
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/my-acc.css">
@@ -199,8 +199,7 @@
 
     </section>
 
-    </div>
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
+</div>
     <ul class="nav-fixed">
         <li class="nav-fixed-zalo">
             <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
@@ -218,32 +217,10 @@
     </ul>
 
     <!-- jQuery -->
-        {{-- <script src="style/plugins/jquery/jquery.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script> --}}
-        <!-- Bootstrap 4 -->
-        {{-- <script src="style/plugins/bootstrap/js/bootstrap.bundle.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script> --}}
-        {{-- <script src="style/dist/js/adminlte.min.js" type="58c421c51abc89ff9fecda8d-text/javascript"></script> --}}
-    {{-- <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script> --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        var $jq = jQuery.noConflict();  
-        $jq(document).ready(function() {
-            $jq('#dataTable').DataTable(); 
-        });
-    </script>
-    
-    <!-- Tải DataTables (phải sau jQuery) -->
-    <script src="{{ url('') . '/' }}vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    
-    <!-- Tải Bootstrap từ CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Tải AdminLTE từ CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js"></script>
-    
-    <!-- Các script khác như Cloudflare Rocket Loader có thể giữ lại -->
-    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" defer></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js" defer></script>
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
 </body>
-
 </html>
