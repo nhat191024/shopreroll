@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserLoginRequest;
 use App\Service\LoginService;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class LoginController extends Controller
     public function index(){
         return $this->loginService->index();
     }
-    public function login(Request $request){
+    public function login(UserLoginRequest $request){
         return $this->loginService->login($request);
     }
     public function logout(){
