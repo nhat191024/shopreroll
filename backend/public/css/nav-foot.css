@@ -484,8 +484,7 @@ footer {
     content: "";
     width: 322px;
     height: 15px;
-    /* background: url('https://example.com/new-image.png') center/cover no-repeat; */ 
-    /* no background png */
+    /* background: url("https://example.com/new-image.png") center/cover no-repeat; */
 }
 .guide__title::before {
     margin-right: 36px;
