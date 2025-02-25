@@ -141,8 +141,6 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
             Route::get('/disable/{id}', [UserController::class, 'disableUser'])->name('admin.user.disable');
             Route::get('/store/{id}', [UserController::class, 'storeUser'])->name('admin.user.store');
         });
-        Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
-        Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
 
         Route::prefix('/game-account')->group(function () {
             Route::get('/', [GameAccountController::class, 'index'])->name('admin.gameAccount.index');
