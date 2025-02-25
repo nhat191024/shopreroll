@@ -27,20 +27,25 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($accountBills as $data)
-                                        <tr>
-                                            <td>{{$data->id}}</td>
-                                            <td>{{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}</td>
-                                            <td>{{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}</td>
-                                            <td>Server: {{ $data->GameAccount ? $data->GameAccount->server : 'N/A' }}<br>
-                                                AR {{ $data->GameAccount ? $data->GameAccount->AR : 'N/A' }}<br>
-                                                Note: {{ $data->GameAccount ? $data->GameAccount->note : 'N/A' }}</td>
-                                            <td>{{ $data->price }}</td>
-                                            <td>{{ $data->GameAccount ? $data->GameAccount->title : 'N/A' }}</td>
-                                            <td>{{ $data->created_at }}</td>
-                                        </tr>
-                                        @endforeach
-
+                                        @if(count($accountBills) > 0)
+                                            @foreach ($accountBills as $data)
+                                            <tr>
+                                                <td>{{$data->id}}</td>
+                                                <td>{{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}</td>
+                                                <td>{{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}</td>
+                                                <td>Server: {{ $data->GameAccount ? $data->GameAccount->server : 'N/A' }}<br>
+                                                    AR {{ $data->GameAccount ? $data->GameAccount->AR : 'N/A' }}<br>
+                                                    Note: {{ $data->GameAccount ? $data->GameAccount->note : 'N/A' }}</td>
+                                                <td>{{ $data->price }}</td>
+                                                <td>{{ $data->GameAccount ? $data->GameAccount->title : 'N/A' }}</td>
+                                                <td>{{ $data->created_at }}</td>
+                                            </tr>
+                                            @endforeach
+                                        @else
+                                            <tr>
+                                                <td colspan="7" class="text-center">Không có tài khoản nào được mua</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
                                     <tfoot>
                                         <tr>
