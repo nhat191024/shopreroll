@@ -24,7 +24,7 @@
                         @foreach ($keys as $key => $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->key }}</td>
+                                <td class="copy-cell" data-copy="{{ $item->key }}">{{ $item->key }}</td>
                                 <td>
                                     <b>{{ $item->rerollPackage }}</b>
                                     </br>
@@ -112,6 +112,49 @@
                     rawTextarea.style.display = 'none'; // Hide textarea
                     rawButton.textContent = 'Xem giản lược'; // Revert button text
                 }
+            });
+
+            // Copy to clipboard functionality
+            function createTooltip(text) {
+                const tooltip = document.createElement('div');
+                tooltip.className = 'copy-tooltip';
+                tooltip.textContent = text;
+                document.body.appendChild(tooltip);
+                return tooltip;
+            }
+
+            function showTooltip(tooltip, element, message) {
+                const rect = element.getBoundingClientRect();
+                tooltip.textContent = message;
+                tooltip.style.left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2) + 'px';
+                tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+                tooltip.classList.add('show');
+
+                setTimeout(() => {
+                    tooltip.classList.remove('show');
+                }, 1500);
+            }
+
+            // Initialize copy functionality for cells with class copy-cell
+            const tooltip = createTooltip('');
+            $(document).on('click', '.copy-cell', function() {
+                const textToCopy = $(this).data('copy');
+                const element = this;
+
+                // Create a temporary textarea to copy from
+                const tempTextarea = document.createElement('textarea');
+                tempTextarea.value = textToCopy;
+                document.body.appendChild(tempTextarea);
+                tempTextarea.select();
+
+                try {
+                    const successful = document.execCommand('copy');
+                    showTooltip(tooltip, element, successful ? 'Copied!' : 'Failed to copy!');
+                } catch (err) {
+                    showTooltip(tooltip, element, 'Failed to copy!');
+                }
+
+                document.body.removeChild(tempTextarea);
             });
         });
     </script>
