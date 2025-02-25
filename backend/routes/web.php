@@ -40,7 +40,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // role:0,1,2 means all userClient, admin, collaborator can access this route
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::middleware(['auth', 'role:0,1,2'])->group(function () {
-    Route::get('/myAcc', [AccountBillController::class, 'index'])->name('client.myAcc');
+    Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
 });
 
 Route::get('/my-account', function () {

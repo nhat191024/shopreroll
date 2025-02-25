@@ -14,9 +14,9 @@ class AccountBillController extends Controller
     {
         $this->accountBillService = $accountBillService;
     }
-    public function index()
+    public function genshin()
     {
-        $accountBills = $this->accountBillService->getAllByUserId(Auth::id());
+        $accountBills = $this->accountBillService->getAllGenshinBillByUserId(Auth::id());
         return view('client.layouts.myAcc', compact('accountBills'));
     }
 }
