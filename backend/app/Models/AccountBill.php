@@ -21,6 +21,6 @@ class AccountBill extends Model
 
     public function GameAccount()
     {
-        return $this->belongsTo(GameAccount::class);
+        return $this->belongsTo(GameAccount::class, 'account_id');
     }
 }
