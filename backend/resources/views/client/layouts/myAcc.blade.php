@@ -17,32 +17,38 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 2%;">STT</th>
-                                            <th style="width: 30%;">Tài khoản</th>
-                                            <th style="width: 50%;">Mật khẩu</th>
-                                            <th style="width: 20%;">Thông tin</th>
-        
+                                            <th style="width: 5%;">ID</th>
+                                            <th style="width: 15%;">Tên đăng nhập</th>
+                                            <th style="width: 15%;">Mật khẩu</th>
+                                            <th style="width: 25%;">Thông tin</th>
+                                            <th style="width: 10%;">Giá</th>
+                                            <th style="width: 15%;">Tiêu đề giới thiệu</th>
+                                            <th style="width: 10%;">Mua lúc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($allRechargeBill as $data)
+                                        @foreach ($allRechargeBill as $index => $data)
                                         <tr>
-                                            <td>{{$data->id}}</td>
-                                            <td>account1</td>
-                                            <td>123456789</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary">Xem thông tin</a>
-                                            </td>
+                                            <td>{{ $data->id }}</td>
+                                            <td>{{ $data->username }}</td>
+                                            <td>{{ $data->password }}</td>
+                                            <td>UID: {{ $data->UID }}<br>Server: {{ $data->server }}<br>Character name: {{ $data->character_name }}<br>Note: {{ $data->note }}</td>
+                                            <td>{{ number_format($data->RechargePackage->price) }} VND</td>
+                                            <td>{{ $data->RechargePackage->name }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($data->created_at)->locale('vi_VN')->isoFormat('d/m/Y H:m:s') }}</td>
                                         </tr>
                                         @endforeach
-               
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th style="width: 2%;">STT</th>
-                                            <th style="width: 30%;">Tài khoản</th>
-                                            <th style="width: 50%;">Mật khẩu</th>
-                                            <th style="width: 20%;">Thông tin</th>
+                                            <th style="width: 5%;">ID</th>
+                                            <th style="width: 15%;">Tên đăng nhập</th>
+                                            <th style="width: 15%;">Mật khẩu</th>
+                                            <th style="width: 25%;">Thông tin</th>
+                                            <th style="width: 10%;">Giá</th>
+                                            <th style="width: 15%;">Tiêu đề giới thiệu</th>
+                                            <th style="width: 10%;">Mua lúc</th>
                                         </tr>
                                     </tfoot>
 
@@ -52,8 +58,8 @@
                     </div>
                 </div>
             </div>
-        </main>    
+        </main>
     </div>
-</section>    
+</section>
 @endsection
 
