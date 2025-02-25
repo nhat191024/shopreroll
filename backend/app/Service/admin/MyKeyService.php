@@ -10,13 +10,13 @@ use App\Service\admin\RerollPackageService;
 class MyKeyService
 {
     private $rerollPackageService;
-    
+
     public function __construct(RerollPackageService $rerollPackageService)
     {
         $this->rerollPackageService = $rerollPackageService;
     }
 
-    public function getAuthKeys()
+    public function getKeysHistory()
     {
         $userId = Auth::id();
         // Fetch the key IDs and their `created_at` timestamps

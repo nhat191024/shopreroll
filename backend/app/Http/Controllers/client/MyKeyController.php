@@ -18,7 +18,7 @@ class MyKeyController extends Controller
 
     public function index()
     {
-        $keys = $this->myKeyService->getAuthKeys();
+        $keys = $this->myKeyService->getKeysHistory();
         return view('client.myKey.index', compact('keys'));
     }
 }
