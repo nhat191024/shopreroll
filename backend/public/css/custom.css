@@ -12,13 +12,19 @@
 
 .card {
     margin-top: 40px;
-    padding: 32px 35px 20px 44px;
+    padding: 20px 40px 20px 40px;
     color: rgb(153 107 72);
     background: #0a0a0a url(https://www.tempest.vn/_next/static/media/BGContact.924dcf58.png);
     background-repeat: repeat;
     background-size: auto;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 20px;
+    }
 }
 
 /* Custom styling for DataTable buttons */

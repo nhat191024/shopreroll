@@ -16,7 +16,7 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
-
+use App\Http\Controllers\client\AccountBillController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\MyKeyController;
 
@@ -41,8 +41,13 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // role:0,1,2 means all userClient, admin, collaborator can access this route
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::middleware(['auth', 'role:0,1,2'])->group(function () {
-    Route::get('/myAcc', [RechargeBillController::class, 'indexC'])->name('client.myAcc');
+    Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
     Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+});
+
+Route::get('/my-account', function () {
+    return view('client.my-account');
+    // return 1;
 });
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
