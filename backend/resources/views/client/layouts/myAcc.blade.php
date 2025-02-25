@@ -6,7 +6,7 @@
         <center>
             <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon" />
         </center>
-        <h1 class="guide__title">Acc đã mua</h1>
+        <h1 class="guide__title">Acc Genshin đã mua</h1>
         <main>
             <div>
                 <!-- Default box -->
