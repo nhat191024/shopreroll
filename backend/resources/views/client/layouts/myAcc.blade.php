@@ -17,32 +17,40 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th style="width: 2%;">STT</th>
-                                            <th style="width: 30%;">Tài khoản</th>
-                                            <th style="width: 50%;">Mật khẩu</th>
-                                            <th style="width: 20%;">Thông tin</th>
-        
+                                            <th style="width: 5%;">ID</th>
+                                            <th style="width: 15%;">Tên đăng nhập</th>
+                                            <th style="width: 15%;">Mật khẩu</th>
+                                            <th style="width: 25%;">Thông tin</th>
+                                            <th style="width: 10%;">Giá</th>
+                                            <th style="width: 15%;">Tiêu đề giới thiệu</th>
+                                            <th style="width: 10%;">Mua lúc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($allRechargeBill as $data)
+                                        @foreach ($accountBills as $data)
                                         <tr>
                                             <td>{{$data->id}}</td>
-                                            <td>account1</td>
-                                            <td>123456789</td>
-                                            <td>
-                                                <a href="#" class="btn btn-primary">Xem thông tin</a>
-                                            </td>
+                                            <td>{{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}</td>
+                                            <td>{{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}</td>
+                                            <td>Server: {{ $data->GameAccount ? $data->GameAccount->server : 'N/A' }}<br>
+                                                AR {{ $data->GameAccount ? $data->GameAccount->AR : 'N/A' }}<br>
+                                                Note: {{ $data->GameAccount ? $data->GameAccount->note : 'N/A' }}</td>
+                                            <td>{{ $data->price }}</td>
+                                            <td>{{ $data->GameAccount ? $data->GameAccount->title : 'N/A' }}</td>
+                                            <td>{{ $data->created_at }}</td>
                                         </tr>
                                         @endforeach
-               
+
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <th style="width: 2%;">STT</th>
-                                            <th style="width: 30%;">Tài khoản</th>
-                                            <th style="width: 50%;">Mật khẩu</th>
-                                            <th style="width: 20%;">Thông tin</th>
+                                            <th style="width: 5%;">ID</th>
+                                            <th style="width: 15%;">Tên đăng nhập</th>
+                                            <th style="width: 15%;">Mật khẩu</th>
+                                            <th style="width: 25%;">Thông tin</th>
+                                            <th style="width: 10%;">Giá</th>
+                                            <th style="width: 15%;">Tiêu đề giới thiệu</th>
+                                            <th style="width: 10%;">Mua lúc</th>
                                         </tr>
                                     </tfoot>
 
@@ -52,8 +60,8 @@
                     </div>
                 </div>
             </div>
-        </main>    
+        </main>
     </div>
-</section>    
+</section>
 @endsection
 
