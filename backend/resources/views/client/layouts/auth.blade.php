@@ -1,6 +1,6 @@
 @extends('client.layouts.master')
 @section('main')
-    <div class="h-100">
+    <div class="vh-100">
         <center>
             <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon">
         </center>

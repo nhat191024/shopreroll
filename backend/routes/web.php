@@ -16,7 +16,9 @@ use App\Http\Controllers\admin\RerollBillController;
 use App\Http\Controllers\admin\RerollKeyController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\admin\GameAccountController;
+
 use App\Http\Controllers\client\HomeController;
+use App\Http\Controllers\client\MyKeyController;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -40,6 +42,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/myAcc', [RechargeBillController::class, 'indexC'])->name('client.myAcc');
+    Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
 });
 
 // Note: route 0=userClient, 1=admin, 2=collaborator

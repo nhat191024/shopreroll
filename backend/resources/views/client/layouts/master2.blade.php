@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 
 <head>
@@ -13,43 +13,32 @@
         content="Shop acc Honkai Star Rail VIP,Mua bán tài khoản Honkai Star Rail,Mua Acc Genshin Giá Rẻ Nhất,reroll" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
+    <base href="https://shopreroll.com">
 
-    <link rel="canonical" href="https://shopreroll.com" />
     <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        media="print" onload="this.media='all'">
-
-    <!-- Bootstrap 4 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css" media="print"
-        onload="this.media='all'">
+    <link rel="canonical" href="https://shopreroll.com" />
+    <!-- CSS Links -->
+    <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="{{ url('') . '/' }}vendor/responsive/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('') . '/' }}vendor/buttons/buttons.bootstrap4.min.css">
+    <!-- JavaScript Links -->
+    <script src="{{ url('') . '/' }}vendor/jquery/jquery.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link href="{{ url('') . '/' }}css/styles-2.css" rel="stylesheet">
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-
-    <!--custom css  -->
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles-2.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/custom.css">
-
-    <!-- jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap 4 -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
+
+
 <body class="hold-transition sidebar-collapse layout-top-nav">
+    <div class="wrapper">
         <!-- Navbar -->
         <nav class="main-header navbar navbar-expand-md nav-header mb-4">
             <div class="container">
@@ -151,7 +140,9 @@
             </div>
         </nav>
         <!-- End Navbar -->
+
         @yield('main')
+
     </div>
     <footer class="mt-5 p-3">
         <div class="container-lg">
@@ -168,8 +159,10 @@
                     </div>
                     <p>
                         <span class="text-white font-system-ui">
-                            <b>Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
-                                bạn lên hàng đầu</b>
+                            <b>
+                                Chúng tôi làm việc một cách chuyên nghiệp, uy tín, nhanh chóng và luôn đặt quyền lợi của
+                                bạn lên hàng đầu
+                            </b>
                         </span>
                         <br>
                     </p>
@@ -206,44 +199,40 @@
                 </section>
             </div>
         </div>
+        <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
+        <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
+        <ul class="nav-fixed">
+            <li class="nav-fixed-zalo">
+                <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
+            </li>
+            <li class="nav-fixed-face">
+                <a target="_blank" href="https://www.facebook.com/dat.ds.3">
+                    <i style="color: white"class="fab fa-facebook-f fa-lg"></i>
+                </a>
+            </li>
+            <li class="nav-fixed-phone">
+                <a href="tel:0386496488">
+                    <i style="color: white" class="fa fa-phone fa-lg"></i>
+                </a>
+            </li>
+        </ul>
     </footer>
-
     </div>
-    <ul class="nav-fixed">
-        <li class="nav-fixed-zalo">
-            <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
-        </li>
-        <li class="nav-fixed-face">
-            <a target="_blank" href="https://www.facebook.com/dat.ds.3">
-                <i style="color: white"class="fab fa-facebook-f fa-lg"></i>
-            </a>
-        </li>
-        <li class="nav-fixed-phone">
-            <a href="tel:0386496488">
-                <i style="color: white" class="fa fa-phone fa-lg"></i>
-            </a>
-        </li>
-    </ul>
+    <!-- JavaScript Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/jquery/jquery.dataTables.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/buttons/dataTables.buttons.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/buttons/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/buttons/buttons.html5.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/buttons/buttons.print.min.js"></script>
+    <script src="{{ url('') . '/' }}vendor/buttons/buttons.colVis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 
-    <!-- DataTables JS -->
-    <script
-        src="https://cdn.datatables.net/v/bs4/jq-3.7.0/dt-2.2.2/b-3.2.2/b-colvis-3.2.2/r-3.0.4/sl-3.0.0/datatables.min.js"
-        integrity="sha384-B8hhapBzyENLm121fc/+Itc1gDWTHRWHm+vNGfDZ3TF2jQEBhrdZRssP/CQ8Og+r" crossorigin="anonymous">
-    </script>
 
-    <!-- Additional DataTable Button Scripts -->
-    <script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.min.js"></script>
-
-    <!-- AdminLTE App -->
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js" defer></script>
-
-    <!-- Custom JS -->
-    @yield('scripts')
 </body>
 
 </html>
