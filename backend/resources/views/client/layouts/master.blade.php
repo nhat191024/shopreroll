@@ -15,21 +15,33 @@
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <base href="https://shopreroll.com">
+    <link rel="canonical" href="https://shopreroll.com" />
+    <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Font Awesome -->
-    <link rel="icon" type="image/png" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css" media="print"
-        onload="this.media='all'">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
         media="print" onload="this.media='all'">
+
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
     <!-- Theme style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/css/adminlte.min.css" media="print"
+        onload="this.media='all'">
 
-    <link rel="canonical" href="https://shopreroll.com" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
 
+    <!--custom css  -->
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/styles-2.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/custom.css">
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
@@ -214,11 +226,68 @@
     </ul>
 
     <!-- jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- DataTables JS -->
+    <script
+        src="https://cdn.datatables.net/v/bs4/jq-3.7.0/dt-2.2.2/b-3.2.2/b-colvis-3.2.2/r-3.0.4/sl-3.0.0/datatables.min.js"
+        integrity="sha384-B8hhapBzyENLm121fc/+Itc1gDWTHRWHm+vNGfDZ3TF2jQEBhrdZRssP/CQ8Og+r" crossorigin="anonymous">
+    </script>
+
     <!-- AdminLTE App -->
     <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1.0/dist/js/adminlte.min.js" defer></script>
+
+    <!-- rocket loader -->
     <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
         data-cf-settings="58c421c51abc89ff9fecda8d-|49" defer></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        $(document).ready(function() {
+            const table = $("#user_data").DataTable({
+                pageLength: 4,
+                dom: "<'row'<'col-sm-12 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
+                buttons: ["copy", "csv", "excel", "print", "colvis"],
+                order: [
+                    [0, "asc"]
+                ],
+                columnDefs: [{
+                        targets: [1, 2],
+                        visible: true
+                    },
+                    {
+                        targets: [2],
+                        visible: false,
+                        responsivePriority: 3
+                    } // Ẩn cột 2 và 4 trên màn hình nhỏ
+                ],
+                lengthChange: false,
+            });
+        });
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const rawButton = document.getElementById('raw-button');
+        //     const rawTextarea = document.getElementById('raw-textarea');
+
+        //     rawButton.addEventListener('click', function() {
+        //         // Toggle visibility of the textarea
+        //         if (rawTextarea.style.display === 'none' || rawTextarea.style.display === '') {
+        //             rawTextarea.style.display = 'block'; // Show textarea
+        //             rawButton.textContent = 'Thoát giản lược'; // Change button text
+        //         } else {
+        //             rawTextarea.style.display = 'none'; // Hide textarea
+        //             rawButton.textContent = 'Xem giản lược'; // Revert button text
+        //         }
+        //     });
+        // });
+        // // Populate the textarea with the hidden input's value
+        // const content = document.getElementById('raw-content').value;
+        // document.getElementById('raw-textarea').value = content;
+    </script>
 </body>
 
 </html>
