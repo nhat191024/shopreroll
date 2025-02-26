@@ -18,8 +18,8 @@ class BalanceRechargeBankBill extends Model
         'status',
     ];
 
-    public function Buyer()
+    public function User()
     {
-        return $this->belongsTo(user::class);
+        return $this->belongsTo(User::class);
     }
 }

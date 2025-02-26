@@ -24,8 +24,8 @@ return new class extends Migration
             $table->integer('price_out');
             $table->text('note');
             $table->tinyInteger('status')->default(1);
+            $table->string('account_image')->nullable();
             $table->timestamps();
-
             $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('game_category_id')->references('id')->on('game_categories')->onDelete('cascade');
         });

@@ -75,29 +75,15 @@
                         <span>Game</span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i
+                            class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.GameRecharge.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Nạp Game</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarReroll" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarReroll"><i class="fa-solid fa-dice"></i>
-                        <span data-key="t-layouts">Danh mục reroll</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarReroll" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Genshin Impact reroll</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">HonKai Impact reroll</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Honkai Star Rail
-                                    reroll</a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#account" data-bs-toggle="collapse" role="button"
@@ -126,16 +112,20 @@
                         <span data-key="t-layouts">Character</span>
                     </a>
                     <div class="collapse menu-dropdown" id="characters" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column"><li class="nav-item">
-                            <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}" class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
-                        </li>
-                        
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}"
+                                    class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}"
+                                    class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}"
+                                    class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
+                            </li>
+
                         </ul>
                     </div>
                 </li>
@@ -148,15 +138,18 @@
                     <div class="collapse menu-dropdown" id="weapon" data-bs-parent="#menuAccordion">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'genshin-impact']) }}" class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                                <a href="{{ route('admin.weapon', ['slug' => 'genshin-impact']) }}" class="nav-link"
+                                    data-key="t-horizontal">Genshin Impact</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'honkai-star-rail']) }}" class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
+                                <a href="{{ route('admin.weapon', ['slug' => 'honkai-star-rail']) }}"
+                                    class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'zenless-zone-zero']) }}" class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
+                                <a href="{{ route('admin.weapon', ['slug' => 'zenless-zone-zero']) }}"
+                                    class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </li>
@@ -166,15 +159,15 @@
                         <span>Tài khoản người dùng</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.RechargeBill.index') }}">
                         <i class="fa-solid fa-clock-rotate-left"></i>
                         <span>Lịch sử giao dịch</span></a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="fa-regular fa-envelope"></i>
                         <span>Tin nhắn khách hàng</span></a>
-                </li>
+                </li> --}}
             </div>
 
             <!-- Divider -->
@@ -386,6 +379,7 @@
             <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
             <script src="{{ url('') . '/' }}js/admin/blog.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="{{ url('') . '/' }}js/admin/main.js"></script>
 
 </body>
 

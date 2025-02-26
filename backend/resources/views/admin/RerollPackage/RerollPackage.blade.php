@@ -33,6 +33,7 @@
                                     <th>Mã</th>
                                     <th class="col-2">Tên</th>
                                     <th class="col-3">Giá</th>
+                                    <th class="col-4">Chức năng</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -40,10 +41,11 @@
                                     <th>Mã</th>
                                     <th class="col-2">Tên</th>
                                     <th class="col-3">Giá</th>
+                                    <th class="col-4">Chức năng</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach ($allRerollPackages as $key => $item)
+                                @foreach ($allRerollPackagies as $key => $item)
                                     <tr>
                                         <td>{{ $item['id'] }}</td>
                                         <td>{{ $item['name'] }}</td>
@@ -53,7 +55,7 @@
                                             onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollPackage.delete', $item->id) }}'; }">
                                             Xóa </a>
                                             <a class="btn btn-info" href="{{ route('admin.RerollPackage.showEdit', $item->id) }}">Sửa</a>
-
+                                            <a class="btn btn-info" href="{{ route('admin.RerollPackage.detail', $item->id) }}">Chi tiết</a>
                                         </td>
 
                                     </tr>

@@ -15,7 +15,7 @@ class ApiService
     {
         $this->client = new Client();
     }
-    // function get Characters 
+    // function get Characters
     public function getCharacters(int $gameId, string $url, string $nameSelector, string $imageSelector): array
     {
         try {
@@ -42,8 +42,8 @@ class ApiService
                 );
             });
             return Hero::where('game_id', $gameId)
-            ->get(['name', 'image'])
-            ->toArray();
+                ->get(['name', 'image'])
+                ->toArray();
         } catch (\Exception $e) {
             throw new \Exception('Error fetching characters: ' . $e->getMessage());
         }
@@ -79,15 +79,15 @@ class ApiService
             });
 
             return Weapon::where('game_id', $gameId)
-            ->get(['name', 'image'])
-            ->toArray();
+                ->get(['name', 'image'])
+                ->toArray();
         } catch (\Exception $e) {
             throw new \Exception('Error fetching weapons: ' . $e->getMessage());
         }
     }
 
-    // Call this function with the appropriate parameters 
-    // // Update in there 
+    // Call this function with the appropriate parameters
+    // // Update in there
     // public function get_Sth()
     // {
     //     return $this->get_Sth(game_id, 'crawl url', 'tag', 'img-tag');

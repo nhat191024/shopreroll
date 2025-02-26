@@ -27,7 +27,7 @@ class RerollSubCategoryController extends Controller
     public function showAddRerollSubCategory()
     {
         $allRerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.RerollSubCategory.AddRerollSubCategory', compact('allRerollCategories'));
+        return view('admin.RerollSubCategory.AddRerollsubcategory', compact('allRerollCategories'));
     }
 
     public function addRerollSubCategory(Request $request)
@@ -48,7 +48,7 @@ class RerollSubCategoryController extends Controller
             $request->image
         );
 
-        return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Thêm danh mục thành công');
+        return redirect(route('admin.RerollSubCategory.index'))->with('success', 'Thêm danh mục thành công');
     }
 
     public function showEditRerollSubCategory(Request $request)
@@ -56,7 +56,7 @@ class RerollSubCategoryController extends Controller
         $idRerollSubCategory = $request->id;
         $rerollSubCategoryInfo = $this->rerollSubCategoryService->getById($idRerollSubCategory);
         $rerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.rerollSubCategory.EditRerollSubcategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'rerollCategories'));
+        return view('admin.RerollSubCategory.EditRerollsubcategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'rerollCategories'));
     }
 
     public function editRerollSubCategory(Request $request)
@@ -89,8 +89,8 @@ class RerollSubCategoryController extends Controller
     public function detailRerollSubCategory(Request $request)
     {
         $idRerollPackage = $request->id;
-        $allRerollPackages = $this->rerollSubCategoryService->getChildren($idRerollPackage);
-        return view('admin.RerollPackage.RerollPackage', compact('allRerollPackages'));
+        $allRerollPackagies = $this->rerollSubCategoryService->getChildren($idRerollPackage);
+        return view('admin.RerollPackage.RerollPackage', compact('allRerollPackagies'));
     }
 
     public function ChangeCategoryStatus(Request $request)
