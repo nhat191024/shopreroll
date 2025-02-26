@@ -22,7 +22,7 @@ class RechargeShopController extends Controller
         }
         $gameRecharge = $this->rechargeShopService->getCurrentGameRechargeById($id);
         $rechargePackages = $gameRecharge->rechargePackages;
-        $rechargeBills = $this->rechargeShopService->getAllRechargeBillsByUser();
+        $rechargeBills = $this->rechargeShopService->getAllRechargeBillsByUser($gameRecharge->id);
         return view('client.home.game-recharge', compact('rechargePackages','gameRecharge', 'rechargeBills'));
     }
 
