@@ -174,7 +174,7 @@
                                                             @forelse($rechargeBills as $bill)
                                                             <tr>
                                                                 <td>{{ $bill->id ?? 'N/A' }}</td>
-                                                                <td>{{ $bill->status ?? 'N/A' }}</td>
+                                                                <td>{{ $bill->status == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
                                                                 <td>{{ $bill->username ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->RechargePackage->name ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->server ?? 'N/A' }}</td>
