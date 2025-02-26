@@ -36,6 +36,11 @@ Route::prefix('/register')->group(function () {
 });
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+// shop routes
+Route::get('/reroll/detail/{id}', [HomeController::class, 'rerollDetail'])->name('client.reroll.detail');
+Route::post('/reroll/detail/buy', [HomeController::class, 'buyRerollDetail'])->name('client.reroll.detail.buy');
+Route::get('/reroll/detail/{id}/tutorial', [HomeController::class, 'rerollTutorial'])->name('client.reroll.detail.tutorial');
+
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
 // role:0,1,2 means all userClient, admin, collaborator can access this route
