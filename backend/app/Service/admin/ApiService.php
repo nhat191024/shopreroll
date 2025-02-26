@@ -15,156 +15,110 @@ class ApiService
     {
         $this->client = new Client();
     }
-
-    public function hero(): array
+    // function get Characters
+    public function getCharacters(int $gameId, string $url, string $nameSelector, string $imageSelector): array
     {
-        $games = [
-            [
-                'gameId' => 1,
-                'url' => 'https://genshin.gg/characters',
-                'itemSelector' => 'a.character-portrait',
-                'nameSelector' => 'h2.character-name',
-                'imageSelector' => 'img.character-icon',
-            ],
-            [
-                'gameId' => 2,
-                'url' => 'https://genshin.gg/star-rail',
-                'itemSelector' => 'a.character-portrait',
-                'nameSelector' => 'h2.character-name',
-                'imageSelector' => 'img.character-icon',
-            ],
-            [
-                'gameId' => 3,
-                'url' => 'https://genshin.gg/zzz',
-                'itemSelector' => 'a.character-portrait',
-                'nameSelector' => 'h2.character-name',
-                'imageSelector' => 'img.character-icon',
-            ],
-        ];
+        try {
+            $response = $this->client->get($url, ['verify' => false]);
+            $html = $response->getBody()->getContents();
+            $crawler = new Crawler($html);
 
-        $allHeroes = [];
 
-        foreach ($games as $game) {
-            try {
-                $response = $this->client->get($game['url'], ['verify' => false]);
-                $html = $response->getBody()->getContents();
-                $crawler = new Crawler($html);
+            $crawler->filter($nameSelector)->each(function (Crawler $node) use (&$characters, $gameId, $imageSelector) {
+                $characterName = $node->filter('h2.character-name')->text();
+                $characterImage = $node->filter($imageSelector)->attr('src');
 
-                $crawler->filter($game['itemSelector'])->each(function (Crawler $node) use (&$allHeroes, $game) {
-                    $heroName = $node->filter($game['nameSelector'])->text();
-                    $heroImage = $node->filter($game['imageSelector'])->attr('src');
-
-                    $allHeroes[] = [
-                        'name' => trim($heroName),
-                        'image' => trim($heroImage),
-                        'game_id' => $game['gameId'],
-                    ];
-
-                    Hero::firstOrCreate(
-                        ['name' => trim($heroName)],
-                        [
-                            'game_id' => $game['gameId'],
-                            'image' => trim($heroImage),
-                        ]
-                    );
-                });
-            } catch (\Exception $e) {
-                throw new \Exception('Error fetching heroes for game ID ' . $game['gameId'] . ': ' . $e->getMessage());
-            }
+                // $characters[] = [
+                //     'name' => trim($characterName),
+                //     'image' => trim($characterImage),
+                // ];
+                // Add character to database
+                Hero::firstOrCreate(
+                    ['name' => trim($characterName)],
+                    [
+                        'game_id' => $gameId,
+                        'image' => trim($characterImage),
+                    ]
+                );
+            });
+            return Hero::where('game_id', $gameId)
+                ->get(['name', 'image'])
+                ->toArray();
+        } catch (\Exception $e) {
+            throw new \Exception('Error fetching characters: ' . $e->getMessage());
         }
-
-        return $allHeroes;
     }
-
-    public function weapon(): array
+    // function get Weapons
+    public function getWeapons(int $gameId, string $url, string $nameSelector, string $imageSelector): array
     {
-        $games = [
-            [
-                'gameId' => 1,
-                'url' => 'https://genshin.gg/weapons/',
-                'itemSelector' => 'div.table-image-wrapper',
-                'nameSelector' => 'img[alt]',
-                'imageSelector' => 'img',
-            ],
-            [
-                'gameId' => 2,
-                'url' => 'https://genshin.gg/star-rail/light-cones',
-                'itemSelector' => 'div.light-cones-item',
-                'nameSelector' => 'img[alt]', 
-                'imageSelector' => 'img',
-            ],
-            [
-                'gameId' => 3,
-                'url' => 'https://genshin.gg/zzz/w-engines',
-                'itemSelector' => 'div.light-cones-item',
-                'nameSelector' => 'img[alt]', 
-                'imageSelector' => 'img',
-            ],
-        ];
+        try {
+            $response = $this->client->get($url, ['verify' => false]);
+            $html = $response->getBody()->getContents();
+            $crawler = new Crawler($html);
 
-        $allWeapons = [];
+            // $weapons = [];
 
-        foreach ($games as $game) {
-            try {
-                $response = $this->client->get($game['url'], ['verify' => false]);
-                $html = $response->getBody()->getContents();
-                $crawler = new Crawler($html);
+            $crawler->filter($nameSelector)->each(function (Crawler $node) use (&$weapons, $gameId, $imageSelector) {
+                $weaponName = $node->filter('img')->attr('alt');
+                $weaponImage = $node->filter($imageSelector)->attr('src');
 
-                $crawler->filter($game['itemSelector'])->each(function (Crawler $node) use (&$allWeapons, $game) {
-                    $weaponName = $node->filter($game['nameSelector'])->attr('alt') ?? $node->filter($game['nameSelector'])->text();
-                    $weaponImage = $node->filter($game['imageSelector'])->attr('src');
-
-                    $allWeapons[] = [
-                        'name' => trim($weaponName),
-                        'image' => trim($weaponImage),
-                        'game_id' => $game['gameId'],
-                    ];
-
+                if (!empty($weaponName) && !empty($weaponImage)) {
+                    // $weapons[] = [
+                    //     'name' => trim($weaponName),
+                    //     'image' => trim($weaponImage),
+                    // ];
+                    // Add waepon to database
                     Weapon::firstOrCreate(
                         ['name' => trim($weaponName)],
                         [
-                            'game_id' => $game['gameId'],
+                            'game_id' => $gameId,
                             'image' => trim($weaponImage),
                         ]
                     );
-                });
-            } catch (\Exception $e) {
-                throw new \Exception('Error fetching weapons for game ID ' . $game['gameId'] . ': ' . $e->getMessage());
-            }
-        }
+                }
+            });
 
-        return $allWeapons;
+            return Weapon::where('game_id', $gameId)
+                ->get(['name', 'image'])
+                ->toArray();
+        } catch (\Exception $e) {
+            throw new \Exception('Error fetching weapons: ' . $e->getMessage());
+        }
     }
-    public function getGenshinImpactCharacters(){
-        return Hero::where('game_id', 1)->get();
-    }
-    public function getHonkaiStarRailCharacters(){
-        return Hero::where('game_id', 2)->get();
-    }
-    public function getZenlessZoneZeroCharacters(){
-        return Hero::where('game_id', 3)->get();
-    }
-    public function getGenshinImpactWeapons(){
-        return Weapon::where('game_id', 1)->get();
-    }
-    public function getHonkaiStarRailWeapons(){
-        return Weapon::where('game_id', 2)->get();
-    }
-    public function getZenlessZoneZeroWeapons(){
-        return Weapon::where('game_id', 3)->get();
-    }
-    public function syncHeroData()
+
+    // Call this function with the appropriate parameters
+    // // Update in there
+    // public function get_Sth()
+    // {
+    //     return $this->get_Sth(game_id, 'crawl url', 'tag', 'img-tag');
+    // }
+    public function getGenshinImpactCharacters()
     {
-        $this->hero();
-        $this->getGenshinImpactCharacters();
-        $this->getHonkaiStarRailCharacters();
-        $this->getZenlessZoneZeroCharacters();
+        return $this->getCharacters(1, 'https://genshin.gg/characters', 'a.character-portrait', 'img.character-icon');
     }
-    public function syncWeaponData(){
-        $this->weapon();
-        $this->getGenshinImpactWeapons();
-        $this->getHonkaiStarRailWeapons();
-        $this->getZenlessZoneZeroWeapons();
+
+    public function getHonkaiStarRailCharacters()
+    {
+        return $this->getCharacters(2, 'https://genshin.gg/star-rail', 'a.character-portrait', 'img.character-icon');
     }
-    
+
+    public function getZenlessZoneZeroCharacters()
+    {
+        return $this->getCharacters(3, 'https://genshin.gg/zzz', 'a.character-portrait', 'img.character-icon');
+    }
+
+    public function getGenshinImpactWeapons()
+    {
+        return $this->getWeapons(1, 'https://genshin-builds.com/vi/weapons', 'div.flex.flex-row.justify-center.rounded-t-lg', 'img');
+    }
+
+    public function getHonkaiStarRailWeapons()
+    {
+        return $this->getWeapons(2, 'https://genshin.gg/star-rail/light-cones', 'div.light-cones-item', 'img');
+    }
+
+    public function getZenlessZoneZeroWeapons()
+    {
+        return $this->getWeapons(3, 'https://genshin.gg/zzz/w-engines', 'div.light-cones-item', 'img');
+    }
 }
