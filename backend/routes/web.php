@@ -53,6 +53,7 @@ Route::middleware(['auth', 'role:0,1,2'])->group(function () {
 Route::get('/my-account', function () {
     return view('client.my-account');
     // return 1;
+
 });
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
