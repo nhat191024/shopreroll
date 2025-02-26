@@ -131,7 +131,7 @@
                         @foreach ($allGameRecharge as $gameRecharge)
                             <article class="col-lg-3 col-sm-6 col-6 col-6 item-bounder">
                                 <center>
-                                    <a href="#">
+                                    <a href="{{ route('client.recharge', $gameRecharge->id) }}">
                                         <img class="item-image-key" src="{{ url('image/thumb') . '/' . $gameRecharge->image }}" loading="lazy">
                                     </a>
                                     <h2 class="note__title">{{ $gameRecharge->name }}</h2>
@@ -147,7 +147,7 @@
                                             <span class="more-detail fs-4">16</span>
                                         </section>
                                     </div>
-                                    <a href="#">
+                                    <a href="{{ route('client.recharge', $gameRecharge->id) }}">
                                         <button class="btn-pretty mb-4 mt-2">Nạp Ngay</button>
                                     </a>
                                 </center>
