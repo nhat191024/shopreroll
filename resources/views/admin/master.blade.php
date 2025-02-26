@@ -12,29 +12,31 @@
     <link rel="icon" type="image/svg+xml" href="{{ asset('img/logo.svg') }} " />
     <title>Shop game- Quản lý</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+    <!-- IMPORTANT: Load jQuery first, then Bootstrap, then other plugins -->
+    <!-- jQuery (full version) - Load this FIRST -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-    <!-- Custom fonts for this template -->
-    <link href="{{ url('') . '/' }}vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Bootstrap 4 JavaScript - After jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap-select CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Bootstrap-select JavaScript - After Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+    <!-- Remaining styles and scripts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/styles1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
-    <!-- Custom styles for this page -->
-    <link href="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
-
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -358,34 +360,47 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="{{ url('') . '/' }}vendor/jquery/jquery.min.js"></script>
-            <script src="{{ url('') . '/' }}vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom scripts for all pages -->
+    <script src="{{ url('') . '/' }}js/sb-admin-2.min.js"></script>
 
-            <!-- Core plugin JavaScript-->
-            <script src="{{ url('') . '/' }}vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- IMPORTANT: Remove the DataTables bundle that includes jQuery -->
+    <!-- Use separate DataTables scripts instead -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="{{ url('') . '/' }}js/sb-admin-2.min.js"></script>
+    <script>
+        // Document ready function
+        $(document).ready(function() {
+            // Check if bootstrap-select is loaded
+            if (typeof $.fn.selectpicker === 'function') {
+                // Initialize selectpicker
+                $('.selectpicker').selectpicker();
+                console.log('Bootstrap-select initialized successfully');
+            } else {
+                console.error('Bootstrap-select plugin is not available');
+                // Fallback to standard select
+                console.log('Using standard select as fallback');
+            }
 
-            <!-- Page level plugins -->
-            <script src="{{ url('') . '/' }}vendor/datatables/jquery.dataTables.min.js"></script>
-            <script src="{{ url('') . '/' }}vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-            <!-- Page level custom scripts -->
-            <script src="{{ url('') . '/' }}js/demo/datatables-demo.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
-            <script src="{{ url('') . '/' }}js/admin/blog.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="{{ url('') . '/' }}js/admin/main.js"></script>
+            // Initialize any DataTables after bootstrap-select
+            if (typeof $.fn.DataTable === 'function') {
+                // Your DataTable initialization can go here
+                console.log('DataTables is available');
+            }
+        });
+    </script>
 
 </body>
 
 </html>
-<script>
-    $(function() {
-        $('.selectpicker').selectpicker();
-    });
-</script>
