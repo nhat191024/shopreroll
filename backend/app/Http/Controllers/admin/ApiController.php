@@ -17,7 +17,6 @@ class ApiController extends Controller
         $this->apiService = $apiService;
     }
 
-    // CHARACTER CONTROLLER
     public function indexGameCharacters($slug)
     {
         try {
@@ -44,8 +43,6 @@ class ApiController extends Controller
             return back()->withErrors(['message' => $e->getMessage()]);
         }
     }
-
-
     public function indexGameWeapons($slug)
     {
         try {
@@ -63,7 +60,7 @@ class ApiController extends Controller
                     $game_name = 'Zenless Zone Zero';
                     break;
                 default:
-                    return response()->json(['success' => false, 'message' => 'Invalid game slug'], 400);
+                    return response()->json(['success' => false, 'message' => 'Sai đường dẫn'], 400);
             }
             $date = Weapon::select('updated_at')->first();
             // Truyền dữ liệu weapons và game_name vào view
@@ -71,5 +68,15 @@ class ApiController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
         }
+    }
+    public function syncHeroData()
+    {
+        $this->apiService->syncHeroData();
+        return back();
+    }
+    public function syncWeaponData()
+    {
+        $this->apiService->syncWeaponData();
+        return back();
     }
 }
