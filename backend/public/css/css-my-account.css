@@ -1,0 +1,141 @@
+@media (max-width: 768px) {
+    .dt-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    table.dataTable {
+        font-size: 0.9rem;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+        justify-content: center;
+    }
+    .dataTables_wrapper .dt-buttons,
+    .dataTables_wrapper .dataTables_filter {
+        text-align: center;
+    }
+}
+table.dataTable {
+    border: 2px solid #a0522d;
+}
+table.dataTable th,
+table.dataTable td {
+    border: 1px solid #d2b48c;
+}
+.dataTables_wrapper .dt-buttons .btn {
+    background-color: #008080;
+    color: white;
+    border: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #008080;
+    color: white;
+}
+.dataTables_wrapper .dt-buttons {
+    float: none;
+    text-align: left;
+    margin-bottom: 0;
+}
+.dataTables_wrapper .row {
+    align-items: center;
+}
+.dataTables_wrapper .dataTables_filter {
+    float: none;
+    text-align: right;
+    margin-bottom: 0;
+}
+.dataTables_wrapper .dataTables_filter label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+table.dataTable td.dataTables_empty {
+    text-align: center;
+    vertical-align: middle;
+    /* color: #8b4513;
+    background-color: #dfc0a9be; */
+}
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 8px;
+    width: auto;
+    max-width: 200px;
+}
+.dataTables_wrapper .dt-buttons-container {
+    text-align: left;
+}
+
+.dt-buttons .btn {
+    background-color: #20c997;
+    color: #ffffff;
+    border-color: #20c997;
+}
+@media (max-width: 768px) {
+    .dataTables_wrapper .dataTables_paginate {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .dataTables_wrapper .dt-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    table.dataTable {
+        font-size: 1rem; /* Tăng kích thước font chữ */
+    }
+}
+#example1 {
+    font-size: 0.85rem; /* Giảm kích thước chữ */
+}
+
+#example1 th,
+#example1 td {
+    padding: 8px 10px; /* Giảm padding */
+}
+
+@media (max-width: 768px) {
+    #example1 th,
+    #example1 td {
+        padding: 5px 8px; /* Giảm padding hơn nữa trên di động */
+    }
+}
+#example1_wrapper {
+    max-width: 90%; /* Giới hạn chiều rộng bảng */
+    margin: 0 auto; /* Căn giữa bảng */
+}
+
+#example1 {
+    width: 100%; /* Để bảng co dãn linh hoạt */
+}
+
+.dt-buttons .btn:hover {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+.guide_title {
+    color: #8b4513;
+    font-weight: bold;
+}
+
+.city_icon {
+    max-width: 100px;
+}
+
+.custom-background {
+    background-image: url("https://www.tempest.vn/_next/static/media/BGContact.924dcf58.png");
+    /* Đường dẫn đến ảnh */
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px;
+    border-radius: 8px;
+    color: #8b4513;
+}
+
+#example1 {
+    border-color: rgb(161 117 84) !important;
+    border-width: 2px !important;
+    color: rgb(161 117 84);
+}

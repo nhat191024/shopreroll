@@ -1,0 +1,158 @@
+.custom-background {
+    background: url("https://i.pinimg.com/736x/02/92/e7/0292e729f4b194ce51cae05db8baa4c2.jpg"); /* Đường dẫn đến ảnh */
+    background-size: cover; /* Ảnh bao phủ toàn bộ vùng */
+    background-position: center; /* Canh giữa ảnh */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    padding: 20px; /* Thêm khoảng cách để bảng không bị sát ảnh nền */
+    border-radius: 8px; /* Làm mềm góc cạnh nếu cần */
+}
+table.dataTable thead th {
+    background-color: #f7f3e9; /* Màu nền cho tiêu đề */
+    color: #6c757d; /* Màu chữ */
+    border-color: #ddd;
+}
+
+table.dataTable tbody td {
+    background-color: #fff;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.3rem 0.5rem;
+}
+.bg-gradient-login {
+    background-image: url("../img/client/shop/product-26.webp");
+    background-size: cover;
+}
+.btn-login {
+    background-color: #e26868b7;
+    color: #fff;
+    font-size: 80px;
+
+    font-family: "Dancing Script";
+}
+.btn-login:hover {
+    color: #ffdb6d;
+}
+.btn-log {
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    padding: 0.75rem 1rem;
+}
+.mys-5 {
+    margin-top: 15rem !important;
+}
+.cards {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #ffffff25;
+    background-clip: border-box;
+    border: 1px solid #e3e6f0;
+    border-radius: 5rem;
+}
+.texts {
+    color: #ffffff !important;
+    font-family: "Dancing Script";
+    font: 30px;
+}
+.forms-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 15px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #000000;
+    background-color: #ffffff77;
+    background-clip: padding-box;
+    border: 2px #d1d3e2;
+    border-radius: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 30px;
+    height: 50px;
+}
+.carousel-control-prev,
+.carousel-control-next {
+    opacity: 0.5;
+}
+.col-banner {
+    position: relative;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.font-res {
+    font-size: 10rem !important;
+}
+.font-sub {
+    font-size: 2.5rem !important;
+}
+
+@media (max-width: 600px) {
+    .font-res {
+        font-size: 2.5rem !important;
+    }
+    .font-sub {
+        font-size: 0rem !important;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 768px) {
+    .font-res {
+        font-size: 4rem !important;
+    }
+    .font-sub {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .font-res {
+        font-size: 4rem !important;
+    }
+    .font-sub {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1280px) {
+    .font-res {
+        font-size: 6rem !important;
+    }
+    .font-sub {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (min-width: 1280px) and (max-width: 1440px) {
+    .font-res {
+        font-size: 8rem !important;
+    }
+    .font-sub {
+        font-size: 2rem !important;
+    }
+}
+
+@media (min-width: 1440px) and (max-width: 1920px) {
+    .font-res {
+        font-size: 8rem !important;
+    }
+    .font-sub {
+        font-size: 2rem !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .font-res {
+        font-size: 10rem !important;
+    }
+    .font-sub {
+        font-size: 2.5rem !important;
+    }
+}
