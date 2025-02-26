@@ -176,7 +176,7 @@
                                                                 <td>{{ $bill->id ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->status ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->username ?? 'N/A' }}</td>
-                                                                <td>{{ $bill->recharge_package->name ?? 'N/A' }}</td>
+                                                                <td>{{ $bill->RechargePackage->name ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->server ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->note ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->created_at ?? 'N/A' }}</td>
