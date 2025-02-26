@@ -18,6 +18,7 @@
 
                                 <form method="post" action="{{ route('client.reroll.detail.buy') }}">
                                     @csrf
+                                    <input type="hidden" name="reroll_category_id" value="{{ $rerollSubCategory[0]->id }}">
                                     <input type="hidden" name="packet_id" value="{{ $packet->id }}">
                                     <button type="submit" name="submit"
                                     style="width: 100%;background: unset;border: unset;">
