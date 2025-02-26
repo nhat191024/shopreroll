@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link menu-header shine-active">
+                        <a href="/" class="nav-link menu-header shine-active">
                             <i class="ficon fa-lg fa fa-home"></i>
                         </a>
                     </li>
@@ -97,7 +97,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link menu-header">
+                        <a href="#recharge_service" class="nav-link menu-header">
                             Nạp Game
                         </a>
                     </li>
@@ -108,21 +108,21 @@
                         </a>
                         <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
                             <li>
-                                <a href="https://shopreroll.com/genshin/acc/my-acc" class="dropdown-item ">
+                                <a href="{{ route('client.myAccGenshin') }}" class="dropdown-item ">
                                     <i class="fas fa-history mr-1"></i>
                                     Genshin
                                 </a>
                             </li>
                             <li class="dropdown-divider"></li>
                             <li>
-                                <a href="https://shopreroll.com/key/my-key" class="dropdown-item ">
+                                <a href="{{ route('client.MyKey.index') }}" class="dropdown-item ">
                                     <i class="fas fa-history mr-1"></i>
                                     Key / Reroll
                                 </a>
                             </li>
                             <li class="dropdown-divider"></li>
                             <li>
-                                <a href="https://shopreroll.com/acc/my-acc" class="dropdown-item">
+                                <a href="#" class="dropdown-item">
                                     <i class="fas fa-history mr-1"></i>
                                     Acc chung
                                 </a>
