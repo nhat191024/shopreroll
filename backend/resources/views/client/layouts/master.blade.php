@@ -50,93 +50,127 @@
 </head>
 
 <body class="hold-transition sidebar-collapse layout-top-nav">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand-md nav-header mb-4">
-            <div class="container">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand-md nav-header mb-4">
+        <div class="container">
 
-                <button class="navbar-toggler order-1" type="button" data-toggle="collapse"
-                    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon">
-                        <i class="fas fa-bars" style="text-shadow: 2px 2px 2px #000000;color: #fff;"></i>
-                    </span>
-                </button>
+            <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon">
+                    <i class="fas fa-bars" style="text-shadow: 2px 2px 2px #000000;color: #fff;"></i>
+                </span>
+            </button>
 
-                <div class="collapse navbar-collapse order-3" id="navbarCollapse">
-                    <!-- Left navbar links -->
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="/" class="nav-link">
-                                <img src="https://img.upanh.tv/2023/05/17/12312312312-01-01.png" class="img-fluid"
-                                    style="margin-top: -8px;height: 165%">
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link menu-header shine-active">
-                                <i class="ficon fa-lg fa fa-home"></i>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown" id="topUp_balance">
-                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                class="nav-link dropdown-toggle menu-header ">
-                                Nạp tiền
-                            </a>
-                            <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-                                <li>
-                                    <a href="https://shopreroll.com/user/money/phone-card/send-card"
-                                        class="dropdown-item "><i class="fas fa-money-check-alt mr-1"></i>
-                                        Nạp bằng thẻ cào
-                                    </a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="https://shopreroll.com/user/money/auto-bank/info" class="dropdown-item">
-                                        <i class="fas fa-university mr-1"></i>
-                                        Nạp bằng bank, ví
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link menu-header">
-                                Nạp Game
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false"class="nav-link dropdown-toggle menu-header">
-                                Lịch Sử Mua
-                            </a>
-                            <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-                                <li>
-                                    <a href="https://shopreroll.com/genshin/acc/my-acc" class="dropdown-item ">
-                                        <i class="fas fa-history mr-1"></i>
-                                        Genshin
-                                    </a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="https://shopreroll.com/key/my-key" class="dropdown-item ">
-                                        <i class="fas fa-history mr-1"></i>
-                                        Key / Reroll
-                                    </a>
-                                </li>
-                                <li class="dropdown-divider"></li>
-                                <li>
-                                    <a href="https://shopreroll.com/acc/my-acc" class="dropdown-item">
-                                        <i class="fas fa-history mr-1"></i>
-                                        Acc chung
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+            <div class="collapse navbar-collapse order-3" id="navbarCollapse">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">
+                            <img src="https://img.upanh.tv/2023/05/17/12312312312-01-01.png" class="img-fluid"
+                                style="margin-top: -8px;height: 165%">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link menu-header shine-active">
+                            <i class="ficon fa-lg fa fa-home"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown" id="topUp_balance">
+                        <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            class="nav-link dropdown-toggle menu-header ">
+                            Nạp tiền
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+                            <li>
+                                <a href="https://shopreroll.com/user/money/phone-card/send-card"
+                                    class="dropdown-item "><i class="fas fa-money-check-alt mr-1"></i>
+                                    Nạp bằng thẻ cào
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a href="https://shopreroll.com/user/money/auto-bank/info" class="dropdown-item">
+                                    <i class="fas fa-university mr-1"></i>
+                                    Nạp bằng bank, ví
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link menu-header">
+                            Nạp Game
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"class="nav-link dropdown-toggle menu-header">
+                            Lịch Sử Mua
+                        </a>
+                        <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
+                            <li>
+                                <a href="https://shopreroll.com/genshin/acc/my-acc" class="dropdown-item ">
+                                    <i class="fas fa-history mr-1"></i>
+                                    Genshin
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a href="https://shopreroll.com/key/my-key" class="dropdown-item ">
+                                    <i class="fas fa-history mr-1"></i>
+                                    Key / Reroll
+                                </a>
+                            </li>
+                            <li class="dropdown-divider"></li>
+                            <li>
+                                <a href="https://shopreroll.com/acc/my-acc" class="dropdown-item">
+                                    <i class="fas fa-history mr-1"></i>
+                                    Acc chung
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
 
-                </div>
+            </div>
 
-                <!-- Right navbar links -->
-                <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto"
-                    style="position: absolute;right: 0px;">
+            <!-- Right navbar links -->
+            <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto" style="position: absolute;right: 0px;">
+                @if (Auth::check())
+                    <li class="nav-item mr-3">
+                        <span data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            class="dropdown-toggle btn btn-block btn-outline-warning font-weight-bold"
+                            style="background: rgb(89 84 173 / 25%);">
+                            <span class="text-light">[{{ Auth::user()->id }}] {{ Auth::user()->name }}:</span> {{ number_format(Auth::user()->balance) }}<sup></sup>
+                        </span>
+                        <ul class="dropdown-menu bg-white border-0 shadow" style="left: 0px; right: inherit;">
+                            <li><span class="dropdown-item text-center text-sm text-muted">Level:
+                                @if(Auth::user()->role == 0)
+                                    Member
+                                @elseif(Auth::user()->role == 1)
+                                    Admin
+                                @elseif(Auth::user()->role == 2)
+                                    Collaborator
+                                @endif
+                            </span></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a href="{{ '' }}" class="dropdown-item text-dark"><i
+                                        class="fas fa-history mr-1"></i> Biến động số dư
+                                </a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a href="{{ '' }}" class="dropdown-item text-dark"><i
+                                        class="fas fa-history mr-1"></i> Lịch sử khác
+                                </a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a href="{{ '' }}" class="dropdown-item text-dark"><i
+                                        class="fas fa-key mr-1"></i> Đổi mật khẩu
+                                </a></li>
+                            <li class="dropdown-divider"></li>
+                            <li><a href="{{ route('logout') }}" class="dropdown-item text-dark"><i
+                                        class="fa fa-dungeon mr-1"></i> Đăng xuất
+                                </a></li>
+                        </ul>
+                    </li>
+                @else
                     <li class="nav-item">
                         <a href="#">
                             <button class="btn-pretty">Đăng ký</button>
@@ -147,11 +181,12 @@
                             <button class="btn-pretty">Đăng nhập</button>
                         </a>
                     </li>
-                </ul>
-            </div>
-        </nav>
-        <!-- End Navbar -->
-        @yield('main')
+                @endif
+            </ul>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    @yield('main')
     </div>
     <footer class="mt-5 p-3">
         <div class="container-lg">
