@@ -109,7 +109,7 @@
                                     </div>
                                     <div>
                                         <h3 class="text-center title_cate mt-3">{{ $rerollCategory->name }}</h3>
-                                        <a href="#">
+                                        <a href="{{ route('client.reroll.detail', ['id' => $rerollCategory->id]) }}">
                                             <button class="btn btn_left">
                                                 Mua Ngay
                                             </button>
