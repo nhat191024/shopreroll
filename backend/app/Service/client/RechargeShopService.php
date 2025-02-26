@@ -16,7 +16,7 @@ class RechargeShopService
 {
     public function getAllRechargePackagesByRechargeId($id)
     {
-        
+        return RechargePackage::where('game_recharge_id', $id)->get();
     }
 
     public function getCurrentGameRechargeById($id)
@@ -29,10 +29,12 @@ class RechargeShopService
         return $result;
     }
 
-    public function getAllRechargeBillsByUser()
+    public function getAllRechargeBillsByUser($gameRechargeId)
     {
         $user = Auth::user();
-        $result = RechargeBill::where('user_id', $user->id)->get();
+        $result = RechargeBill::whereHas('rechargePackage', function($query) use ($gameRechargeId) {
+            $query->where('game_recharge_id', $gameRechargeId);
+        })->where('user_id', $user->id)->get();
         return $result;
     }
 
@@ -42,7 +44,7 @@ class RechargeShopService
 
         $rechargeBill = new RechargeBill();
         $rechargeBill->user_id = Auth::id();
-        $rechargeBill->recharge_package_id = $request->recharge_packet_order;
+        $rechargeBill->recharge_package_id = $request->recharge_packet_id;
         $rechargeBill->UID = $request->uid;
         $rechargeBill->username = $request->login_name;
         $rechargeBill->password = $request->pass;
@@ -51,7 +53,9 @@ class RechargeShopService
         $rechargeBill->phone = $request->phone;
         $rechargeBill->note = $request->note;
         $rechargeBill->save();
-        dd('Nạp tiền thành công?');
-        return $rechargeBill;
+        // dd('Nạp tiền thành công?');
+        // return $rechargeBill;
+        // redirect back to client.recharge
+        return redirect()->route('client.recharge', ['id' => $request->recharge_packet_id]);
     }
 }
