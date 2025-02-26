@@ -28,8 +28,7 @@
                                             </label>
                                             <select name="recharge_packet_id" class="form-control">
                                                 @foreach ($rechargePackages as $rechargePackage)
-                                                    <option
-                                                        value="{{ $rechargePackage->id }}">
+                                                    <option value="{{ $rechargePackage->id }}">
                                                         {{ number_format($rechargePackage->price) }} đ -
                                                         {{ $rechargePackage->name }}
                                                     </option>
@@ -45,8 +44,7 @@
                                                                 class="fas fa-pen-fancy"></i></span>
                                                     </div>
                                                     <input name="uid" type="text" class="form-control concave "
-                                                        value="" placeholder="Điền UID
-            ">
+                                                        value="" placeholder="Điền UID">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 mt-2">
@@ -59,8 +57,7 @@
                                                     </div>
                                                     <input required="" name="login_name" type="text"
                                                         class="form-control concave " value=""
-                                                        placeholder="Điền tên tài khoản
-            ">
+                                                        placeholder="Điền tên tài khoản">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 mt-2">
@@ -73,8 +70,7 @@
                                                     </div>
                                                     <input required="" name="pass" type="text"
                                                         class="form-control concave " value=""
-                                                        placeholder="Điền mật khẩu tài khoản nạp
-            ">
+                                                        placeholder="Điền mật khẩu tài khoản nạp">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 mt-3">
@@ -84,9 +80,8 @@
                                                         <span class="input-group-text"><i
                                                                 class="fas fa-pen-fancy"></i></span>
                                                     </div>
-                                                    <input name="game_server" type="text" class="form-control concave "
-                                                        value="" placeholder="Điền server
-            ">
+                                                    <input name="game_server" type="text" class="form-control concave"
+                                                        value="" placeholder="Điền server">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 mt-3">
@@ -110,8 +105,7 @@
                                                                 class="fas fa-pen-fancy"></i></span>
                                                     </div>
                                                     <input name="phone" type="text" class="form-control concave "
-                                                        value="" placeholder="Điền số điện thoại
-            ">
+                                                        value="" placeholder="Điền số điện thoại">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-6 mt-3">
@@ -122,9 +116,7 @@
                                                                 class="fas fa-pen-fancy"></i></span>
                                                     </div>
                                                     <input name="note" type="text" class="form-control concave "
-                                                        value=""
-                                                        placeholder="Bạn muốn bổ sung điều gì?
-            ">
+                                                        value="" placeholder="Bạn muốn bổ sung điều gì?">
                                                 </div>
                                             </div>
                                             <div class="col-6 offset-3 mt-3">
@@ -155,45 +147,44 @@
                                 </div>
                                 <div class="col-lg-12">
                                     <div class="mt-2 table-responsive">
-                                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <table id="example1" class="table table-striped dataTable no-footer dtr-inline" role="grid" aria-describedby="example1_info">
-                                                        <thead>
-                                                            <tr role="row">
-                                                                <th class="sorting sorting_desc">ID</th>
-                                                                <th class="sorting">Status</th>
-                                                                <th class="sorting">Username</th>
-                                                                <th class="sorting">Package</th>
-                                                                <th class="sorting">Server</th>
-                                                                <th class="sorting">Note</th>
-                                                                <th class="sorting">Time</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            @forelse($rechargeBills as $bill)
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="recharge-history-table"
+                                                    class="table table-striped table-bordered" style="width:100%">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th class="sorting sorting_desc">ID</th>
+                                                            <th class="sorting">Status</th>
+                                                            <th class="sorting">Username</th>
+                                                            <th class="sorting">Package</th>
+                                                            <th class="sorting">Server</th>
+                                                            <th class="sorting">Note</th>
+                                                            <th class="sorting">Time</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse($rechargeBills as $bill)
                                                             <tr>
                                                                 <td>{{ $bill->id ?? 'N/A' }}</td>
-                                                                <td>{{ $bill->status == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}</td>
+                                                                <td>{{ $bill->status == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}
+                                                                </td>
                                                                 <td>{{ $bill->username ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->RechargePackage->name ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->server ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->note ?? 'N/A' }}</td>
                                                                 <td>{{ $bill->created_at ?? 'N/A' }}</td>
                                                             </tr>
-                                                            @empty
+                                                        @empty
                                                             <tr>
-                                                                <td colspan="7" class="text-center">No data available</td>
+                                                                <td colspan="7" class="text-center">
+                                                                    No data available
+                                                                </td>
                                                             </tr>
-                                                            @endforelse
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                                        @endforelse
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                        <nav class="mt-2 float-right">
-
-                                        </nav>
                                     </div>
                                 </div>
                             </div>
@@ -204,4 +195,58 @@
             </main>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable with all buttons explicitly
+            const table = $("#recharge-history-table").DataTable({
+                pageLength: 4,
+                dom: "<'row'<'col-sm-12 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
+                buttons: [{
+                        extend: 'copy',
+                        text: 'Copy',
+                        className: 'custom-dt-button'
+                    },
+                    {
+                        extend: 'csv',
+                        text: 'CSV',
+                        className: 'custom-dt-button'
+                    },
+                    {
+                        extend: 'excel',
+                        text: 'Excel',
+                        className: 'custom-dt-button'
+                    },
+                    {
+                        extend: 'print',
+                        text: 'Print',
+                        className: 'custom-dt-button'
+                    },
+                    {
+                        extend: 'colvis',
+                        text: 'Columns',
+                        className: 'custom-dt-button'
+                    }
+                ],
+                order: [
+                    [0, "desc"]
+                ],
+                columnDefs: [{
+                    targets: [0, 1, 2, 3, 4, 5, 6],
+                    visible: true
+                }],
+                lengthChange: true,
+                language: {
+                    paginate: {
+                        previous: "Previous",
+                        next: "Next",
+                    }
+                }
+            });
+        });
+    </script>
 @endsection
