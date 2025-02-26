@@ -19,7 +19,7 @@ use App\Http\Controllers\admin\GameAccountController;
 use App\Http\Controllers\client\AccountBillController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\MyKeyController;
-
+use App\Http\Controllers\client\RechargeShopController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
@@ -44,6 +44,10 @@ Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
     Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
 });
+
+// game recharge routes
+Route::get('/recharge/{id}', [RechargeShopController::class, 'index'])->name('client.recharge');
+Route::post('/recharge/confirm', [RechargeShopController::class, 'rechargeConfirm'])->name('client.recharge.confirm');
 
 Route::get('/my-account', function () {
     return view('client.my-account');
