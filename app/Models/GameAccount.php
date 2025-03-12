@@ -32,14 +32,26 @@ class GameAccount extends Model
         return $this->belongsTo(GameCategory::class);
     }
 
+    //TODO: remove this
     public function AccountHero()
     {
         return $this->hasMany(AccountHero::class, 'account_id');
     }
 
+    public function AccountAttribute()
+    {
+        return $this->hasMany(AccountAttribute::class, 'account_id');
+    }
+
+    //TODO: remove this
     public function AccountWeapon()
     {
         return $this->hasMany(AccountWeapon::class, 'account_id');
+    }
+
+    public function AccountItem()
+    {
+        return $this->hasMany(AccountItem::class, 'account_id');
     }
 
     public function AccountImage()
