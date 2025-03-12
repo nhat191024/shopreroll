@@ -12,14 +12,26 @@ class Game extends Model
         'status',
     ];
 
+    //TODO: remove this
     public function GameWeapon()
     {
         return $this->hasMany(Weapon::class);
     }
 
+    //TODO: remove this
     public function GameHero()
     {
         return $this->hasMany(Hero::class);
+    }
+
+    public function GameItem()
+    {
+        return $this->hasMany(GameItem::class);
+    }
+
+    public function GameAttribute()
+    {
+        return $this->hasMany(GameAttribute::class);
     }
 
     public function GameCategory()
