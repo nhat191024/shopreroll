@@ -7,11 +7,6 @@
                 <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon"
                     loading="lazy">
             </div>
-            <x-button-lmao type="danger">
-                <x-slot:message>
-                    Mua Ngay
-                </x-slot>
-            </x-button-lmao>
             <h1 class="guide__title">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
             <main>
                 <div>
