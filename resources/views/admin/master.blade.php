@@ -23,14 +23,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Bootstrap-select CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
     <!-- Bootstrap-select JavaScript - After Bootstrap JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <!-- Remaining styles and scripts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <link href="{{ url('') . '/' }}css/sb-admin-2.min.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
@@ -88,36 +91,16 @@
                         <span>Nạp Game</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#account" data-bs-toggle="collapse" role="button"
+                    <a class="nav-link menu-link" href="#char-menu" data-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="account">
                         <i class="fa-solid fa-gamepad"></i>
-                        <span data-key="t-layouts">Tài khoản</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="account" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Genshin account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">HonKai account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Star Rail account</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#characters" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="characters">
-                        <i class="fa-solid fa-person"></i>
                         <span data-key="t-layouts">Character</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="characters" data-bs-parent="#menuAccordion">
+                    <div class="collapse menu-dropdown" id="char-menu" data-parent="#menuAccordion">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}"
-                                    class="nav-link" data-key="t-horizontal">Genshin Impact</a>
+                                <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}" class="nav-link"
+                                    data-key="t-horizontal">Genshin Impact</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}"
@@ -127,7 +110,6 @@
                                 <a href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}"
                                     class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
                             </li>
-
                         </ul>
                     </div>
                 </li>
