@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('game_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('game_id');
-            $table->string('type');
             $table->string('name');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('game_item_type_id');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

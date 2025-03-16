@@ -10,16 +10,21 @@ class GameItem extends Model
 
     protected $fillable = [
         'game_id',
-        'type',
         'name',
         'description',
         'image',
+        'game_item_type_id',
         'status',
     ];
 
     public function game()
     {
         return $this->belongsTo(Game::class);
+    }
+
+    public function gameItemType()
+    {
+        return $this->belongsTo(GameItemType::class);
     }
 
     public function accountItems()
