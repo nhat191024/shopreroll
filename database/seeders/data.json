@@ -413,13 +413,37 @@
     ],
     "game": [
         {
-            "name": "Genshin Impact"
+            "name": "Genshin Impact",
+            "game_item_type": [
+                {
+                    "name": "weapon"
+                },
+                {
+                    "name": "hero"
+                }
+            ]
         },
         {
-            "name": "Honkai Star Rail"
+            "name": "Honkai Star Rail",
+            "game_item_type": [
+                {
+                    "name": "weapon"
+                },
+                {
+                    "name": "hero"
+                }
+            ]
         },
         {
-            "name": "Zenless Zone Zero"
+            "name": "Zenless Zone Zero",
+            "game_item_type": [
+                {
+                    "name": "weapon"
+                },
+                {
+                    "name": "hero"
+                }
+            ]
         }
     ],
     "game_category": [

@@ -12,12 +12,9 @@ use App\Models\RerollPackage;
 use App\Models\RerollKey;
 use App\Models\RerollBill;
 use App\Models\Game;
+use App\Models\GameItemType;
 use App\Models\GameCategory;
-use App\Models\Hero;
-use App\Models\Weapon;
 use App\Models\GameAccount;
-use App\Models\AccountHero;
-use App\Models\AccountWeapon;
 use App\Models\AccountImage;
 use App\Models\AccountBill;
 use App\Models\BalanceRechargeCardBill;
@@ -51,42 +48,73 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach ($dataArray['game_recharge'] as $data) { GameRecharge::create($data); }
+        foreach ($dataArray['game_recharge'] as $data) {
+            GameRecharge::create($data);
+        }
 
-        foreach ($dataArray['recharge_package'] as $data) { RechargePackage::create($data); }
+        foreach ($dataArray['recharge_package'] as $data) {
+            RechargePackage::create($data);
+        }
 
-        foreach ($dataArray['recharge_bill'] as $data) { RechargeBill::create($data); }
+        foreach ($dataArray['recharge_bill'] as $data) {
+            RechargeBill::create($data);
+        }
 
-        foreach ($dataArray['reroll_category'] as $data) { RerollCategory::create($data); }
+        foreach ($dataArray['reroll_category'] as $data) {
+            RerollCategory::create($data);
+        }
 
-        foreach ($dataArray['reroll_sub_category'] as $data) { RerollSubCategory::create($data); }
+        foreach ($dataArray['reroll_sub_category'] as $data) {
+            RerollSubCategory::create($data);
+        }
 
-        foreach ($dataArray['reroll_package'] as $data) { RerollPackage::create($data); }
+        foreach ($dataArray['reroll_package'] as $data) {
+            RerollPackage::create($data);
+        }
 
-        foreach ($dataArray['reroll_key'] as $data) { RerollKey::create($data); }
+        foreach ($dataArray['reroll_key'] as $data) {
+            RerollKey::create($data);
+        }
 
-        foreach ($dataArray['reroll_bill'] as $data) { RerollBill::create($data); }
+        foreach ($dataArray['reroll_bill'] as $data) {
+            RerollBill::create($data);
+        }
 
-        foreach ($dataArray['game'] as $data) { Game::create($data); }
+        foreach ($dataArray['game'] as $data) {
+            $game = Game::create([
+                'name' => $data['name'],
+            ]);
 
-        foreach ($dataArray['game_category'] as $data) { GameCategory::create($data); }
+            foreach ($data['game_item_type'] as $item) {
+                GameItemType::create([
+                    'game_id' => $game->id,
+                    'name' => $item,
+                ]); 
+            }
+        }
 
-        foreach ($dataArray['hero'] as $data) { Hero::create($data); }
+        foreach ($dataArray['game_category'] as $data) {
+            GameCategory::create($data);
+        }
 
-        foreach ($dataArray['weapon'] as $data) { Weapon::create($data); }
+        foreach ($dataArray['game_account'] as $data) {
+            GameAccount::create($data);
+        }
 
-        foreach ($dataArray['game_account'] as $data) { GameAccount::create($data); }
+        foreach ($dataArray['account_image'] as $data) {
+            AccountImage::create($data);
+        }
 
-        foreach ($dataArray['account_hero'] as $data) { AccountHero::create($data); }
+        foreach ($dataArray['account_bill'] as $data) {
+            AccountBill::create($data);
+        }
 
-        foreach ($dataArray['account_weapon'] as $data) { AccountWeapon::create($data); }
+        foreach ($dataArray['balance_recharge_card_bill'] as $data) {
+            BalanceRechargeCardBill::create($data);
+        }
 
-        foreach ($dataArray['account_image'] as $data) { AccountImage::create($data); }
-
-        foreach ($dataArray['account_bill'] as $data) { AccountBill::create($data); }
-
-        foreach ($dataArray['balance_recharge_card_bill'] as $data) { BalanceRechargeCardBill::create($data); }
-
-        foreach ($dataArray['balance_recharge_bank_bill'] as $data) { BalanceRechargeBankBill::create($data); }
+        foreach ($dataArray['balance_recharge_bank_bill'] as $data) {
+            BalanceRechargeBankBill::create($data);
+        }
     }
 }
