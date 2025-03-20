@@ -343,7 +343,7 @@
 
             // Initialize any DataTables after bootstrap-select
             if (typeof $.fn.DataTable === 'function') {
-                // Your DataTable initialization can go here
+                $('#dataTable').DataTable();
                 console.log('DataTables is available');
             }
         });
