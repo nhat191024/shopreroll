@@ -88,8 +88,8 @@ class DatabaseSeeder extends Seeder
             foreach ($data['game_item_type'] as $item) {
                 GameItemType::create([
                     'game_id' => $game->id,
-                    'name' => $item,
-                ]); 
+                    'name' => $item['name'],
+                ]);
             }
         }
 
