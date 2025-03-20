@@ -1,45 +1,44 @@
 @extends('admin.master')
 @section('main')
-    <!-- Content Wrapper -->
-
-
-    <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Thêm trò chơi</h1>
-        <!-- DataTales Example -->
+
         <div class="card shadow mb-4">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.game.add') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.game.add') }}" method="post" enctype="multipart/form-data" class="form">
                         @csrf
                         <div class="form-group">
                             <label for="">Tên trò chơi</label>
                             <input required type="text" class="form-control" id="" aria-describedby=""
                                 name="name">
                         </div>
+                        <div class="game-item">
+                            <div class="form-group">
+                                <label for="">Tên game item</label>
+                                <input required type="text" class="form-control" id="" aria-describedby="game-item-name" name="game_item[]">
+                            </div>
+                        </div>
                         <button class="btn btn-success mt-4" type="submit">Thêm trò chơi</button>
+                        <button class="btn btn-success mt-4" id="add-game-item-btn" type="button">Thêm game item</button>
                     </form>
-
                 </div>
             </div>
         </div>
 
     </div>
-    <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
-
-
-
-    <!-- End of Content Wrapper -->
+@endsection
+@section('scripts')
     <script>
-        // Add the following code if you want the name of the file appear on select
-        $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        $("#add-game-item-btn").click(function() {
+            var html = `
+            <div class="form-group">
+                <label for="">Tên game item</label>
+                <input required type="text" class="form-control" id="" aria-describedby="game-item-name" name="game_item[]">
+            </div>
+            `;
+            $(".game-item").append(html);
         });
     </script>
 @endsection
