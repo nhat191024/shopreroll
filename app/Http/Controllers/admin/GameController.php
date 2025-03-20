@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\GameItemType;
+use App\Models\Game;
+
 use App\Http\Controllers\Controller;
 use App\Service\admin\GameService;
 use Illuminate\Http\Request;
@@ -31,9 +34,20 @@ class GameController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'game_item.*' => 'required|string|max:255 '
         ]);
-        // Public Folder
-        $this->gameService->add($request->name);
+
+        $game = Game::create([
+            'name' => $request->name
+        ]);
+
+        foreach ($request->game_item as $item) {
+            GameItemType::create([
+                'game_id' => $game->id,
+                'name' => $item
+            ]);
+        }
+
         return redirect(route('admin.game.index'))->with('success', 'Thêm game thành công');
     }
 
