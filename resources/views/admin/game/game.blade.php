@@ -60,6 +60,10 @@
                                             <a class="btn btn-primary" href="{{ route('admin.GameCategory.index', $item->id) }}">
                                                 Danh mục
                                             </a>
+
+                                            <a class="btn btn-primary" href="{{ route('admin.game_item_type.index', $item->id) }}">
+                                                Vật phẩm
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -70,11 +74,4 @@
             </div>
         </div>
     </div>
-@endsection
-@section('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable();
-        });
-    </script>
 @endsection
