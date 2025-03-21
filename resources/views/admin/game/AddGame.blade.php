@@ -14,7 +14,7 @@
                             <input id="" class="form-control" name="name" type="text" required>
                         </div>
                         <div class="game-item">
-                            <div class="form-group">
+                            <div class="form-group mb-3">
                                 <label for="">Tên game item</label>
                                 <input id="" class="form-control" name="game_item[]" type="text" required aria-describedby="game-item-name">
                             </div>
@@ -30,14 +30,25 @@
 @endsection
 @section('scripts')
     <script>
+        var i = 0;
         $("#add-game-item-btn").click(function() {
             var html = `
-            <div class="form-group">
-                <label for="">Tên game item</label>
-                <input required type="text" class="form-control" id="" aria-describedby="game-item-name" name="game_item[]">
-            </div>
+                <div class="form-group mb-3">
+                    <label for="">Tên game item</label>
+                    <div class="input-group">
+                        <input id="" class="form-control" name="game_item[]" type="text" required aria-describedby="game-item-name">
+                        <div class="input-group-append">
+                            <button id="rm-btn-${i}" class="btn btn-outline-danger" type="button">Xóa</button>
+                        </div>
+                    </div>
+                </div>
             `;
             $(".game-item").append(html);
+            i++;
+        });
+
+        $(document).on('click', '[id^=rm-btn-]', function() {
+            $(this).parent().parent().parent().remove();
         });
     </script>
 @endsection
