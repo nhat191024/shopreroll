@@ -4,24 +4,12 @@ use App\Http\Controllers\admin\ApiController;
 use App\Http\Controllers\admin\BalanceRechargeBankBillController;
 use App\Http\Controllers\admin\BalanceRechargeCardBillController;
 use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\GameController;
-use App\Http\Controllers\admin\GameCategoryController;
-use App\Http\Controllers\admin\GameRechargeController;
-use App\Http\Controllers\admin\GameRechargePackageController;
 use App\Http\Controllers\admin\RechargeBillController;
-use App\Http\Controllers\admin\RerollCategoryController;
-use App\Http\Controllers\admin\RerollSubCategoryController;
-use App\Http\Controllers\admin\RerollPackageController;
 use App\Http\Controllers\admin\RerollBillController;
-use App\Http\Controllers\admin\RerollKeyController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\GameAccountController;
 use App\Http\Controllers\client\AccountBillController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\MyKeyController;
 use App\Http\Controllers\client\RechargeShopController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
 
 use Illuminate\Support\Facades\Route;
 
