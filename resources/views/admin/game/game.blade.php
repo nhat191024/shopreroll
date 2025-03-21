@@ -42,7 +42,7 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $item['name'] }}</td>
                                         <td>{{ $item['status'] == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
-                                        <td class="text-center">
+                                        <td style="width: 20%;">
                                             <a class="btn btn-warning" href="{{ route('admin.game.show_edit', ['id' => $item->id]) }}">
                                                 Sửa
                                             </a>
