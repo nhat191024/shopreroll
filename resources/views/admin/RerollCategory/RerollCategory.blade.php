@@ -1,16 +1,9 @@
 @extends('admin.master')
 @section('main')
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
-
-
-        <!-- Begin Page Content -->
         <div class="container-fluid">
-
-            <!-- Page Heading -->
             <h1 class="h3 mb-2 text-gray-800">Danh sách Reroll Category</h1>
-            <!-- DataTales Example -->
+
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <a class="btn btn-primary" href="{{ route('admin.RerollCategory.showAdd') }}">Thêm Reroll Category</a>
@@ -78,22 +71,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        <!-- /.container-fluid -->
-
     </div>
-    <!-- End of Main Content -->
-
-
-
-    </div>
-    <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable({
-                "ordering": false // Tắt tính năng tự động sắp xếp
-            });
-        });
-    </script>
-    <!-- End of Content Wrapper -->
 @endsection
+
