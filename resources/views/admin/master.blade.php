@@ -39,6 +39,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
 </head>
 
+<style>
+    #dataTable th,
+    #dataTable td {
+        text-align: center;
+    }
+</style>
+
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -322,8 +329,6 @@
     <!-- Custom scripts for all pages -->
     <script src="{{ url('') . '/' }}js/sb-admin-2.min.js"></script>
 
-    <!-- IMPORTANT: Remove the DataTables bundle that includes jQuery -->
-    <!-- Use separate DataTables scripts instead -->
     <!-- datatables script -->
     <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/r-3.0.4/sp-2.3.3/sr-1.4.1/datatables.min.js" integrity="sha384-EyOrkIw2BJ0wGDDncNwhfC5UwkD+tjKPyPNUqOd9J92FC+Y3JT5Q/32Ad5/x0ylC" crossorigin="anonymous"></script>
 
