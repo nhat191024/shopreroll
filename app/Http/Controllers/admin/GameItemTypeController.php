@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\admin;
+
+use App\Models\Game;
+use App\Models\GameItemType;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class GameItemTypeController extends Controller
+{
+    public function index($gameId)
+    {
+        $gameItemTypes = GameItemType::where('game_id', $gameId)->get();
+        $gameName = Game::find($gameId)->name;
+        return view('admin.game_item_type.index', compact('gameItemTypes', 'gameName', 'gameId'));
+    }
+
+    public function create($gameId)
+    {
+        $gameName = Game::find($gameId)->name;
+        return view('admin.game_item_type.add', compact('gameId', 'gameName'));
+    }
+
+    public function store(Request $request)
+    {
+        foreach ($request->game_item as $value) {
+            GameItemType::create([
+                'game_id' => $request->game_id,
+                'name' => $value,
+            ]);
+        }
+
+        return redirect()->route('admin.game_item_type.index', $request->game_id)->with('success', 'Game Item Type added successfully');
+    }
+
+    public function edit($id)
+    {
+        $gameItemType = GameItemType::find($id);
+        return view('admin.game_item_type.edit', compact('gameItemType'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $gameItemType = GameItemType::find($id);
+        $gameItemType->name = $request->name;
+        $gameItemType->save();
+
+        return redirect()->route('admin.game_item_type.index', $gameItemType->game_id)->with('success', 'Game Item Type updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $gameItemType = GameItemType::find($id);
+        $gameId = $gameItemType->game_id;
+        $gameItemType->delete();
+
+        return redirect()->route('admin.game_item_type.index', $gameId)->with('success', 'Game Item Type deleted successfully');
+    }
+}
