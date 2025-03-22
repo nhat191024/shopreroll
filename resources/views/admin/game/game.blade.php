@@ -23,6 +23,8 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên trò chơi</th>
+                                <th>Số vật phẩm</th>
+                                <th>Số thuộc tính</th>
                                 <th>Trạng thái</th>
                                 <th>Chức năng</th>
                             </tr>
@@ -31,15 +33,19 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Tên trò chơi</th>
+                                <th>Số vật phẩm</th>
+                                <th>Số thuộc tính</th>
                                 <th>Trạng thái</th>
                                 <th>Chức năng</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($allGame as $key => $item)
+                            @foreach ($games as $key => $item)
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $item['name'] }}</td>
+                                    <td>{{ $item['game_item_type_count'] }}</td>
+                                    <td>{{ $item['game_attribute_count'] }}</td>
                                     <td>{{ $item['status'] == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                     <td style="width: 20%;">
                                         <a class="btn btn-warning" href="{{ route('admin.game.show_edit', ['id' => $item->id]) }}">
@@ -62,6 +68,10 @@
 
                                         <a class="btn btn-primary" href="{{ route('admin.game_item_type.index', $item->id) }}">
                                             Vật phẩm
+                                        </a>
+
+                                        <a class="btn btn-primary" href="{{ route('admin.game_item_type.index', $item->id) }}">
+                                            Thuộc tính
                                         </a>
                                     </td>
                                 </tr>
