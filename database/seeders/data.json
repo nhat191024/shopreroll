@@ -421,6 +421,14 @@
                 {
                     "name": "hero"
                 }
+            ],
+            "game_attribute": [
+                {
+                    "name": "AR"
+                },
+                {
+                    "name": "Server"
+                }
             ]
         },
         {
@@ -432,6 +440,14 @@
                 {
                     "name": "hero"
                 }
+            ],
+            "game_attribute": [
+                {
+                    "name": "Lv"
+                },
+                {
+                    "name": "Server"
+                }
             ]
         },
         {
@@ -442,6 +458,14 @@
                 },
                 {
                     "name": "hero"
+                }
+            ],
+            "game_attribute": [
+                {
+                    "name": "Lv"
+                },
+                {
+                    "name": "Server"
                 }
             ]
         }

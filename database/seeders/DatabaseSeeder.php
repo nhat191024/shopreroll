@@ -13,6 +13,7 @@ use App\Models\RerollKey;
 use App\Models\RerollBill;
 use App\Models\Game;
 use App\Models\GameItemType;
+use App\Models\GameAttribute;
 use App\Models\GameCategory;
 use App\Models\GameAccount;
 use App\Models\AccountImage;
@@ -89,6 +90,13 @@ class DatabaseSeeder extends Seeder
                 GameItemType::create([
                     'game_id' => $game->id,
                     'name' => $item['name'],
+                ]);
+            }
+
+            foreach ($data['game_attribute'] as $attribute) {
+                GameAttribute::create([
+                    'game_id' => $game->id,
+                    'name' => $attribute['name'],
                 ]);
             }
         }
