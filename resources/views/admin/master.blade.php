@@ -285,20 +285,21 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+
                 @yield('main')
-                <!-- End of Page Wrapper -->
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright my-auto text-center">
-                            <span>Copyright &copy;2024 Xây dựng và thiết kế | FPT Polytechnic Hải Phòng</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
 
             </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright my-auto text-center">
+                        <span>Copyright &copy;2024 Xây dựng và thiết kế | FPT Polytechnic Hải Phòng</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
             <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="{{ url('') . '/' }}#page-top">
                 <i class="fas fa-angle-up"></i>
@@ -354,6 +355,7 @@
         });
     </script>
 
+    {{-- script section --}}
     @yield('scripts')
 
 </body>
