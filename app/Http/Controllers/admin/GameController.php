@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\GameItemType;
+use App\Models\GameAttribute;
 use App\Models\Game;
 
 use App\Http\Controllers\Controller;
@@ -34,7 +35,8 @@ class GameController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'game_item.*' => 'required|string|max:255 '
+            'game_item.*' => 'required|string|max:255',
+            'game_attribute.*' => 'required|string|max:255',
         ]);
 
         $game = Game::create([
@@ -45,6 +47,13 @@ class GameController extends Controller
             GameItemType::create([
                 'game_id' => $game->id,
                 'name' => $item
+            ]);
+        }
+
+        foreach ($request->game_attribute as $attribute) {
+            GameAttribute::create([
+                'game_id' => $game->id,
+                'name' => $attribute
             ]);
         }
 
