@@ -44,6 +44,7 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
 
         require __DIR__ . '/admin/game/index.php';
         require __DIR__ . '/admin/game/item_type.php';
+        require __DIR__ . '/admin/game/item.php';
         require __DIR__ . '/admin/game/category.php';
         require __DIR__ . '/admin/game/recharge.php';
         require __DIR__ . '/admin/game/rechargePackage.php';
