@@ -14,7 +14,6 @@ class GameItem extends Model
         'description',
         'image',
         'game_item_type_id',
-        'status',
     ];
 
     public function game()

@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('game_id');
             $table->string('name');
-            $table->boolean('is_required')->default(false);
-            $table->boolean('is_numeric')->default(false);
-            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

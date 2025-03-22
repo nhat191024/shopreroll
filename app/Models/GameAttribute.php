@@ -10,9 +10,6 @@ class GameAttribute extends Model
     protected $fillable = [
         'game_id',
         'name',
-        'is_required',
-        'is_numeric',
-        'status',
     ];
 
     public function game()

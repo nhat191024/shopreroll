@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->unsignedBigInteger('game_item_type_id');
-            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
