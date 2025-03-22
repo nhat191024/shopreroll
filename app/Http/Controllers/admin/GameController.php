@@ -22,8 +22,8 @@ class GameController extends Controller
 
     public function index()
     {
-        $allGame = $this->gameService->getAll();
-        return view('admin.game.game', compact('allGame'));
+        $games = Game::withCount('gameItemType', 'gameAttribute')->get();
+        return view('admin.game.game', compact('games'));
     }
 
     public function showAddGame()
