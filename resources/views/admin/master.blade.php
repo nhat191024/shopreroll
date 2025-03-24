@@ -25,9 +25,6 @@
     <!-- Bootstrap-select CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
-    <!-- Bootstrap-select JavaScript - After Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
     <!-- datatables css-->
     <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/r-3.0.4/sp-2.3.3/sr-1.4.1/datatables.min.css" rel="stylesheet" integrity="sha384-uMRVFAehEmeRx+eu65ZAwUtvyFbGSAXOA+y0/bktyqsYwlw8575VE7T7o5PqC9HY" crossorigin="anonymous">
 
@@ -93,11 +90,11 @@
                     <div id="game-{{ str_replace(' ', '-', $item->name) }}" class="menu-dropdown collapse" data-parent="#menuAccordion">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.gameAccount.index') }}">Danh sách chung</a>
+                                <a class="nav-link" href="{{ route('admin.game_account.index', $item->id) }}">Danh sách chung</a>
                             </li>
                             @foreach ($item->GameCategory as $category)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.gameAccount.index') }}?category_id={{ $category->id }}&status=1">{{ $category->name }}</a>
+                                    <a class="nav-link" href="{{ route('admin.game_account.index', $item->id) }}?category_id={{ $category->id }}&status=1">{{ $category->name }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -392,10 +389,17 @@
     </div>
 
     <!-- Custom scripts for all pages -->
-    <script src="{{ url('') . '/' }}js/sb-admin-2.min.js"></script>
+    <script src="{{ url('') . '/' }}js/sb-admin-2.js"></script>
 
     <!-- datatables script -->
     <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/r-3.0.4/sp-2.3.3/sr-1.4.1/datatables.min.js" integrity="sha384-EyOrkIw2BJ0wGDDncNwhfC5UwkD+tjKPyPNUqOd9J92FC+Y3JT5Q/32Ad5/x0ylC" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JavaScrip -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap-select JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
     <script>
         // Document ready function
@@ -403,7 +407,7 @@
             // Check if bootstrap-select is loaded
             if (typeof $.fn.selectpicker === 'function') {
                 // Initialize selectpicker
-                $('.selectpicker').selectpicker();
+                $('.my-select').selectpicker();
                 console.log('Bootstrap-select initialized successfully');
             } else {
                 console.error('Bootstrap-select plugin is not available');
