@@ -123,6 +123,21 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-attribute" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Thuộc tính</span>
+                    </a>
+                    <div id="game-attribute" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_attribute.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll</span>
                     </a>
