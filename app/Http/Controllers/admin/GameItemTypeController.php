@@ -5,6 +5,9 @@ namespace App\Http\Controllers\admin;
 use App\Models\Game;
 use App\Models\GameItemType;
 
+use App\Http\Requests\StoreGameItemTypeRequest;
+use App\Http\Requests\UpdateGameItemTypeRequest;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +26,7 @@ class GameItemTypeController extends Controller
         return view('admin.game_item_type.add', compact('gameId', 'gameName'));
     }
 
-    public function store(Request $request)
+    public function store(StoreGameItemTypeRequest $request)
     {
         foreach ($request->game_item as $value) {
             GameItemType::create([
