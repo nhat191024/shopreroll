@@ -42,35 +42,39 @@
                         <tbody>
                             @foreach ($games as $key => $item)
                                 <tr>
-                                    <td>{{ ++$key }}</td>
-                                    <td>{{ $item['name'] }}</td>
-                                    <td>{{ $item['game_item_type_count'] }}</td>
-                                    <td>{{ $item['game_attribute_count'] }}</td>
-                                    <td>{{ $item['status'] == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
-                                    <td style="width: 20%;">
+                                    <td style="width: 5%;">{{ ++$key }}</td>
+                                    <td style="width: 20%;">{{ $item['name'] }}</td>
+                                    <td style="width: 10%;">{{ $item['game_item_type_count'] }}</td>
+                                    <td style="width: 10%;">{{ $item['game_attribute_count'] }}</td>
+                                    <td style="width: 10%;">{{ $item['status'] == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
+                                    <td style="width: 25%;">
                                         <a class="btn btn-warning" href="{{ route('admin.game.show_edit', ['id' => $item->id]) }}">
                                             Sửa
                                         </a>
 
                                         @if ($item->status == 0)
-                                            <a class="btn btn-success" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 1]) }}'; }">
+                                            <a class="btn btn-success mt-1" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 1]) }}'; }">
                                                 Hiện
                                             </a>
                                         @else
-                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 0]) }}'; }">
+                                            <a class="btn btn-danger mt-1" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.game.ChangeStatus', [$item->id, 0]) }}'; }">
                                                 Ẩn
                                             </a>
                                         @endif
 
-                                        <a class="btn btn-primary" href="{{ route('admin.GameCategory.index', $item->id) }}">
+                                        <a class="btn btn-primary mt-1" href="{{ route('admin.GameCategory.index', $item->id) }}">
                                             Danh mục
                                         </a>
 
-                                        <a class="btn btn-primary" href="{{ route('admin.game_item_type.index', $item->id) }}">
+                                        <a class="btn btn-primary mt-1" href="{{ route('admin.game_item_type.index', $item->id) }}">
+                                            Loại vật phẩm
+                                        </a>
+
+                                        <a class="btn btn-primary mt-1" href="{{ route('admin.game_item.index', $item->id) }}">
                                             Vật phẩm
                                         </a>
 
-                                        <a class="btn btn-primary" href="{{ route('admin.game_item_type.index', $item->id) }}">
+                                        <a class="btn btn-primary mt-1" href="{{ route('admin.game_item_type.index', $item->id) }}">
                                             Thuộc tính
                                         </a>
                                     </td>
