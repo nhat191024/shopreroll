@@ -35,7 +35,7 @@
                                         <td style="width: 5%;">{{ ++$key }}</td>
                                         <td style="width: 30%;">{{ $item['name'] }}</td>
                                         <td style="width: 20%;">
-                                            <button class="btn btn-primary">Sửa</button>
+                                            <a class="btn btn-primary" href="{{ route('admin.game_item_type.edit', [$item->id]) }}">Sửa</a>
                                             <a class="btn btn-danger" href="{{ route('admin.game_item_type.destroy', [$item->id]) }}">Xóa</a>
                                             <button class="btn btn-primary">Danh sách vật phẩm</button>
                                         </td>
