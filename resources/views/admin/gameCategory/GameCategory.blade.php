@@ -4,6 +4,7 @@
         <h1 class="h3 mb-2 text-gray-800">Danh mục game {{ $gameName }}</h1>
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
+                <a class="btn btn-primary" href="{{ route('admin.game.index') }}">Quay lại</a>
                 <a class="btn btn-primary" href="{{ route('admin.GameCategory.showAdd') }}">Thêm danh mục mới</a>
             </div>
             <div class="card-body">
