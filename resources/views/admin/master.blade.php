@@ -49,7 +49,7 @@
 
 @inject('game', 'App\Models\Game')
 @php
-    $games = $game::all();
+    $games = $game::with('GameCategory')->get();
 @endphp
 
 <body id="page-top">
@@ -93,17 +93,13 @@
                     <div id="game-{{ str_replace(' ', '-', $item->name) }}" class="menu-dropdown collapse" data-parent="#menuAccordion">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.game_attribute.index', $item->id) }}">Danh sách</a>
+                                <a class="nav-link" href="{{ route('admin.gameAccount.index') }}">Danh sách chung</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.game_item_type.index', $item->id) }}">Loại vật phẩm</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.game_item.index', $item->id) }}">Vật phẩm</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.game_attribute.index', $item->id) }}">Thuộc tính</a>
-                            </li>
+                            @foreach ($item->GameCategory as $category)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.gameAccount.index') }}?category_id={{ $category->id }}&status=1">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </li>
