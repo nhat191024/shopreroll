@@ -74,7 +74,7 @@
                                             Vật phẩm
                                         </a>
 
-                                        <a class="btn btn-primary mt-1" href="{{ route('admin.game_item_type.index', $item->id) }}">
+                                        <a class="btn btn-primary mt-1" href="{{ route('admin.game_attribute.index', $item->id) }}">
                                             Thuộc tính
                                         </a>
                                     </td>
