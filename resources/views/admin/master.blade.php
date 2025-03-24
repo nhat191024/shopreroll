@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link type="image/svg+xml" rel="icon" href="{{ asset('img/logo.svg') }} " />
+    <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
     <title>Shop game- Quản lý</title>
 
     <!-- IMPORTANT: Load jQuery first, then Bootstrap, then other plugins -->
@@ -57,7 +57,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
                 <div class="sidebar-brand-icon">
-                    <img src="{{ asset('img/logo.svg') }}" width="60%">
+                    <img src="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
                 </div>
                 <div class="sidebar-brand-text mx-3">Shop game</div>
             </a>
