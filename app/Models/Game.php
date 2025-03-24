@@ -12,6 +12,11 @@ class Game extends Model
         'status',
     ];
 
+    public function GameAccount()
+    {
+        return $this->hasMany(GameAccount::class);
+    }
+
     public function GameItemType()
     {
         return $this->hasMany(GameItemType::class);
