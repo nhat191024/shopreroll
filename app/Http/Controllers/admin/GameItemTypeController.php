@@ -44,7 +44,7 @@ class GameItemTypeController extends Controller
         return view('admin.game_item_type.update', compact('gameItemType'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateGameItemTypeRequest $request, $id)
     {
         $gameItemType = GameItemType::find($id);
         $gameItemType->name = $request->name;
