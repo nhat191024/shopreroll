@@ -49,12 +49,6 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
         require __DIR__ . '/admin/game/recharge.php';
         require __DIR__ . '/admin/game/rechargePackage.php';
         require __DIR__ . '/admin/game/account.php';
-
-        Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('character');
-        Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('weapon');
-        Route::get('/syncCharacters', [ApiController::class, 'syncHeroData'])->name('syncCharacters');
-        Route::get('/syncWeapons', [ApiController::class, 'syncWeaponData'])->name('syncWeapons');
-
         require __DIR__ . '/admin/reroll/category.php';
         require __DIR__ . '/admin/reroll/package.php';
         require __DIR__ . '/admin/reroll/key.php';
