@@ -57,8 +57,12 @@ class GameItemTypeController extends Controller
     {
         $gameItemType = GameItemType::find($id);
         $gameId = $gameItemType->game_id;
-        $gameItemType->delete();
 
+        if ($gameItemType->gameItems->count() > 0) {
+            return redirect()->route('admin.game_item_type.index', $gameId)->with('error', 'Game Item Type has game items, cannot delete');
+        }
+
+        $gameItemType->delete();
         return redirect()->route('admin.game_item_type.index', $gameId)->with('success', 'Game Item Type deleted successfully');
     }
 }
