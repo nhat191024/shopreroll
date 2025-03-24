@@ -43,6 +43,7 @@
     #dataTable th,
     #dataTable td {
         text-align: center;
+        vertical-align: middle;
     }
 </style>
 
