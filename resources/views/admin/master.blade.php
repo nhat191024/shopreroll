@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,28 +11,36 @@
     <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
     <title>Shop game- Quản lý</title>
 
-    <!-- IMPORTANT: Load jQuery first, then Bootstrap, then other plugins -->
-    <!-- jQuery (full version) - Load this FIRST -->
+    <!-- Load jQuery FIRST (single version) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap 4 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-    <!-- Bootstrap 4 JavaScript - After jQuery -->
+    <!-- Bootstrap 4 JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap-select CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- datatables css -->
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <!-- datatables css-->
-    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/r-3.0.4/sp-2.3.3/sr-1.4.1/datatables.min.css" rel="stylesheet" integrity="sha384-uMRVFAehEmeRx+eu65ZAwUtvyFbGSAXOA+y0/bktyqsYwlw8575VE7T7o5PqC9HY" crossorigin="anonymous">
+    <!-- chart.js css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
 
-    <!-- Remaining styles and scripts -->
+    <!-- font awesome css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- select2 css -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- select2 bootstrap 5 theme css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+    <!--  styles  -->
     <link href="{{ url('') . '/' }}css/sb-admin-2.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
 </head>
 
 <style>
@@ -391,34 +398,54 @@
     <!-- Custom scripts for all pages -->
     <script src="{{ url('') . '/' }}js/sb-admin-2.js"></script>
 
-    <!-- datatables script -->
-    <script src="https://cdn.datatables.net/v/dt/jq-3.7.0/dt-2.2.2/r-3.0.4/sp-2.3.3/sr-1.4.1/datatables.min.js" integrity="sha384-EyOrkIw2BJ0wGDDncNwhfC5UwkD+tjKPyPNUqOd9J92FC+Y3JT5Q/32Ad5/x0ylC" crossorigin="anonymous"></script>
+    <!-- datatables script (without jQuery) -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-    <!-- Bootstrap JavaScrip -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-    <!-- Bootstrap-select JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
         // Document ready function
         $(document).ready(function() {
-            // Check if bootstrap-select is loaded
-            if (typeof $.fn.selectpicker === 'function') {
-                // Initialize selectpicker
-                $('.my-select').selectpicker();
-                console.log('Bootstrap-select initialized successfully');
+            // Initialize Select2
+            if (typeof $.fn.select2 === 'function') {
+                $('.selectpicker').select2({
+                    theme: 'bootstrap-5',
+                    width: '100%',
+                    placeholder: 'Select options',
+                    allowClear: true
+                });
+                console.log('Select2 initialized successfully');
             } else {
-                console.error('Bootstrap-select plugin is not available');
-                // Fallback to standard select
-                console.log('Using standard select as fallback');
+                console.error('Select2 plugin is not available');
             }
 
-            // Initialize any DataTables after bootstrap-select
+            // Initialize DataTables
             if (typeof $.fn.DataTable === 'function') {
-                $('#dataTable').DataTable();
-                console.log('DataTables is available');
+                try {
+                    $('#dataTable').DataTable({
+                        responsive: true,
+                        language: {
+                            "lengthMenu": "Hiển thị _MENU_ mục trên trang",
+                            "zeroRecords": "Không tìm thấy dữ liệu",
+                            "info": "Hiển thị trang _PAGE_ / _PAGES_",
+                            "infoEmpty": "Không có dữ liệu",
+                            "infoFiltered": "(lọc từ _MAX_ tổng số)",
+                            "search": "Tìm kiếm:",
+                            "paginate": {
+                                "first": "Đầu",
+                                "last": "Cuối",
+                                "next": "Sau",
+                                "previous": "Trước"
+                            }
+                        }
+                    });
+                    console.log('DataTables initialized successfully');
+                } catch (error) {
+                    console.error('Error initializing DataTables:', error);
+                }
+            } else {
+                console.error('DataTables plugin is not available');
             }
         });
     </script>
