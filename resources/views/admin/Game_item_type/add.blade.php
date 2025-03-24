@@ -8,7 +8,7 @@
             <div class="card-body">
                 @if ($errors->any())
                     <div class="alert alert-danger">
-                        Lôi xảy ra, vui lòng kiểm tra lại thông tin nhập vào
+                        Lỗi xảy ra, vui lòng kiểm tra lại thông tin nhập vào
                         <ul>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
