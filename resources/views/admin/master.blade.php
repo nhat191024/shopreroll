@@ -125,6 +125,21 @@
                         <span>Game</span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-category" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Danh mục</span>
+                    </a>
+                    <div id="game-category" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.GameCategory.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" data-toggle="collapse" href="#game-item-type" role="button" aria-expanded="false" aria-controls="account">
                         <i class="fa-solid fa-gamepad"></i>
                         <span data-key="t-layouts">Loại vật phẩm</span>
