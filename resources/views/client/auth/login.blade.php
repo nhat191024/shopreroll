@@ -1,6 +1,6 @@
 @extends('client.layouts.auth')
 @section('form-content')
-    <div class="col-lg-6 card offset-lg-3">
+    <div class="col-lg-12 card ">
         <div class="mt-3">
             <form action="{{ route('login.auth') }}" method="POST">
                 @csrf
