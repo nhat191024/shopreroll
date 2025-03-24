@@ -5,7 +5,7 @@
             <h1 class="h3 mb-2 text-gray-800">Danh sách loại vật phẩm trong {{ $gameName }}</h1>
             <div class="card mb-4 shadow">
                 <div class="card-header py-3">
-                    <a class="btn btn-primary" href="{{ url()->previous() }}">Quay lại</a>
+                    <a class="btn btn-primary" href="{{ route('admin.game.index') }}">Quay lại</a>
                     <a class="btn btn-primary" href="{{ route('admin.game_item_type.create', $gameId) }}">Thêm loại vật phẩm cho game</a>
                     <a class="btn btn-primary mt-1" href="{{ route('admin.game_item.index', $gameId) }}">Danh sách vật phẩm</a>
                 </div>
