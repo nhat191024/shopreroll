@@ -6,7 +6,8 @@
             <div class="card mb-4 shadow">
                 <div class="card-header py-3">
                     <a class="btn btn-primary" href="{{ url()->previous() }}">Quay lại</a>
-                    <a class="btn btn-primary" href="{{ route('admin.game_item_type.create', [$gameId]) }}">Thêm loại vật phẩm cho game</a>
+                    <a class="btn btn-primary" href="{{ route('admin.game_item_type.create', $gameId) }}">Thêm loại vật phẩm cho game</a>
+                    <a class="btn btn-primary mt-1" href="{{ route('admin.game_item.index', $gameId) }}">Danh sách vật phẩm</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -37,7 +38,6 @@
                                         <td style="width: 20%;">
                                             <a class="btn btn-primary" href="{{ route('admin.game_item_type.edit', [$item->id]) }}">Sửa</a>
                                             <a class="btn btn-danger" href="{{ route('admin.game_item_type.destroy', [$item->id]) }}">Xóa</a>
-                                            <button class="btn btn-primary">Danh sách vật phẩm</button>
                                         </td>
                                     </tr>
                                 @endforeach
