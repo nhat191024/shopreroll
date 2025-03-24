@@ -18,7 +18,7 @@
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif
-                    <table id="dataTable" class="table" width="100%" cellspacing="0">
+                    <table id="dataTable" class="table-bordered table" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>STT</th>
