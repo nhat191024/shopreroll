@@ -47,6 +47,11 @@
     }
 </style>
 
+@inject('game', 'App\Models\Game')
+@php
+    $games = $game::all();
+@endphp
+
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -88,6 +93,36 @@
                         <span>Game</span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-item-type" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Loại vật phẩm</span>
+                    </a>
+                    <div id="game-item-type" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_item_type.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-item" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Vật phẩm</span>
+                    </a>
+                    <div id="game-item" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_item.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll</span>
                     </a>
@@ -96,45 +131,6 @@
                     <a class="nav-link" href="{{ route('admin.GameRecharge.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Nạp Game</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" data-toggle="collapse" href="#char-menu" role="button" aria-expanded="false" aria-controls="account">
-                        <i class="fa-solid fa-gamepad"></i>
-                        <span data-key="t-layouts">Character</span>
-                    </a>
-                    <div id="char-menu" class="menu-dropdown collapse" data-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" data-key="t-horizontal" href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}">Genshin Impact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-key="t-horizontal" href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}">Honkai Star Rail</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-key="t-horizontal" href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}">Zenless Zone Zero</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" data-bs-toggle="collapse" href="#weapon" role="button" aria-expanded="false" aria-controls="weapon">
-                        <i class="fa-solid fa-wand-sparkles"></i>
-                        <span data-key="t-layouts">Vũ khí</span>
-                    </a>
-                    <div id="weapon" class="menu-dropdown collapse" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link" data-key="t-horizontal" href="{{ route('admin.weapon', ['slug' => 'genshin-impact']) }}">Genshin Impact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-key="t-horizontal" href="{{ route('admin.weapon', ['slug' => 'honkai-star-rail']) }}">Honkai Star Rail</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-key="t-horizontal" href="{{ route('admin.weapon', ['slug' => 'zenless-zone-zero']) }}">Zenless Zone Zero</a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.user.index') }}">
