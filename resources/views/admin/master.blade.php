@@ -82,7 +82,39 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                <h6>Chức năng</h6>
+                <h6>Tài Khoản Game</h6>
+            </div>
+            @foreach ($games as $item)
+                <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">{{ $item->name }}</span>
+                    </a>
+                    <div id="game-{{ str_replace(' ', '-', $item->name) }}" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.game_attribute.index', $item->id) }}">Danh sách</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.game_item_type.index', $item->id) }}">Loại vật phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.game_item.index', $item->id) }}">Vật phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.game_attribute.index', $item->id) }}">Thuộc tính</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            @endforeach
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                <h6>Game</h6>
             </div>
 
             <!-- Nav Item - Tables -->
@@ -137,6 +169,15 @@
                         </ul>
                     </div>
                 </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    <h6>Chức năng khác</h6>
+                </div>
+
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll</span>
