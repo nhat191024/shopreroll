@@ -8,7 +8,7 @@ class AccountAttribute extends Model
 {
     protected $table = 'account_attributes';
     protected $fillable = [
-        'account_id',
+        'game_account_id',
         'game_attribute_id',
         'value',
     ];
