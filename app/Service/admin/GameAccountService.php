@@ -148,7 +148,7 @@ class GameAccountService
 
     public function getGameAccountById($id)
     {
-        return GameAccount::with(['AccountHero', 'AccountWeapon'])->findOrFail($id);
+        return GameAccount::with()->findOrFail($id);
     }
 
     public function disableGameAccount($id)
@@ -180,13 +180,7 @@ class GameAccountService
             $gameId = $gameCategory->game_id;
 
             // Lấy danh sách heroes và weapons thuộc danh mục game
-            $heroes = Hero::where('game_id', $gameId)->get();
-            $weapons = Weapon::where('game_id', $gameId)->get();
 
-            return [
-                'heroes' => $heroes,
-                'weapons' => $weapons,
-            ];
         } catch (\Exception $e) {
             throw new \Exception('Không thể lấy thông tin chi tiết game: ' . $e->getMessage());
         }
