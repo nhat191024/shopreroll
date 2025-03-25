@@ -413,7 +413,8 @@
                     theme: 'bootstrap-5',
                     width: '100%',
                     placeholder: 'Select options',
-                    allowClear: true
+                    allowClear: true,
+                    closeOnSelect: false
                 });
                 console.log('Select2 initialized successfully');
             } else {
