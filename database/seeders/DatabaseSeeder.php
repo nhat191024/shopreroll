@@ -20,7 +20,7 @@ use App\Models\AccountImage;
 use App\Models\AccountBill;
 use App\Models\BalanceRechargeCardBill;
 use App\Models\BalanceRechargeBankBill;
-
+use App\Models\GameItem;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -87,10 +87,22 @@ class DatabaseSeeder extends Seeder
             ]);
 
             foreach ($data['game_item_type'] as $item) {
-                GameItemType::create([
+                $itemType = GameItemType::create([
                     'game_id' => $game->id,
                     'name' => $item['name'],
                 ]);
+
+                if (isset($item['game_items'])) {
+                    foreach ($item['game_items'] as $itemData) {
+                        GameItem::create([
+                            'game_id' => $game->id,
+                            'name' => $itemData['name'],
+                            'description' => $itemData['description'],
+                            'image' => $itemData['image'],
+                            'game_item_type_id' => $itemType->id,
+                        ]);
+                    }
+                }
             }
 
             foreach ($data['game_attribute'] as $attribute) {
@@ -104,7 +116,7 @@ class DatabaseSeeder extends Seeder
         foreach ($dataArray['game_category'] as $data) {
             GameCategory::create($data);
         }
-        
+
         foreach ($dataArray['balance_recharge_card_bill'] as $data) {
             BalanceRechargeCardBill::create($data);
         }

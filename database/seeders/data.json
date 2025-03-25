@@ -63,19 +63,19 @@
     ],
     "contributor_commission": [
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 1
         },
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 2
         },
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 3
         },
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 4
         },
         {
@@ -87,19 +87,19 @@
             "contributor_id": 6
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 1
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 2
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 3
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 4
         },
         {
@@ -111,19 +111,19 @@
             "contributor_id": 6
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 1
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 2
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 3
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 4
         },
         {
@@ -416,10 +416,64 @@
             "name": "Genshin Impact",
             "game_item_type": [
                 {
-                    "name": "weapon"
+                    "name": "weapon",
+                    "game_items": [
+                        {
+                            "name": "Sword",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Bow",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Catalyst",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Claymore",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Polearm",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        }
+                    ]
                 },
                 {
-                    "name": "hero"
+                    "name": "hero",
+                    "game_items": [
+                        {
+                            "name": "Diluc",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Jean",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Mona",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Keqing",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        },
+                        {
+                            "name": "Qiqi",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.jpg"
+                        }
+                    ]
                 }
             ],
             "game_attribute": [
