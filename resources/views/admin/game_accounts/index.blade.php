@@ -4,7 +4,7 @@
     <div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="{{ route('admin.gameAccount.import') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.game_account.excel') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-header">
                         <h5 id="importExcelModalLabel" class="modal-title">Nhập tài khoản từ Excel</h5>
@@ -27,11 +27,11 @@
         </div>
     </div>
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">Danh sách tài khoản</h1>
+        <h1 class="h3 mb-2 text-gray-800">Danh sách tài khoản {{ $game->name }} - {{ $categoryName }}</h1>
         <div class="card mb-4 shadow">
             <div class="card-header d-flex align-items-center justify-content-between py-3">
                 <div>
-                    <a class="btn btn-primary" href="{{ route('admin.gameAccount.showAddForm') }}">Thêm tài khoản</a>
+                    <a class="btn btn-primary" href="{{ route('admin.game_account.create', $game->id) }}">Thêm tài khoản</a>
                     <!-- Nút tải lên file Excel -->
                     <button class="btn btn-secondary" data-toggle="modal" data-target="#importExcelModal" type="button">
                         Nhập từ Excel
@@ -39,14 +39,14 @@
                 </div>
                 <div>
                     <!-- Form lọc danh mục và trạng thái -->
-                    <form class="form-inline" action="{{ route('admin.gameAccount.index') }}" method="GET">
+                    <form class="form-inline" action="{{ route('admin.game_account.index', $game->id) }}" method="GET">
                         <div class="form-group mx-sm-3 mb-2">
                             <label class="sr-only" for="filterCategory">Danh mục</label>
                             <select id="filterCategory" class="form-control" name="category_id">
                                 <option value="">Tất cả</option>
-                                @foreach ($gameCategories as $category)
-                                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
+                                @foreach ($categories as $id => $name)
+                                    <option value="{{ $id }}" {{ request('category_id') == $id ? 'selected' : '' }}>
+                                        {{ $name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -83,48 +83,42 @@
                                 <th>Tiêu đề</th>
                                 <th>Danh mục</th>
                                 <th>Tên tài khoản</th>
-                                <th>AR</th>
-                                <th>Server</th>
                                 <th>Giá bán</th>
                                 <th>Trạng thái</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>STT</th>
-                                <th>Tiêu đề</th>
-                                <th>Danh mục</th>
-                                <th>Tên tài khoản</th>
-                                <th>AR</th>
-                                <th>Server</th>
-                                <th>Giá bán</th>
-                                <th>Trạng thái</th>
-                                <th>Chức năng</th>
-                            </tr>
-                        </tfoot>
                         <tbody>
-                            @foreach ($gameAccounts as $key => $item)
+                            @foreach ($accounts as $key => $item)
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->gameCategory->name ?? 'Không có danh mục' }}</td>
                                     <td>{{ $item->username ?? 'Không có tên tài khoản' }}</td>
-                                    <td>{{ $item->AR ?? 'N/A' }}</td>
-                                    <td>{{ $item->server ?? 'N/A' }}</td>
                                     <td>{{ number_format($item->price_out) }} VND</td>
                                     <td>{{ $item->status == 1 ? 'Hoạt động' : 'Đã bán' }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning" href="{{ route('admin.gameAccount.edit', ['id' => $item->id]) }}">
+                                        <a class="btn btn-warning" href="{{ route('admin.game_account.edit', ['id' => $item->id]) }}">
                                             Chi tiết
                                         </a>
-                                        <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xóa hoàn toàn item {{ $item->username }} chứ?')) { window.location.href = '{{ route('admin.gameAccount.disable', ['id' => $item->id]) }}'; }">
+                                        <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn xóa hoàn toàn item {{ $item->username }} chứ?')) { window.location.href = '{{ route('admin.game_account.destroy', ['id' => $item->id]) }}'; }">
                                             Xóa
                                         </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tiêu đề</th>
+                                <th>Danh mục</th>
+                                <th>Tên tài khoản</th>
+                                <th>Giá bán</th>
+                                <th>Trạng thái</th>
+                                <th>Chức năng</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
