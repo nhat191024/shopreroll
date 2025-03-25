@@ -37,12 +37,12 @@ class GameAccount extends Model
 
     public function AccountAttribute()
     {
-        return $this->hasMany(AccountAttribute::class, 'account_id');
+        return $this->hasMany(AccountAttribute::class, 'game_account_id');
     }
 
     public function AccountItem()
     {
-        return $this->hasMany(AccountItem::class, 'account_id');
+        return $this->hasMany(AccountItem::class, 'game_account_id');
     }
 
     public function AccountImage()
