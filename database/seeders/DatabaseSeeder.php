@@ -104,19 +104,7 @@ class DatabaseSeeder extends Seeder
         foreach ($dataArray['game_category'] as $data) {
             GameCategory::create($data);
         }
-
-        foreach ($dataArray['game_account'] as $data) {
-            GameAccount::create($data);
-        }
-
-        foreach ($dataArray['account_image'] as $data) {
-            AccountImage::create($data);
-        }
-
-        foreach ($dataArray['account_bill'] as $data) {
-            AccountBill::create($data);
-        }
-
+        
         foreach ($dataArray['balance_recharge_card_bill'] as $data) {
             BalanceRechargeCardBill::create($data);
         }
