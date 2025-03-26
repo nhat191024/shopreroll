@@ -9,12 +9,12 @@ use Maatwebsite\Excel\Concerns\WithStartRow;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class GameAccountsImport implements ToModel, WithStartRow
 {
     protected $errors = []; // Khai báo biến $errors
+    protected $currentRowNumber = 0; // Biến để theo dõi số thứ tự dòng hiện tại
 
     // Bắt đầu đọc từ dòng thứ 2
     public function startRow(): int
@@ -24,6 +24,13 @@ class GameAccountsImport implements ToModel, WithStartRow
 
     public function model(array $row)
     {
+        $this->currentRowNumber++;
+        $excelRowNumber = $this->currentRowNumber + $this->startRow() - 1;
+
+        if (empty(array_filter($row))) {
+            return null;
+        }
+
         DB::beginTransaction();
         try {
             $this->validateRow($row);
@@ -31,6 +38,8 @@ class GameAccountsImport implements ToModel, WithStartRow
             $accountImages = json_decode($row[8], true);
             $accountItems = json_decode($row[9], true);
             $accountAttributes = json_decode($row[10], true);
+
+            $accountItems = array_unique($accountItems);
 
             $gameAccount = GameAccount::create([
                 'creator_id' => Auth::id(),
@@ -46,17 +55,17 @@ class GameAccountsImport implements ToModel, WithStartRow
             ]);
 
             foreach ($accountImages as $image) {
-                $gameAccount->images()->create(['image' => $image]);
+                $gameAccount->AccountImage()->create(['image' => $image]);
             }
 
             foreach ($accountItems as $item) {
-                $gameAccount->items()->create([
+                $gameAccount->AccountItem()->create([
                     'game_account_id' => $gameAccount->id,
                     'game_item_id' => $item
                 ]);
             }
             foreach ($accountAttributes as $id => $attribute) {
-                $gameAccount->attributes()->create([
+                $gameAccount->AccountAttribute()->create([
                     'game_account_id' => $gameAccount->id,
                     'game_attribute_id' => $id,
                     'value' => $attribute
@@ -66,7 +75,7 @@ class GameAccountsImport implements ToModel, WithStartRow
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->errors[] = "Dòng lỗi: " . json_encode($row) . " - " . $e->getMessage();
+            $this->errors[] = "Lỗi tại dòng {$excelRowNumber}: " . $e->getMessage();
             return null;
         }
     }
