@@ -42,9 +42,9 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->key }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->id }} chứ?')) { window.location.href = '{{ route('admin.RerollKey.delete', ['idPackage' => $idPackage, 'idKey' => $item->id]) }}'; }">
+                                        <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->id }} chứ?')) { window.location.href = '{{ route('admin.rerollKey.delete', ['idPackage' => $idPackage, 'idKey' => $item->id]) }}'; }">
                                             Xóa </a>
-                                        <a class="btn btn-info" href="{{ route('admin.RerollKey.ShowEdit', ['idPackage' => $idPackage, 'idKey' => $item->id]) }}">Sửa</a>
+                                        <a class="btn btn-info" href="{{ route('admin.rerollKey.ShowEdit', ['idPackage' => $idPackage, 'idKey' => $item->id]) }}">Sửa</a>
                                     </td>
                                 </tr>
                             @endforeach
