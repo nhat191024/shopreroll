@@ -46,14 +46,14 @@
                                     <td class="text-center"><img width="200px" src="{{ asset('image/thumb/' . $item['image']) }}" alt=""></td>
                                     <td class="text-center">
                                         @if ($item->status == 0)
-                                            <a class="btn btn-success" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollSubCategory.ChangeStatus', $item->id) }}'; }">
+                                            <a class="btn btn-success" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.rerollSubCategory.ChangeStatus', $item->id) }}'; }">
                                                 Hiện </a>
                                         @else
-                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.RerollSubCategory.ChangeStatus', $item->id) }}'; }">
+                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.rerollSubCategory.ChangeStatus', $item->id) }}'; }">
                                                 Ẩn </a>
                                         @endif
-                                        <a class="btn btn-info" href="{{ route('admin.RerollSubCategory.ShowEdit', $item->id) }}">Sửa</a>
-                                        <a class="btn btn-info" href="{{ route('admin.RerollSubCategory.Detail', $item->id) }}">Chi tiết</a>
+                                        <a class="btn btn-info" href="{{ route('admin.rerollSubCategory.ShowEdit', $item->id) }}">Sửa</a>
+                                        <a class="btn btn-info" href="{{ route('admin.rerollSubCategory.Detail', $item->id) }}">Chi tiết</a>
                                     </td>
 
                                 </tr>

@@ -51,6 +51,7 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
         require __DIR__ . '/admin/game/rechargePackage.php';
         require __DIR__ . '/admin/game/account.php';
         require __DIR__ . '/admin/reroll/category.php';
+        require __DIR__ . '/admin/reroll/subCategory.php';
         require __DIR__ . '/admin/reroll/package.php';
         require __DIR__ . '/admin/reroll/key.php';
 
