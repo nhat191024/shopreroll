@@ -211,7 +211,7 @@ class GameAccountController extends Controller
                 return redirect()->back()->with('error', implode('<br>', $errors));
             }
 
-            return redirect()->route('admin.gameAccount.index')->with('success', 'Nhập tài khoản từ Excel thành công.');
+            return redirect()->back()->with('success', 'Nhập tài khoản từ Excel thành công.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Lỗi khi nhập dữ liệu: ' . $e->getMessage());
         }
