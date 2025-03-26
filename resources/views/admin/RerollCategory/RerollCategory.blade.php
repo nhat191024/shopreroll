@@ -54,7 +54,7 @@
                                                 Ẩn </a>
                                         @endif
                                         <a class="btn btn-info" href="{{ route('admin.RerollCategory.ShowEdit', $item->id) }}">Sửa</a>
-                                        <a class="btn btn-info" href="{{ route('admin.RerollCategory.Detail', ['id' => $item->id]) }}">
+                                        <a class="btn btn-info" href="{{ route('admin.RerollCategory.Detail', $item->id) }}">
                                             Chi tiết
                                         </a>
                                     </td>
