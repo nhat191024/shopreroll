@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\RerollKeyController;
 
-Route::prefix('/detail/{idPackage}/reroll-key')->name('RerollKey.')->group(function () {
+Route::prefix('/detail/{idPackage}/reroll-key')->name('rerollKey.')->group(function () {
     Route::get('/', [RerollKeyController::class, 'index'])->name('index');
     Route::get('/add', [RerollKeyController::class, 'showAddRerollKey'])->name('showAdd');
     Route::post('/add', [RerollKeyController::class, 'addRerollKey'])->name('add');
