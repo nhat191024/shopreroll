@@ -226,7 +226,7 @@
                 </div>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll</span>
                     </a>
                 </li>
