@@ -25,7 +25,7 @@ class StoreGameAccountRequest extends FormRequest
             'title' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'password' => 'required|string|max:255',
-            'game_category_id' => 'required|integer',
+            'game_category_id' => 'required|integer|exists:game_categories,id',
             'price_in' => 'nullable|integer',
             'price_out' => 'required|integer',
             'note' => 'nullable|string',
