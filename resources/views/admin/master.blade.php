@@ -115,7 +115,10 @@
                 <h6>Tài Khoản Game</h6>
             </div>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">Nhập từ Excel</a>
+                <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span data-key="t-layouts">Nhập từ Excel</span>
+                    </a>
             </li>
             @foreach ($games as $item)
                 <li class="nav-item">
