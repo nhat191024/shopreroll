@@ -25,6 +25,7 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
+                                    <th>ID</th>
                                     <th>Tên</th>
                                     <th>Mô tả</th>
                                     <th>Ảnh</th>
@@ -36,6 +37,7 @@
                                 @foreach ($gameItems as $key => $item)
                                     <tr>
                                         <td style="width: 5%;">{{ ++$key }}</td>
+                                        <td style="width: 5%;">{{ $item->id }}</td>
                                         <td style="width: 15%;">{{ $item->name }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td style="width: 15%;">
@@ -52,6 +54,7 @@
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
+                                    <th>ID</th>
                                     <th>Tên</th>
                                     <th>Mô tả</th>
                                     <th>Ảnh</th>

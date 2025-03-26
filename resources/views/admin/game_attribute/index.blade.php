@@ -24,6 +24,7 @@
                             <thead>
                                 <tr>
                                     <th>STT</th>
+                                    <th>ID</th>
                                     <th>Tên thuộc tính</th>
                                     <th>Action</th>
                                 </tr>
@@ -32,6 +33,7 @@
                                 @foreach ($gameAttributes as $key => $item)
                                     <tr>
                                         <td style="width: 5%;">{{ ++$key }}</td>
+                                        <td style="width: 5%;">{{ $item->id }}</td>
                                         <td style="width: 30%;">{{ $item->name }}</td>
                                         <td style="width: 20%;">
                                             <a class="btn btn-primary" href="{{ route('admin.game_attribute.edit', [$item->id]) }}">Sửa</a>
@@ -43,6 +45,7 @@
                             <tfoot>
                                 <tr>
                                     <th>STT</th>
+                                    <th>ID</th>
                                     <th>Tên loại vật phẩm</th>
                                     <th>Action</th>
                                 </tr>
