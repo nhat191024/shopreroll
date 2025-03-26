@@ -202,7 +202,7 @@ class GameAccountController extends Controller
         }
     }
 
-    public function importFromExcel(Request $request)
+    public function excel(Request $request)
     {
         $request->validate([
             'excel_file' => 'required|mimes:xlsx,xls,csv',
@@ -213,7 +213,6 @@ class GameAccountController extends Controller
             $import = new GameAccountsImport();
             Excel::import($import, $file);
 
-            // Lấy danh sách lỗi
             $errors = $import->getErrors();
 
             if (!empty($errors)) {
