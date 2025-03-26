@@ -57,6 +57,32 @@
 @endphp
 
 <body id="page-top">
+    <div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('admin.game_account.excel') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 id="importExcelModalLabel" class="modal-title">Nhập tài khoản từ Excel</h5>
+                        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="excelFile">Chọn file Excel</label>
+                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
+                        <button class="btn btn-primary" type="submit">Tải lên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -88,6 +114,9 @@
             <div class="sidebar-heading">
                 <h6>Tài Khoản Game</h6>
             </div>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">Nhập từ Excel</a>
+            </li>
             @foreach ($games as $item)
                 <li class="nav-item">
                     <a class="nav-link menu-link" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="account">

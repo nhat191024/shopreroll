@@ -1,31 +1,5 @@
 @extends('admin.master')
 @section('main')
-    <!-- Modal Import Excel -->
-    <div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="{{ route('admin.game_account.excel') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 id="importExcelModalLabel" class="modal-title">Nhập tài khoản từ Excel</h5>
-                        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="excelFile">Chọn file Excel</label>
-                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
-                        <button class="btn btn-primary" type="submit">Tải lên</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <div class="container-fluid">
         <h1 class="h3 mb-2 text-gray-800">Danh sách tài khoản {{ $game->name }} - {{ $categoryName }}</h1>
         <div class="card mb-4 shadow">
