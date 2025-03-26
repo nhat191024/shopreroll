@@ -20,11 +20,11 @@ class GameCategoryController extends Controller
         $this->gameService = app(GameService::class);
     }
 
-    public function index($id)
+    public function index($game)
     {
-        $categories = $this->gameCategoryService->getByGameId($id);
-        $gameName = Game::where('id', $id)->first()->name;
-        return view('admin.gameCategory.GameCategory', compact('categories', 'gameName'));
+        $categories = GameCategory::where('game_id', $game)->get();
+        $gameName = Game::where('id', $game)->first()->name;
+        return view('admin.gameCategory.GameCategory', compact('game', 'categories', 'gameName'));
     }
 
     public function showAddCategory()
