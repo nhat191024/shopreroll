@@ -46,7 +46,7 @@
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td><img width="200px" src="{{ url('image/thumb') . '/' . $item->image }}" alt=""></td>
+                                    <td><img width="200px" src="{{ url('image/thumb') . '/' . $item->image }}" alt="{{ $item->name  }} - img"></td>
                                     <td>{{ $item->status == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                     <td class="text-center">
                                         <a class="btn btn-warning" href="{{ route('admin.GameCategory.showEdit', ['id' => $item->id]) }}">
@@ -59,7 +59,7 @@
                                             <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameCategory.ChangeStatus', [$item->id, 0]) }}'; }">
                                                 Ẩn </a>
                                         @endif
-                                        <a class="btn btn-secondary" href="{{ route('admin.gameAccount.index', ['category_id' => $item->id, 'status' => 1]) }}">
+                                        <a class="btn btn-secondary" href="{{ route('admin.game_account.index', $game) }}">
                                             Chi tiết
                                         </a>
                                     </td>
