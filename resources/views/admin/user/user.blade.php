@@ -1,10 +1,7 @@
 @extends('admin.master')
 @section('main')
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Danh sách tài khoản</h1>
-        <!-- DataTales Example -->
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
                 <a class="btn btn-primary" href="{{ route('admin.user.show') }}">Thêm tài khoản</a>

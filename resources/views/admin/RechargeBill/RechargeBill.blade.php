@@ -1,10 +1,7 @@
 @extends('admin.master')
 @section('main')
     <div class="container-fluid">
-
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Hóa đơn</h1>
-        <!-- DataTales Example -->
+        <h1 class="h3 mb-2 text-gray-800">Hóa đơn</h1>>
         <div class="card mb-4 shadow">
             <div class="card-body">
                 <div class="table-responsive">
