@@ -13,7 +13,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use App\Http\Controllers\Controller;
 use App\Imports\GameAccountsImport;
-use App\Service\admin\GameAccountService;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,13 +20,6 @@ use Illuminate\Support\Facades\Auth;
 
 class GameAccountController extends Controller
 {
-    protected $gameAccountService;
-
-    public function __construct(GameAccountService $gameAccountService)
-    {
-        $this->gameAccountService = $gameAccountService;
-    }
-
     public function index(Game $game, Request $request)
     {
         $categoryId = $request->get('category_id');
