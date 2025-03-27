@@ -2,35 +2,29 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\RerollCategory;
+use App\Models\RerollSubCategory;
+
 use App\Http\Controllers\Controller;
-use App\Service\admin\RerollSubCategoryService;
-use App\Service\admin\RerollCategoryService;
+
 use Illuminate\Http\Request;
 
 class RerollSubCategoryController extends Controller
 {
-    private $rerollSubCategoryService;
-    private $rerollCategoryService;
-
-    public function __construct(RerollSubCategoryService $rerollSubCategoryService, RerollCategoryService $rerollCategoryService)
+    public function index($category)
     {
-        $this->rerollSubCategoryService = $rerollSubCategoryService;
-        $this->rerollCategoryService = $rerollCategoryService;
+        $rerollSubCategories = $category == 0 ? RerollSubCategory::all() : RerollSubCategory::where('reroll_category_id', $category)->get();
+        $categoryName = $category == 0 ? "" : RerollCategory::find($category)->name;
+        return view('admin.RerollSubCategory.RerollSubCategory', compact('category', 'categoryName', 'rerollSubCategories'));
     }
 
-    public function index()
+    public function create()
     {
-        $allRerollSubCategory = $this->rerollSubCategoryService->getAll();
-        return view('admin.RerollSubCategory.RerollSubCategory', compact('allRerollSubCategory'));
+        $rerollCategories = RerollCategory::all()->pluck('name', 'id')->toArray();
+        return view('admin.RerollSubCategory.AddRerollSubCategory', compact('rerollCategories'));
     }
 
-    public function showAddRerollSubCategory()
-    {
-        $allRerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.RerollSubCategory.AddRerollSubCategory', compact('allRerollCategories'));
-    }
-
-    public function addRerollSubCategory(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required',
@@ -39,72 +33,96 @@ class RerollSubCategoryController extends Controller
             'reroll_category_id' => 'required',
         ]);
 
-        $this->rerollSubCategoryService->add(
-            $request->reroll_category_id,
-            $request->name,
-            $request->tutorial,
-            $request->id_youtube,
-            $request->file_download_link,
-            $request->image
-        );
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
 
-        return redirect(route('admin.RerollSubCategory.index'))->with('success', 'Thêm danh mục thành công');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('image/rerollSubCategory'), $imageName);
+
+            $imagePath = 'image/rerollSubCategory/' . $imageName;
+        }
+
+        RerollSubCategory::create([
+            'reroll_category_id' => $request->reroll_category_id,
+            'name' => $request->name,
+            'image' => $imagePath,
+            'tutorial' => $request->tutorial,
+            'id_youtube' => $request->id_youtube ?? null,
+            'file_download_link' => $request->file_download_link ?? null,
+            'status' => 1,
+        ]);
+
+        return redirect()->route('admin.rerollSubCategory.index', $request->reroll_category_id)->with('success', 'Thêm danh mục thành công');
     }
 
-    public function showEditRerollSubCategory(Request $request)
+    public function edit($id, Request $request)
     {
-        $idRerollSubCategory = $request->id;
-        $rerollSubCategoryInfo = $this->rerollSubCategoryService->getById($idRerollSubCategory);
-        $rerollCategories = $this->rerollCategoryService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.RerollSubCategory.EditRerollSubCategory', compact('idRerollSubCategory', 'rerollSubCategoryInfo', 'rerollCategories'));
+        $rerollSubCategory =  RerollSubCategory::find($id);
+        $rerollCategories = RerollCategory::all()->pluck('name', 'id')->toArray();
+        return view('admin.RerollSubCategory.EditRerollSubCategory', compact('rerollSubCategory', 'rerollCategories'));
     }
 
-    public function editRerollSubCategory(Request $request)
+    public function update($id, Request $request)
     {
         $request->validate([
-            'id' => 'required',
             'name' => 'required',
             'tutorial' => 'required',
             'reroll_category_id' => 'required',
         ]);
 
-        $rerollSubCategory = $this->rerollSubCategoryService->getById($request->id);
+        $rerollSubCategory = RerollSubCategory::find($id);
 
-        if (!$rerollSubCategory) {
-            return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục không tìm thấy');
+        $imagePath = $rerollSubCategory->image;
+        if ($request->hasFile('image')) {
+            if (file_exists(public_path($rerollSubCategory->image))) {
+                unlink(public_path($rerollSubCategory->image));
+            }
+
+            $image = $request->file('image');
+
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('image/rerollSubCategory'), $imageName);
+
+            $imagePath = 'image/rerollSubCategory/' . $imageName;
         }
 
-        $this->rerollSubCategoryService->edit(
-            $request->id,
-            $request->reroll_category_id,
-            $request->name,
-            $request->tutorial,
-            $request->id_youtube,
-            $request->file_download_link
-        );
+        $rerollSubCategory->update([
+            'reroll_category_id' => $request->reroll_category_id,
+            'name' => $request->name,
+            'image' => $imagePath,
+            'tutorial' => $request->tutorial,
+            'id_youtube' => $request->id_youtube ?? null,
+            'file_download_link' => $request->file_download_link ?? null,
+        ]);
 
-        return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Sửa danh mục thành công');
+        return redirect()->route('admin.rerollSubCategory.index', $request->reroll_category_id)->with('success', 'Sửa danh mục thành công');
     }
 
-    public function detailRerollSubCategory(Request $request)
+    public function changeCategoryStatus($id)
     {
-        $idRerollPackage = $request->id;
-        $allRerollPackagies = $this->rerollSubCategoryService->getChildren($idRerollPackage);
-        return view('admin.RerollPackage.RerollPackage', compact('allRerollPackagies'));
-    }
+        $subCategory = RerollSubCategory::find($id);
 
-    public function ChangeCategoryStatus(Request $request)
-    {
-        $id = $request->id;
-        $subCategoryInfo = $this->rerollSubCategoryService->getById($id);
-        if ($subCategoryInfo->status == 0) {
-            $this->rerollSubCategoryService->ChangeStatus($id, 1);
+        if (!$subCategory) {
+            return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục không tồn tại');
+        }
+
+        if ($subCategory->status == 0) {
+            $subCategory->status = 1;
+            $subCategory->save();
+
             return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Hiện danh mục thành công');
-        } else if (!$this->rerollSubCategoryService->checkHasChildren($id)) {
-            $this->rerollSubCategoryService->ChangeStatus($id, 0);
-            return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Ẩn danh mục thành công');
-        } else {
-            return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
         }
+
+        $hasPackages = $subCategory->RerollPackage()->exists();
+
+        if (!$hasPackages) {
+            $subCategory->status = 0;
+            $subCategory->save();
+
+            return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Ẩn danh mục thành công');
+        }
+
+        return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
     }
 }
