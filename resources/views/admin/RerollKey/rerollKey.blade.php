@@ -4,6 +4,7 @@
         <h1 class="h3 mb-2 text-gray-800">Danh sách Reroll Key - {{ $packageName }}</h1>
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
+                <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.index', $idPackage) }}">Quay lại</a>
                 <a class="btn btn-primary" href="{{ route('admin.rerollKey.create', $idPackage) }}">Thêm Reroll Key - {{ $packageName }}</a>
             </div>
             <div class="card-body">

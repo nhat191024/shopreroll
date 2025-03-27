@@ -8,6 +8,7 @@
         @endif
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
+                <a class="btn btn-primary" href="{{ route('admin.rerollCategory.index', $category) }}">Quay lại</a>
                 <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.create') }}">Thêm danh mục reroll phụ</a>
             </div>
             <div class="card-body">
