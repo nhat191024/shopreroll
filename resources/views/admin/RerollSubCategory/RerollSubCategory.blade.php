@@ -46,16 +46,14 @@
                                             <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.rerollSubCategory.ChangeStatus', $item->id) }}'; }">Ẩn</a>
                                         @endif
                                         <a class="btn btn-info" href="{{ route('admin.rerollSubCategory.edit', $item->id) }}">Sửa</a>
-                                        <a class="btn btn-info" {{-- href="{{ route('admin.rerollSubCategory.Detail', $item->id) }}" --}}>
-                                            Chi tiết
-                                        </a>
+                                        <a class="btn btn-info" href="{{ route('admin.rerollPackage.index', $item->id) }}">Chi tiết</a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Mã</th>
+                                <th>STT</th>
                                 <th>Tên Reroll Sub Category</th>
                                 <th>Hướng dẫn</th>
                                 <th>Ảnh</th>
