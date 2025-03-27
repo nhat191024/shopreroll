@@ -3,12 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\RerollCategoryController;
 
-Route::prefix('/reroll-category')->name('RerollCategory.')->group(function () {
+Route::prefix('/reroll-category')->name('rerollCategory.')->group(function () {
     Route::get('/', [RerollCategoryController::class, 'index'])->name('index');
-    Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('showAdd');
-    Route::post('/add', [RerollCategoryController::class, 'addRerollCategory'])->name('add');
-    Route::post('/edit', [RerollCategoryController::class, 'editRerollCategory'])->name('edit');
-    Route::get('/edit/{id}', [RerollCategoryController::class, 'showEditRerollCategory'])->name('ShowEdit');
-    Route::get('/detail/{id}', [RerollCategoryController::class, 'detailRerollCategory'])->name('Detail');
+    Route::get('/add', [RerollCategoryController::class, 'create'])->name('create');
+    Route::post('/store', [RerollCategoryController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [RerollCategoryController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [RerollCategoryController::class, 'update'])->name('update');
     Route::get('/ChangeStatus/{id}', [RerollCategoryController::class, 'ChangeCategoryStatus'])->name('ChangeStatus');
 });
