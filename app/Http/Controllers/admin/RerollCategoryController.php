@@ -5,19 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Models\RerollCategory;
 
 use App\Http\Controllers\Controller;
-use App\Service\admin\RerollCategoryService;
 
 use Illuminate\Http\Request;
 
 class RerollCategoryController extends Controller
 {
-    private $rerollCategoryService;
-
-    public function __construct(RerollCategoryService $rerollCategoryService)
-    {
-        $this->rerollCategoryService = $rerollCategoryService;
-    }
-
     public function index()
     {
         $rerollCategories = RerollCategory::all();
@@ -98,7 +90,7 @@ class RerollCategoryController extends Controller
             $rerollCategory->update(['status' => 1]);
             return redirect()->back()->with('success', 'Hiện danh mục thành công');
         } else {
-            $this->rerollCategoryService->changeStatus($id, 0);
+            $rerollCategory->update(['status' => 1]);
             return redirect()->back()->with('success', 'Ẩn danh mục thành công');
         }
     }
