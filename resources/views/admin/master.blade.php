@@ -83,34 +83,21 @@
         </div>
     </div>
 
-    <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
         <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
-
-            <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
                 <div class="sidebar-brand-icon">
                     <img src="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
                 </div>
                 <div class="sidebar-brand-text mx-3">Shop game</div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang tổng quan</span></a>
             </li>
-
-            <!-- Divider -->
             <hr class="sidebar-divider">
-
-            <!-- Heading -->
             <div class="sidebar-heading">
                 <h6>Tài Khoản Game</h6>
             </div>
@@ -118,7 +105,7 @@
                 <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">
                     <i class="fa-solid fa-gamepad"></i>
                     <span data-key="t-layouts">Nhập từ Excel</span>
-                    </a>
+                </a>
             </li>
             @foreach ($games as $item)
                 <li class="nav-item">
@@ -141,15 +128,11 @@
                 </li>
             @endforeach
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
                 <h6>Game</h6>
             </div>
-
-            <!-- Nav Item - Tables -->
             <div id="menuAccordion">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.game.index') }}">
@@ -217,21 +200,39 @@
                     </div>
                 </li>
 
-                <!-- Divider -->
                 <hr class="sidebar-divider">
 
-                <!-- Heading -->
                 <div class="sidebar-heading">
-                    <h6>Chức năng khác</h6>
+                    <h6>Reroll</h6>
                 </div>
-
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="{{ route('admin.rerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.GameRecharge.index') }}">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollSubCategory.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll Sub Category</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollPackage.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll Package</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollKey.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll Key</span>
+                    </a>
+                </li>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    <h6>Chức năng khác</h6>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.gameRecharge.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Nạp Game</span></a>
                 </li>
