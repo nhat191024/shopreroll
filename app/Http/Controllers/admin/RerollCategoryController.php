@@ -90,18 +90,16 @@ class RerollCategoryController extends Controller
         return redirect(route('admin.rerollCategory.index'))->with('success', 'Sửa danh mục thành công');
     }
 
-    public function ChangeCategoryStatus(Request $request)
+    public function changeCategoryStatus($id)
     {
-        $id = $request->id;
-        $rerollCategoryInfo = $this->rerollCategoryService->getById($id);
-        if ($rerollCategoryInfo->status == 0) {
-            $this->rerollCategoryService->ChangeStatus($id, 1);
+        $rerollCategory = RerollCategory::find($id);
+
+        if ($rerollCategory->status == 0) {
+            $rerollCategory->update(['status' => 1]);
             return redirect()->back()->with('success', 'Hiện danh mục thành công');
-        } else if (!$this->rerollCategoryService->checkHasChildren($id)) {
-            $this->rerollCategoryService->ChangeStatus($id, 0);
-            return redirect()->back()->with('success', 'Ẩn danh mục thành công');
         } else {
-            return redirect()->back()->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
+            $this->rerollCategoryService->changeStatus($id, 0);
+            return redirect()->back()->with('success', 'Ẩn danh mục thành công');
         }
     }
 }
