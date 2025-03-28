@@ -51,12 +51,12 @@ class User extends Authenticatable
 
     public function GameAccount()
     {
-        return $this->hasMany(game_account::class);
+        return $this->hasMany(GameAccount::class);
     }
 
     public function BillAccount()
     {
-        return $this->hasMany(account_bill::class);
+        return $this->hasMany(AccountBill::class);
     }
 
     public function BillRecharge()
@@ -66,21 +66,21 @@ class User extends Authenticatable
 
     public function RerollBill()
     {
-        return $this->hasMany(reroll_bill::class);
+        return $this->hasMany(RerollBill::class);
     }
 
     public function BalanceRechargeBankBill()
     {
-        return $this->hasMany(balance_recharge_bank_bill::class);
+        return $this->hasMany(BalanceRechargeBankBill::class);
     }
 
     public function BalanceRechargeCardBill()
     {
-        return $this->hasMany(balance_recharge_card_bill::class);
+        return $this->hasMany(BalanceRechargeCardBill::class);
     }
 
     public function ContributorCommission()
     {
-        return $this->hasMany(contributor_commission::class);
+        return $this->hasMany(ContributorCommission::class);
     }
 }
