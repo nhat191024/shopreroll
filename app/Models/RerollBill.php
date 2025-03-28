@@ -17,7 +17,7 @@ class RerollBill extends Model
 
     public function Buyer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function RerollPackage()
