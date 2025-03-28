@@ -241,16 +241,33 @@
                         <i class="fa-solid fa-users"></i>
                         <span>Tài khoản người dùng</span></a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.RechargeBill.index') }}">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <span>Lịch sử giao dịch</span></a>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#history" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Lịch sử</span>
+                    </a>
+                    <div id="history" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.rechargeBill.index') }}">
+                                    <span>Nạp game</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.rerollBill.index') }}">
+                                    <span>Reroll</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.balanceRechargeBankBill.index') }}">
+                                    <span>Nạp qua ngân hàng</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.balanceRechargeCardBill.index') }}">
+                                    <span>Nạp qua thẻ điện thoại</span></a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-regular fa-envelope"></i>
-                        <span>Tin nhắn khách hàng</span></a>
-                </li> --}}
             </div>
 
             <!-- Divider -->
