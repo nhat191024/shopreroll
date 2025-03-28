@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\client;
 
+use App\Models\RerollCategory;
+use App\Models\GameRecharge;
+
 use App\Http\Controllers\Controller;
 use App\Service\admin\GameRechargeService;
 use App\Service\admin\RerollCategoryService;
@@ -10,20 +13,17 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    private $rerollCategoryService;
-    private $gameRechargeService;
     private $homeService;
     public function __construct()
     {
-        $this->rerollCategoryService = app(RerollCategoryService::class);
-        $this->gameRechargeService = app(GameRechargeService::class);
         $this->homeService = app(HomeService::class);
     }
     public function index()
     {
-        $allRerollCategory = $this->rerollCategoryService->getAll();
-        $allGameRecharge = $this->gameRechargeService->getAll();
-        return view('client.home.home', compact('allRerollCategory','allGameRecharge'));
+        $rerollCategories = RerollCategory::where('status', 1)->get();
+        $gameRecharges = GameRecharge::where('status', 1)->get();
+
+        return view('client.home.home', compact('rerollCategories', 'gameRecharges'));
     }
 
     public function rerollDetail($id)
