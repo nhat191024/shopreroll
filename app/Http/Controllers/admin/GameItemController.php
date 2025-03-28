@@ -65,6 +65,10 @@ class GameItemController extends Controller
 
         $imagePath = $gameItem->image;
         if ($request->hasFile('image')) {
+            if (file_exists(public_path($imagePath))) {
+                unlink(public_path($imagePath));
+            }
+
             $image = $request->file('image');
 
             $imageName = time() . '_' . $image->getClientOriginalName();
