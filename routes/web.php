@@ -57,8 +57,8 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
 
         Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('rechargeBill.index');
         Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('rerollBill.index');
-        Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('BalanceRechargeBankBill.index');
-        Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('BalanceRechargeCardBill.index');
+        Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('balanceRechargeBankBill.index');
+        Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('balanceRechargeCardBill.index');
 
         require __DIR__ . '/admin/user.php';
     });
