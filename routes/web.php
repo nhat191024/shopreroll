@@ -55,8 +55,8 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
         require __DIR__ . '/admin/reroll/package.php';
         require __DIR__ . '/admin/reroll/key.php';
 
-        Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('RechargeBill.index');
-        Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('RerollBill.index');
+        Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('rechargeBill.index');
+        Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('rerollBill.index');
         Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('BalanceRechargeBankBill.index');
         Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('BalanceRechargeCardBill.index');
 
