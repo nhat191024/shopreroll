@@ -2,23 +2,15 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\RerollBill;
+
 use App\Http\Controllers\Controller;
-use App\Service\admin\RerollBillService;
-use Illuminate\Http\Request;
 
 class RerollBillController extends Controller
 {
-    private $rerollBillService;
-
-
-    public function __construct()
-    {
-        $this->rerollBillService = app(RerollBillService::class);
-    }
-
     public function index()
     {
-        $allRerollBill = $this->rerollBillService->getAll();
-        return view('admin.RerollBill.RerollBill', compact('allRerollBill'));
+        $rerollBills = RerollBill::all()->load('Buyer', 'RerollPackage', 'RerollKey');
+        return view('admin.rerollBill.index', compact('rerollBills'));
     }
 }
