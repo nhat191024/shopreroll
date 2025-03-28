@@ -22,18 +22,6 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>STT</th>
-                                <th>Họ và tên</th>
-                                <th>Số dư hiện tại</th>
-                                <th>Vai trò</th>
-                                <th>Trạng thái</th>
-                                <th>
-                                    <center>Chức năng</center>
-                                </th>
-                            </tr>
-                        </tfoot>
                         <tbody>
                             @foreach ($allUser as $item)
                                 <tr>
@@ -58,7 +46,6 @@
                                             <a class="btn btn-warning" href="{{ route('admin.user.editView', ['id' => $item->id]) }}">
                                                 Sửa
                                             </a>
-
                                             <a class="btn btn-danger" href="{{ route('admin.user.disable', ['id' => $item->id]) }}" onclick="return confirm('Bạn chắc chắn chứ?')">
                                                 Vô hiệu hoá
                                             </a>
@@ -67,11 +54,21 @@
                                 </tr>
                             @endforeach
                         </tbody>
-
+                        <tfoot>
+                            <tr>
+                                <th>STT</th>
+                                <th>Họ và tên</th>
+                                <th>Số dư hiện tại</th>
+                                <th>Vai trò</th>
+                                <th>Trạng thái</th>
+                                <th>
+                                    <center>Chức năng</center>
+                                </th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
