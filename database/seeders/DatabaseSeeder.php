@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AccountAttribute;
 use App\Models\User;
 use App\Models\GameRecharge;
 use App\Models\RechargePackage;
@@ -18,6 +19,7 @@ use App\Models\GameCategory;
 use App\Models\GameAccount;
 use App\Models\AccountImage;
 use App\Models\AccountBill;
+use App\Models\AccountItem;
 use App\Models\BalanceRechargeCardBill;
 use App\Models\BalanceRechargeBankBill;
 use App\Models\GameItem;
@@ -123,6 +125,18 @@ class DatabaseSeeder extends Seeder
 
         foreach ($dataArray['balance_recharge_bank_bill'] as $data) {
             BalanceRechargeBankBill::create($data);
+        }
+
+        foreach ($dataArray['game_accounts'] as $data) {
+            GameAccount::create($data);
+        }
+
+        foreach ($dataArray['account_attributes'] as $data) {
+            AccountAttribute::create($data);
+        }
+
+        foreach ($dataArray['account_items'] as $data) {
+            AccountItem::create($data);
         }
     }
 }
