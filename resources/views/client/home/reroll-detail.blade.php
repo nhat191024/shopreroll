@@ -14,7 +14,7 @@
                                 <div class="col-md-3">
                                     <div class="item-bounder">
                                         <div class="item-image-key">
-                                            <a href="{{ route('client.reroll.detail.tutorial', ['id' => $data->id]) }}"><img src="{{ asset($data->image) }}" alt="..."></a>
+                                            <a href="{{ route('client.reroll.detail.tutorial', ['id' => $data->id]) }}"><img src="{{ asset($data->image) }}" onerror="this.src='https://placehold.co/300x300'" class="square-image" alt="..."></a>
                                         </div>
                                         <div class="item-caption">
                                             <h3 class="title_cate text-center">{{ $data->name }}</h3>
