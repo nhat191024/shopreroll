@@ -1,10 +1,11 @@
 @extends('client.layouts.master')
 
 @section('main')
+<link rel="stylesheet" href="{{ asset('css/home-custom.css') }}">
     <section class="content">
         <div class="container-fluid">
             <div class="text-center">
-                <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" loading="lazy">
+                <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
             </div>
             <h1 class="guide__title">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
             <main>
@@ -18,7 +19,7 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" target="_blank" href="https://zalo.me/0386496488">
-                                            <img src="style/images/icon/zalo.png" alt="zalo" style="max-width: 40px; height: auto; margin-bottom: -8px; margin-top: -8px;" loading="lazy">0386496488
+                                            <img src="{{ asset('/image/thumb/zalo.png') }}" onerror="this.src='https://placehold.co/600x600'" alt="zalo" style="max-width: 40px; height: auto; margin-bottom: -8px; margin-top: -8px;" loading="lazy">0386496488
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" target="_blank" href="https://www.facebook.com/dat.ds.3">
@@ -55,7 +56,7 @@
                             <div id="miu-carousel" class="col-12 col-lg-8 carousel slide p-0" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" style="margin-bottom: -5px;">
-                                        <iframe width="100%" height="470" src="https://www.youtube.com/embed/OizK-VT4aj8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe width="100%" onerror="this.src='https://placehold.co/600x600'" height="470" src="https://www.youtube.com/embed/LmmfXWOvSU0?si=vxNIin1ImvaFpweu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +105,12 @@
                                     <div class="item-bounder">
                                         <div class="item-image-key">
                                             <a href="#">
-                                                <img src="{{ asset($rerollCategory->image) }}" style="height: 350px; object-fit: contain;" loading="lazy">
+                                                <div class="square-image-container">
+                                                    <img src="{{ asset($rerollCategory->image) }}"
+                                                         onerror="this.src='https://placehold.co/300x300'"
+                                                         class="square-image"
+                                                         loading="lazy">
+                                                </div>
                                             </a>
                                         </div>
                                         <div>
@@ -121,18 +127,69 @@
                         </div>
                     </div>
 
+                    @foreach ($gameAccountCategories as $game)
+                    @if ($game->GameCategory->count() == 0)
+                        @continue
+                    @endif
                     <center>
-                        <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" loading="lazy">
+                        <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                    </center>
+                    <h2 id="recharge_service" class="guide__title">Acc {{ $game->name }}</h2>
+
+                    <div class="container-lg">
+                        <div class="row justify-content-center">
+                            @foreach ($game->GameCategory as $category)
+                                <article class="col-12 col-sm-6 col-lg-3 item-bounder">
+                                    <center>
+                                        <a href="{{ route('client.recharge', $category->id) }}">
+                                            <div class="game-img-outer">
+                                                <div class="game-img-box">
+                                                    <img class="game-img-content" src="{{ asset($category->image) }}"
+                                                         onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <h2 class="note__title">{{ $category->name }}</h2>
+                                        <div class="row g-0 info-line">
+                                            <section class="row g-0 text-center">
+                                                <label class="text-muted">Số tài khoản</label>
+                                                <span class="more-detail fs-4">{{ $category->GameAccount->count() }}</span>
+                                            </section>
+                                        </div>
+                                        <div class="row g-0 info-line">
+                                            <section class="row g-0 text-center">
+                                                <label class="text-muted">Đã bán</label>
+                                                <span class="more-detail fs-4">{{ '0' }}</span>
+                                            </section>
+                                        </div>
+                                        <a href="{{ route('client.game.account.category', ['gameAccountId' => $game->id, 'categoryId' => $category->id]) }}">
+                                            <button class="btn-pretty mb-4 mt-2">Khám phá</button>
+                                        </a>
+                                    </center>
+                                </article>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    @endforeach
+
+                    <center>
+                        <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
                     </center>
                     <h2 id="recharge_service" class="guide__title">NẠP GAMES</h2>
 
                     <div class="container-lg">
                         <div class="row justify-content-center">
                             @foreach ($gameRecharges as $gameRecharge)
-                                <article class="col-lg-3 col-sm-6 col-6 col-6 item-bounder">
+                                <article class="col-12 col-sm-6 col-lg-3 item-bounder">
                                     <center>
                                         <a href="{{ route('client.recharge', $gameRecharge->id) }}">
-                                            <img class="item-image-key" src="{{ asset($gameRecharge->image) }}" loading="lazy">
+                                            <div class="game-img-outer">
+                                                <div class="game-img-box">
+                                                    <img class="game-img-content" src="{{ asset($gameRecharge->image) }}"
+                                                         onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                                                </div>
+                                            </div>
                                         </a>
                                         <h2 class="note__title">{{ $gameRecharge->name }}</h2>
                                         <div class="row g-0 info-line">
@@ -155,6 +212,7 @@
                             @endforeach
                         </div>
                     </div>
+
                 </div>
             </main>
         </div>
