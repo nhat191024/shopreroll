@@ -52,6 +52,6 @@ class GameAccount extends Model
 
     public function AccountBill()
     {
-        return $this->hasMany(AccountBill::class);
+        return $this->hasMany(AccountBill::class,'account_id');
     }
 }
