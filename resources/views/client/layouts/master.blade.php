@@ -230,7 +230,7 @@
     </div>
     <ul class="nav-fixed">
         <li class="nav-fixed-zalo">
-            <a target="_blank" href="https://zalo.me/0386496488"><img src="style/images/icon/zalo.png"></a>
+            <a target="_blank" href="https://zalo.me/0386496488"><img src="{{ asset('/image/thumb/zalo.png') }}"></a>
         </li>
         <li class="nav-fixed-face">
             <a target="_blank" href="https://www.facebook.com/dat.ds.3">
