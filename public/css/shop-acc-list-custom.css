@@ -1,0 +1,48 @@
+.genshin-product .img-banner {
+    width: calc(100% + -16.9px);
+    max-height: 190px;
+    border-radius: 4px;
+}
+
+.genshin-product .product-wrapper {
+    margin-bottom: 20px;
+    position: relative;
+    color: #634827;
+}
+
+.genshin-product .product-id {
+    z-index: 10;
+    background: #c14d43;
+    position: absolute;
+    padding: 2px 5px;
+    font-weight: 700;
+    top: 10px;
+}
+
+.genshin-product {
+    background-image: url(/image/avatar/bg-acc-of-list.webp);
+    background-position: center;
+    background-size: 100% 100% !important;
+    text-align: center;
+    padding-left: 7px;
+    height: 100%;
+    transition: 0.3s;
+}
+
+.genshin-product-footer {
+    padding-bottom: 33px;
+}
+
+.genshin-product:hover,
+.item-bounder:hover {
+    margin-top: -10px;
+    padding-bottom: 10px;
+}
+
+.search-frm {
+    position: sticky;
+    top: 80px;
+    background-image: url(/image/avatar/bg-acc-of-list.webp);
+    background-position: center;
+    background-size: 100% 100% !important;
+}
