@@ -140,13 +140,13 @@
             "name": "Genshin Impact",
             "tutorial": "Sau khi lên đơn, quý khách vui lòng nhắn zalo shop 0386496488  và chờ shop gọi lấy code vào game, sau khi lấy code, đừng đổi pass hay ấn delete thiết bị của shop, đợi khi nào trạng thái đơn trên shop ghi hoàn thành rồi hãy đổi pass, đừng delete thiết bị, để lần sau nạp khỏi cần mã",
             "id_youtube": "zVVa7ELqr-o",
-            "image": "GenshinRecharge.png"
+            "image": "image/recharges/GenshinRecharge.png"
         },
         {
             "name": "Zenless Zone Zero",
             "tutorial": "Sau khi lên đơn, quý khách vui lòng nhắn zalo shop 0386496488  và chờ shop gọi lấy code vào game, sau khi lấy code, đừng đổi pass hay ấn delete thiết bị của shop, đợi khi nào trạng thái đơn trên shop ghi hoàn thành rồi hãy đổi pass, đừng delete thiết bị, để lần sau nạp khỏi cần mã",
             "id_youtube": "zVVa7ELqr-o",
-            "image": "ZZZRecharge.png"
+            "image": "image/recharges/ZZZRecharge.png"
         }
     ],
     "recharge_package": [
@@ -268,12 +268,12 @@
     "reroll_category": [
         {
             "name": "ACC Zenless Zone Zero",
-            "image": "ZZZLogo.webp",
+            "image": "image/rerollCategory/ZZZLogo.webp",
             "note": "note1"
         },
         {
             "name": "ACC Honkai Star Rail",
-            "image": "HSRLogo.png",
+            "image": "image/rerollCategory/HSRLogo.png",
             "note": "note2"
         }
     ],
@@ -282,37 +282,37 @@
             "reroll_category_id": 1,
             "name": "Reroll Cấp 4 Main Random",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "ZZZReroll1.png"
+            "image": "image/rerollSubCategory/ZZZReroll1.png"
         },
         {
             "reroll_category_id": 1,
             "name": "Reroll Cấp 8",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "ZZZReroll2.webp"
+            "image": "image/rerollSubCategory/ZZZReroll2.webp"
         },
         {
             "reroll_category_id": 1,
             "name": "Reroll Cấp 22 Main Nữ",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "ZZZReroll3.jpg"
+            "image": "image/rerollSubCategory/ZZZReroll3.jpg"
         },
         {
             "reroll_category_id": 2,
             "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "HSRReroll1.webp"
+            "image": "image/rerollSubCategory/HSRReroll1.webp"
         },
         {
             "reroll_category_id": 2,
             "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "HSRReroll2.webp"
+            "image": "image/rerollSubCategory/HSRReroll2.webp"
         },
         {
             "reroll_category_id": 2,
             "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "HSRReroll3.webp"
+            "image": "image/rerollSubCategory/HSRReroll3.webp"
         }
     ],
     "reroll_package": [
@@ -528,22 +528,22 @@
         {
             "game_id": 1,
             "name": "Reroll limited",
-            "image": "GSCate1.jpg"
+            "image": "image/gameCategory/GSCate2.png"
         },
         {
             "game_id": 1,
             "name": "Acc Vip",
-            "image": "GSCate2.jpg"
+            "image": "image/gameCategory/GSCate2.png"
         },
         {
             "game_id": 1,
             "name": "Acc thường",
-            "image": "GSCate3.jpg"
+            "image": "image/gameCategory/GSCate3.png"
         },
         {
             "game_id": 1,
             "name": "Reroll thường",
-            "image": "GSCate3.jpg"
+            "image": "image/gameCategory/GSCate3.png"
         }
     ],
     "balance_recharge_card_bill": [
@@ -656,7 +656,7 @@
             "status": 1
         }
     ],
-    "account_attributes":[
+    "account_attributes": [
         {
             "game_account_id": 1,
             "game_attribute_id": 1,
@@ -678,7 +678,7 @@
             "value": "SEA"
         }
     ],
-    "account_items":[
+    "account_items": [
         {
             "game_account_id": 1,
             "game_item_id": 1
