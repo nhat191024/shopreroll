@@ -8,7 +8,7 @@
                 <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png"
                     onerror="this.src='https://placehold.co/600x600'" loading="lazy">
             </div>
-            <h1 class="guide__title">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
+            <h1 class="guide__title px-5">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
             <main>
                 <div>
                     <div class="container-lg mb-3">
