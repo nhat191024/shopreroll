@@ -1,6 +1,6 @@
 @extends('client.layouts.auth')
 @section('form-content')
-<div class="col-lg-12">
+<div class="col-lg-12 card">
     <div class="mt-3">
         <form action="{{ route('register.auth') }}" method="POST">
             @csrf

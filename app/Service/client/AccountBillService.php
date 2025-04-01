@@ -26,4 +26,14 @@ class AccountBillService
             })->get();
         return $accountBill;
     }
+    
+    public function getAllBillByUserId($id)
+    {
+        if (is_null($id)) {
+            // prevent null
+            return collect();
+        }
+        $accountBill = AccountBill::where('user_id', $id)->get();
+        return $accountBill;
+    }
 }
