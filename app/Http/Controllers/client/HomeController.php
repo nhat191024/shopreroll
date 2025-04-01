@@ -32,7 +32,6 @@ class HomeController extends Controller
         $rerollCategories = RerollCategory::where('status', 1)->get();
         $gameRecharges = GameRecharge::where('status', 1)->get();
         $gameAccountCategories = $this->homeService->getGameAccountCategories();
-        // [['name' => 'Keith sierra', 'amount' => '22,707,000'], ['name' => 'Nam', 'amount' => '13,282,600'], ['name' => 'Perawit', 'amount' => '11,111,275'], ['name' => 'cau vang', 'amount' => '6,250,000'], ['name' => 'Nguyễn Duy', 'amount' => '4,373,010'], ['name' => 'Vo phuc khang', 'amount' => '4,310,000'], ['name' => 'Dương Quang Ánh', 'amount' => '4,270,000'], ['name' => 'bac', 'amount' => '4,218,520'], ['name' => 'Nguyễn minh Quang', 'amount' => '3,940,002'], ['name' => 'Nguyễn Văn Trường', 'amount' => '3,573,000']]
         $topUpRanking = $this->homeService->getTopUpRanking();
         return view('client.home.home', compact('rerollCategories', 'gameRecharges', 'gameAccountCategories', 'topUpRanking'));
     }
