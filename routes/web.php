@@ -19,8 +19,10 @@ require __DIR__ . '/auth.php';
 Route::get('/reroll/detail/{id}', [HomeController::class, 'rerollDetail'])->name('client.reroll.detail');
 Route::post('/reroll/detail/buy', [HomeController::class, 'buyRerollDetail'])->name('client.reroll.detail.buy');
 Route::get('/reroll/detail/{id}/tutorial', [HomeController::class, 'rerollTutorial'])->name('client.reroll.detail.tutorial');
-Route::get('/game/account/{gameAccountId}/category/{categoryId}', [HomeController::class, 'gameAccountList'])->name('client.game.account.category');
+Route::get('/game/account/{gameId}/category/{categoryId}', [HomeController::class, 'gameAccountList'])->name('client.game.account.category');
 Route::get('/game/account/detail/{accountId}', [HomeController::class, 'accountDetail'])->name('client.game.account.detail');
+// buy now
+Route::get('/reroll/buy-now/{id}', [AccountBillController::class, 'buyGameAccount'])->name('client.account-shop.buy-now');
 
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
@@ -28,6 +30,7 @@ Route::get('/game/account/detail/{accountId}', [HomeController::class, 'accountD
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
+    Route::get('/myAcc/all', [AccountBillController::class, 'allAccount'])->name('client.account.all');
     Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
 });
 
