@@ -148,7 +148,7 @@
                         <ul class="nav nav-sm flex-column">
                             @foreach ($games as $item)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.GameCategory.index', $item->id) }}">{{ $item->name }}</a>
+                                    <a class="nav-link" href="{{ route('admin.gameCategory.index', $item->id) }}">{{ $item->name }}</a>
                                 </li>
                             @endforeach
                         </ul>

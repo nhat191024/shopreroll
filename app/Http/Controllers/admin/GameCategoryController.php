@@ -27,54 +27,72 @@ class GameCategoryController extends Controller
         return view('admin.gameCategory.GameCategory', compact('game', 'categories', 'gameName'));
     }
 
-    public function showAddCategory()
+    public function create()
     {
-        $game = $this->gameService->getAll();
+        $game = Game::all();
         return view('admin.gameCategory.AddGameCategory', compact('game'));
     }
 
-    public function addCategory(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'category_name' => 'required',
             'game_id' => 'required',
-            'category_image' => 'required'
+            'image' => 'required'
         ]);
-        $imageName = time() . '_' . $request->category_image->getClientOriginalName();
-        $request->category_image->move(public_path('image/thumb'), $imageName);
-        $this->gameCategoryService->add($request->category_name, $imageName, $request->game_id);
-        return redirect()->route('admin.GameCategory.index', $request->game_id)->with('success', 'Thêm danh mục thành công');
-    }
 
-    public function showEditCategory(Request $request)
-    {
-        $id = $request->id;
-        $game = $this->gameService->getAll();
-        $gameCategoryInfo = $this->gameCategoryService->getById($id);
-        return view('admin.gameCategory.EditGameCategory', compact('id', 'game', 'gameCategoryInfo'));
-    }
-
-    public function editCategory(Request $request)
-    {
-        $request->validate([
-            'category_name' => 'required',
-            'game_id' => 'required',
-            'category_id' => 'required',
-        ]);
-        $imageName = null;
-        if ($request->category_image) {
-            $imageName = time() . '_' . $request->category_image->getClientOriginalName();
-            $request->category_image->move(public_path('image/thumb'), $imageName);
-            $oldImagePath = $this->gameCategoryService->getById($request->category_id)->image;
-            if (file_exists(public_path('image/thumb') . '/' . $oldImagePath) && $oldImagePath != null) {
-                unlink(public_path('image/thumb') . '/' . $oldImagePath);
-            }
+        $imagePath = null;
+        if ($request->has('image')) {
+            $imageName = time() . '_' . $request->image->getClientOriginalName();
+            $request->image->move(public_path('image/gameCategory'), $imageName);
+            $imagePath = 'image/gameCategory/' . $imageName;
         }
-        $this->gameCategoryService->edit($request->category_id, $request->category_name, $imageName, $request->game_id);
-        return redirect(route('admin.GameCategory.index', $request->game_id))->with('success', 'Sửa danh mục thành công');
+
+        GameCategory::create([
+            'game_id' => $request->game_id,
+            'name' => $request->category_name,
+            'image' => $imagePath,
+            'status' => 1,
+        ]);
+
+        return redirect()->route('admin.gameCategory.index', $request->game_id)->with('success', 'Thêm danh mục thành công');
     }
 
-    public function ChangeGameCategoryStatus($id, $status)
+    public function edit($id)
+    {
+        $game = Game::all();
+        $gameCategory = GameCategory::find($id);
+        return view('admin.gameCategory.EditGameCategory', compact('id', 'game', 'gameCategory'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'category_name' => 'required',
+            'game_id' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $gameCategory = GameCategory::find($id);
+
+        $imagePath = $gameCategory->image;
+        if ($request->has('image')) {
+            $imageName = time() . '_' . $request->image->getClientOriginalName();
+            $request->image->move(public_path('image/gameCategory'), $imageName);
+            $imagePath = 'image/gameCategory/' . $imageName;
+        }
+
+        $gameCategory->update([
+            'game_id' => $request->game_id,
+            'name' => $request->category_name,
+            'image' => $imagePath,
+            'status' => 1,
+        ]);
+
+        return redirect(route('admin.gameCategory.index', $request->game_id))->with('success', 'Sửa danh mục thành công');
+    }
+
+    public function destroy($id, $status)
     {
         switch ($status) {
             case 1:
