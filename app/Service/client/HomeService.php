@@ -53,12 +53,12 @@ class HomeService
     public function getGameAccountCategories()
     {
         return Game::where('status', 1)
-            ->with(['GameCategory' => function($query) {
+            ->with(['GameCategory' => function ($query) {
                 $query->where('status', 1);
             }])
             ->get();
     }
-    
+
     public function getGameAccountDetail($accountId)
     {
         return GameAccount::find($accountId);
@@ -75,13 +75,32 @@ class HomeService
                 return collect([]);
             }
             if ($categoryId == 0) {
-                return $gameAccount->GameAccount()->paginate($itemsPerpage);
+                return $gameAccount->GameAccount()->where('status', 1)->paginate($itemsPerpage);
             } else {
                 $category = $gameAccount->GameCategory->where('id', $categoryId)->first();
-                return $category ? $category->GameAccount()->paginate($itemsPerpage) : collect([]);
+                return $category ? $category->GameAccount()->where('status', 1)->paginate($itemsPerpage) : collect([]);
             }
         } catch (\Exception $e) {
             return collect([]);
         }
+    }
+
+    public function getTopUpRanking()
+    {
+        return \App\Models\RechargeBill::join('users', 'recharge_bills.user_id', '=', 'users.id')
+            ->selectRaw('users.name, SUM(recharge_packages.price) as amount')
+            ->join('recharge_packages', 'recharge_bills.recharge_package_id', '=', 'recharge_packages.id')
+            ->where('recharge_bills.status', 'completed')
+            ->groupBy('users.id', 'users.name')
+            ->orderBy('amount', 'desc')
+            ->limit(10)
+            ->get()
+            ->map(function ($item) {
+                return [
+                    'name' => $item->name,
+                    'amount' => number_format($item->amount, 0, '.', ',')
+                ];
+            })
+            ->toArray();
     }
 }
