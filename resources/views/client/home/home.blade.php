@@ -87,7 +87,7 @@
                                     <div id="toptab" class="tab-pane fade show active" role="tabpanel"
                                         aria-labelledby="toptab">
                                         <ul class="nav nav-user">
-                                            @foreach ([['name' => 'Keith sierra', 'amount' => '22,707,000'], ['name' => 'Nam', 'amount' => '13,282,600'], ['name' => 'Perawit', 'amount' => '11,111,275'], ['name' => 'cau vang', 'amount' => '6,250,000'], ['name' => 'Nguyễn Duy', 'amount' => '4,373,010'], ['name' => 'Vo phuc khang', 'amount' => '4,310,000'], ['name' => 'Dương Quang Ánh', 'amount' => '4,270,000'], ['name' => 'bac', 'amount' => '4,218,520'], ['name' => 'Nguyễn minh Quang', 'amount' => '3,940,002'], ['name' => 'Nguyễn Văn Trường', 'amount' => '3,573,000']] as $index => $user)
+                                            @foreach ($topUpRanking as $index => $user)
                                                 <li class="nav-link w-100" style="padding: .1rem 1rem">
                                                     <div class="row">
                                                         <div class="col-7 text-left"
@@ -124,7 +124,7 @@
                                 <div class="col-md-3">
                                     <div class="item-bounder">
                                         <div class="item-image-key">
-                                            <a href="#">
+                                            <a href="{{ route('client.reroll.detail', ['id' => $rerollCategory->id]) }}">
                                                 <div class="square-image-container">
                                                     <img src="{{ asset($rerollCategory->image) }}"
                                                         onerror="this.src='https://placehold.co/300x300'"
@@ -162,7 +162,7 @@
                                 @foreach ($game->GameCategory as $category)
                                     <article class="col-12 col-sm-6 col-lg-3 item-bounder">
                                         <center>
-                                            <a href="{{ route('client.recharge', $category->id) }}">
+                                            <a href="{{ route('client.game.account.category', ['gameId' => $game->id, 'categoryId' => $category->id]) }}">
                                                 <div class="game-img-outer">
                                                     <div class="game-img-box">
                                                         <img class="game-img-content" src="{{ asset($category->image) }}"
@@ -176,17 +176,17 @@
                                                 <section class="row g-0 text-center">
                                                     <label class="text-muted">Số tài khoản</label>
                                                     <span
-                                                        class="more-detail fs-4">{{ $category->GameAccount->count() }}</span>
+                                                        class="more-detail fs-4">{{ $category->GameAccount->where('status', 1)->count() }}</span>
                                                 </section>
                                             </div>
                                             <div class="row g-0 info-line">
                                                 <section class="row g-0 text-center">
                                                     <label class="text-muted">Đã bán</label>
-                                                    <span class="more-detail fs-4">{{ '0' }}</span>
+                                                    <span class="more-detail fs-4">{{ $category->GameAccount[0]->AccountBill->where('status', 1)->count() }}</span>
                                                 </section>
                                             </div>
                                             <a
-                                                href="{{ route('client.game.account.category', ['gameAccountId' => $game->id, 'categoryId' => $category->id]) }}">
+                                                href="{{ route('client.game.account.category', ['gameId' => $game->id, 'categoryId' => $category->id]) }}">
                                                 <button class="btn-pretty mb-4 mt-2">Khám phá</button>
                                             </a>
                                         </center>
