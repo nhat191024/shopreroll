@@ -5,7 +5,7 @@
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
                 <a class="btn btn-primary" href="{{ route('admin.game.index') }}">Quay lại</a>
-                <a class="btn btn-primary" href="{{ route('admin.GameCategory.showAdd') }}">Thêm danh mục mới</a>
+                <a class="btn btn-primary" href="{{ route('admin.gameCategory.create') }}">Thêm danh mục mới</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -46,17 +46,17 @@
                                 <tr>
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td><img width="200px" src="{{ url('image/thumb') . '/' . $item->image }}" alt="{{ $item->name  }} - img"></td>
+                                    <td><img width="200px" src="{{ asset($item->image) }}" alt="{{ $item->name }} - img"></td>
                                     <td>{{ $item->status == 1 ? 'Hoạt động' : 'Đã ẩn' }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-warning" href="{{ route('admin.GameCategory.showEdit', ['id' => $item->id]) }}">
+                                        <a class="btn btn-warning" href="{{ route('admin.gameCategory.edit', $item->id) }}">
                                             Sửa
                                         </a>
                                         @if ($item->status == 0)
-                                            <a class="btn btn-success" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameCategory.ChangeStatus', [$item->id, 1]) }}'; }">
+                                            <a class="btn btn-success" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn hiện item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.gameCategory.destroy', [$item->id, 1]) }}'; }">
                                                 Hiện </a>
                                         @else
-                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.GameCategory.ChangeStatus', [$item->id, 0]) }}'; }">
+                                            <a class="btn btn-danger" onclick="event.preventDefault(); if (confirm('Bạn chắc chắn muốn ẩn item {{ $item->name }} chứ?')) { window.location.href = '{{ route('admin.gameCategory.destroy', [$item->id, 0]) }}'; }">
                                                 Ẩn </a>
                                         @endif
                                         <a class="btn btn-secondary" href="{{ route('admin.game_account.index', $game) }}">
