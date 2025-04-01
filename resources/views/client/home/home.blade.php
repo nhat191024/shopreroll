@@ -87,7 +87,7 @@
                                     <div id="toptab" class="tab-pane fade show active" role="tabpanel"
                                         aria-labelledby="toptab">
                                         <ul class="nav nav-user">
-                                            @foreach ($topUpRanking as $index => $user)
+                                            @forelse ($topUpRanking as $index => $user)
                                                 <li class="nav-link w-100" style="padding: .1rem 1rem">
                                                     <div class="row">
                                                         <div class="col-7 text-left"
@@ -97,17 +97,19 @@
                                                                 <strong class="fa-stack-1x"
                                                                     style="color: #000;">{{ $index + 1 }}</strong>
                                                             </span>
-                                                            {{ $user['name'] }}
+                                                            {{ $user['name'] ?? 'Unknown' }}
                                                         </div>
                                                         <div class="col-5">
                                                             <label class="btn btn-warning float-right mr-4"
                                                                 style="background-color:#ffeaaa; padding: .145rem .7rem; font-weight: 600;">
-                                                                {{ $user['amount'] }}<sup></sup>
+                                                                {{ $user['amount'] ?? '0' }}<sup></sup>
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </li>
-                                            @endforeach
+                                            @empty
+                                                <li class="nav-link w-100 text-center">Chưa có dữ liệu</li>
+                                            @endforelse
                                         </ul>
                                     </div>
                                     <div id="anoumentTab" class="tab-pane fade" role="tabpanel"
