@@ -80,10 +80,6 @@ class GameController extends Controller
 
     public function ChangeGameStatus($id, $status)
     {
-        if ($this->gameService->checkHasChildren($id)) {
-            return redirect(route('admin.game.index'))->with('error', 'Game này đang có sản phẩm không thể xóa');
-        }
-
         switch ($status) {
             case 1:
                 $this->gameService->ChangeStatus($id, 1);
