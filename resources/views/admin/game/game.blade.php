@@ -62,7 +62,7 @@
                                             </a>
                                         @endif
 
-                                        <a class="btn btn-primary mt-1" href="{{ route('admin.GameCategory.index', $item->id) }}">
+                                        <a class="btn btn-primary mt-1" href="{{ route('admin.gameCategory.index', $item->id) }}">
                                             Danh mục
                                         </a>
 
