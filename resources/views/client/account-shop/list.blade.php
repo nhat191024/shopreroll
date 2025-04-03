@@ -137,7 +137,7 @@
                                                 <div class="product-code">#{{ $data->id }}</div>
                                                 <div class="wrapper product-wrapper">
                                                     <a href="{{ route('client.game.account.detail', $data->id) }}">
-                                                        <img class="img-banner shadow-sm" src="{{ asset($data->AccountImage->first()->image) }}" onerror="this.src='https://placehold.co/600x600'">
+                                                        <img class="img-banner shadow-sm" src="{{ asset($data->AccountImage??$data->AccountImage->first()->image) }}" onerror="this.src='https://placehold.co/600x600'">
                                                     </a>
 
                                                     <div class="row mt-1">
