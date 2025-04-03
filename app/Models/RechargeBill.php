@@ -16,6 +16,8 @@ class RechargeBill extends Model
         'server',
         'character_name',
         'phone',
+        'balance_before',
+        'balance_after',
         'note',
         'status',
     ];
