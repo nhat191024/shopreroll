@@ -13,9 +13,11 @@ class BalanceRechargeCardBill extends Model
         'number',
         'serial',
         'mobile_carrier',
-        'amount_fake',
-        'amount_real',
-        'balance_added',
+        'amount_fake', // Mệnh giá thẻ do người dùng nhập vào
+        'amount_real', // Mệnh giá thực tế của thẻ do API trả về
+        'balance_added', // Số tiền được cộng vào tài khoản sau khi nạp thành công
+        'balance_before',
+        'balance_after',
         'status',
     ];
 
