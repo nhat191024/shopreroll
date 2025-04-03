@@ -10,6 +10,8 @@ class AccountBill extends Model
     protected $fillable = [
         'user_id',
         'account_id',
+        'balance_before',
+        'balance_after',
         'price',
         'status',
     ];
