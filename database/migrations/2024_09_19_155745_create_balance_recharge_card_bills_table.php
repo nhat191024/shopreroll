@@ -20,6 +20,8 @@ return new class extends Migration
             $table->integer('amount_fake');
             $table->integer('amount_real');
             $table->integer('balance_added');
+            $table->integer('balance_before');
+            $table->integer('balance_after');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
