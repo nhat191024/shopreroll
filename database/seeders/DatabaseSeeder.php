@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             RechargePackage::create($data);
         }
 
-        foreach ($dataArray['recharge_bill'] as $data) {
+        foreach ($dataArray['recharge_bills'] as $data) {
             RechargeBill::create($data);
         }
 
@@ -79,7 +79,7 @@ class DatabaseSeeder extends Seeder
             RerollKey::create($data);
         }
 
-        foreach ($dataArray['reroll_bill'] as $data) {
+        foreach ($dataArray['reroll_bills'] as $data) {
             RerollBill::create($data);
         }
 
@@ -119,11 +119,11 @@ class DatabaseSeeder extends Seeder
             GameCategory::create($data);
         }
 
-        foreach ($dataArray['balance_recharge_card_bill'] as $data) {
+        foreach ($dataArray['balance_recharge_card_bills'] as $data) {
             BalanceRechargeCardBill::create($data);
         }
 
-        foreach ($dataArray['balance_recharge_bank_bill'] as $data) {
+        foreach ($dataArray['balance_recharge_bank_bills'] as $data) {
             BalanceRechargeBankBill::create($data);
         }
 
@@ -137,6 +137,10 @@ class DatabaseSeeder extends Seeder
 
         foreach ($dataArray['account_items'] as $data) {
             AccountItem::create($data);
+        }
+
+        foreach ($dataArray['account_bills'] as $data) {
+            AccountBill::create($data);
         }
     }
 }
