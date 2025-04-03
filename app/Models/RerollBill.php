@@ -12,6 +12,8 @@ class RerollBill extends Model
         'reroll_package_id',
         'reroll_key_id',
         'price',
+        'balance_before',
+        'balance_after',
         'status',
     ];
 
