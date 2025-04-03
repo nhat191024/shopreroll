@@ -26,7 +26,12 @@ class LoginService {
         // Validate moved to UserLoginRequest and Controller class
         $username = $request->input('username');
         $password = $request->input('password');
-        $account = User::where('username', $username)->first();
+        
+        // Check if input is email or username
+        $account = User::where('username', $username)
+                      ->orWhere('email', $username)
+                      ->first();
+                      
         if (!$account) {
             return redirect($this->ERROR_REDIRECT)->with('error', $this->WRONG_CREDENTIALS_MESSAGE);
         }
