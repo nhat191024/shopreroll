@@ -46,6 +46,8 @@ class HomeService
             'reroll_package_id' => $rerollPackageId,
             'reroll_key_id' => $rerollKeyId,
             'price' => $price,
+            'balance_before' => Auth::user()->balance,
+            'balance_after' => Auth::user()->balance - $price,
             'status' => 1,
         ]);
     }
