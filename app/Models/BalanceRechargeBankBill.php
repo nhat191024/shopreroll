@@ -12,6 +12,7 @@ class BalanceRechargeBankBill extends Model
         'user_id',
         'bank',
         'amount',
+        'balance_added',
         'balance_before',
         'balance_after',
         'note',
