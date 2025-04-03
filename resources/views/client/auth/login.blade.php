@@ -19,7 +19,7 @@
                 <div class="form-group row">
                     <label class="col-md-4 col-form-label text-md-right" for="">Mật khẩu</label>
                     <div class="col-md-6">
-                        <input class="concave form-control " name="password" type="text" placeholder="Nhập mật khẩu"
+                        <input class="concave form-control " name="password" type="password" placeholder="Nhập mật khẩu"
                             value="{{ old('password') }}">
                         @if ($errors->has('password'))
                             <span class="invalid-feedback d-block">
@@ -36,6 +36,10 @@
                         <button type="button" class="btn btn-light">
                             Đăng ký
                         </button>
+                    </a>
+                    <a class="btn btn-link" href="{{ route('client.user.forgot') }}">
+                        Quên mật khẩu? Lấy lại
+
                     </a>
                 </div>
             </form>
