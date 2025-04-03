@@ -10,7 +10,7 @@ use App\Http\Controllers\client\AccountBillController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\MyKeyController;
 use App\Http\Controllers\client\RechargeShopController;
-
+use App\Http\Controllers\client\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -22,7 +22,11 @@ Route::get('/reroll/detail/{id}/tutorial', [HomeController::class, 'rerollTutori
 Route::get('/game/account/{gameId}/category/{categoryId}', [HomeController::class, 'gameAccountList'])->name('client.game.account.category');
 Route::get('/game/account/detail/{accountId}', [HomeController::class, 'accountDetail'])->name('client.game.account.detail');
 // buy now
-Route::get('/reroll/buy-now/{id}', [AccountBillController::class, 'buyGameAccount'])->name('client.account-shop.buy-now');
+Route::get('/game/account/buy-now/{id}', [AccountBillController::class, 'buyGameAccount'])->name('client.account-shop.buy-now');
+Route::get('/user/forgot', [UserAccountController::class, 'forgotPassword'])->name('client.user.forgot');
+Route::get('/user/reset', [UserAccountController::class, 'resetPassword'])->name('client.user.reset');
+Route::post('/user/reset/confirm', [UserAccountController::class, 'confirmResetPassword'])->name('client.user.reset.confirm');
+Route::post('/user/forgot/confirm', [UserAccountController::class, 'confirmForgotPassword'])->name('client.user.forgot.confirm');
 
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
@@ -30,8 +34,11 @@ Route::get('/reroll/buy-now/{id}', [AccountBillController::class, 'buyGameAccoun
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
+    Route::get('/myAcc/balance-history', [AccountBillController::class, 'balanceHistory'])->name('client.user.balance-history');
     Route::get('/myAcc/all', [AccountBillController::class, 'allAccount'])->name('client.account.all');
     Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+    Route::get('/user/change', [UserAccountController::class, 'changePassword'])->name('client.user.change');
+    Route::post('/user/change/confirm', [UserAccountController::class, 'confirmChangePassword'])->name('client.user.change.confirm');
 });
 
 // game recharge routes
