@@ -3,8 +3,8 @@
         {
             "name": "Acc Admin Demo 1",
             "email": "adminDemo1@gmail.com",
-            "username": "adminDemo1",
-            "password": "$2a$10$3",
+            "username": "adminDemo",
+            "password": "17012004",
             "phone": "0123456789",
             "role": 1,
             "balance": 1000000,
@@ -241,9 +241,9 @@
             "price": 1950000
         }
     ],
-    "recharge_bill": [
+    "recharge_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "recharge_package_id": 1,
             "UID": 96692797165,
             "username": "accountDemo1",
@@ -251,10 +251,12 @@
             "server": "SEA",
             "character_name": "usernameInGame1",
             "phone": "0123456789",
+            "balance_before": 0,
+            "balance_after": 1000000,
             "note": "note1"
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "recharge_package_id": 2,
             "UID": 96692797165,
             "username": "accountDemo2",
@@ -262,6 +264,8 @@
             "server": "SEA",
             "character_name": "usernameInGame2",
             "phone": "0123456789",
+            "balance_before": 0,
+            "balance_after": 1000000,
             "note": "note2"
         }
     ],
@@ -397,17 +401,21 @@
             "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
         }
     ],
-    "reroll_bill": [
+    "reroll_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "reroll_package_id": 1,
             "reroll_key_id": 1,
+            "balance_before": 1,
+            "balance_after": 1000000,
             "price": 1000
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "reroll_package_id": 2,
             "reroll_key_id": 3,
+            "balance_before": 2,
+            "balance_after": 1000000,
             "price": 4000
         }
     ],
@@ -546,40 +554,46 @@
             "image": "image/gameCategory/GSCate3.png"
         }
     ],
-    "balance_recharge_card_bill": [
+    "balance_recharge_card_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "number": "123456789",
             "serial": "987654321",
             "mobile_carrier": "Viettel",
             "amount_fake": 100000,
             "amount_real": 100000,
-            "balance_added": 80000
+            "balance_added": 80000,
+            "balance_before": 3,
+            "balance_after": 1000000
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "number": "123456789",
             "serial": "987654321",
             "mobile_carrier": "Viettel",
             "amount_fake": 100000,
             "amount_real": 100000,
-            "balance_added": 80000
+            "balance_added": 80000,
+            "balance_before": 4,
+            "balance_after": 1000000
         }
     ],
-    "balance_recharge_bank_bill": [
+    "balance_recharge_bank_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "bank": "Vietcombank",
             "amount": 1000000,
-            "balance_before": 0,
-            "balance_after": 1000000
+            "balance_before": 5,
+            "balance_after": 1000000,
+            "balance_added": 1000000
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "bank": "Vietcombank",
             "amount": 1000000,
-            "balance_before": 0,
-            "balance_after": 1000000
+            "balance_before": 6,
+            "balance_after": 1000000,
+            "balance_added": 1000000
         }
     ],
     "game_accounts": [
@@ -714,6 +728,40 @@
         {
             "game_account_id": 5,
             "game_item_id": 2
+        }
+    ],
+    "account_bills": [
+        {
+            "user_id": 1,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 7,
+            "balance_after": 1000000,
+            "status": 1
+        },
+        {
+            "user_id": 1,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 8,
+            "balance_after": 1000000,
+            "status": 0
+        },
+        {
+            "user_id": 2,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 9,
+            "balance_after": 1000000,
+            "status": 1
+        },
+        {
+            "user_id": 2,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 10,
+            "balance_after": 1000000,
+            "status": 0
         }
     ]
 }
