@@ -169,7 +169,7 @@
                                     @endif
                                 </span></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-dark" href="{{ '' }}"><i
+                            <li><a class="dropdown-item text-dark" href="{{ route('client.user.balance-history') }}"><i
                                         class="fas fa-history mr-1"></i> Biến động số dư
                                 </a></li>
                             <li class="dropdown-divider"></li>
@@ -177,7 +177,7 @@
                                         class="fas fa-history mr-1"></i> Lịch sử khác
                                 </a></li>
                             <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-dark" href="{{ '' }}"><i
+                            <li><a class="dropdown-item text-dark" href="{{ route('client.user.change') }}"><i
                                         class="fas fa-key mr-1"></i> Đổi mật khẩu
                                 </a></li>
                             <li class="dropdown-divider"></li>
