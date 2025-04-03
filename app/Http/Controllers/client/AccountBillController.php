@@ -13,20 +13,112 @@ use Illuminate\Support\Facades\DB;
 class AccountBillController extends Controller
 {
     private $accountBillService;
+
     public function __construct(AccountBillService $accountBillService)
     {
         $this->accountBillService = $accountBillService;
     }
+
     public function genshin()
     {
         $accountBills = $this->accountBillService->getAllGenshinBillByUserId(Auth::id());
         return view('client.layouts.myAcc', compact('accountBills'));
     }
+
     public function allAccount()
     {
         $accountBills = $this->accountBillService->getAllBillByUserId(Auth::id());
         return view('client.layouts.myAcc', compact('accountBills'));
     }
+
+    public function balanceHistory()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+        $user = Auth::user();
+
+        $accountBills = $user->BillAccount; //
+        $rerollBills = $user->RerollBill; //
+        $rechargeBills = $user->BillRecharge; //
+        $balanceRechargeBankBills = $user->BalanceRechargeBankBill; //
+        $balanceRechargeCardBills = $user->BalanceRechargeCardBill; //
+
+        $allBills = [];
+
+        // -{{ number_format($data->balance_added ?? 'N/A', 0, ',', '.') }} VND
+        foreach ($accountBills as $bill) {
+            $allBills[] = [
+                'id' => $bill->id,
+                'balance_change' => '-' . number_format($bill->price ?? 'N/A', 0, ',', '.'),
+                'is_decrease' => true,
+                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Loại: </b>".($bill->GameAccount->GameCategory->name ?? 'N/A')."<br><b>Tên game: </b>".($bill->GameAccount->Game->name ?? 'N/A')."<br><b>Tài khoản game:</b> ".($bill->GameAccount->title ?? 'N/A')."<br> <b>Ghi chú:</b> ".($bill->GameAccount->title?? 'N/A'),
+'type' => "Mua tài khoản game",
+                'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
+            ];
+        }
+
+        foreach ($rerollBills as $bill) {
+            $allBills[] = [
+                'id' => $bill->id,
+                'balance_change' => '-' . number_format($bill->price ?? 'N/A', 0, ',', '.'),
+                'is_decrease' => true,
+                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Tên gói: </b>".($bill->RerollPackage->name ?? 'N/A')."<br><b>Loại reroll: </b>".($bill->RerollPackage->RerollSubCategory->name ?? 'N/A')."<br><b>Loại gói: </b>".($bill->RerollPackage->RerollSubCategory->RerollCategory->name ?? 'N/A'),
+                'type' => "Mua gói reroll",
+                'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
+            ];
+        }
+
+        foreach ($rechargeBills as $bill) {
+            $allBills[] = [
+                'id' => $bill->id,
+                'balance_change' => '-' . number_format($bill->RechargePackage->price ?? 'N/A', 0, ',', '.'),
+                'is_decrease' => true,
+                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Gói nạp: </b>".($bill->RechargePackage->name ?? 'N/A')."<br><b>Tên game: </b>".($bill->RechargePackage->GameRecharge->name ?? 'N/A')."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công' : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')),
+                'type' => "Mua tài khoản game",
+                'type' => "Gói nạp tiền game",
+                'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
+            ];
+        }
+
+        foreach ($balanceRechargeBankBills as $bill) {
+            $allBills[] = [
+                'id' => $bill->id,
+                'balance_change' => '+' . number_format($bill->balance_added ?? 'N/A', 0, ',', '.'),
+                'is_decrease' => false,
+                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Ghi chú: </b>".($bill->note ?? 'N/A')."<br><b>Tên bank: </b>".($bill->bank ?? 'N/A')."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công' : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')),
+                'type' => "Nạp số dư qua banking",
+                'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
+            ];
+        }
+
+        foreach ($balanceRechargeCardBills as $bill) {
+            $allBills[] = [
+                'id' => $bill->id,
+                'balance_change' => '+' . number_format($bill->balance_added ?? 'N/A', 0, ',', '.'),
+                'is_decrease' => false,
+                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Số thẻ: </b>".($bill->number ?? 'N/A')."<br><b>Sêri thẻ: </b>".($bill->serial ?? 'N/A')."<br><b>Nhà mạng: </b>".($bill->mobile_carrier ?? 'N/A')."<br><b>Mệnh giá thẻ: </b>".(number_format($bill->amount_real) ?? number_format($bill->amount_fake) ?? 'N/A')." VND<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công' : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')),
+                'type' => "Nạp số dư qua thẻ cào",
+                'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
+            ];
+        }
+
+        usort($allBills, function($a, $b) {
+            return strtotime($b['created_at']) <=> strtotime($a['created_at']);
+        });
+        return view('client.user.balance-history', compact('allBills'));
+    }
+
     public function buyGameAccount($gameAccountId)
     {
         try {
@@ -55,7 +147,9 @@ class AccountBillController extends Controller
             AccountBill::create([
                 'user_id' => Auth::id(),
                 'account_id' => $gameAccountId,
-                'price' => $gameAccount->price_out
+                'price' => $gameAccount->price_out,
+                'balance_before' => $user->balance,
+                'balance_after' => $user->balance - $gameAccount->price_out
             ]);
             $gameAccount->status = 2;
             $gameAccount->save();
