@@ -1,0 +1,146 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\AccountAttribute;
+use App\Models\User;
+use App\Models\GameRecharge;
+use App\Models\RechargePackage;
+use App\Models\RechargeBill;
+use App\Models\RerollCategory;
+use App\Models\RerollSubCategory;
+use App\Models\RerollPackage;
+use App\Models\RerollKey;
+use App\Models\RerollBill;
+use App\Models\Game;
+use App\Models\GameItemType;
+use App\Models\GameAttribute;
+use App\Models\GameCategory;
+use App\Models\GameAccount;
+use App\Models\AccountImage;
+use App\Models\AccountBill;
+use App\Models\AccountItem;
+use App\Models\BalanceRechargeCardBill;
+use App\Models\BalanceRechargeBankBill;
+use App\Models\GameItem;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        $jsonFilePath = "./database/seeders/data.json";
+        $jsonContent = file_get_contents($jsonFilePath);
+        $dataArray = json_decode($jsonContent, true);
+
+        foreach ($dataArray['user'] as $data) {
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'username' => $data['username'],
+                'password' => Hash::make($data['password']),
+                'phone' => $data['phone'],
+                'role' => $data['role'],
+                'balance' => $data['balance'],
+                'avatar' => $data['avatar'],
+            ]);
+        }
+
+        foreach ($dataArray['game_recharge'] as $data) {
+            GameRecharge::create($data);
+        }
+
+        foreach ($dataArray['recharge_package'] as $data) {
+            RechargePackage::create($data);
+        }
+
+        foreach ($dataArray['recharge_bills'] as $data) {
+            RechargeBill::create($data);
+        }
+
+        foreach ($dataArray['reroll_category'] as $data) {
+            RerollCategory::create($data);
+        }
+
+        foreach ($dataArray['reroll_sub_category'] as $data) {
+            RerollSubCategory::create($data);
+        }
+
+        foreach ($dataArray['reroll_package'] as $data) {
+            RerollPackage::create($data);
+        }
+
+        foreach ($dataArray['reroll_key'] as $data) {
+            RerollKey::create($data);
+        }
+
+        foreach ($dataArray['reroll_bills'] as $data) {
+            RerollBill::create($data);
+        }
+
+        foreach ($dataArray['game'] as $data) {
+            $game = Game::create([
+                'name' => $data['name'],
+            ]);
+
+            foreach ($data['game_item_type'] as $item) {
+                $itemType = GameItemType::create([
+                    'game_id' => $game->id,
+                    'name' => $item['name'],
+                ]);
+
+                if (isset($item['game_items'])) {
+                    foreach ($item['game_items'] as $itemData) {
+                        GameItem::create([
+                            'game_id' => $game->id,
+                            'name' => $itemData['name'],
+                            'description' => $itemData['description'],
+                            'image' => $itemData['image'],
+                            'game_item_type_id' => $itemType->id,
+                        ]);
+                    }
+                }
+            }
+
+            foreach ($data['game_attribute'] as $attribute) {
+                GameAttribute::create([
+                    'game_id' => $game->id,
+                    'name' => $attribute['name'],
+                ]);
+            }
+        }
+
+        foreach ($dataArray['game_category'] as $data) {
+            GameCategory::create($data);
+        }
+
+        foreach ($dataArray['balance_recharge_card_bills'] as $data) {
+            BalanceRechargeCardBill::create($data);
+        }
+
+        foreach ($dataArray['balance_recharge_bank_bills'] as $data) {
+            BalanceRechargeBankBill::create($data);
+        }
+
+        foreach ($dataArray['game_accounts'] as $data) {
+            GameAccount::create($data);
+        }
+
+        foreach ($dataArray['account_attributes'] as $data) {
+            AccountAttribute::create($data);
+        }
+
+        foreach ($dataArray['account_items'] as $data) {
+            AccountItem::create($data);
+        }
+
+        foreach ($dataArray['account_bills'] as $data) {
+            AccountBill::create($data);
+        }
+    }
+}
