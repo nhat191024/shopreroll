@@ -12,12 +12,14 @@ class RerollBill extends Model
         'reroll_package_id',
         'reroll_key_id',
         'price',
+        'balance_before',
+        'balance_after',
         'status',
     ];
 
     public function Buyer()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function RerollPackage()

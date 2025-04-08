@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('bank');
             $table->integer('amount');
+            $table->integer('balance_added');
             $table->integer('balance_before');
             $table->integer('balance_after');
             $table->text('note')->nullable();

@@ -1,18 +1,25 @@
 @extends('client.layouts.master')
 @section('main')
+    <style>
+        #account-history th,
+        #account-history td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+
     <section class="content">
         <div class="container-fluid vh-100">
             <center>
-                <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png"
-                    class="city__icon" />
+                <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" />
             </center>
             <h1 class="guide__title">Acc Genshin đã mua</h1>
             <main>
                 <div>
                     <!-- Default box -->
                     <div class="card col-lg-12">
-                        <div class="mt-3 pt-3 table-responsive">
-                            <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div class="table-responsive mt-3 pt-3">
+                            <table id="account-history" class="table-striped table-bordered table" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
                                         <th style="width: 5%;">ID</th>
@@ -25,35 +32,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if (count($accountBills) > 0)
-                                        @foreach ($accountBills as $data)
-                                            <tr>
-                                                <td style="width: 5%;">{{ $data->id }}</td>
-                                                <td class="copy-cell" style="width: 15%;"
-                                                    data-copy="{{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}">
-                                                    {{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}
-                                                </td>
-                                                <td class="copy-cell" style="width: 15%;"
-                                                    data-copy="{{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}">
-                                                    {{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}
-                                                </td>
-                                                <td style="width: 25%;">Server:
-                                                    {{ $data->GameAccount ? $data->GameAccount->server : 'N/A' }}<br>
-                                                    AR {{ $data->GameAccount ? $data->GameAccount->AR : 'N/A' }}<br>
-                                                    Note:
-                                                    {{ $data->GameAccount ? $data->GameAccount->note : 'N/A' }}</td>
-                                                <td>{{ $data->price }}</td>
-                                                <td>{{ $data->GameAccount ? $data->GameAccount->title : 'N/A' }}
-                                                </td>
-                                                <td>{{ $data->created_at }}</td>
-                                            </tr>
-                                        @endforeach
-                                    @else
+                                    @foreach ($accountBills as $data)
                                         <tr>
-                                            <td colspan="7" class="text-center">Không có tài khoản nào được mua
+                                            <td style="width: 5%;">{{ $data->id }}</td>
+                                            <td class="copy-cell" data-copy="{{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}" style="width: 15%;">
+                                                {{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}
                                             </td>
+                                            <td class="copy-cell" data-copy="{{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}" style="width: 15%;">
+                                                {{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}
+                                            </td>
+                                            <td style="width: 25%;">Server:
+                                                {{ $data->GameAccount ? $data->GameAccount->server : 'N/A' }}<br>
+                                                AR {{ $data->GameAccount ? $data->GameAccount->AR : 'N/A' }}<br>
+                                                Note:
+                                                {{ $data->GameAccount ? $data->GameAccount->note : 'N/A' }}</td>
+                                            <td>{{ $data->price }}</td>
+                                            <td>{{ $data->GameAccount ? $data->GameAccount->title : 'N/A' }}
+                                            </td>
+                                            <td>{{ $data->created_at }}</td>
                                         </tr>
-                                    @endif
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -79,7 +77,7 @@
     <script>
         $(document).ready(function() {
             // Initialize DataTable with all buttons explicitly
-            const table = $("#dataTable").DataTable({
+            const table = $("#account-history").DataTable({
                 pageLength: 4,
                 dom: "<'row'<'col-sm-6 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
                     "<'row'<'col-sm-12'tr>>" +

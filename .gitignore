@@ -21,3 +21,9 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+public/image/items
+public/image/accounts
+public/image/thumb
+public/image/rerollCategory
+public/image/rerollSubCategory
+public/image/gameCategory

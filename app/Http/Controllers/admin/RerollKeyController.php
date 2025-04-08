@@ -2,86 +2,74 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
-use App\Service\admin\RerollKeyService;
-use App\Service\admin\RerollPackageService;
+use App\Models\RerollKey;
+use App\Models\RerollPackage;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RerollKeyController extends Controller
 {
-    private $rerollKeyService;
-    private $RerollPackageService;
-
-    public function __construct(RerollKeyService $rerollKeyService, RerollPackageService $RerollPackageService)
-    {
-        $this->rerollKeyService = $rerollKeyService;
-        $this->RerollPackageService = $RerollPackageService;
-    }
-
     public function index($idPackage)
     {
-        $allRerollKeys = $this->RerollPackageService->getChildren($idPackage);
-        return view('admin.RerollKey.RerollKey', compact('allRerollKeys', 'idPackage'));
+        $rerollKeys = $idPackage == 0 ? RerollKey::all() : RerollKey::where('reroll_package_id', $idPackage)->get();
+        $packageName = $idPackage == 0 ? "" : RerollPackage::find($idPackage)->name;
+        return view('admin.RerollKey.rerollKey', compact('rerollKeys', 'packageName', 'idPackage'));
     }
 
-    public function showAddRerollKey($idPackage)
+    public function create($package)
     {
-        $allRerollPackage = $this->RerollPackageService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.addRerollKey', compact('allRerollPackage', 'idPackage'));
+        $rerollPackage = RerollPackage::all()->pluck('name', 'id')->toArray();
+        return view('admin.RerollKey.addRerollKey', compact('rerollPackage', 'package'));
     }
 
-    public function addRerollKey(Request $request, $idPackage)
+    public function store(Request $request)
     {
         $request->validate([
             'key' => 'required',
+            'package_id' => 'required',
         ]);
 
-        $this->rerollKeyService->add(
-            $request->key,
-            $request->idPackage
-        );
+        RerollKey::create([
+            'key' => $request->key,
+            'reroll_package_id' => $request->package_id,
+        ]);
 
-        return redirect(route('admin.RerollKey.index', ['idPackage' => $idPackage]))->with('success', 'Thêm key thành công');
+        return redirect(route('admin.rerollKey.index', $request->package_id))->with('success', 'Thêm key thành công');
     }
 
-    public function showEditRerollKey($idPackage, $idKey)
+    public function edit($id)
     {
-        $rerollKeyInfo = $this->rerollKeyService->getById($idKey);
-        // $allRerollPackage = $this->RerollPackageService->getAll()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.EditRerollKey', compact('idKey', 'rerollKeyInfo', 'idPackage'));
+        $key = RerollKey::find($id);
+        $rerollPackage = RerollPackage::all()->pluck('name', 'id')->toArray();
+        return view('admin.RerollKey.editRerollKey', compact('key', 'rerollPackage'));
     }
 
-    public function editRerollKey(Request $request, $idPackage)
+    public function update(Request $request, $id)
     {
         $request->validate([
-            'idKey' => 'required',
             'key' => 'required',
+            'package_id' => 'required',
         ]);
 
-        $rerollKey = $this->rerollKeyService->getById($request->idKey);
+        $key = RerollKey::find($id);
 
-        if (!$rerollKey) {
-            return redirect(route('admin.RerollKey.index', ['idPackage' => $idPackage]))->with('error', 'Key không tìm thấy');
-        }
+        $key->update([
+            'key' => $request->key,
+            'reroll_package_id' => $request->package_id,
+        ]);
 
-        $this->rerollKeyService->edit(
-            $request->idKey,
-            $request->key,
-        );
-
-        return redirect(route('admin.RerollKey.index' , ['idPackage' => $idPackage]))->with('success', 'Sửa key thành công');
+        return redirect(route('admin.rerollKey.index', $request->package_id))->with('success', 'Cập nhập key thành công');
     }
-    public function deleteRerollPackage($idPackage, $idKey) {
-        $rerollKeyInfo = $this->rerollKeyService->getById($idKey);
 
-        if (!$rerollKeyInfo) {
-            return redirect(route('admin.RerollKey.index' , ['idPackage' => $idPackage]))->with('error', 'Key not found');
+    public function destroy($id)
+    {
+        $key = RerollKey::find($id);
+        if (!$key) {
+            return redirect(route('admin.rerollKey.index', $key->reroll_package_id))->with('error', 'Key không tồn tại');
         }
-        if ($this->rerollKeyService->checkHasChildren($idKey)){
-            return redirect(route('admin.RerollKey.index' , ['idPackage' => $idPackage]))->with('error', 'Danh mục đang có sản phẩm không thể xóa');
-        }else{
-            $this->rerollKeyService->delete($idKey);
-            return redirect(route('admin.RerollKey.index' , ['idPackage' => $idPackage]))->with('success', 'Xóa danh mục thành công');
-        }
+
+        $key->delete();
+        return redirect(route('admin.rerollKey.index', $key->reroll_package_id))->with('success', 'Xóa key thành công');
     }
 }

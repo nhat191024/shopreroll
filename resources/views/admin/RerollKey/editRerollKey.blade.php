@@ -1,37 +1,29 @@
 @extends('admin.master')
 @section('main')
-    <!-- Content Wrapper -->
-
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Sửa Reroll Key</h1>
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.rerollKey.edit', ['idPackage' => $idPackage, 'idKey' => $idKey]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.rerollKey.update', $key->id) }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="keyInput">Tên Reroll Key</label>
-                            <input maxlength="255" required type="text" class="form-control" id="keyInput"
-                                name="key" value="{{ old('key', $rerollKeyInfo->key ?? '') }}"
-                                placeholder="Nhập key">
+                            <input id="keyInput" class="form-control" name="key" type="text" required value="{{ old('key', $key->key ?? '') }}" maxlength="255" placeholder="Nhập key">
                         </div>
-                        <input type="hidden" value="{{ $rerollKeyInfo->id }}" name="id">
+                        <div class="form-group">
+                            <label for="">Gói reroll</label>
+                            <select class="form-control" name="package_id" required>
+                                @foreach ($rerollPackage as $id => $item)
+                                    <option value="{{ $id }}" @selected($id == $key->reroll_package_id)>{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <a class="btn btn-primary mt-4" onclick="history.back()">Quay lại</a>
-                        <button id="saveEdit" class="btn btn-success mt-4" type="submit">Lưu</button>
+                        <button class="btn btn-success mt-4" type="submit">Lưu</button>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- End of Content Wrapper -->
 @endsection

@@ -2,74 +2,137 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="icon" type="image/svg+xml" href="{{ asset('img/logo.svg') }} " />
+    <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
     <title>Shop game- Quản lý</title>
 
-    <!-- IMPORTANT: Load jQuery first, then Bootstrap, then other plugins -->
-    <!-- jQuery (full version) - Load this FIRST -->
+    <!-- Load jQuery FIRST (single version) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- Bootstrap 4 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
-    <!-- Bootstrap 4 JavaScript - After jQuery -->
+    <!-- Bootstrap 4 JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Bootstrap-select CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <!-- datatables css -->
+    <link href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <!-- Bootstrap-select JavaScript - After Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-
-    <!-- Remaining styles and scripts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link href="{{ url('') . '/' }}css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
+    <!-- chart.js css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css@1.1.0/dist/charts.min.css">
+
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- select2 css -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- select2 bootstrap 5 theme css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+    <!--  styles  -->
+    <link href="{{ url('') . '/' }}css/sb-admin-2.css" rel="stylesheet">
+    <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
 </head>
 
+<style>
+    #dataTable th,
+    #dataTable td {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
+@inject('game', 'App\Models\Game')
+@php
+    $games = $game::with('GameCategory')->get();
+@endphp
+
 <body id="page-top">
-    <!-- Page Wrapper -->
+    <div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="{{ route('admin.game_account.excel') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 id="importExcelModalLabel" class="modal-title">Nhập tài khoản từ Excel</h5>
+                        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="excelFile">Chọn file Excel</label>
+                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
+                        <button class="btn btn-primary" type="submit">Tải lên</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <div id="wrapper">
-
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
+        <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
-                <div class="sidebar-brand-icon ">
-                    <img src="{{ asset('img/logo.svg') }}" width="60%">
+                <div class="sidebar-brand-icon">
+                    <img src="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
                 </div>
                 <div class="sidebar-brand-text mx-3">Shop game</div>
             </a>
-
-            <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item  {{ Request::is('admin') ? 'active' : '' }}">
+            <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Trang tổng quan</span></a>
             </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                <h6>Tài Khoản Game</h6>
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span data-key="t-layouts">Nhập từ Excel</span>
+                </a>
+            </li>
+            @foreach ($games as $item)
+                <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">{{ $item->name }}</span>
+                    </a>
+                    <div id="game-{{ str_replace(' ', '-', $item->name) }}" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.game_account.index', $item->id) }}">Danh sách chung</a>
+                            </li>
+                            @foreach ($item->GameCategory as $category)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_account.index', $item->id) }}?category_id={{ $category->id }}&status=1">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+            @endforeach
 
-            <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
-                <h6>Chức năng</h6>
+                <h6>Game</h6>
             </div>
-
-            <!-- Nav Item - Tables -->
             <div id="menuAccordion">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.game.index') }}">
@@ -77,107 +140,142 @@
                         <span>Game</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.RerollCategory.index') }}" role="button"><i
-                            class="fa-solid fa-dice"></i>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-category" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Danh mục</span>
+                    </a>
+                    <div id="game-category" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.gameCategory.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-item-type" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Loại vật phẩm</span>
+                    </a>
+                    <div id="game-item-type" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_item_type.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-item" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Vật phẩm</span>
+                    </a>
+                    <div id="game-item" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_item.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-attribute" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Thuộc tính</span>
+                    </a>
+                    <div id="game-attribute" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($games as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.game_attribute.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    <h6>Reroll</h6>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollCategory.index') }}" role="button"><i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.GameRecharge.index') }}">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollSubCategory.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll Sub Category</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollPackage.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll Package</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{ route('admin.rerollKey.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                        <span data-key="t-layouts">Reroll Key</span>
+                    </a>
+                </li>
+
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    <h6>Chức năng khác</h6>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.gameRecharge.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Nạp Game</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#account" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="account">
-                        <i class="fa-solid fa-gamepad"></i>
-                        <span data-key="t-layouts">Tài khoản</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="account" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Genshin account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">HonKai account</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-horizontal">Star Rail account</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#characters" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="characters">
-                        <i class="fa-solid fa-person"></i>
-                        <span data-key="t-layouts">Character</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="characters" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.character', ['slug' => 'genshin-impact']) }}"
-                                    class="nav-link" data-key="t-horizontal">Genshin Impact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.character', ['slug' => 'honkai-star-rail']) }}"
-                                    class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.character', ['slug' => 'zenless-zone-zero']) }}"
-                                    class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#weapon" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="weapon">
-                        <i class="fa-solid fa-wand-sparkles"></i>
-                        <span data-key="t-layouts">Vũ khí</span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="weapon" data-bs-parent="#menuAccordion">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'genshin-impact']) }}" class="nav-link"
-                                    data-key="t-horizontal">Genshin Impact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'honkai-star-rail']) }}"
-                                    class="nav-link" data-key="t-horizontal">Honkai Star Rail</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.weapon', ['slug' => 'zenless-zone-zero']) }}"
-                                    class="nav-link" data-key="t-horizontal">Zenless Zone Zero</a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.user.index') }}">
                         <i class="fa-solid fa-users"></i>
                         <span>Tài khoản người dùng</span></a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.RechargeBill.index') }}">
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-                        <span>Lịch sử giao dịch</span></a>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#history" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span data-key="t-layouts">Lịch sử</span>
+                    </a>
+                    <div id="history" class="menu-dropdown collapse" data-parent="#menuAccordion">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.rechargeBill.index') }}">
+                                    <span>Nạp game</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.rerollBill.index') }}">
+                                    <span>Reroll</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.balanceRechargeBankBill.index') }}">
+                                    <span>Nạp qua ngân hàng</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.balanceRechargeCardBill.index') }}">
+                                    <span>Nạp qua thẻ điện thoại</span></a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa-regular fa-envelope"></i>
-                        <span>Tin nhắn khách hàng</span></a>
-                </li> --}}
             </div>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <div class="d-none d-md-inline text-center">
+                <button id="sidebarToggle" class="rounded-circle border-0"></button>
             </div>
 
         </ul>
@@ -188,12 +286,11 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light topbar static-top mb-4 bg-white shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
-                        <button type="button" id="sidebarToggleTop"
-                            class="btn btn-link d-md-none rounded-circle mr-3">
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" type="button">
                             <i class="fa fa-bars"></i>
                         </button>
                     </form>
@@ -203,18 +300,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a id="searchDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="dropdown-menu dropdown-menu-right animated--grow-in p-3 shadow" aria-labelledby="searchDropdown">
+                                <form class="form-inline w-100 navbar-search mr-auto">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input class="form-control bg-light small border-0" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -227,21 +320,19 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a id="alertsDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter pending-bill-count">0</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Hoá đơn đang chờ
                                 </h6>
                                 <div id="pending-bill-list" class="overflow-auto" style="max-height: 500px;"></div>
                                 <div class="d-none billPendingTemplate">
-                                    <a class="dropdown-item d-flex align-items-center" href="" id="bill-link">
+                                    <a id="bill-link" class="dropdown-item d-flex align-items-center" href="">
                                         <div class="mr-3">
                                             <div class="icon-circle bg-primary">
                                                 <i class="fas fa-file-alt text-white"></i>
@@ -254,45 +345,40 @@
                                         </div>
                                     </a>
                                 </div>
-                                <a class="dropdown-item text-center small text-gray-600" href="#">Xem toàn bộ
+                                <a class="dropdown-item small text-center text-gray-600" href="#">Xem toàn bộ
                                     đơn hàng</a>
                             </div>
                         </li>
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a id="messagesDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter message-count">0</span>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
                                     Tin nhắn từ khách hàng
                                 </h6>
                                 <div id="message-list" class="overflow-auto" style="max-height: 500px;"></div>
                                 <div class="d-none messageTemplate">
                                     <p id="message-id" class="d-none">0</p>
-                                    <a class="dropdown-item d-flex align-items-center" id="message-link"
-                                        href="#">
+                                    <a id="message-link" class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle"
-                                                src="{{ url('') . '/' }}img/undraw_profile_1.svg" alt="...">
+                                            <img class="rounded-circle" src="{{ url('') . '/' }}img/undraw_profile_1.svg" alt="...">
                                             <div class="status-indicator">
-                                                <div id="message-index"
-                                                    style="font-size: 10px; transform: translate(1px, -5px)"></div>
+                                                <div id="message-index" style="font-size: 10px; transform: translate(1px, -5px)"></div>
                                             </div>
                                         </div>
                                         <div class="font-weight-bold">
-                                            <div class="text-truncate" id="message-subject">Subject</div>
-                                            <div class="small text-gray-900" id="message-info">Name · 1m</div>
+                                            <div id="message-subject" class="text-truncate">Subject</div>
+                                            <div id="message-info" class="small text-gray-900">Name · 1m</div>
                                         </div>
                                     </a>
                                 </div>
-                                <a class="dropdown-item text-center small text-gray-600" href="#">Xem thêm tin
+                                <a class="dropdown-item small text-center text-gray-600" href="#">Xem thêm tin
                                     nhắn
                                 </a>
                             </div>
@@ -302,17 +388,13 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">#</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{ url('') . '/' }}img/undraw_profile.svg">
+                            <a id="userDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="d-none d-lg-inline small mr-2 text-gray-600">#</span>
+                                <img class="img-profile rounded-circle" src="{{ url('') . '/' }}img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
+                            <div class="dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="userDropdown">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -321,40 +403,40 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+
                 @yield('main')
-                <!-- End of Page Wrapper -->
-                <!-- Footer -->
-                <footer class="sticky-footer bg-white">
-                    <div class="container my-auto">
-                        <div class="copyright text-center my-auto">
-                            <span>Copyright &copy;2024 Xây dựng và thiết kế | FPT Polytechnic Hải Phòng</span>
-                        </div>
-                    </div>
-                </footer>
-                <!-- End of Footer -->
 
             </div>
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright my-auto text-center">
+                        <span>Copyright &copy;2024 Xây dựng và thiết kế | FPT Polytechnic Hải Phòng</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
             <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="{{ url('') . '/' }}#page-top">
+            <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
             </a>
 
             <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div id="logoutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <h5 id="exampleModalLabel" class="modal-title">Ready to Leave?</h5>
+                            <button class="close" data-dismiss="modal" type="button" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
                         <div class="modal-body">Select "Logout" below if you are ready to end your current session.
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
                             <a class="btn btn-primary" href="#">Logout</a>
                         </div>
                     </div>
@@ -364,42 +446,63 @@
     </div>
 
     <!-- Custom scripts for all pages -->
-    <script src="{{ url('') . '/' }}js/sb-admin-2.min.js"></script>
+    <script src="{{ url('') . '/' }}js/sb-admin-2.js"></script>
 
-    <!-- IMPORTANT: Remove the DataTables bundle that includes jQuery -->
-    <!-- Use separate DataTables scripts instead -->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.4.2/js/buttons.colVis.min.js"></script>
+    <!-- datatables script (without jQuery) -->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <!-- Select2 JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
         // Document ready function
         $(document).ready(function() {
-            // Check if bootstrap-select is loaded
-            if (typeof $.fn.selectpicker === 'function') {
-                // Initialize selectpicker
-                $('.selectpicker').selectpicker();
-                console.log('Bootstrap-select initialized successfully');
+            // Initialize Select2
+            if (typeof $.fn.select2 === 'function') {
+                $('.selectpicker').select2({
+                    theme: 'bootstrap-5',
+                    width: '100%',
+                    placeholder: 'Select options',
+                    allowClear: true,
+                    closeOnSelect: false
+                });
+                console.log('Select2 initialized successfully');
             } else {
-                console.error('Bootstrap-select plugin is not available');
-                // Fallback to standard select
-                console.log('Using standard select as fallback');
+                console.error('Select2 plugin is not available');
             }
 
-            // Initialize any DataTables after bootstrap-select
+            // Initialize DataTables
             if (typeof $.fn.DataTable === 'function') {
-                // Your DataTable initialization can go here
-                console.log('DataTables is available');
+                try {
+                    $('#dataTable').DataTable({
+                        responsive: true,
+                        language: {
+                            "lengthMenu": "Hiển thị _MENU_ mục trên trang",
+                            "zeroRecords": "Không tìm thấy dữ liệu",
+                            "info": "Hiển thị trang _PAGE_ / _PAGES_",
+                            "infoEmpty": "Không có dữ liệu",
+                            "infoFiltered": "(lọc từ _MAX_ tổng số)",
+                            "search": "Tìm kiếm:",
+                            "paginate": {
+                                "first": "Đầu",
+                                "last": "Cuối",
+                                "next": "Sau",
+                                "previous": "Trước"
+                            }
+                        }
+                    });
+                    console.log('DataTables initialized successfully');
+                } catch (error) {
+                    console.error('Error initializing DataTables:', error);
+                }
+            } else {
+                console.error('DataTables plugin is not available');
             }
         });
     </script>
+
+    {{-- script section --}}
+    @yield('scripts')
 
 </body>
 

@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('account_images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('account_id');
+            $table->unsignedBigInteger('game_account_id');
             $table->string('image');
             $table->timestamps();
-
-            $table->foreign('account_id')->references('id')->on('game_accounts')->onDelete('cascade');
         });
     }
 

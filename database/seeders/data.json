@@ -3,8 +3,8 @@
         {
             "name": "Acc Admin Demo 1",
             "email": "adminDemo1@gmail.com",
-            "username": "adminDemo1",
-            "password": "$2a$10$3",
+            "username": "adminDemo",
+            "password": "17012004",
             "phone": "0123456789",
             "role": 1,
             "balance": 1000000,
@@ -63,19 +63,19 @@
     ],
     "contributor_commission": [
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 1
         },
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 2
         },
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 3
         },
         {
-            "game":  "Genshin Impact",
+            "game": "Genshin Impact",
             "contributor_id": 4
         },
         {
@@ -87,19 +87,19 @@
             "contributor_id": 6
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 1
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 2
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 3
         },
         {
-            "game":  "Honkai Star Rail",
+            "game": "Honkai Star Rail",
             "contributor_id": 4
         },
         {
@@ -111,19 +111,19 @@
             "contributor_id": 6
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 1
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 2
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 3
         },
         {
-            "game":  "Zenless Zone Zero",
+            "game": "Zenless Zone Zero",
             "contributor_id": 4
         },
         {
@@ -140,13 +140,13 @@
             "name": "Genshin Impact",
             "tutorial": "Sau khi lên đơn, quý khách vui lòng nhắn zalo shop 0386496488  và chờ shop gọi lấy code vào game, sau khi lấy code, đừng đổi pass hay ấn delete thiết bị của shop, đợi khi nào trạng thái đơn trên shop ghi hoàn thành rồi hãy đổi pass, đừng delete thiết bị, để lần sau nạp khỏi cần mã",
             "id_youtube": "zVVa7ELqr-o",
-            "image": "GenshinRecharge.png"
+            "image": "image/recharges/GenshinRecharge.png"
         },
         {
             "name": "Zenless Zone Zero",
             "tutorial": "Sau khi lên đơn, quý khách vui lòng nhắn zalo shop 0386496488  và chờ shop gọi lấy code vào game, sau khi lấy code, đừng đổi pass hay ấn delete thiết bị của shop, đợi khi nào trạng thái đơn trên shop ghi hoàn thành rồi hãy đổi pass, đừng delete thiết bị, để lần sau nạp khỏi cần mã",
             "id_youtube": "zVVa7ELqr-o",
-            "image": "ZZZRecharge.png"
+            "image": "image/recharges/ZZZRecharge.png"
         }
     ],
     "recharge_package": [
@@ -241,9 +241,9 @@
             "price": 1950000
         }
     ],
-    "recharge_bill": [
+    "recharge_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "recharge_package_id": 1,
             "UID": 96692797165,
             "username": "accountDemo1",
@@ -251,10 +251,12 @@
             "server": "SEA",
             "character_name": "usernameInGame1",
             "phone": "0123456789",
+            "balance_before": 0,
+            "balance_after": 1000000,
             "note": "note1"
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "recharge_package_id": 2,
             "UID": 96692797165,
             "username": "accountDemo2",
@@ -262,18 +264,20 @@
             "server": "SEA",
             "character_name": "usernameInGame2",
             "phone": "0123456789",
+            "balance_before": 0,
+            "balance_after": 1000000,
             "note": "note2"
         }
     ],
     "reroll_category": [
         {
             "name": "ACC Zenless Zone Zero",
-            "image": "ZZZLogo.webp",
+            "image": "image/rerollCategory/ZZZLogo.webp",
             "note": "note1"
         },
         {
             "name": "ACC Honkai Star Rail",
-            "image": "HSRLogo.png",
+            "image": "image/rerollCategory/HSRLogo.png",
             "note": "note2"
         }
     ],
@@ -282,37 +286,37 @@
             "reroll_category_id": 1,
             "name": "Reroll Cấp 4 Main Random",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "ZZZReroll1.png"
+            "image": "image/rerollSubCategory/ZZZReroll1.png"
         },
         {
             "reroll_category_id": 1,
             "name": "Reroll Cấp 8",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "ZZZReroll2.webp"
+            "image": "image/rerollSubCategory/ZZZReroll2.webp"
         },
         {
             "reroll_category_id": 1,
             "name": "Reroll Cấp 22 Main Nữ",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "ZZZReroll3.jpg"
+            "image": "image/rerollSubCategory/ZZZReroll3.jpg"
         },
         {
             "reroll_category_id": 2,
             "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "HSRReroll1.webp"
+            "image": "image/rerollSubCategory/HSRReroll1.webp"
         },
         {
             "reroll_category_id": 2,
             "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "HSRReroll2.webp"
+            "image": "image/rerollSubCategory/HSRReroll2.webp"
         },
         {
             "reroll_category_id": 2,
             "name": "Acc không user. Dùng mail Outlook, Mail gốc gửi kèm theo acc",
             "tutorial": "Lẫy Mã Tại: https://outlook.live.com/mail",
-            "image": "HSRReroll3.webp"
+            "image": "image/rerollSubCategory/HSRReroll3.webp"
         }
     ],
     "reroll_package": [
@@ -397,655 +401,367 @@
             "key": "vluhjwkj6768@outlook.com--MK-Game--gjytf2ch8l--MK-Mail--qbmrrtwa1718"
         }
     ],
-    "reroll_bill": [
+    "reroll_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "reroll_package_id": 1,
             "reroll_key_id": 1,
+            "balance_before": 1,
+            "balance_after": 1000000,
             "price": 1000
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "reroll_package_id": 2,
             "reroll_key_id": 3,
+            "balance_before": 2,
+            "balance_after": 1000000,
             "price": 4000
         }
     ],
     "game": [
         {
-            "name": "Genshin Impact"
+            "name": "Genshin Impact",
+            "game_item_type": [
+                {
+                    "name": "weapon",
+                    "game_items": [
+                        {
+                            "name": "Sword",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Bow",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Catalyst",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Claymore",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Polearm",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        }
+                    ]
+                },
+                {
+                    "name": "hero",
+                    "game_items": [
+                        {
+                            "name": "Diluc",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Jean",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Mona",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Keqing",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        },
+                        {
+                            "name": "Qiqi",
+                            "description": "Demo",
+                            "image": "image/items/1742840849_hajime.png"
+                        }
+                    ]
+                }
+            ],
+            "game_attribute": [
+                {
+                    "name": "AR"
+                },
+                {
+                    "name": "Server"
+                }
+            ]
         },
         {
-            "name": "Honkai Star Rail"
+            "name": "Honkai Star Rail",
+            "game_item_type": [
+                {
+                    "name": "weapon"
+                },
+                {
+                    "name": "hero"
+                }
+            ],
+            "game_attribute": [
+                {
+                    "name": "Lv"
+                },
+                {
+                    "name": "Server"
+                }
+            ]
         },
         {
-            "name": "Zenless Zone Zero"
+            "name": "Zenless Zone Zero",
+            "game_item_type": [
+                {
+                    "name": "weapon"
+                },
+                {
+                    "name": "hero"
+                }
+            ],
+            "game_attribute": [
+                {
+                    "name": "Lv"
+                },
+                {
+                    "name": "Server"
+                }
+            ]
         }
     ],
     "game_category": [
         {
             "game_id": 1,
             "name": "Reroll limited",
-            "image": "GSCate1.jpg"
+            "image": "image/gameCategory/GSCate2.png"
         },
         {
             "game_id": 1,
             "name": "Acc Vip",
-            "image": "GSCate2.jpg"
+            "image": "image/gameCategory/GSCate2.png"
         },
         {
             "game_id": 1,
             "name": "Acc thường",
-            "image": "GSCate3.jpg"
+            "image": "image/gameCategory/GSCate3.png"
         },
         {
             "game_id": 1,
             "name": "Reroll thường",
-            "image": "GSCate3.jpg"
+            "image": "image/gameCategory/GSCate3.png"
         }
     ],
-    "hero": [
+    "balance_recharge_card_bills": [
         {
-            "game_id": 1,
-            "name": "Diluc"
-        },
-        {
-            "game_id": 1,
-            "name": "Jean"
-        },
-        {
-            "game_id": 1,
-            "name": "Keqing"
-        },
-        {
-            "game_id": 1,
-            "name": "Mona"
-        },
-        {
-            "game_id": 1,
-            "name": "Qiqi"
-        },
-        {
-            "game_id": 1,
-            "name": "Venti"
-        },
-        {
-            "game_id": 1,
-            "name": "Xiao"
-        },
-        {
-            "game_id": 1,
-            "name": "Zhongli"
-        },
-        {
-            "game_id": 2,
-            "name": "Kiana"
-        },
-        {
-            "game_id": 2,
-            "name": "Mei"
-        },
-        {
-            "game_id": 2,
-            "name": "Bronya"
-        },
-        {
-            "game_id": 2,
-            "name": "Himeko"
-        },
-        {
-            "game_id": 2,
-            "name": "Raiden"
-        },
-        {
-            "game_id": 2,
-            "name": "Fu Hua"
-        },
-        {
-            "game_id": 2,
-            "name": "Theresa"
-        },
-        {
-            "game_id": 2,
-            "name": "Sakura"
-        },
-        {
-            "game_id": 3,
-            "name": "Kiana"
-        },
-        {
-            "game_id": 3,
-            "name": "Mei"
-        },
-        {
-            "game_id": 3,
-            "name": "Bronya"
-        },
-        {
-            "game_id": 3,
-            "name": "Himeko"
-        },
-        {
-            "game_id": 3,
-            "name": "Raiden"
-        },
-        {
-            "game_id": 3,
-            "name": "Fu Hua"
-        },
-        {
-            "game_id": 3,
-            "name": "Theresa"
-        },
-        {
-            "game_id": 3,
-            "name": "Sakura"
-        }
-    ],
-    "weapon": [
-        {
-            "game_id": 1,
-            "name": "Amos' Bow"
-        },
-        {
-            "game_id": 1,
-            "name": "Aquila Favonia"
-        },
-        {
-            "game_id": 1,
-            "name": "Blackcliff Longsword"
-        },
-        {
-            "game_id": 1,
-            "name": "Blackcliff Warbow"
-        },
-        {
-            "game_id": 1,
-            "name": "Deathmatch"
-        },
-        {
-            "game_id": 1,
-            "name": "Dragon's Bane"
-        },
-        {
-            "game_id": 1,
-            "name": "Eye of Perception"
-        },
-        {
-            "game_id": 1,
-            "name": "Favonius Codex"
-        },
-        {
-            "game_id": 2,
-            "name": "Amos' Bow"
-        },
-        {
-            "game_id": 2,
-            "name": "Aquila Favonia"
-        },
-        {
-            "game_id": 2,
-            "name": "Blackcliff Longsword"
-        },
-        {
-            "game_id": 2,
-            "name": "Blackcliff Warbow"
-        },
-        {
-            "game_id": 2,
-            "name": "Deathmatch"
-        },
-        {
-            "game_id": 2,
-            "name": "Dragon's Bane"
-        },
-        {
-            "game_id": 2,
-            "name": "Eye of Perception"
-        },
-        {
-            "game_id": 2,
-            "name": "Favonius Codex"
-        },
-        {
-            "game_id": 3,
-            "name": "Amos' Bow"
-        },
-        {
-            "game_id": 3,
-            "name": "Aquila Favonia"
-        },
-        {
-            "game_id": 3,
-            "name": "Blackcliff Longsword"
-        },
-        {
-            "game_id": 3,
-            "name": "Blackcliff Warbow"
-        },
-        {
-            "game_id": 3,
-            "name": "Deathmatch"
-        },
-        {
-            "game_id": 3,
-            "name": "Dragon's Bane"
-        },
-        {
-            "game_id": 3,
-            "name": "Eye of Perception"
-        },
-        {
-            "game_id": 3,
-            "name": "Favonius Codex"
-        }
-    ],
-    "game_account": [
-        {
-            "creator_id": 3,
-            "game_category_id": 1,
-            "title": "Nguyên Thạch 36798 Roll Xanh 70 Roll Hồng 37",
-            "username": "username1",
-            "password": "password1",
-            "AR": 45,
-            "server": "SEA",
-            "price_in": 1000,
-            "price_out": 2000,
-            "note": "note1"
-        },
-        {
-            "creator_id": 3,
-            "game_category_id": 1,
-            "title": "Nguyên Thạch 36798 Roll Xanh 70 Roll Hồng 37",
-            "username": "username2",
-            "password": "password2",
-            "AR": 45,
-            "server": "SEA",
-            "price_in": 1000,
-            "price_out": 2000,
-            "note": "note2"
-        },
-        {
-            "creator_id": 4,
-            "game_category_id": 1,
-            "title": "Nguyên Thạch 36798 Roll Xanh 70 Roll Hồng 37",
-            "username": "username3",
-            "password": "password3",
-            "AR": 45,
-            "server": "SEA",
-            "price_in": 1000,
-            "price_out": 2000,
-            "note": "note3"
-        },
-        {
-            "creator_id": 4,
-            "game_category_id": 1,
-            "title": "Nguyên Thạch 36798 Roll Xanh 70 Roll Hồng 37",
-            "username": "username4",
-            "password": "password4",
-            "AR": 45,
-            "server": "SEA",
-            "price_in": 1000,
-            "price_out": 2000,
-            "note": "note4"
-        }
-    ],
-    "account_image": [
-        {
-            "account_id": 1,
-            "image": "GenshinAccount1.webp"
-        },
-        {
-            "account_id": 1,
-            "image": "GenshinAccount2.jpg"
-        },
-        {
-            "account_id": 1,
-            "image": "GenshinAccount3.jpg"
-        },
-        {
-            "account_id": 2,
-            "image": "GenshinAccount1.webp"
-        },
-        {
-            "account_id": 2,
-            "image": "GenshinAccount2.jpg"
-        },
-        {
-            "account_id": 2,
-            "image": "GenshinAccount3.jpg"
-        },
-        {
-            "account_id": 3,
-            "image": "GenshinAccount1.webp"
-        },
-        {
-            "account_id": 3,
-            "image": "GenshinAccount2.jpg"
-        },
-        {
-            "account_id": 3,
-            "image": "GenshinAccount3.jpg"
-        },
-        {
-            "account_id": 4,
-            "image": "GenshinAccount1.webp"
-        },
-        {
-            "account_id": 4,
-            "image": "GenshinAccount2.jpg"
-        },
-        {
-            "account_id": 4,
-            "image": "GenshinAccount3.jpg"
-        }
-    ],
-    "account_hero": [
-        {
-            "account_id": 1,
-            "hero_id": 1
-        },
-        {
-            "account_id": 1,
-            "hero_id": 2
-        },
-        {
-            "account_id": 1,
-            "hero_id": 3
-        },
-        {
-            "account_id": 1,
-            "hero_id": 4
-        },
-        {
-            "account_id": 1,
-            "hero_id": 5
-        },
-        {
-            "account_id": 1,
-            "hero_id": 6
-        },
-        {
-            "account_id": 1,
-            "hero_id": 7
-        },
-        {
-            "account_id": 1,
-            "hero_id": 8
-        },
-        {
-            "account_id": 2,
-            "hero_id": 1
-        },
-        {
-            "account_id": 2,
-            "hero_id": 2
-        },
-        {
-            "account_id": 2,
-            "hero_id": 3
-        },
-        {
-            "account_id": 2,
-            "hero_id": 4
-        },
-        {
-            "account_id": 2,
-            "hero_id": 5
-        },
-        {
-            "account_id": 2,
-            "hero_id": 6
-        },
-        {
-            "account_id": 2,
-            "hero_id": 7
-        },
-        {
-            "account_id": 2,
-            "hero_id": 8
-        },
-        {
-            "account_id": 3,
-            "hero_id": 1
-        },
-        {
-            "account_id": 3,
-            "hero_id": 2
-        },
-        {
-            "account_id": 3,
-            "hero_id": 3
-        },
-        {
-            "account_id": 3,
-            "hero_id": 4
-        },
-        {
-            "account_id": 3,
-            "hero_id": 5
-        },
-        {
-            "account_id": 3,
-            "hero_id": 6
-        },
-        {
-            "account_id": 3,
-            "hero_id": 7
-        },
-        {
-            "account_id": 3,
-            "hero_id": 8
-        },
-        {
-            "account_id": 4,
-            "hero_id": 1
-        },
-        {
-            "account_id": 4,
-            "hero_id": 2
-        },
-        {
-            "account_id": 4,
-            "hero_id": 3
-        },
-        {
-            "account_id": 4,
-            "hero_id": 4
-        },
-        {
-            "account_id": 4,
-            "hero_id": 5
-        },
-        {
-            "account_id": 4,
-            "hero_id": 6
-        },
-        {
-            "account_id": 4,
-            "hero_id": 7
-        },
-        {
-            "account_id": 4,
-            "hero_id": 8
-        }
-    ],
-    "account_weapon": [
-        {
-            "account_id": 1,
-            "weapon_id": 1
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 2
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 3
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 4
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 5
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 6
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 7
-        },
-        {
-            "account_id": 1,
-            "weapon_id": 8
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 1
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 2
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 3
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 4
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 5
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 6
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 7
-        },
-        {
-            "account_id": 2,
-            "weapon_id": 8
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 1
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 2
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 3
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 4
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 5
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 6
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 7
-        },
-        {
-            "account_id": 3,
-            "weapon_id": 8
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 1
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 2
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 3
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 4
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 5
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 6
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 7
-        },
-        {
-            "account_id": 4,
-            "weapon_id": 8
-        }
-    ],
-    "account_bill": [
-        {
-            "user_id": 5,
-            "account_id": 1,
-            "price": 2000
-        },
-        {
-            "user_id": 6,
-            "account_id": 2,
-            "price": 2000
-        }
-    ],
-    "balance_recharge_card_bill": [
-        {
-            "user_id": 5,
+            "user_id": 1,
             "number": "123456789",
             "serial": "987654321",
             "mobile_carrier": "Viettel",
             "amount_fake": 100000,
             "amount_real": 100000,
-            "balance_added": 80000
+            "balance_added": 80000,
+            "balance_before": 3,
+            "balance_after": 1000000
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "number": "123456789",
             "serial": "987654321",
             "mobile_carrier": "Viettel",
             "amount_fake": 100000,
             "amount_real": 100000,
-            "balance_added": 80000
+            "balance_added": 80000,
+            "balance_before": 4,
+            "balance_after": 1000000
         }
     ],
-    "balance_recharge_bank_bill": [
+    "balance_recharge_bank_bills": [
         {
-            "user_id": 5,
+            "user_id": 1,
             "bank": "Vietcombank",
             "amount": 1000000,
-            "balance_before": 0,
-            "balance_after": 1000000
+            "balance_before": 5,
+            "balance_after": 1000000,
+            "balance_added": 1000000
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "bank": "Vietcombank",
             "amount": 1000000,
-            "balance_before": 0,
-            "balance_after": 1000000
+            "balance_before": 6,
+            "balance_after": 1000000,
+            "balance_added": 1000000
+        }
+    ],
+    "game_accounts": [
+        {
+            "creator_id": 3,
+            "game_id": 1,
+            "game_category_id": 1,
+            "title": "Account Genshin AR55 with Hutao C1",
+            "username": "testaccount1",
+            "password": "password123",
+            "price_in": 1000000,
+            "price_out": 1500000,
+            "note": "Account có Hutao C1 + Staff of Homa R1",
+            "status": 1
+        },
+        {
+            "creator_id": 3,
+            "game_id": 1,
+            "game_category_id": 2,
+            "title": "Account Genshin AR60 Full Limited",
+            "username": "testaccount2",
+            "password": "password123",
+            "price_in": 5000000,
+            "price_out": 7000000,
+            "note": "Account full nhân vật giới hạn",
+            "status": 1
+        },
+        {
+            "creator_id": 4,
+            "game_id": 1,
+            "game_category_id": 3,
+            "title": "Account Genshin Starter AR7",
+            "username": "testaccount3",
+            "password": "password123",
+            "price_in": 50000,
+            "price_out": 100000,
+            "note": "Account mới, chưa roll",
+            "status": 1
+        },
+        {
+            "creator_id": 4,
+            "game_id": 1,
+            "game_category_id": 4,
+            "title": "Account Genshin AR30 với Keqing",
+            "username": "testaccount4",
+            "password": "password123",
+            "price_in": 200000,
+            "price_out": 300000,
+            "note": "Account có Keqing + Sword of Descension",
+            "status": 1
+        },
+        {
+            "creator_id": 4,
+            "game_id": 1,
+            "game_category_id": 4,
+            "title": "Account Genshin AR30 với Keqing",
+            "username": "testaccount4",
+            "password": "password123",
+            "price_in": 200000,
+            "price_out": 300000,
+            "note": "Account có Keqing + Sword of Descension",
+            "status": 1
+        },
+        {
+            "creator_id": 3,
+            "game_id": 1,
+            "game_category_id": 2,
+            "title": "Account Genshin AR58 Full 5*",
+            "username": "testaccount5",
+            "password": "password123",
+            "price_in": 3000000,
+            "price_out": 4500000,
+            "note": "Account có full 5* tiêu chuẩn",
+            "status": 1
+        }
+    ],
+    "account_attributes": [
+        {
+            "game_account_id": 1,
+            "game_attribute_id": 1,
+            "value": "55"
+        },
+        {
+            "game_account_id": 1,
+            "game_attribute_id": 2,
+            "value": "SEA"
+        },
+        {
+            "game_account_id": 2,
+            "game_attribute_id": 1,
+            "value": "60"
+        },
+        {
+            "game_account_id": 2,
+            "game_attribute_id": 2,
+            "value": "SEA"
+        }
+    ],
+    "account_items": [
+        {
+            "game_account_id": 1,
+            "game_item_id": 1
+        },
+        {
+            "game_account_id": 1,
+            "game_item_id": 2
+        },
+        {
+            "game_account_id": 1,
+            "game_item_id": 7
+        },
+        {
+            "game_account_id": 1,
+            "game_item_id": 8
+        },
+        {
+            "game_account_id": 2,
+            "game_item_id": 3
+        },
+        {
+            "game_account_id": 2,
+            "game_item_id": 4
+        },
+        {
+            "game_account_id": 3,
+            "game_item_id": 5
+        },
+        {
+            "game_account_id": 4,
+            "game_item_id": 1
+        },
+        {
+            "game_account_id": 5,
+            "game_item_id": 2
+        }
+    ],
+    "account_bills": [
+        {
+            "user_id": 1,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 7,
+            "balance_after": 1000000,
+            "status": 1
+        },
+        {
+            "user_id": 1,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 8,
+            "balance_after": 1000000,
+            "status": 0
+        },
+        {
+            "user_id": 2,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 9,
+            "balance_after": 1000000,
+            "status": 1
+        },
+        {
+            "user_id": 2,
+            "account_id": 1,
+            "price": 1000000,
+            "balance_before": 10,
+            "balance_after": 1000000,
+            "status": 0
         }
     ]
 }

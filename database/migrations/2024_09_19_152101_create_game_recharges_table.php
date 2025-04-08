@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('tutorial');
-            $table->string('id_youtube');
+            $table->string('id_youtube')->nullable();
             $table->string('image');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();

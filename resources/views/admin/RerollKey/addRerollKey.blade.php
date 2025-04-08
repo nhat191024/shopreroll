@@ -1,50 +1,29 @@
 @extends('admin.master')
 @section('main')
-    <!-- Content Wrapper -->
-
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Thêm Reroll Key</h1>
-        <!-- Form Example -->
-        <div class="card shadow mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body">
                 <div class="table-responsive">
-                    <form action="{{ route('admin.rerollKey.add', ['idPackage' => $idPackage]) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('admin.rerollKey.store') }}" method="post">
                         @csrf
                         <div class="form-group">
-                            <label for="keyName">Tên Reroll Key</label>
-                            <input maxlength="255" required type="text" class="form-control" id="keyName"
-                                name="key" placeholder="Nhập tên Reroll Key">
+                            <label for="keyName">Reroll Key</label>
+                            <input id="keyName" class="form-control" name="key" type="text" required maxlength="255" placeholder="Nhập Reroll Key">
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="categorySelect">Chọn danh mục</label>
-                            <select class="form-control" id="categorySelect" name="reroll_key_category_id" required>
-                                @foreach ($allRerollPackage as $id => $name)
-                                    <option value="{{ $id }}" {{ $loop->first ? 'selected' : '' }}>
-                                        {{ $name }}
-                                    </option>
+                        <div class="form-group">
+                            <label for="">Gói reroll</label>
+                            <select class="form-control" name="package_id" required>
+                                @foreach ($rerollPackage as $id => $item)
+                                    <option value="{{ $id }}" @selected($id == $package)>{{ $item }}</option>
                                 @endforeach
                             </select>
-                        </div> --}}
+                        </div>
                         <a class="btn btn-primary mt-4" onclick="history.back()">Quay lại</a>
                         <button id="saveAdd" class="btn btn-success mt-4" type="submit">Lưu</button>
                     </form>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- /.container-fluid -->
-
-    <!-- End of Content Wrapper -->
 @endsection
-
-<script>
-    // Add the following code if you want the name of the file to appear on select
-    $(".custom-file-input").on("change", function() {
-        var fileName = $(this).val().split("\\").pop();
-        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-    });
-</script>

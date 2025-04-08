@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Models\GameItemType;
+use App\Models\GameAttribute;
+use App\Models\Game;
+
 use App\Http\Controllers\Controller;
 use App\Service\admin\GameService;
 use Illuminate\Http\Request;
@@ -18,8 +22,8 @@ class GameController extends Controller
 
     public function index()
     {
-        $allGame = $this->gameService->getAll();
-        return view('admin.game.game', compact('allGame'));
+        $games = Game::withCount('gameItemType', 'gameAttribute')->get();
+        return view('admin.game.game', compact('games'));
     }
 
     public function showAddGame()
@@ -31,9 +35,28 @@ class GameController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'game_item.*' => 'required|string|max:255',
+            'game_attribute.*' => 'required|string|max:255',
         ]);
-        // Public Folder
-        $this->gameService->add($request->name);
+
+        $game = Game::create([
+            'name' => $request->name
+        ]);
+
+        foreach ($request->game_item as $item) {
+            GameItemType::create([
+                'game_id' => $game->id,
+                'name' => $item
+            ]);
+        }
+
+        foreach ($request->game_attribute as $attribute) {
+            GameAttribute::create([
+                'game_id' => $game->id,
+                'name' => $attribute
+            ]);
+        }
+
         return redirect(route('admin.game.index'))->with('success', 'Thêm game thành công');
     }
 
@@ -57,10 +80,6 @@ class GameController extends Controller
 
     public function ChangeGameStatus($id, $status)
     {
-        if ($this->gameService->checkHasChildren($id)) {
-            return redirect(route('admin.game.index'))->with('error', 'Game này đang có sản phẩm không thể xóa');
-        }
-
         switch ($status) {
             case 1:
                 $this->gameService->ChangeStatus($id, 1);

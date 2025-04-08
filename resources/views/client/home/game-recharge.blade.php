@@ -1,10 +1,17 @@
 @extends('client.layouts.master')
 
 @section('main')
+    <style>
+        #recharge-history-table th,
+        #recharge-history-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+
     <div class="container-fluid">
         <div class="text-center">
-            <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon"
-                loading="lazy">
+            <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" loading="lazy">
         </div>
         <h1 class="guide__title">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
         <div>
@@ -24,7 +31,7 @@
                                 <div class="form-group">
                                     <label class="form-label">Gói
                                     </label>
-                                    <select name="recharge_packet_id" class="form-control">
+                                    <select class="form-control" name="recharge_packet_id">
                                         @foreach ($rechargePackages as $rechargePackage)
                                             <option value="{{ $rechargePackage->id }}">
                                                 {{ number_format($rechargePackage->price) }} đ -
@@ -40,8 +47,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input name="uid" type="text" class="form-control concave "
-                                                value="" placeholder="Điền UID">
+                                            <input class="form-control concave" name="uid" type="text" value="" placeholder="Điền UID">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 mt-2">
@@ -51,9 +57,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input required="" name="login_name" type="text"
-                                                class="form-control concave " value=""
-                                                placeholder="Điền tên tài khoản">
+                                            <input class="form-control concave" name="login_name" type="text" required="" value="" placeholder="Điền tên tài khoản">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 mt-2">
@@ -63,9 +67,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input required="" name="pass" type="text"
-                                                class="form-control concave " value=""
-                                                placeholder="Điền mật khẩu tài khoản nạp">
+                                            <input class="form-control concave" name="pass" type="text" required="" value="" placeholder="Điền mật khẩu tài khoản nạp">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 mt-3">
@@ -74,8 +76,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input name="game_server" type="text" class="form-control concave"
-                                                value="" placeholder="Điền server">
+                                            <input class="form-control concave" name="game_server" type="text" value="" placeholder="Điền server">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 mt-3">
@@ -84,8 +85,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input name="character_name" type="text" class="form-control concave "
-                                                value="" placeholder="Điền tên nhân vật">
+                                            <input class="form-control concave" name="character_name" type="text" value="" placeholder="Điền tên nhân vật">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 mt-3">
@@ -95,8 +95,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input name="phone" type="text" class="form-control concave "
-                                                value="" placeholder="Điền số điện thoại">
+                                            <input class="form-control concave" name="phone" type="text" value="" placeholder="Điền số điện thoại">
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-6 mt-3">
@@ -105,8 +104,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-pen-fancy"></i></span>
                                             </div>
-                                            <input name="note" type="text" class="form-control concave "
-                                                value="" placeholder="Bạn muốn bổ sung điều gì?">
+                                            <input class="form-control concave" name="note" type="text" value="" placeholder="Bạn muốn bổ sung điều gì?">
                                         </div>
                                     </div>
                                     <div class="col-6 offset-3 mt-3">
@@ -116,8 +114,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group mt-4 text-center">
-                                            <button type="submit" name="submit" value="submit"
-                                                class="btn btn-pretty">Yêu cầu nạp
+                                            <button class="btn btn-pretty" name="submit" type="submit" value="submit">Yêu cầu nạp
                                             </button>
                                         </div>
                                     </div>
@@ -129,19 +126,14 @@
                             {!! $gameRecharge->tutorial !!}
                             <div class="h h6 text-primary">Video hướng dẫn
                             </div>
-                            <iframe width="100%" height="360"
-                                src="https://www.youtube.com/embed/{{ $gameRecharge->id_youtube }}"
-                                title="YouTube video player" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen="">
+                            <iframe width="100%" height="360" src="https://www.youtube.com/embed/{{ $gameRecharge->id_youtube }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
                             </iframe>
                         </div>
                         <div class="col-lg-12">
-                            <div class="mt-2 table-responsive">
+                            <div class="table-responsive mt-2">
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table id="recharge-history-table" class="table table-striped table-bordered"
-                                            style="width:100%">
+                                        <table id="recharge-history-table" class="table-striped table-bordered table" style="width:100%">
                                             <thead>
                                                 <tr role="row">
                                                     <th class="sorting sorting_desc">ID</th>
@@ -154,7 +146,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @forelse($rechargeBills as $bill)
+                                                @foreach ($rechargeBills as $bill)
                                                     <tr>
                                                         <td>{{ $bill->id ?? 'N/A' }}</td>
                                                         <td>{{ $bill->status == 0 ? 'Chưa thanh toán' : 'Đã thanh toán' }}
@@ -165,14 +157,17 @@
                                                         <td>{{ $bill->note ?? 'N/A' }}</td>
                                                         <td>{{ $bill->created_at ?? 'N/A' }}</td>
                                                     </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="7" class="text-center">
-                                                            No data available
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
+                                                @endforeach
                                             </tbody>
+                                            <tfoot>
+                                                <th class="sorting sorting_desc">ID</th>
+                                                <th class="sorting">Status</th>
+                                                <th class="sorting">Username</th>
+                                                <th class="sorting">Package</th>
+                                                <th class="sorting">Server</th>
+                                                <th class="sorting">Note</th>
+                                                <th class="sorting">Time</th>
+                                            </tfoot>
                                         </table>
                                     </div>
                                 </div>

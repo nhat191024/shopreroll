@@ -9,17 +9,15 @@ class GameAccount extends Model
     protected $table = 'game_accounts';
     protected $fillable = [
         'creator_id',
+        'game_id',
         'game_category_id',
         'title',
         'username',
         'password',
-        'AR',
-        'server',
         'price_in',
         'price_out',
         'note',
         'status',
-        'account_image'
     ];
 
     public function Creator()
@@ -27,19 +25,24 @@ class GameAccount extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function Game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
     public function GameCategory()
     {
         return $this->belongsTo(GameCategory::class);
     }
 
-    public function AccountHero()
+    public function AccountAttribute()
     {
-        return $this->hasMany(AccountHero::class, 'account_id');
+        return $this->hasMany(AccountAttribute::class, 'game_account_id');
     }
 
-    public function AccountWeapon()
+    public function AccountItem()
     {
-        return $this->hasMany(AccountWeapon::class, 'account_id');
+        return $this->hasMany(AccountItem::class, 'game_account_id');
     }
 
     public function AccountImage()
@@ -49,6 +52,6 @@ class GameAccount extends Model
 
     public function AccountBill()
     {
-        return $this->hasMany(AccountBill::class);
+        return $this->hasMany(AccountBill::class,'account_id');
     }
 }

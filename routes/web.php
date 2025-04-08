@@ -4,42 +4,29 @@ use App\Http\Controllers\admin\ApiController;
 use App\Http\Controllers\admin\BalanceRechargeBankBillController;
 use App\Http\Controllers\admin\BalanceRechargeCardBillController;
 use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\GameController;
-use App\Http\Controllers\admin\GameCategoryController;
-use App\Http\Controllers\admin\GameRechargeController;
-use App\Http\Controllers\admin\GameRechargePackageController;
 use App\Http\Controllers\admin\RechargeBillController;
-use App\Http\Controllers\admin\RerollCategoryController;
-use App\Http\Controllers\admin\RerollSubCategoryController;
-use App\Http\Controllers\admin\RerollPackageController;
 use App\Http\Controllers\admin\RerollBillController;
-use App\Http\Controllers\admin\RerollKeyController;
-use App\Http\Controllers\admin\UserController;
-use App\Http\Controllers\admin\GameAccountController;
 use App\Http\Controllers\client\AccountBillController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\MyKeyController;
 use App\Http\Controllers\client\RechargeShopController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegisterController;
-
+use App\Http\Controllers\client\UserAccountController;
 use Illuminate\Support\Facades\Route;
 
-
-Route::prefix('/login')->group(function () {
-    Route::get('/', [LoginController::class, 'index'])->name('login');
-    Route::post('/auth', [LoginController::class, 'login'])->name('login.auth');
-});
-Route::prefix('/register')->group(function () {
-    Route::get('/', [RegisterController::class, 'index'])->name('register');
-    Route::post('/auth', [RegisterController::class, 'register'])->name('register.auth');
-});
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+require __DIR__ . '/auth.php';
 
 // shop routes
 Route::get('/reroll/detail/{id}', [HomeController::class, 'rerollDetail'])->name('client.reroll.detail');
 Route::post('/reroll/detail/buy', [HomeController::class, 'buyRerollDetail'])->name('client.reroll.detail.buy');
 Route::get('/reroll/detail/{id}/tutorial', [HomeController::class, 'rerollTutorial'])->name('client.reroll.detail.tutorial');
+Route::get('/game/account/{gameId}/category/{categoryId}', [HomeController::class, 'gameAccountList'])->name('client.game.account.category');
+Route::get('/game/account/detail/{accountId}', [HomeController::class, 'accountDetail'])->name('client.game.account.detail');
+// buy now
+Route::get('/game/account/buy-now/{id}', [AccountBillController::class, 'buyGameAccount'])->name('client.account-shop.buy-now');
+Route::get('/user/forgot', [UserAccountController::class, 'forgotPassword'])->name('client.user.forgot');
+Route::get('/user/reset', [UserAccountController::class, 'resetPassword'])->name('client.user.reset');
+Route::post('/user/reset/confirm', [UserAccountController::class, 'confirmResetPassword'])->name('client.user.reset.confirm');
+Route::post('/user/forgot/confirm', [UserAccountController::class, 'confirmForgotPassword'])->name('client.user.forgot.confirm');
 
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
@@ -47,7 +34,11 @@ Route::get('/reroll/detail/{id}/tutorial', [HomeController::class, 'rerollTutori
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
 Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
+    Route::get('/myAcc/balance-history', [AccountBillController::class, 'balanceHistory'])->name('client.user.balance-history');
+    Route::get('/myAcc/all', [AccountBillController::class, 'allAccount'])->name('client.account.all');
     Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+    Route::get('/user/change', [UserAccountController::class, 'changePassword'])->name('client.user.change');
+    Route::post('/user/change/confirm', [UserAccountController::class, 'confirmChangePassword'])->name('client.user.change.confirm');
 });
 
 // game recharge routes
@@ -56,122 +47,32 @@ Route::post('/recharge/confirm', [RechargeShopController::class, 'rechargeConfir
 
 Route::get('/my-account', function () {
     return view('client.my-account');
-    // return 1;
-
 });
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
 // role:1,2 means only admin, collaborator can access this route
 Route::middleware(['auth', 'role:1,2'])->group(function () {
-    Route::prefix('admin')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-        Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('admin.BalanceRechargeBankBill.index');
-        Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('admin.BalanceRechargeCardBill.index');
+        require __DIR__ . '/admin/game/index.php';
+        require __DIR__ . '/admin/game/item_type.php';
+        require __DIR__ . '/admin/game/item.php';
+        require __DIR__ . '/admin/game/attribute.php';
+        require __DIR__ . '/admin/game/category.php';
+        require __DIR__ . '/admin/game/recharge.php';
+        require __DIR__ . '/admin/game/rechargePackage.php';
+        require __DIR__ . '/admin/game/account.php';
+        require __DIR__ . '/admin/reroll/category.php';
+        require __DIR__ . '/admin/reroll/subCategory.php';
+        require __DIR__ . '/admin/reroll/package.php';
+        require __DIR__ . '/admin/reroll/key.php';
 
-        Route::prefix('/game')->group(function () {
-            Route::get('/', [GameController::class, 'index'])->name('admin.game.index');
-            Route::get('/add', [GameController::class, 'showAddGame'])->name('admin.game.show_add');
-            Route::post('/add', [GameController::class, 'addGame'])->name('admin.game.add');
-            Route::post('/edit', [GameController::class, 'editGame'])->name('admin.game.edit');
-            Route::get('/edit/{id}', [GameController::class, 'showEditGame'])->name('admin.game.show_edit');
-            Route::get('/ChangeStatus/{id}/{status}', [GameController::class, 'ChangeGameStatus'])->name('admin.game.ChangeStatus');
-        });
-        Route::get('characters/{slug}', [ApiController::class, 'indexGameCharacters'])->name('admin.character');
-        Route::get('weapons/{slug}', [ApiController::class, 'indexGameWeapons'])->name('admin.weapon');
-        Route::get('/syncCharacters', [ApiController::class, 'syncHeroData'])->name('syncCharacters');
-        Route::get('/syncWeapons', [ApiController::class, 'syncWeaponData'])->name('syncWeapons');
-        
-        Route::prefix('/game-category')->group(function () {
-            Route::get('/list/{id}', [GameCategoryController::class, 'index'])->name('admin.GameCategory.index');
-            Route::get('/add', [GameCategoryController::class, 'showAddCategory'])->name('admin.GameCategory.showAdd');
-            Route::post('/add', [GameCategoryController::class, 'addCategory'])->name('admin.GameCategory.add');
-            Route::post('/edit', [GameCategoryController::class, 'editCategory'])->name('admin.GameCategory.edit');
-            Route::get('/edit/{id}', [GameCategoryController::class, 'showEditCategory'])->name('admin.GameCategory.showEdit');
-            Route::get('/ChangeStatus/{id}/{status}', [GameCategoryController::class, 'ChangeGameCategoryStatus'])->name('admin.GameCategory.ChangeStatus');
-        });
+        Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('rechargeBill.index');
+        Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('rerollBill.index');
+        Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('balanceRechargeBankBill.index');
+        Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('balanceRechargeCardBill.index');
 
-        Route::prefix('/game-recharge')->group(function () {
-            Route::get('/', [GameRechargeController::class, 'index'])->name('admin.GameRecharge.index');
-            Route::get('/add', [GameRechargeController::class, 'showAddRecharge'])->name('admin.GameRecharge.showAdd');
-            Route::post('/add', [GameRechargeController::class, 'addRecharge'])->name('admin.GameRecharge.add');
-            Route::post('/edit', [GameRechargeController::class, 'editRecharge'])->name('admin.GameRecharge.edit');
-            Route::get('/edit/{id}', [GameRechargeController::class, 'showEditRecharge'])->name('admin.GameRecharge.showEdit');
-            Route::get('/ChangeStatus/{id}/{status}', [GameRechargeController::class, 'ChangeGameStatus'])->name('admin.GameRecharge.ChangeGameRechargeStatus');
-        });
-
-        Route::prefix('/game-recharge-package')->group(function () {
-            Route::get('/list/{id}', [GameRechargePackageController::class, 'index'])->name('admin.GameRechargePackage.index');
-            Route::get('/add', [GameRechargePackageController::class, 'showAddGameRechargePackage'])->name('admin.GameRechargePackage.showAdd');
-            Route::post('/add', [GameRechargePackageController::class, 'addRechargePackage'])->name('admin.GameRechargePackage.add');
-            Route::post('/edit', [GameRechargePackageController::class, 'editRechargePackage'])->name('admin.GameRechargePackage.edit');
-            Route::get('/edit/{id}', [GameRechargePackageController::class, 'showEditRechargePackage'])->name('admin.GameRechargePackage.showEdit');
-            Route::get('/ChangeStatus/{id}/{status}', [GameRechargePackageController::class, 'ChangeGameRechargePackageStatus'])->name('admin.GameRechargePackage.ChangeGameRechargePackageStatus');
-        });
-
-        Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('admin.RechargeBill.index');
-
-        Route::prefix('/reroll-category')->group(function () {
-            Route::get('/', [RerollCategoryController::class, 'index'])->name('admin.RerollCategory.index');
-            Route::get('/add', [RerollCategoryController::class, 'showAddRerollCategory'])->name('admin.RerollCategory.showAdd');
-            Route::post('/add', [RerollCategoryController::class, 'addRerollCategory'])->name('admin.RerollCategory.add');
-            Route::post('/edit', [RerollCategoryController::class, 'editRerollCategory'])->name('admin.RerollCategory.edit');
-            Route::get('/edit/{id}', [RerollCategoryController::class, 'showEditRerollCategory'])->name('admin.RerollCategory.ShowEdit');
-            Route::get('/detail/{id}', [RerollCategoryController::class, 'detailRerollCategory'])->name('admin.RerollCategory.Detail');
-            Route::get('/ChangeStatus/{id}', [RerollCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollCategory.ChangeStatus');
-        });
-
-        Route::prefix('/reroll-sub-category')->group(function () {
-            Route::get('/', [RerollSubCategoryController::class, 'index'])->name('admin.rerollSubCategory.index');
-            Route::get('/add', [RerollSubCategoryController::class, 'showAddRerollSubCategory'])->name('admin.rerollSubCategory.showAdd');
-            Route::post('/add', [RerollSubCategoryController::class, 'addRerollSubCategory'])->name('admin.rerollSubCategory.add');
-            Route::post('/edit', [RerollSubCategoryController::class, 'editRerollSubCategory'])->name('admin.rerollSubCategory.edit');
-            Route::get('/edit/{id}', [RerollSubCategoryController::class, 'showEditRerollSubCategory'])->name('admin.RerollSubCategory.ShowEdit');
-            Route::get('/detail/{id}', [RerollSubCategoryController::class, 'detailRerollSubCategory'])->name('admin.RerollSubCategory.Detail');
-            Route::get('/ChangeStatus/{id}', [RerollSubCategoryController::class, 'ChangeCategoryStatus'])->name('admin.RerollSubCategory.ChangeStatus');
-        });
-
-        Route::prefix('/reroll-package')->group(function () {
-            Route::get('/', [RerollPackageController::class, 'index'])->name('admin.RerollPackage.index');
-            Route::get('/add', [RerollPackageController::class, 'showAddRerollPackage'])->name('admin.RerollPackage.showAdd');
-            Route::post('/add', [RerollPackageController::class, 'addRerollPackage'])->name('admin.RerollPackage.add');
-            Route::post('/edit', [RerollPackageController::class, 'editRerollPackage'])->name('admin.RerollPackage.edit');
-
-            Route::get('/edit/{id}', [RerollPackageController::class, 'showEditRerollPackage'])->name('admin.RerollPackage.showEdit');
-            Route::get('/delete/{id}', [RerollPackageController::class, 'deleteRerollPackage'])->name('admin.RerollPackage.delete');
-            Route::get('/detail/{id}', [RerollPackageController::class, 'detailRerollPackage'])->name('admin.RerollPackage.detail');
-            Route::prefix('/detail/{idPackage}/reroll-key')->group(function () {
-                Route::get('/', [RerollKeyController::class, 'index'])->name('admin.RerollKey.index');
-                Route::get('/add', [RerollKeyController::class, 'showAddRerollKey'])->name('admin.rerollKey.showAdd');
-                Route::post('/add', [RerollKeyController::class, 'addRerollKey'])->name('admin.rerollKey.add');
-                Route::post('/edit', [RerollKeyController::class, 'editRerollKey'])->name('admin.rerollKey.edit');
-                Route::get('/edit/{idKey}', [RerollKeyController::class, 'showEditRerollKey'])->name('admin.RerollKey.ShowEdit');
-                Route::get('/delete/{idKey}', [RerollKeyController::class, 'deleteRerollPackage'])->name('admin.RerollKey.delete');
-            });
-        });
-
-        Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('admin.RerollBill.index');
-
-        Route::prefix('/user')->group(function () {
-            Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
-            Route::get('/add', [UserController::class, 'showAddForm'])->name('admin.user.show');
-            Route::post('/add', [UserController::class, 'addUser'])->name('admin.user.add');
-            Route::post('/edit/{id}', [UserController::class, 'editUser'])->name('admin.user.edit');
-            Route::get('/{id}', [UserController::class, 'showUser'])->name(name: 'admin.user.editView');
-            Route::get('/disable/{id}', [UserController::class, 'disableUser'])->name('admin.user.disable');
-            Route::get('/store/{id}', [UserController::class, 'storeUser'])->name('admin.user.store');
-        });
-
-        Route::prefix('/game-account')->group(function () {
-            Route::get('/', [GameAccountController::class, 'index'])->name('admin.gameAccount.index');
-            Route::get('/add', [GameAccountController::class, 'showAddForm'])->name('admin.gameAccount.showAddForm');
-            Route::post('/add', [GameAccountController::class, 'addGameAccount'])->name('admin.gameAccount.add');
-            Route::post('/edit/{id}', [GameAccountController::class, 'editGameAccount'])->name('admin.gameAccount.edit');
-            Route::get('/edit/{id}', [GameAccountController::class, 'showEditForm'])->name('admin.gameAccount.showEditForm');
-            Route::get('/disable/{id}', [GameAccountController::class, 'disableGameAccount'])->name('admin.gameAccount.disable');
-            Route::get('/store/{id}', [GameAccountController::class, 'storeGameAccount'])->name('admin.gameAccount.store');
-            Route::get('/get-game-details/{categoryId}', [GameAccountController::class, 'getGameDetails'])->name('admin.gameAccount.getGameDetails');
-            Route::post('/game-account/import', [GameAccountController::class, 'importFromExcel'])->name('admin.gameAccount.import');
-        });
+        require __DIR__ . '/admin/user.php';
     });
 });
