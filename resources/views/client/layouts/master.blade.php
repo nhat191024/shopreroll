@@ -87,14 +87,14 @@
                         <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
                             <li>
                                 <a class="dropdown-item"
-                                    href="https://shopreroll.com/user/money/phone-card/send-card"><i
+                                    href="{{ route('client.user.topup.card') }}"><i
                                         class="fas fa-money-check-alt mr-1"></i>
                                     Nạp bằng thẻ cào
                                 </a>
                             </li>
                             <li class="dropdown-divider"></li>
                             <li>
-                                <a class="dropdown-item" href="https://shopreroll.com/user/money/auto-bank/info">
+                                <a class="dropdown-item" href="{{ route('client.user.topup.bank') }}">
                                     <i class="fas fa-university mr-1"></i>
                                     Nạp bằng bank, ví
                                 </a>
@@ -112,13 +112,13 @@
                             Lịch Sử Mua
                         </a>
                         <ul class="dropdown-menu border-0 shadow" style="left: 0px; right: inherit;">
-                            <li>
+                            {{-- <li>
                                 <a class="dropdown-item" href="{{ route('client.myAccGenshin') }}">
                                     <i class="fas fa-history mr-1"></i>
                                     Genshin
                                 </a>
                             </li>
-                            <li class="dropdown-divider"></li>
+                            <li class="dropdown-divider"></li> --}}
                             <li>
                                 <a class="dropdown-item" href="{{ route('client.MyKey.index') }}">
                                     <i class="fas fa-history mr-1"></i>
@@ -156,7 +156,7 @@
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                             style="background: rgb(89 84 173 / 25%);">
                             <span class="text-light">[{{ Auth::user()->id }}] {{ Auth::user()->name }}:</span>
-                            {{ number_format(Auth::user()->balance) }}<sup></sup>
+                            {{ number_format(Auth::user()->balance) }}đ<sup></sup>
                         </span>
                         <ul class="dropdown-menu border-0 bg-white shadow" style="left: 0px; right: inherit;">
                             <li><span class="dropdown-item text-muted text-center text-sm">Level:
