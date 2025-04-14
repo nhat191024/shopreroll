@@ -16,6 +16,10 @@ class BalanceRechargeBankBill extends Model
         'balance_before',
         'balance_after',
         'note',
+        'customer_phone',
+        'customer_name',
+        'bank_trans_id',
+        'callback_trans_id',
         'status',
     ];
 
