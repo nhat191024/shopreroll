@@ -9,11 +9,11 @@
     </style>
 
     <section class="content">
-        <div class="container-fluid vh-100">
+        <div class="container-fluid v-100">
             <center>
                 <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" />
             </center>
-            <h1 class="guide__title">Acc Genshin đã mua</h1>
+            <h1 class="guide__title">{{ $title }}</h1>
             <main>
                 <div>
                     <!-- Default box -->
@@ -34,22 +34,26 @@
                                 <tbody>
                                     @foreach ($accountBills as $data)
                                         <tr>
-                                            <td style="width: 5%;">{{ $data->id }}</td>
-                                            <td class="copy-cell" data-copy="{{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}" style="width: 15%;">
-                                                {{ $data->GameAccount ? $data->GameAccount->username : 'N/A' }}
+                                            <td style="width: 5%;">#{{ $data->id }}</td>
+                                            <td class="copy-cell" data-copy="{{ $data->GameAccount->username ?? 'N/A' }}" style="width: 15%;">
+                                                {{ $data->GameAccount->username ?? 'N/A' }}
                                             </td>
-                                            <td class="copy-cell" data-copy="{{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}" style="width: 15%;">
-                                                {{ $data->GameAccount ? $data->GameAccount->password : 'N/A' }}
+                                            <td class="copy-cell" data-copy="{{ $data->GameAccount->password ?? 'N/A' }}" style="width: 15%;">
+                                                {{ $data->GameAccount->password ?? 'N/A' }}
                                             </td>
-                                            <td style="width: 25%;">Server:
-                                                {{ $data->GameAccount ? $data->GameAccount->server : 'N/A' }}<br>
-                                                AR {{ $data->GameAccount ? $data->GameAccount->AR : 'N/A' }}<br>
-                                                Note:
-                                                {{ $data->GameAccount ? $data->GameAccount->note : 'N/A' }}</td>
-                                            <td>{{ $data->price }}</td>
-                                            <td>{{ $data->GameAccount ? $data->GameAccount->title : 'N/A' }}
+                                            <td style="width: 25%;">
+                                                @if($data->GameAccount)
+                                                    @foreach ($data->GameAccount->AccountAttribute as $attr)
+                                                        {{ $attr->GameAttribute->name }}: {{ $attr->value }}<br>
+                                                    @endforeach
+                                                    Note: {{ $data->GameAccount->note ?? 'N/A' }}
+                                                @else
+                                                    N/A
+                                                @endif
                                             </td>
-                                            <td>{{ $data->created_at }}</td>
+                                            <td style="width: 10%;">{{ number_format($data->GameAccount->price_out ?? 0) }}đ</td>
+                                            <td style="width: 15%;">{{ $data->GameAccount->title ?? 'N/A' }}</td>
+                                            <td style="width: 10%;">{{ $data->created_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -79,9 +83,9 @@
             // Initialize DataTable with all buttons explicitly
             const table = $("#account-history").DataTable({
                 pageLength: 4,
-                dom: "<'row'<'col-sm-6 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
+                dom: "<'row'<'col-sm-6 col-md-10 mb-2'B><'col-sm-12 col-md-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
+                    "<'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6'p>>",
                 buttons: [{
                         extend: 'copy',
                         text: 'Copy',
