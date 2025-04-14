@@ -90,14 +90,14 @@
                                             @forelse ($topUpRanking as $index => $user)
                                                 <li class="nav-link w-100" style="padding: .1rem 1rem">
                                                     <div class="row">
-                                                        <div class="col-7 text-left"
+                                                        <div class="col-7 text-left text-truncate"
                                                             style="text-align: left; padding-left: 30px;">
                                                             <span class="fa-stack">
                                                                 <span class="fa fa-circle fa-stack-2x"></span>
                                                                 <strong class="fa-stack-1x"
                                                                     style="color: #000;">{{ $index + 1 }}</strong>
                                                             </span>
-                                                            {{ $user['name'] ?? 'Unknown' }}
+                                                            <span>{{ $user['name'] ?? 'Unknown' }}</span>
                                                         </div>
                                                         <div class="col-5">
                                                             <label class="btn btn-warning float-right mr-4"
