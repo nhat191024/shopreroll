@@ -1,4 +1,4 @@
-<?php
+1<?php
 
 use App\Http\Controllers\admin\ApiController;
 use App\Http\Controllers\admin\BalanceRechargeBankBillController;
@@ -39,6 +39,9 @@ Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
     Route::get('/user/change', [UserAccountController::class, 'changePassword'])->name('client.user.change');
     Route::post('/user/change/confirm', [UserAccountController::class, 'confirmChangePassword'])->name('client.user.change.confirm');
+    Route::get('/user/topup/bank', [UserAccountController::class, 'topupByBank'])->name('client.user.topup.bank');
+    Route::get('/user/topup/card', [UserAccountController::class, 'topupByCard'])->name('client.user.topup.card');
+    Route::post('/user/topup/card/submit', [UserAccountController::class, 'submitTopupByCard'])->name('client.user.topup.card.submit');
 });
 
 // game recharge routes
