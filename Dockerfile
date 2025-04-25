@@ -39,7 +39,7 @@ RUN composer install --no-dev --optimize-autoloader
 RUN mkdir -p storage
 
 # RUN chmod -R a+rw storage
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/vendor
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/
 
 # # Cài đặt các dependency của Node.js
 # RUN npm install
