@@ -37,7 +37,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 #check folder storage không có thì tạo
 USER root
-RUN mkdir storage
+RUN mkdir -p storage
 
 # RUN chmod -R a+rw storage
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
