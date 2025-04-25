@@ -39,6 +39,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Cài đặt các dependency của Laravel
 RUN composer install --no-dev --optimize-autoloader
 
+#cấp quyền cho thư mục storage
+RUN chown -R www-data:www-data storage
+
 # # Cài đặt các dependency của Node.js
 # RUN npm install
 
@@ -49,7 +52,7 @@ RUN composer install --no-dev --optimize-autoloader
 RUN php artisan key:generate
 
 # Tạo cache cho config
-# RUN php artisan optimize:clear
+RUN php artisan optimize:clear
 
 # Đặt entrypoint
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
