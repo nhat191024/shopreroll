@@ -36,13 +36,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-dev --optimize-autoloader
 
 #check folder storage không có thì tạo
-USER root
 RUN mkdir -p storage
-
-# RUN chmod -R a+rw storage
-# Cấp quyền cho thư mục storage và bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # # Cài đặt các dependency của Node.js
 # RUN npm install
@@ -55,3 +49,7 @@ RUN php artisan key:generate
 
 # Tạo cache cho config
 # RUN php artisan optimize:clear
+
+# Cấp quyền cho thư mục storage và bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
