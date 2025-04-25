@@ -41,9 +41,8 @@ RUN mkdir -p storage
 
 # RUN chmod -R a+rw storage
 # Cấp quyền cho thư mục storage và bootstrap/cache
-RUN chmod -R 775 storage
-RUN chmod -R 775 bootstrap/cache
-# RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 # # Cài đặt các dependency của Node.js
 # RUN npm install
