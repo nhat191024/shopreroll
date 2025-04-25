@@ -7,6 +7,6 @@ services:
     container_name: shop-reroll
     restart: unless-stopped
     ports:
-      - "10000:80"
+      - "10002:80"
     volumes:
       - .:/var/www/html
