@@ -36,6 +36,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install --no-dev --optimize-autoloader
 
 #check folder storage không có thì tạo
+USER root
 RUN mkdir storage
 
 # RUN chmod -R a+rw storage
