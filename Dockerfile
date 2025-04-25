@@ -51,5 +51,5 @@ RUN php artisan key:generate
 # RUN php artisan optimize:clear
 
 # Cấp quyền cho thư mục storage và bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/vendor
+RUN chown -R www-data:www-data /var/www/html /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/vendor
 
