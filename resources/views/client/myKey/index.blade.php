@@ -1,16 +1,16 @@
 @extends('client.layouts.master')
 @section('main')
-    <div class="container-fluid vh-100">
+    <div class="container-fluid v-100">
         <center>
             <img src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" class="city__icon">
         </center>
         <h1 class="guide__title">Key bought</h1>
         <div class="card offset-lg-1 col-lg-10">
             <div class="mt-3 px-5 pt-3 table-responsive">
-                <button id="raw-button" class="btn btn-sm btn-primary mb-3">Xem giản lược</button>
+                <button id="raw-button" class="btn btn-sm btn-primary mb-3">Xem giản lược để copy nhanh</button>
                 <input type="hidden" id="raw-content"
-                    value="@foreach ($keys as $item)- {{ $item->key }}&#10; @endforeach">
-                <textarea id="raw-textarea" rows="10" class="form-control" style="display: none; text-align: left;" readonly></textarea>
+                    value="@foreach ($keys as $item)-{{ $item->RerollKey->key }}&#10;@endforeach">
+                <textarea id="raw-textarea" rows="10" class="form-control mb-3" style="display: none; text-align: left;" readonly></textarea>
                 <table id="user_data" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -24,13 +24,14 @@
                         @foreach ($keys as $key => $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td class="copy-cell" data-copy="{{ $item->key }}">{{ $item->key }}</td>
+                                <td class="copy-cell" data-copy="{{ $item->RerollKey->key }}">{{ $item->RerollKey->key }}</td>
                                 <td>
-                                    <b>{{ $item->rerollPackage }}</b>
-                                    </br>
-                                    Giá: {{ number_format($item->price, 0, ',') }} VNĐ
+                                    <b>Tên gói: </b>{{ $item->rerollPackage->name ?? 'N/A' }}<br>
+                                    <b>Loại reroll: </b>{{ $item->rerollPackage->RerollSubCategory->name ?? 'N/A' }}<br>
+                                    <b>Loại gói: </b>{{ $item->rerollPackage->RerollSubCategory->RerollCategory->name ?? 'N/A' }}<br>
+                                    <b>Giá:</b> {{ number_format($item->price, 0, ',') }} VNĐ
                                 </td>
-                                <td>{{ $item->purchased_at }}</td>
+                                <td>{{ $item->created_at }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -46,9 +47,9 @@
             // Initialize DataTable with all buttons explicitly
             const table = $("#user_data").DataTable({
                 pageLength: 4,
-                dom: "<'row'<'col-sm-12 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
+                dom: "<'row'<'col-sm-12 col-md-6 mb-2'B><'col-sm-12 col-md-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
+                    "<'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6'p>>",
                 buttons: [{
                         extend: 'copy',
                         text: 'Copy',

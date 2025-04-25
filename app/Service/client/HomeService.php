@@ -100,7 +100,7 @@ class HomeService
             ->map(function ($item) {
                 return [
                     'name' => $item->name,
-                    'amount' => number_format($item->amount, 0, '.', ',')
+                    'amount' => number_format($item->amount, 0, '.', ',').'đ',
                 ];
             })
             ->toArray();

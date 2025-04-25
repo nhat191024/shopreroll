@@ -27,12 +27,14 @@ class AccountBillController extends Controller
 
     public function allAccount()
     {
+        $title = 'Tất cả acc game đã mua';
         $accountBills = $this->accountBillService->getAllBillByUserId(Auth::id());
-        return view('client.layouts.myAcc', compact('accountBills'));
+        return view('client.layouts.myAcc', compact('accountBills', 'title'));
     }
 
     public function balanceHistory()
     {
+        $title = 'Lịch sử giao dịch';
         if (!Auth::check()) {
             return redirect()->route('login');
         }
@@ -52,10 +54,13 @@ class AccountBillController extends Controller
                 'id' => $bill->id,
                 'balance_change' => '-' . number_format($bill->price ?? 'N/A', 0, ',', '.'),
                 'is_decrease' => true,
-                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
-                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
-                'content' => "<b>Loại: </b>".($bill->GameAccount->GameCategory->name ?? 'N/A')."<br><b>Tên game: </b>".($bill->GameAccount->Game->name ?? 'N/A')."<br><b>Tài khoản game:</b> ".($bill->GameAccount->title ?? 'N/A')."<br> <b>Ghi chú:</b> ".($bill->GameAccount->title?? 'N/A'),
-'type' => "Mua tài khoản game",
+                'balance_before' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_after' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Loại: </b>".($bill->GameAccount->GameCategory->name ?? 'N/A')
+                    ."<br><b>Tên game: </b>".($bill->GameAccount->Game->name ?? 'N/A')
+                    ."<br><b>Tài khoản game:</b> ".($bill->GameAccount->title ?? 'N/A')
+                    ."<br> <b>Ghi chú:</b> ".($bill->GameAccount->title?? 'N/A'),
+                'type' => "Mua tài khoản game",
                 'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
             ];
         }
@@ -65,9 +70,11 @@ class AccountBillController extends Controller
                 'id' => $bill->id,
                 'balance_change' => '-' . number_format($bill->price ?? 'N/A', 0, ',', '.'),
                 'is_decrease' => true,
-                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
-                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
-                'content' => "<b>Tên gói: </b>".($bill->RerollPackage->name ?? 'N/A')."<br><b>Loại reroll: </b>".($bill->RerollPackage->RerollSubCategory->name ?? 'N/A')."<br><b>Loại gói: </b>".($bill->RerollPackage->RerollSubCategory->RerollCategory->name ?? 'N/A'),
+                'balance_before' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_after' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Tên gói: </b>".($bill->RerollPackage->name ?? 'N/A')
+                    ."<br><b>Loại reroll: </b>".($bill->RerollPackage->RerollSubCategory->name ?? 'N/A')
+                    ."<br><b>Loại gói: </b>".($bill->RerollPackage->RerollSubCategory->RerollCategory->name ?? 'N/A'),
                 'type' => "Mua gói reroll",
                 'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
             ];
@@ -78,9 +85,15 @@ class AccountBillController extends Controller
                 'id' => $bill->id,
                 'balance_change' => '-' . number_format($bill->RechargePackage->price ?? 'N/A', 0, ',', '.'),
                 'is_decrease' => true,
-                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
-                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
-                'content' => "<b>Gói nạp: </b>".($bill->RechargePackage->name ?? 'N/A')."<br><b>Tên game: </b>".($bill->RechargePackage->GameRecharge->name ?? 'N/A')."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công' : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')),
+                'balance_before' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_after' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Gói nạp: </b>".($bill->RechargePackage->name ?? 'N/A')
+                    ."<br><b>Tên game: </b>".($bill->RechargePackage->GameRecharge->name ?? 'N/A')
+                    ."<br><b>Tên người nạp: </b>".($bill->customer_name ?? 'N/A')
+                    ."<br><b>Tên người nạp: </b>".($bill->customer_name ?? 'N/A')
+                    ."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công'
+                        : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')
+                    ),
                 'type' => "Mua tài khoản game",
                 'type' => "Gói nạp tiền game",
                 'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
@@ -91,10 +104,17 @@ class AccountBillController extends Controller
             $allBills[] = [
                 'id' => $bill->id,
                 'balance_change' => '+' . number_format($bill->balance_added ?? 'N/A', 0, ',', '.'),
-                'is_decrease' => false,
-                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
-                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
-                'content' => "<b>Ghi chú: </b>".($bill->note ?? 'N/A')."<br><b>Tên bank: </b>".($bill->bank ?? 'N/A')."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công' : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')),
+                'is_decrease' => $bill->balance_added >= 0 ? false : true,
+                'balance_before' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_after' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>ND Chuyển khoản: </b>".($bill->note ?? 'N/A')
+                    ."<br><b>Tên bank: </b>".($bill->bank ?? 'N/A')
+                    ."<br><b>Mã giao dịch: </b>".($bill->bank_trans_id ?? 'N/A')
+                    ."<br><b>SĐT người nạp: </b>".($bill->customer_phone ?? 'N/A')
+                    ."<br><b>Tên người nạp: </b>".($bill->customer_name ?? 'N/A')
+                    ."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công'
+                        : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')
+                    ),
                 'type' => "Nạp số dư qua banking",
                 'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
             ];
@@ -104,19 +124,33 @@ class AccountBillController extends Controller
             $allBills[] = [
                 'id' => $bill->id,
                 'balance_change' => '+' . number_format($bill->balance_added ?? 'N/A', 0, ',', '.'),
-                'is_decrease' => false,
-                'balance_after' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
-                'balance_before' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
-                'content' => "<b>Số thẻ: </b>".($bill->number ?? 'N/A')."<br><b>Sêri thẻ: </b>".($bill->serial ?? 'N/A')."<br><b>Nhà mạng: </b>".($bill->mobile_carrier ?? 'N/A')."<br><b>Mệnh giá thẻ: </b>".(number_format($bill->amount_real) ?? number_format($bill->amount_fake) ?? 'N/A')." VND<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công' : ($bill->status == 2 ? 'Thất bại' : 'Đang chờ xử lý')),
+                'is_decrease' => $bill->balance_added >= 0 ? false : true,
+                'balance_after' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'balance_before' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Số thẻ: </b>".($bill->number ?? 'N/A')
+                    ."<br><b>Sêri thẻ: </b>".($bill->serial ?? 'N/A')
+                    ."<br><b>Nhà mạng: </b>".($bill->mobile_carrier ?? 'N/A')
+                    ."<br><b>Mệnh giá thẻ: </b>".(number_format($bill->amount_real) ?? number_format($bill->amount_fake) ?? 'N/A') ." VND"
+                    ."<br><b>Mã giao dịch: </b>".($bill->trans_id ?? 'N/A')
+                    ."<br><b>Trạng thái: </b>".($bill->status == 1 ? 'Thành công'
+                        : ($bill->status == 2 ? 'Số tiền không hợp lệ'
+                            : ($bill->status == 99 ? 'Đang chờ xử lý'
+                                : ($bill->status == 0 ? 'Đang chờ xử lý'
+                                    : 'Thất bại'
+                                )
+                            )
+                        )
+                    )
+                    ."<br><b>Note: </b>".($bill->note?? 'N/A'),
                 'type' => "Nạp số dư qua thẻ cào",
                 'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
             ];
         }
 
         usort($allBills, function($a, $b) {
-            return strtotime($b['created_at']) <=> strtotime($a['created_at']);
+            return strtotime($a['created_at']) <=> strtotime($b['created_at']);
         });
-        return view('client.user.balance-history', compact('allBills'));
+        return view('client.user.balance-history', compact('allBills', 'title'));
     }
 
     public function buyGameAccount($gameAccountId)

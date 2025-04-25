@@ -20,6 +20,10 @@ return new class extends Migration
             $table->integer('balance_before');
             $table->integer('balance_after');
             $table->text('note')->nullable();
+            $table->text('customer_phone')->nullable();
+            $table->text('customer_name')->nullable();
+            $table->text('bank_trans_id')->nullable();
+            $table->text('callback_trans_id')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 
