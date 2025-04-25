@@ -51,4 +51,4 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN php artisan key:generate
 
 # Tạo cache cho config
-RUN php artisan optimize:clear
+# RUN php artisan optimize:clear
