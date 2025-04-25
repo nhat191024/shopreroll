@@ -16,6 +16,9 @@ class MyKeyService
         $this->rerollPackageService = $rerollPackageService;
     }
 
+    /**
+     * @deprecated This function is deprecated and may be removed in future versions due to its complexity.
+     */
     public function getKeysHistory()
     {
         $userId = Auth::id();

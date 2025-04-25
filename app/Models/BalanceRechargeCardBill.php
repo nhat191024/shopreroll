@@ -18,6 +18,8 @@ class BalanceRechargeCardBill extends Model
         'balance_added', // Số tiền được cộng vào tài khoản sau khi nạp thành công
         'balance_before',
         'balance_after',
+        'note',
+        'trans_id',
         'status',
     ];
 

@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shop-reroll
+    container_name: shop-reroll
+    restart: unless-stopped
+    ports:
+      - "10000:80"
+    volumes:
+      - .:/var/www/html

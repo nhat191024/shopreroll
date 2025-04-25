@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('balance_added');
             $table->integer('balance_before');
             $table->integer('balance_after');
+            $table->string('note')->nullable();
+            $table->string('trans_id')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 

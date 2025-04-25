@@ -187,9 +187,9 @@
             // Initialize DataTable with all buttons explicitly
             const table = $("#recharge-history-table").DataTable({
                 pageLength: 4,
-                dom: "<'row'<'col-sm-12 col-md-10 mb-2'B><'col-sm-12 col-md-2'f>>" +
+                dom: "<'row'<'col-sm-12 col-md-6 mb-2'B><'col-sm-12 col-md-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
+                    "<'row'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6'p>>",
                 buttons: [{
                         extend: 'copy',
                         text: 'Copy',
