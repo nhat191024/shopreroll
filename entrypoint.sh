@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 # Đảm bảo thư mục log tồn tại và có quyền ghi
 mkdir -p /var/www/storage/logs
