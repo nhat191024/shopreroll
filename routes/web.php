@@ -1,4 +1,4 @@
-1<?php
+<?php
 
 use App\Http\Controllers\admin\ApiController;
 use App\Http\Controllers\admin\BalanceRechargeBankBillController;

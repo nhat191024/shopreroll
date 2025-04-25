@@ -29,17 +29,15 @@ COPY . /var/www/html
 # Sao chép mã nguồn của ứng dụng vào container
 WORKDIR /var/www/html
 
+# Sao chép entrypoint.sh vào container
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 # Cài đặt Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Cài đặt các dependency của Laravel
 RUN composer install --no-dev --optimize-autoloader
-
-#check folder storage không có thì tạo
-RUN mkdir -p storage
-
-# RUN chmod -R a+rw storage
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
 # # Cài đặt các dependency của Node.js
 # RUN npm install
@@ -51,4 +49,8 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN php artisan key:generate
 
 # Tạo cache cho config
-RUN php artisan optimize:clear
+# RUN php artisan optimize:clear
+
+# Đặt entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["apache2-foreground"]
