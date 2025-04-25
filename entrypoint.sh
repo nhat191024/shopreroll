@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Đảm bảo thư mục log tồn tại và có quyền ghi
-mkdir -p /var/www/html/storage/logs
-touch /var/www/html/storage/logs/laravel.log
+# mkdir -p /var/www/html/storage/logs
+# touch /var/www/html/storage/logs/laravel.log
 chmod -R 775 /var/www/html/storage
 chmod -R 775 /var/www/html/bootstrap
 chmod -R 775 /var/www/html/bootstrap/cache

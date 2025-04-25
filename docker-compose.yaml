@@ -11,4 +11,4 @@ services:
     volumes:
       - .:/var/www/html
       - /var/www/html/vendor
-      # - /var/www/html/storage
+      - /var/www/html/storage
