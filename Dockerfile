@@ -51,5 +51,8 @@ RUN php artisan key:generate
 # RUN php artisan optimize:clear
 
 # Cấp quyền cho thư mục storage và bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap /var/www/html/bootstrap/cache
+
+#echo ls -la vào 1 file
+RUN ls -la > /var/www/html/ls.txt
