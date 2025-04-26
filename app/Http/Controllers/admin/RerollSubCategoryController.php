@@ -101,7 +101,8 @@ class RerollSubCategoryController extends Controller
 
     public function changeCategoryStatus($id)
     {
-        $subCategory = RerollSubCategory::find($id);
+        $subCategory = RerollSubCategory::find($id)->load('RerollCategory');
+        $categoryId = $subCategory->RerollCategory->id;
 
         if (!$subCategory) {
             return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục không tồn tại');
@@ -120,9 +121,9 @@ class RerollSubCategoryController extends Controller
             $subCategory->status = 0;
             $subCategory->save();
 
-            return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Ẩn danh mục thành công');
+            return redirect(route('admin.rerollSubCategory.index', $categoryId))->with('success', 'Ẩn danh mục thành công');
         }
 
-        return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
+        return redirect(route('admin.rerollSubCategory.index', $categoryId))->with('error', 'Danh mục đang có sản phẩm không thể Ẩn');
     }
 }
