@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +23,7 @@ class DashboardController extends Controller
         //  dd($month);
         $year = $this->dashboardService->getRevenueByYear();
         $data = $this->dashboardService->getTotalRevenueForYear();
-        return view('admin.dashboard.home', compact('day', 'week','month','year','data'));
+        return view('admin.dashboard.home', compact('day', 'week', 'month', 'year', 'data'));
 
         // return view('admin.dashboard.home')->with('data',$this->dashboardService->getDashboard());
     }

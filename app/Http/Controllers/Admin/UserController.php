@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Service\admin\UserService;
@@ -37,33 +37,33 @@ class UserController extends Controller
     public function editUser($id, Request $request)
     {
         $user = $this->userService->getById($id);
-    
+
         if (!$user) {
             return redirect()->route('admin.user.index')->with('error', 'Không tìm thấy tài khoản');
         }
-    
+
         if ($request->has('addedBalance')) {
             $this->userService->editBalance($id, $request);
         }
-    
+
         if ($request->has('role')) {
             $this->userService->editRole($id, $request);
         }
-    
+
         if ($request->filled('password')) {
             $this->userService->changePass($id, $request);
         }
-    
+
         return redirect()->route('admin.user.index')->with('success', 'Cập nhập thành công ');
     }
-    public function disableUser($id) {
+    public function disableUser($id)
+    {
         $this->userService->disable($id);
         return redirect()->route('admin.user.index')->with('success', 'Vô hiệu tài khoản thành công');
     }
-    public function storeUser($id) {
+    public function storeUser($id)
+    {
         $this->userService->store($id);
         return redirect()->route('admin.user.index')->with('message', 'Khôi phục thành công');
-
     }
-    
 }
