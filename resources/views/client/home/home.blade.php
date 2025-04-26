@@ -178,13 +178,13 @@
                                                 <section class="row g-0 text-center">
                                                     <label class="text-muted">Số tài khoản</label>
                                                     <span
-                                                        class="more-detail fs-4">{{ $category->GameAccount->where('status', 1)->count() }}</span>
+                                                        class="more-detail fs-4">{{ $category->GameAccount ? $category->GameAccount->where('status', 1)->count() : 0 }}</span>
                                                 </section>
                                             </div>
                                             <div class="row g-0 info-line">
                                                 <section class="row g-0 text-center">
                                                     <label class="text-muted">Đã bán</label>
-                                                    <span class="more-detail fs-4">{{ $category->GameAccount[0]->AccountBill->where('status', 1)->count() }}</span>
+                                                    <span class="more-detail fs-4">{{ $category->GameAccount && $category->GameAccount->count() > 0 ? ($category->GameAccount->first()->AccountBill ? $category->GameAccount->first()->AccountBill->where('status', 1)->count() : 0) : 0 }}</span>
                                                 </section>
                                             </div>
                                             <a
