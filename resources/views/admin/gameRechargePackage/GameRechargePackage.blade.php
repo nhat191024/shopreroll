@@ -4,7 +4,8 @@
         <h1 class="h3 mb-2 text-gray-800">Gói nạp - {{ $rechargeName }}</h1>
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
-                <a class="btn btn-primary" href="{{ route('admin.gameRechargePackage.create', $id) }}">Thêm gói nạp cho {{ $rechargeName }}</a>
+                <a class="btn btn-primary" href="{{ route('admin.gameRecharge.index', $recharge) }}">Quay lại</a>
+                <a class="btn btn-primary" href="{{ route('admin.gameRechargePackage.create', $recharge) }}">Thêm gói nạp cho {{ $rechargeName }}</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
