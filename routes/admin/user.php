@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\Admin\UserController;
 
 Route::prefix('/user')->name('user.')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('index');

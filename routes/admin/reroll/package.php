@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\RerollPackageController;
+use App\Http\Controllers\Admin\RerollPackageController;
 
 Route::prefix('/reroll-package')->name('rerollPackage.')->group(function () {
     Route::get('/{subCategory}', [RerollPackageController::class, 'index'])->name('index');

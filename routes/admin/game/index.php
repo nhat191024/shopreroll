@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\GameController;
+use App\Http\Controllers\Admin\GameController;
 
 Route::prefix('/game')->name('game.')->group(function () {
     Route::get('/', [GameController::class, 'index'])->name('index');
