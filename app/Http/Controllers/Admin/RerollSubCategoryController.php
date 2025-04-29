@@ -105,14 +105,14 @@ class RerollSubCategoryController extends Controller
         $categoryId = $subCategory->RerollCategory->id;
 
         if (!$subCategory) {
-            return redirect(route('admin.rerollSubCategory.index'))->with('error', 'Danh mục không tồn tại');
+            return redirect(route('admin.rerollCategory.index'))->with('error', 'Danh mục không tồn tại');
         }
 
         if ($subCategory->status == 0) {
             $subCategory->status = 1;
             $subCategory->save();
 
-            return redirect(route('admin.rerollSubCategory.index'))->with('success', 'Hiện danh mục thành công');
+            return redirect(route('admin.rerollSubCategory.index', $categoryId))->with('success', 'Hiện danh mục thành công');
         }
 
         $hasPackages = $subCategory->RerollPackage()->exists();
