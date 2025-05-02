@@ -31,6 +31,7 @@ class RechargeShopController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login');
         }
-        $this->rechargeShopService->rechargeConfirm($request);
+        $recharge_packet_id = $this->rechargeShopService->rechargeConfirm($request);
+        return redirect()->route('client.recharge', ['id' => $recharge_packet_id]);
     }
 }

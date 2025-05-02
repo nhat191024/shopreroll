@@ -56,6 +56,6 @@ class RechargeShopService
         // dd('Nạp tiền thành công?');
         // return $rechargeBill;
         // redirect back to client.recharge
-        return redirect()->route('client.recharge', ['id' => $request->recharge_packet_id]);
+        return $request->recharge_packet_id;
     }
 }
