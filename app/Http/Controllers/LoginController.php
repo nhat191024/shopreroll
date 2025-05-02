@@ -2,23 +2,49 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+
 use App\Http\Requests\UserLoginRequest;
-use App\Service\LoginService;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    private $loginService;
-    public function __construct(LoginService $loginService){
-        $this->loginService = $loginService;
+    private $FORM_TITLE = 'Đăng nhập';
+    private $WRONG_CREDENTIALS_MESSAGE = 'Thông tin đăng nhập không chính xác';
+    private $ERROR_REDIRECT = '/login';
+    private $SUCCESS_REDIRECT = '/';
+    private $LOGOUT_REDIRECT = '/login';
+
+    public function index()
+    {
+        if (Auth::check()) {
+            return redirect()->intended('/');
+        }
+        return view('client.auth.login')->with('title', $this->FORM_TITLE);
     }
-    public function index(){
-        return $this->loginService->index();
+
+    public function login(UserLoginRequest $request)
+    {
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $account = User::where('username', $username)
+            ->orWhere('email', $username)
+            ->first();
+
+        if (!$account) {
+            return redirect($this->ERROR_REDIRECT)->with('error', $this->WRONG_CREDENTIALS_MESSAGE);
+        }
+        if (!Hash::check($password, $account->password)) {
+            return redirect($this->ERROR_REDIRECT)->with('error', $this->WRONG_CREDENTIALS_MESSAGE);
+        }
+        Auth::login($account);
+        return redirect($this->SUCCESS_REDIRECT);
     }
-    public function login(UserLoginRequest $request){
-        return $this->loginService->login($request);
-    }
-    public function logout(){
-        return $this->loginService->logout();
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect($this->LOGOUT_REDIRECT);
     }
 }
