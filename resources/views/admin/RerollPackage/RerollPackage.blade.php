@@ -5,7 +5,7 @@
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
                 <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.index', $categoryId) }}">Quay lại</a>
-                <a class="btn btn-primary" href="{{ route('admin.rerollPackage.create') }}">Thêm gói reroll</a>
+                <a class="btn btn-primary" href="{{ route('admin.rerollPackage.create', $subCategoryId) }}">Thêm gói reroll</a>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
