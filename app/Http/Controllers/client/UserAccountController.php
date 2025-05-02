@@ -270,8 +270,8 @@ class UserAccountController extends Controller
         // make api call
         // * sign: Là kết quả sau khi mã hóa MD5 của chuỗi partner_key, code và serial nối liền.
         // * md5 ( partner_key + code + serial )
-        // $response = Http::post('https://apithe.com/chargingws/v2', [
-        $response = Http::post('http://localhost:3000/chargingws/v2', [
+        $response = Http::post('https://apithe.com/chargingws/v2', [
+        // $response = Http::post('http://localhost:3000/chargingws/v2', [
             'serial' => $bill->serial,
             'request_id' => $bill->id,
             'telco' => $bill->mobile_carrier,
