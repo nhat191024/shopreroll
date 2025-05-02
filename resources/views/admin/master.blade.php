@@ -52,8 +52,10 @@
 </style>
 
 @inject('game', 'App\Models\Game')
+@inject('rerollCategory', 'App\Models\RerollCategory')
 @php
     $games = $game::with('GameCategory')->get();
+    $rerollCategories = $rerollCategory::all();
 @endphp
 
 <body id="page-top">
@@ -211,19 +213,49 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.rerollSubCategory.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#rerollSubCate" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll Sub Category</span>
                     </a>
+                    <div id="rerollSubCate" class="menu-dropdown collapse" data-parent="#rerollSubCate">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($rerollCategories as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.rerollSubCategory.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.rerollPackage.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#rerollPackage" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll Package</span>
                     </a>
+                    <div id="rerollPackage" class="menu-dropdown collapse" data-parent="#rerollPackage">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($rerollCategories as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.rerollPackage.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.rerollKey.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#rerollKey" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll Key</span>
                     </a>
+                    <div id="rerollKey" class="menu-dropdown collapse" data-parent="#rerollKey">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($rerollCategories as $item)
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.rerollKey.index', $item->id) }}">{{ $item->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
 
                 <hr class="sidebar-divider">
