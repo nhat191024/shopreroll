@@ -1,14 +1,10 @@
 @extends('admin.master')
 @section('main')
     <div class="container-fluid">
-        @if ($subCategory == 0)
-            <h1 class="h3 mb-2 text-gray-800">Danh sách gói reroll</h1>
-        @else
-            <h1 class="h3 mb-2 text-gray-800">Danh sách gói reroll - {{ $subCategoryName }}</h1>
-        @endif
+        <h1 class="h3 mb-2 text-gray-800">Danh sách gói reroll - {{ $subCategoryName }}</h1>
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
-                <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.index', $subCategory) }}">Quay lại</a>
+                <a class="btn btn-primary" href="{{ route('admin.rerollSubCategory.index', $categoryId) }}">Quay lại</a>
                 <a class="btn btn-primary" href="{{ route('admin.rerollPackage.create') }}">Thêm gói reroll</a>
             </div>
             <div class="card-body">
