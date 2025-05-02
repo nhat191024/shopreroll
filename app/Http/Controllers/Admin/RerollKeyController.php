@@ -22,8 +22,8 @@ class RerollKeyController extends Controller
 
     public function create($package)
     {
-        $rerollPackage = RerollPackage::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.addRerollKey', compact('rerollPackage', 'package'));
+        $rerollPackageName = RerollPackage::find($package)->name;
+        return view('admin.RerollKey.addRerollKey', compact('rerollPackageName', 'package'));
     }
 
     public function store(Request $request)
@@ -44,8 +44,9 @@ class RerollKeyController extends Controller
     public function edit($id)
     {
         $key = RerollKey::find($id);
-        $rerollPackage = RerollPackage::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.editRerollKey', compact('key', 'rerollPackage'));
+        $rerollPackageName = $key->RerollPackage->name;
+        $rerollPackage = $key->reroll_package_id;
+        return view('admin.RerollKey.editRerollKey', compact('key', 'rerollPackage', 'rerollPackageName'));
     }
 
     public function update(Request $request, $id)
