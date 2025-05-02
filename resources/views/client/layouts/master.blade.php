@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="{{ url('') . '/' }}css/nav-foot.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/home.css">
     <link rel="stylesheet" href="{{ url('') . '/' }}css/styles-2.css">
-    <link rel="stylesheet" href="{{ url('') . '/' }}css/custom.css">
+    <link rel="stylesheet" href="{{ url('') . '/' }}css/custom.css?v=1">
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
