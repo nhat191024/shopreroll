@@ -227,36 +227,6 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" data-toggle="collapse" href="#rerollPackage" role="button" aria-expanded="false" aria-controls="account">
-                        <i class="fa-solid fa-dice"></i>
-                        <span data-key="t-layouts">Reroll Package</span>
-                    </a>
-                    <div id="rerollPackage" class="menu-dropdown collapse" data-parent="#rerollPackage">
-                        <ul class="nav nav-sm flex-column">
-                            @foreach ($rerollCategories as $item)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.rerollPackage.index', $item->id) }}">{{ $item->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" data-toggle="collapse" href="#rerollKey" role="button" aria-expanded="false" aria-controls="account">
-                        <i class="fa-solid fa-dice"></i>
-                        <span data-key="t-layouts">Reroll Key</span>
-                    </a>
-                    <div id="rerollKey" class="menu-dropdown collapse" data-parent="#rerollKey">
-                        <ul class="nav nav-sm flex-column">
-                            @foreach ($rerollCategories as $item)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.rerollKey.index', $item->id) }}">{{ $item->name }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </li>
 
                 <hr class="sidebar-divider">
 
