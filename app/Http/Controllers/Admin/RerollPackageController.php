@@ -12,19 +12,19 @@ class RerollPackageController extends Controller
 {
     public function index($subCategory)
     {
-        // dd($subCategory);
         $packages = RerollPackage::where('reroll_sub_category_id', $subCategory)->get();
         $subCategory = RerollSubCategory::find($subCategory);
         $subCategoryName = $subCategory ? $subCategory->name : null;
+        $subCategoryId = $subCategory ? $subCategory->id : null;
         $categoryId = $subCategory ? $subCategory->reroll_category_id : null;
 
-        return view('admin.RerollPackage.RerollPackage', compact('categoryId', 'subCategoryName', 'packages'));
+        return view('admin.RerollPackage.RerollPackage', compact('categoryId', 'subCategoryName', 'packages', 'subCategoryId'));
     }
 
-    public function create()
+    public function create($subCategory)
     {
-        $subCategories = RerollSubCategory::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollPackage.addRerollPackage', compact('subCategories'));
+        $subCategoryName = RerollSubCategory::find($subCategory)->name;
+        return view('admin.RerollPackage.addRerollPackage', compact('subCategory', 'subCategoryName'));
     }
 
     public function store(Request $request)
