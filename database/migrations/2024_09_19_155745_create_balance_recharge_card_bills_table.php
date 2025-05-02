@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('number');
             $table->string('serial');
             $table->string('mobile_carrier');
-            $table->integer('amount_fake');
-            $table->integer('amount_real');
-            $table->integer('balance_added');
-            $table->integer('balance_before');
-            $table->integer('balance_after');
+            $table->integer('amount_fake')->nullable();
+            $table->integer('amount_real')->nullable();
+            $table->integer('balance_added')->nullable();
+            $table->integer('balance_before')->nullable();
+            $table->integer('balance_after')->nullable();
             $table->string('note')->nullable();
             $table->string('trans_id')->nullable();
             $table->tinyInteger('status')->default(0);
