@@ -136,7 +136,11 @@ class HomeController extends Controller
     public function buyRerollDetail(Request $request)
     {
         $buyCount = $request->amount;
-        $payTotal = RerollSubCategory::find($request->reroll_sub_category_id)->RerollPackage->where('id', $request->packet_id)->first()->price;
+        $buyItem = RerollSubCategory::find($request->reroll_sub_category_id);
+        if (!$buyItem) {
+            return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
+        }
+        $payTotal = $buyItem->RerollPackage->where('id', $request->packet_id)->first()->price;
         $availableKeys = RerollKey::where('reroll_package_id', $request->packet_id)
             ->where('status', 1)
             ->get();
@@ -148,10 +152,15 @@ class HomeController extends Controller
             return redirect()->back()->with('error', 'Hiện tại shop chỉ còn ' . $availableKeyCount . ' gói. Vui lòng giảm số lượng mua');
         }
 
-
         DB::beginTransaction();
         try {
             for ($i = 1; $i <= $buyCount; $i++) {
+                // if no reroll key available
+                if ($availableKeyCount == 0) {
+                    DB::rollBack();
+                    return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
+                }
+
                 $chosenRandomKey = $availableKeys->random();
 
                 // remove bought item from the list (if the user buy more than 1)
@@ -160,12 +169,6 @@ class HomeController extends Controller
                 });
                 $availableKeyCount = $availableKeys->count();
                 $this->homeService->createRerollBill($request->packet_id, $chosenRandomKey->id, $payTotal);
-
-                // if no reroll key available
-                if ($availableKeyCount == 0) {
-                    DB::rollBack();
-                    return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
-                }
 
                 // update status của key đã chọn
                 $rerollKey = RerollKey::find($chosenRandomKey->id);
@@ -186,7 +189,7 @@ class HomeController extends Controller
                 $user->save();
             }
             DB::commit();
-            return redirect()->route('client.MyKey.index')->with('success', 'Thanh toán thành công!');
+            return redirect()->route('client.myKey.index')->with('success', 'Thanh toán thành công!');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with('error', 'Đã xảy ra lỗi trong quá trình thanh toán!');
