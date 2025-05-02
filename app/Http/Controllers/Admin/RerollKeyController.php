@@ -12,9 +12,12 @@ class RerollKeyController extends Controller
 {
     public function index($idPackage)
     {
-        $rerollKeys = $idPackage == 0 ? RerollKey::all() : RerollKey::where('reroll_package_id', $idPackage)->get();
-        $packageName = $idPackage == 0 ? "" : RerollPackage::find($idPackage)->name;
-        return view('admin.RerollKey.rerollKey', compact('rerollKeys', 'packageName', 'idPackage'));
+        $rerollKeys = RerollKey::where('reroll_package_id', $idPackage)->get();
+        $rerollPackage = RerollPackage::find($idPackage);
+        $packageName = $rerollPackage ? $rerollPackage->name : null;
+        $idSubCategory = $rerollPackage ? $rerollPackage->reroll_sub_category_id : null;
+
+        return view('admin.RerollKey.rerollKey', compact('rerollKeys', 'packageName', 'idSubCategory', 'idPackage'));
     }
 
     public function create($package)
@@ -66,7 +69,7 @@ class RerollKeyController extends Controller
     {
         $key = RerollKey::find($id);
         if (!$key) {
-            return redirect(route('admin.rerollKey.index', $key->reroll_package_id))->with('error', 'Key không tồn tại');
+            return redirect()->back()->with('error', 'Key không tồn tại');
         }
 
         $key->delete();
