@@ -43,7 +43,7 @@ class GameAccountController extends Controller
 
     public function create(Game $game)
     {
-        $categories = GameCategory::all();
+        $categories = GameCategory::where('game_id', $game->id)->get();
         $itemTypes = $game->GameItemType;
         $gameAttributes = $game->GameAttribute->pluck('name', 'id');
         return view('admin.game_accounts.add', compact('game', 'categories', 'itemTypes', 'gameAttributes'));
