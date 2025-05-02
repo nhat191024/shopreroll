@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('reroll_package_id');
             $table->unsignedBigInteger('reroll_key_id');
-            $table->integer('price');
-            $table->integer('balance_before');
-            $table->integer('balance_after');
+            $table->integer('price')->default(0);
+            $table->integer('balance_before')->default(0);
+            $table->integer('balance_after')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 
