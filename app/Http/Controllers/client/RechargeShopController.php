@@ -32,6 +32,5 @@ class RechargeShopController extends Controller
             return redirect()->route('login');
         }
         $this->rechargeShopService->rechargeConfirm($request);
-        return redirect()->route('client.home');
     }
 }
