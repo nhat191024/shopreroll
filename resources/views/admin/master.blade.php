@@ -398,16 +398,17 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 id="exampleModalLabel" class="modal-title">Ready to Leave?</h5>
+                            <h5 id="exampleModalLabel" class="modal-title">Đăng xuất?</h5>
                             <button class="close" data-dismiss="modal" type="button" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        <div class="modal-body">
+                            Xác nh bạn muốn đăng xuất khỏi tài khoản này?
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
-                            <a class="btn btn-primary" href="#">Logout</a>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
+                            <a class="btn btn-primary" href="{{ route('logout') }}">Đăng xuất</a>
                         </div>
                     </div>
                 </div>
