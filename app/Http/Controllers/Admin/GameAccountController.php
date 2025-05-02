@@ -9,10 +9,7 @@ use App\Models\GameCategory;
 use App\Http\Requests\StoreGameAccountRequest;
 use App\Http\Requests\UpdateGameAccountRequest;
 
-use Maatwebsite\Excel\Facades\Excel;
-
 use App\Http\Controllers\Controller;
-use App\Imports\GameAccountsImport;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -191,29 +188,6 @@ class GameAccountController extends Controller
             return redirect()->back()->with('success', 'Xóa tài khoản game thành công');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Lỗi: ' . $e->getMessage());
-        }
-    }
-
-    public function excel(Request $request)
-    {
-        $request->validate([
-            'excel_file' => 'required|mimes:xlsx,xls,csv',
-        ]);
-
-        try {
-            $file = $request->file('excel_file');
-            $import = new GameAccountsImport();
-            Excel::import($import, $file);
-
-            $errors = $import->getErrors();
-
-            if (!empty($errors)) {
-                return redirect()->back()->with('error', implode('<br>', $errors));
-            }
-
-            return redirect()->back()->with('success', 'Nhập tài khoản từ Excel thành công.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Lỗi khi nhập dữ liệu: ' . $e->getMessage());
         }
     }
 }

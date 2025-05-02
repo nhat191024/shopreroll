@@ -10,5 +10,4 @@ Route::prefix('/game-account')->name('game_account.')->group(function () {
     Route::get('/edit/{id}', [GameAccountController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [GameAccountController::class, 'update'])->name('update');
     Route::get('/destroy/{id}', [GameAccountController::class, 'destroy'])->name('destroy');
-    Route::post('/import', [GameAccountController::class, 'excel'])->name('excel');
 });

@@ -59,33 +59,6 @@
 @endphp
 
 <body id="page-top">
-    <div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="{{ route('admin.game_account.excel') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 id="importExcelModalLabel" class="modal-title">Nhập tài khoản từ Excel</h5>
-                        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="excelFile">Chọn file Excel</label>
-                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv" onchange="validateExcelFile(this)">
-                            <small id="fileHelp" class="form-text text-muted">Chỉ chấp nhận các file có định dạng .xls, .xlsx, .csv</small>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
-                        <button class="btn btn-primary" type="submit">Tải lên</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div id="wrapper">
         <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
@@ -104,12 +77,6 @@
             <div class="sidebar-heading">
                 <h6>Tài Khoản Game</h6>
             </div>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span data-key="t-layouts">Nhập từ Excel</span>
-                </a>
-            </li>
             @foreach ($games as $item)
                 <li class="nav-item">
                     <a class="nav-link menu-link" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="account">
@@ -458,16 +425,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
-        // Function to validate Excel file
-        function validateExcelFile(input) {
-            const file = input.files[0];
-            const allowedExtensions = /(\.xls|\.xlsx|\.csv)$/i;
-            if (!allowedExtensions.exec(file.name)) {
-                alert('Vui lòng chọn file Excel hợp lệ (.xls, .xlsx, .csv)');
-                input.value = '';
-            }
-        }
-
         // Document ready function
         $(document).ready(function() {
             // Initialize Select2
