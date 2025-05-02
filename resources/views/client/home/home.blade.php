@@ -46,7 +46,7 @@
                                 </span>
 
                                 <span class="mt-2">
-                                    <a href="#recharge_service">
+                                    <a href="{{ route('client.home') }}#recharge_service">
                                         <button class="btn-pretty">Nạp Game</button>
                                     </a>
                                 </span>

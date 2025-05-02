@@ -93,7 +93,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link menu-header" href="#recharge_service">
+                        <a class="nav-link menu-header" href="{{ route('client.home') }}#recharge_service">
                             Nạp Game
                         </a>
                     </li>
