@@ -102,7 +102,7 @@ class GameAccountController extends Controller
     {
         $account = GameAccount::findOrFail($id)->load('AccountItem', 'AccountAttribute', 'AccountImage');
         $game = $account->Game;
-        $categories = GameCategory::all();
+        $categories = GameCategory::where('game_id', $game->id)->get();
         $itemTypes = $game->GameItemType;
         $accountItems = $account->AccountItem->pluck('game_item_id')->toArray();
         $gameAttributes = $game->GameAttribute->pluck('name', 'id');
