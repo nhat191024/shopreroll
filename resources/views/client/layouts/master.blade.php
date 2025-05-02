@@ -110,7 +110,7 @@
                             </li>
                             <li class="dropdown-divider"></li> --}}
                             <li>
-                                <a class="dropdown-item" href="{{ route('client.MyKey.index') }}">
+                                <a class="dropdown-item" href="{{ route('client.myKey.index') }}">
                                     <i class="fas fa-history mr-1"></i>
                                     Key / Reroll
                                 </a>
