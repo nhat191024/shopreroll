@@ -366,7 +366,7 @@
                             <div class="dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Đăng xuất
                                 </a>
                             </div>
                         </li>
@@ -404,7 +404,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            Xác nh bạn muốn đăng xuất khỏi tài khoản này?
+                            Xác nhận bạn muốn đăng xuất khỏi tài khoản này?
                         </div>
                         <div class="modal-footer">
                             <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
