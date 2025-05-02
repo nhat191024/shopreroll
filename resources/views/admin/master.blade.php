@@ -73,7 +73,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="excelFile">Chọn file Excel</label>
-                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv">
+                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv" onchange="validateExcelFile(this)">
+                            <small id="fileHelp" class="form-text text-muted">Chỉ chấp nhận các file có định dạng .xls, .xlsx, .csv</small>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -457,6 +458,16 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        // Function to validate Excel file
+        function validateExcelFile(input) {
+            const file = input.files[0];
+            const allowedExtensions = /(\.xls|\.xlsx|\.csv)$/i;
+            if (!allowedExtensions.exec(file.name)) {
+                alert('Vui lòng chọn file Excel hợp lệ (.xls, .xlsx, .csv)');
+                input.value = '';
+            }
+        }
+
         // Document ready function
         $(document).ready(function() {
             // Initialize Select2
