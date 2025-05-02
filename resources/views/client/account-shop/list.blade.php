@@ -146,12 +146,12 @@
                                                     <div class="row mt-1">
                                                         <div class="col-6">
                                                             <div class="btn btn-warning font-weight-bold">
-                                                                <span class="text-danger">{{ number_format($data->price_out) }}<sup></sup></span>
+                                                                <span class="text-danger">{{ number_format($data->price_out) }}đ<sup></sup></span>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="btn btn-secondary" style="margin-right: 12px;">
-                                                                <s>{{ number_format($data->price_out * 1.15) }}</s><sup></sup>
+                                                                <s>{{ number_format($data->price_out * 1.15) }}đ</s><sup></sup>
                                                             </div>
                                                         </div>
                                                     </div>
