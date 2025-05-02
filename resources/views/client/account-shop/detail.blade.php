@@ -21,7 +21,7 @@
                         <div class="hr-product"></div>
                         <div class="row info-line">
                             <section class="col-12 text-center">
-                                <span class="more-detail">
+                                <span class="more-detail" style="font-size: 17px">
                                     {{ $gameAccount->note }}
                                 </span>
                             </section>
@@ -56,7 +56,7 @@
                                 <div class="col-12">
                                     @once
                                         <h1 class="title-shine h2 text-center">Hình ảnh chi tiết acc</h1>
-                                        <p class="title-shine text-center">{{ $gameAccount->title }}</p>
+                                        <p class="title-shine text-center" style="font-size: 17px">{{ $gameAccount->title }}</p>
                                     @endonce
                                     <img class="product-image" src="{{ asset($data->image) }}" alt="Ảnh acc Genshin" onerror="this.src='https://fakeimg.pl/600x300'" />
                                 </div>
