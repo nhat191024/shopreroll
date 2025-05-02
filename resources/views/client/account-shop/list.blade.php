@@ -137,7 +137,10 @@
                                                 <div class="product-code">#{{ $data->id }}</div>
                                                 <div class="wrapper product-wrapper">
                                                     <a href="{{ route('client.game.account.detail', $data->id) }}">
-                                                        <img class="img-banner shadow-sm" src="{{ asset($data->AccountImage??$data->AccountImage->first()->image) }}" onerror="this.src='https://fakeimg.pl/600x600'">
+                                                        @foreach ($data->AccountImage as $image)
+                                                            <img class="img-banner shadow-sm" src="{{ asset($image->image) }}" onerror="this.src='https://fakeimg.pl/600x600'">
+                                                            @break
+                                                        @endforeach
                                                     </a>
 
                                                     <div class="row mt-1">
