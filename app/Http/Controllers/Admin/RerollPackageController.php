@@ -47,8 +47,9 @@ class RerollPackageController extends Controller
     public function edit($id)
     {
         $package = RerollPackage::find($id);
-        $subCategories = RerollSubCategory::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollPackage.editRerollPackage', compact('package', 'subCategories'));
+        $subCategoryName = $package->RerollSubCategory->name;
+        $subCategoryId = $package->RerollSubCategory->id;
+        return view('admin.RerollPackage.editRerollPackage', compact('package', 'subCategoryId', 'subCategoryName'));
     }
 
     public function update($id, Request $request)
