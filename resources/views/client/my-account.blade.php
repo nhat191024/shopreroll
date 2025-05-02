@@ -122,7 +122,7 @@
                 "<'row'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
             buttons: ["copy", "csv", "excel", "print", "colvis"],
             order: [
-                [0, "asc"]
+                [6, "desc"]
             ],
             columnDefs: [{
                     targets: [1, 2, 4],
