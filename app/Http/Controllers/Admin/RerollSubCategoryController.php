@@ -15,7 +15,7 @@ class RerollSubCategoryController extends Controller
     {
         $rerollSubCategories = $category == 0 ? RerollSubCategory::all() : RerollSubCategory::where('reroll_category_id', $category)->get();
         $categoryName = $category == 0 ? "" : RerollCategory::find($category)->name;
-        return view('admin.RerollSubCategory.RerollSubCategory', compact('category', 'categoryName', 'rerollSubCategories'));
+        return view('admin.RerollSubCategory.RerollSubCategory', compact('categoryName', 'rerollSubCategories'));
     }
 
     public function create()
