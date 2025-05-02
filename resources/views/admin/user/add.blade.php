@@ -26,7 +26,6 @@
                         <select class="form-control" name="role" required aria-label="Default select example">
                             <option value="" disabled>Chọn Vai trò </option>
                             <option value="1">Quản trị viên</option>
-                            <option value="2">Cộng tác viên</option>
                             <option value="0">Khách Hàng</option>
                             <option value="3">Bị chặn</option>
                         </select>
