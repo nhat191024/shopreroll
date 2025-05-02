@@ -12,9 +12,13 @@ class RerollPackageController extends Controller
 {
     public function index($subCategory)
     {
-        $packages = $subCategory == 0 ? RerollPackage::all() : RerollPackage::where('reroll_sub_category_id', $subCategory)->get();
-        $subCategoryName = $subCategory == 0 ? "" : RerollSubCategory::find($subCategory)->name;
-        return view('admin.RerollPackage.RerollPackage', compact('subCategory', 'subCategoryName', 'packages'));
+        // dd($subCategory);
+        $packages = RerollPackage::where('reroll_sub_category_id', $subCategory)->get();
+        $subCategory = RerollSubCategory::find($subCategory);
+        $subCategoryName = $subCategory ? $subCategory->name : null;
+        $categoryId = $subCategory ? $subCategory->reroll_category_id : null;
+
+        return view('admin.RerollPackage.RerollPackage', compact('categoryId', 'subCategoryName', 'packages'));
     }
 
     public function create()
@@ -70,7 +74,7 @@ class RerollPackageController extends Controller
     {
         $package = RerollPackage::find($id);
         if (!$package) {
-            return redirect(route('admin.rerollPackage.index', $package->reroll_sub_category_id))->with('error', 'Gói reroll không tồn tại');
+            return redirect()->back()->with('error', 'Gói reroll không tồn tại');
         }
 
         $package->delete();
