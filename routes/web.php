@@ -36,7 +36,7 @@ Route::middleware(['auth', 'role:0,1,2'])->group(function () {
     Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
     Route::get('/myAcc/balance-history', [AccountBillController::class, 'balanceHistory'])->name('client.user.balance-history');
     Route::get('/myAcc/all', [AccountBillController::class, 'allAccount'])->name('client.account.all');
-    Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+    Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.myKey.index');
     Route::get('/user/change', [UserAccountController::class, 'changePassword'])->name('client.user.change');
     Route::post('/user/change/confirm', [UserAccountController::class, 'confirmChangePassword'])->name('client.user.change.confirm');
     Route::get('/user/topup/bank', [UserAccountController::class, 'topupByBank'])->name('client.user.topup.bank');
