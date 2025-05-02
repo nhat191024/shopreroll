@@ -5,7 +5,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="text-center">
-                <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://fakeimg.pl/600x600'" loading="lazy">
             </div>
             <h1 class="guide__title px-5">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
             <main>
@@ -19,7 +19,7 @@
                                     </a>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" target="_blank" href="https://zalo.me/0386496488">
-                                            <img src="{{ asset('/image/thumb/zalo.png') }}" onerror="this.src='https://placehold.co/600x600'" alt="zalo" style="max-width: 40px; height: auto; margin-bottom: -8px; margin-top: -8px;" loading="lazy">0386496488
+                                            <img src="{{ asset('/image/thumb/zalo.png') }}" onerror="this.src='https://fakeimg.pl/600x600'" alt="zalo" style="max-width: 40px; height: auto; margin-bottom: -8px; margin-top: -8px;" loading="lazy">0386496488
                                         </a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" target="_blank" href="https://www.facebook.com/dat.ds.3">
@@ -56,7 +56,7 @@
                             <div id="miu-carousel" class="col-12 col-lg-8 carousel slide p-0" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active" style="margin-bottom: -5px;">
-                                        <iframe width="100%" onerror="this.src='https://placehold.co/600x600'" height="470" src="https://www.youtube.com/embed/LmmfXWOvSU0?si=vxNIin1ImvaFpweu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <iframe width="100%" onerror="this.src='https://fakeimg.pl/600x600'" height="470" src="https://www.youtube.com/embed/LmmfXWOvSU0?si=vxNIin1ImvaFpweu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -108,7 +108,7 @@
                                         <div class="item-image-key">
                                             <a href="{{ route('client.reroll.detail', ['id' => $rerollCategory->id]) }}">
                                                 <div class="square-image-container">
-                                                    <img class="square-image" src="{{ asset($rerollCategory->image) }}" onerror="this.src='https://placehold.co/300x300'" loading="lazy">
+                                                    <img class="square-image" src="{{ asset($rerollCategory->image) }}" onerror="this.src='https://fakeimg.pl/300x300'" loading="lazy">
                                                 </div>
                                             </a>
                                         </div>
@@ -131,7 +131,7 @@
                             @continue
                         @endif
                         <center>
-                            <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                            <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" onerror="this.src='https://fakeimg.pl/600x600'" loading="lazy">
                         </center>
                         <h2 class="guide__title">Acc {{ $game->name }}</h2>
 
@@ -143,7 +143,7 @@
                                             <a href="{{ route('client.game.account.category', ['gameId' => $game->id, 'categoryId' => $category->id]) }}">
                                                 <div class="game-img-outer">
                                                     <div class="game-img-box">
-                                                        <img class="game-img-content" src="{{ asset($category->image) }}" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                                                        <img class="game-img-content" src="{{ asset($category->image) }}" onerror="this.src='https://fakeimg.pl/600x600'" loading="lazy">
                                                     </div>
                                                 </div>
                                             </a>
@@ -171,7 +171,7 @@
                     @endforeach
 
                     <center>
-                        <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                        <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20210717/2021071716211547763.png" onerror="this.src='https://fakeimg.pl/600x600'" loading="lazy">
                     </center>
                     <h2 id="recharge_service" class="guide__title">NẠP GAMES</h2>
 
@@ -183,7 +183,7 @@
                                         <a href="{{ route('client.recharge', $gameRecharge->id) }}">
                                             <div class="game-img-outer">
                                                 <div class="game-img-box">
-                                                    <img class="game-img-content" src="{{ asset($gameRecharge->image) }}" onerror="this.src='https://placehold.co/600x600'" loading="lazy">
+                                                    <img class="game-img-content" src="{{ asset($gameRecharge->image) }}" onerror="this.src='https://fakeimg.pl/600x600'" loading="lazy">
                                                 </div>
                                             </div>
                                         </a>

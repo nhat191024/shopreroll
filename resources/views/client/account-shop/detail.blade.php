@@ -33,7 +33,7 @@
                                     <h4 class="pb-2">{{ $data['type']->name }}</h4>
                                     @foreach ($data['items'] as $itemData)
                                         <span class="hero-details">
-                                            <i class="hero-icon-detail" data-toggle="tooltip" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" onerror="this.src='https://placehold.co/600x300'" title="{{ $itemData->name }}"></i>
+                                            <i class="hero-icon-detail" data-toggle="tooltip" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" onerror="this.src='https://fakeimg.pl/600x300'" title="{{ $itemData->name }}"></i>
                                         </span>
                                     @endforeach
                                 </section>
@@ -58,7 +58,7 @@
                                         <h1 class="title-shine h2 text-center">Hình ảnh chi tiết acc</h1>
                                         <p class="title-shine text-center">{{ $gameAccount->title }}</p>
                                     @endonce
-                                    <img class="product-image" src="{{ asset($data->image) }}" alt="Ảnh acc Genshin" onerror="this.src='https://placehold.co/600x300'" />
+                                    <img class="product-image" src="{{ asset($data->image) }}" alt="Ảnh acc Genshin" onerror="this.src='https://fakeimg.pl/600x300'" />
                                 </div>
                             @endforeach
                         </div>

@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/shop-acc-list-custom.css') }}">
     <section class="content">
         <div class="container-fluid">
-            <center><img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://placehold.co/600x600'"></center>
+            <center><img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://fakeimg.pl/600x600'"></center>
             <h1 class="guide__title"> Acc {{ $title }} </h1>
             <main>
                 <div>
@@ -137,7 +137,7 @@
                                                 <div class="product-code">#{{ $data->id }}</div>
                                                 <div class="wrapper product-wrapper">
                                                     <a href="{{ route('client.game.account.detail', $data->id) }}">
-                                                        <img class="img-banner shadow-sm" src="{{ asset($data->AccountImage??$data->AccountImage->first()->image) }}" onerror="this.src='https://placehold.co/600x600'">
+                                                        <img class="img-banner shadow-sm" src="{{ asset($data->AccountImage??$data->AccountImage->first()->image) }}" onerror="this.src='https://fakeimg.pl/600x600'">
                                                     </a>
 
                                                     <div class="row mt-1">
@@ -191,7 +191,7 @@
                                                                     {{ $items['items']->count() }}</label>
                                                                 <span class="col hero-details">
                                                                     @foreach ($items['items'] as $itemData)
-                                                                        <i class="hero-icon" data-toggle="tooltip" data-original-title="Alhaitham" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" title="{{ $itemData->title }}" onerror="this.src='https://placehold.co/600x300'">
+                                                                        <i class="hero-icon" data-toggle="tooltip" data-original-title="Alhaitham" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" title="{{ $itemData->title }}" onerror="this.src='https://fakeimg.pl/600x300'">
                                                                         </i>
                                                                     @endforeach
                                                                 </span>
