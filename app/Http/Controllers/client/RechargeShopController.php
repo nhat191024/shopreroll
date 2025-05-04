@@ -31,7 +31,9 @@ class RechargeShopController extends Controller
         if (!auth()->check()) {
             return redirect()->route('login');
         }
-        $recharge_packet_id = $this->rechargeShopService->rechargeConfirm($request);
-        return redirect()->route('client.recharge', ['id' => $recharge_packet_id]);
+        $game_recharge_id = $this->rechargeShopService->rechargeConfirm($request);
+
+        return redirect()->route('client.recharge', ['id' => $game_recharge_id])
+            ->with('success', 'Đã gửi yêu cầu nạp!');;
     }
 }
