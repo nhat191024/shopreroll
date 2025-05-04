@@ -41,8 +41,8 @@ class RechargeShopService
     public function rechargeConfirm(Request $request)
     {
         // dd('Đã nhận yêu cầu nạp tiền (muốn thêm vào DB phải comment dd() đi, File: RechargeShopService.php line 40): ',$request->all());
-
         $rechargeBill = new RechargeBill();
+        // dd($request->all());
         $rechargeBill->user_id = Auth::id();
         $rechargeBill->recharge_package_id = $request->recharge_packet_id;
         $rechargeBill->UID = $request->uid;
@@ -53,9 +53,17 @@ class RechargeShopService
         $rechargeBill->phone = $request->phone;
         $rechargeBill->note = $request->note;
         $rechargeBill->save();
+
+        $buyPackage = RechargePackage::find($request->recharge_packet_id);
+        if (!$buyPackage) return redirect()->back()->with('error', 'Gói mua đó không còn khả dụng!');
+        $user = Auth::user();
+        // trừ tiền trong tài khoản của user
+        $user->balance -= $buyPackage->price;
+        $user->save();
+        
         // dd('Nạp tiền thành công?');
         // return $rechargeBill;
         // redirect back to client.recharge
-        return $request->recharge_packet_id;
+        return $request->game_recharge_id;
     }
 }
