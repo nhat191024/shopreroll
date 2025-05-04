@@ -13,9 +13,14 @@ class RechargeBillController extends Controller
         return view('admin.RechargeBill.RechargeBill', compact('allRechargeBill'));
     }
 
-    public function indexC()
+    public function changeStatus($id, $status)
     {
-        $allRechargeBill =  RechargeBill::all();
-        return view('client.layouts.myAcc', compact('allRechargeBill'));
+        $rechargeBill = RechargeBill::find($id);
+        if ($rechargeBill) {
+            $rechargeBill->status = $status;
+            $rechargeBill->save();
+            return redirect()->back()->with('success', 'Status updated successfully.');
+        }
+        return redirect()->back()->with('error', 'Recharge Bill not found.');
     }
 }
