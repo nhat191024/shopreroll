@@ -28,7 +28,10 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-success mt-4" type="submit">Xác nhận</button>
+                        <div class="float-left mt-4">
+                            <button class="btn btn-success" type="submit">Xác nhận</button>
+                            <a class="btn btn-warning" href="{{ route('admin.game.index') }}">Quay lại</a>
+                        </div>
                         <div class="float-right">
                             <button id="add-game-item-btn" class="btn btn-success mt-4" type="button">Thêm game item</button>
                             <button id="add-game-attribute-btn" class="btn btn-success mt-4" type="button">Thêm thuộc tính</button>

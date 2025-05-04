@@ -17,6 +17,7 @@
                                 <th>Gói nạp</th>
                                 <th>Giá</th>
                                 <th>Trạng thái</th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         </tfoot>
@@ -31,7 +32,14 @@
                                     <td>{{ $bill->character_name }}</td>
                                     <td>{{ $bill->RechargePackage->name }}</td>
                                     <td>{{ number_format($bill->RechargePackage->price) }} VNĐ</td>
-                                    <td>{{ $bill->status == 1 ? 'Đã Thanh Toán' : 'Chưa Thanh Toán' }}</td>
+                                    <td>{{ $bill->status == 1 ? 'Đã Nạp' : 'Chưa nạp' }}</td>
+                                    <td>
+                                        @if ($bill->status == 0)
+                                            <a class="btn btn-success" href="{{ route('admin.rechargeBill.changeStatus', [$bill->id, 1]) }}">Hoàn thành</a>
+                                        @else
+                                            <a class="btn btn-danger" href="{{ route('admin.rechargeBill.changeStatus', [$bill->id, 0]) }}">Hủy</a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -46,6 +54,7 @@
                                 <th>Gói nạp</th>
                                 <th>Giá</th>
                                 <th>Trạng thái</th>
+                                <th>Thao tác</th>
                             </tr>
                     </table>
                 </div>

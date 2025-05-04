@@ -5,9 +5,18 @@
         <div class="card mb-4 shadow">
             <div class="card-header py-3">
                 <a class="btn btn-primary" href="{{ route('admin.user.show') }}">Thêm tài khoản</a>
-
             </div>
             <div class="card-body">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 <div class="table-responsive">
                     <table id="dataTable" class="table-bordered table" width="100%" cellspacing="0">
                         <thead>
@@ -39,14 +48,14 @@
                                     </td>
                                     <td class="text-center">
                                         @if ($item->deleted_at)
-                                            <a class="btn btn-success" href="{{ route('admin.user.store', ['id' => $item->id]) }}">
+                                            <a class="btn btn-success" href="{{ route('admin.user.changeStatus', ['id' => $item->id]) }}">
                                                 Khôi phục
                                             </a>
                                         @else
                                             <a class="btn btn-warning" href="{{ route('admin.user.editView', ['id' => $item->id]) }}">
                                                 Sửa
                                             </a>
-                                            <a class="btn btn-danger" href="{{ route('admin.user.disable', ['id' => $item->id]) }}" onclick="return confirm('Bạn chắc chắn chứ?')">
+                                            <a class="btn btn-danger" href="{{ route('admin.user.changeStatus', ['id' => $item->id]) }}" onclick="return confirm('Bạn chắc chắn chứ?')">
                                                 Vô hiệu hoá
                                             </a>
                                         @endif

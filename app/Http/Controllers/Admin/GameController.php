@@ -10,11 +10,13 @@ use App\Http\Controllers\Controller;
 use App\Service\admin\GameService;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreGameRequest;
+use App\Http\Requests\UpdateGameRequest;
+
 class GameController extends Controller
 {
-    //
     private $gameService;
-    //
+
     public function __construct(GameService $gameService)
     {
         $this->gameService = $gameService;
@@ -31,14 +33,8 @@ class GameController extends Controller
         return view('admin.game.AddGame');
     }
 
-    public function addGame(Request $request)
+    public function addGame(StoreGameRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'game_item.*' => 'required|string|max:255',
-            'game_attribute.*' => 'required|string|max:255',
-        ]);
-
         $game = Game::create([
             'name' => $request->name
         ]);
@@ -60,21 +56,39 @@ class GameController extends Controller
         return redirect(route('admin.game.index'))->with('success', 'Thêm game thành công');
     }
 
-    public function showEditGame(Request $request)
+    public function showEditGame($id)
     {
-        $id = $request->id;
-        $gameInfo = $this->gameService->getById($id);
-        return view('admin.game.EditGame', compact('id', 'gameInfo'));
+        $game = Game::find($id)->load('gameItemType', 'gameAttribute');
+        return view('admin.game.EditGame', compact('game'));
     }
 
-    public function editGame(Request $request)
+    public function editGame(UpdateGameRequest $request, $id)
     {
-        $request->validate([
-            'id' => 'required',
-            'name' => 'required'
-        ]);
-        // Public Folder
-        $this->gameService->edit($request->id, $request->name);
+        $game = Game::find($id)->load('GameAccount', 'gameItemType', 'gameAttribute');
+
+        if ($game->GameAccount->count() > 0) {
+            return redirect()->back()->with('error', 'Không thể sửa do game đang chứa tài khoản game');
+        }
+
+        $game->name = $request->name;
+        $game->save();
+
+        $game->gameItemType()->delete();
+        foreach ($request->game_item as $item) {
+            GameItemType::create([
+                'game_id' => $game->id,
+                'name' => $item
+            ]);
+        }
+
+        $game->gameAttribute()->delete();
+        foreach ($request->game_attribute as $attribute) {
+            GameAttribute::create([
+                'game_id' => $game->id,
+                'name' => $attribute
+            ]);
+        }
+
         return redirect(route('admin.game.index'))->with('success', 'Sửa game thành công');
     }
 
