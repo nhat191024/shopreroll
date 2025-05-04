@@ -5,8 +5,18 @@
 
         <div class="card mb-4 shadow">
             <div class="card-body">
+                @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-block">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-block">
+                        <strong>{{ $message }}</strong>
+                    </div>
+                @endif
                 <div class="table-responsive">
-                    <form class="form" action="{{ route('admin.game.edit') }}" method="post" enctype="multipart/form-data">
+                    <form class="form" action="{{ route('admin.game.update', $game->id) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="">Tên trò chơi</label>
