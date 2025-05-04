@@ -19,4 +19,16 @@ class GameRecharge extends Model
     {
         return $this->hasMany(RechargePackage::class);
     }
+
+    public function RechargeBills()
+    {
+        return $this->hasManyThrough(
+            RechargeBill::class,
+            RechargePackage::class,
+            'game_recharge_id',
+            'recharge_package_id',
+            'id',
+            'id'
+        );
+    }
 }
