@@ -37,7 +37,7 @@
                                         @if ($bill->status == 0)
                                             <a class="btn btn-success" href="{{ route('admin.rechargeBill.changeStatus', [$bill->id, 1]) }}">Hoàn thành</a>
                                         @else
-                                            <a class="btn btn-danger" href="{{ route('admin.rechargeBill.changeStatus', [$bill->id, 1]) }}">Hủy</a>
+                                            <a class="btn btn-danger" href="{{ route('admin.rechargeBill.changeStatus', [$bill->id, 0]) }}">Hủy</a>
                                         @endif
                                     </td>
                                 </tr>
