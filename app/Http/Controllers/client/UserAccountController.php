@@ -213,12 +213,12 @@ class UserAccountController extends Controller
         $validator = Validator::make($request->all(), [
             'card_network' => 'required|max:25',
             'card_value' => 'required|integer|in:10000,20000,50000,100000,200000,500000,1000000',
-            'card_seri' => 'required|string|min:11|max:25',
-            'card_pin' => 'required|string|min:11|max:25',
+            'card_seri' => 'required|string',
+            'card_pin' => 'required|string',
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return redirect()->route('client.user.topup.card')->with('error', 'Vui lòng điền thông tin hợp lệ');
         }
 
         $bill = new BalanceRechargeCardBill();
@@ -233,7 +233,6 @@ class UserAccountController extends Controller
         // $bill->balance_after = Auth::user()->balance + ($request->card_value * 0.8);
         $bill->status = 0; // 0: pending, 1: success, 2: failed
         $bill->save();
-
         // $response = $this->sendTopupCardRequest($bill);
         $response = $this->sendTopupCardRequest($bill);
 
@@ -245,9 +244,10 @@ class UserAccountController extends Controller
             return redirect()->route('client.user.topup.card')->with('success', 'Đặt nạp tiền thẻ cào thành công, số tiền sẽ được cộng vào tài khoản sau khi hệ thống xử lý thành công');
         } else {
             $responseJson = $response->json();
-            $bill->status = $responseJson['status'];
-            $bill->note = $responseJson['message'];
-            $bill->save();
+            BalanceRechargeCardBill::destroy($bill->id);
+            // $bill->status = $responseJson['status'];
+            // $bill->note = $responseJson['message'];
+            // $bill->save();
             return redirect()->route('client.user.topup.card')->with('error', $responseJson['message']);
         }
     }
@@ -276,7 +276,7 @@ class UserAccountController extends Controller
             'request_id' => $bill->id,
             'telco' => $bill->mobile_carrier,
             'code' => $bill->number,
-            'amount' => $bill->amount_real,
+            'amount' => $bill->amount_fake,
             'partner_id' => env('PARTNER_ID'),
             'sign' => md5(env('PARTNER_KEY') . $bill->number . $bill->serial),
             'command' => 'charging',
