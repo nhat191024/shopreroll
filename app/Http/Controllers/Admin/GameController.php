@@ -60,11 +60,10 @@ class GameController extends Controller
         return redirect(route('admin.game.index'))->with('success', 'Thêm game thành công');
     }
 
-    public function showEditGame(Request $request)
+    public function showEditGame($id)
     {
-        $id = $request->id;
-        $gameInfo = $this->gameService->getById($id);
-        return view('admin.game.EditGame', compact('id', 'gameInfo'));
+        $game = Game::find($id)->load('gameItemType', 'gameAttribute');
+        return view('admin.game.EditGame', compact('game'));
     }
 
     public function editGame(Request $request)
