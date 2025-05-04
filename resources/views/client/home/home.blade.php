@@ -191,13 +191,13 @@
                                         <div class="row g-0 info-line">
                                             <section class="row g-0 text-center">
                                                 <label class="text-muted">Đang nạp</label>
-                                                <span class="more-detail fs-4">0</span>
+                                                <span class="more-detail fs-4">{{ $gameRecharge->RechargeBills->where('status', 0)->count() }}</span>
                                             </section>
                                         </div>
                                         <div class="row g-0 info-line">
                                             <section class="row g-0 text-center">
                                                 <label class="text-muted">Đã nạp</label>
-                                                <span class="more-detail fs-4">16</span>
+                                                <span class="more-detail fs-4">{{ $gameRecharge->RechargeBills->where('status', 1)->count() }}</span>
                                             </section>
                                         </div>
                                         <a href="{{ route('client.recharge', $gameRecharge->id) }}">
