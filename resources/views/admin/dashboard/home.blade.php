@@ -6,7 +6,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
+                @if(auth()->user()->role == 1)
                 <!-- Page Heading -->
                 <h1 class="h3 mb-2 text-gray-800">Thống kê doanh thu hiện tại</h1>
                 <p class="mb-4">Doanh thu được tính theo số lượng đơn của khách hàng trên hê thống (Không tính đơn đã huỷ
@@ -137,7 +137,13 @@
 
             </div>
             <!-- /.container-fluid -->
-
+            @else
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary text-center">Chào mừng cộng tác viên Shop Reroll!</h6>
+                    </div>
+                </div>
+            @endif
         </div>
 
         <!-- End of Main Content -->
