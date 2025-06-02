@@ -13,8 +13,8 @@
     <meta property='og:image' content='https://img.upanh.tv/2023/05/17/12312312312-01-01.png' />
 
     <link rel="canonical" href="https://shopreroll.com" />
-    <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
-
+    {{-- <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png"> --}}
+    <link rel="icon" type="image/png" href="{{ asset($shared_config['site_favicon']?$shared_config['site_favicon']->value:'https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png') }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

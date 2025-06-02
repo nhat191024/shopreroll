@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
+    <link rel="icon" type="image/png" href="{{ asset($shared_config['site_favicon']?$shared_config['site_favicon']->value:'https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png') }}">
     <title>Shop game- Quản lý</title>
 
     <!-- Load jQuery FIRST (single version) -->
@@ -63,9 +63,9 @@
         <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
                 <div class="sidebar-brand-icon">
-                    <img src="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
+                    <img src="{{ asset('/image/avatar/logo.png') }}" width="100" style="max-height: 70px">
                 </div>
-                <div class="sidebar-brand-text mx-3">Shop game</div>
+                <div class="sidebar-brand-text mx-3">{{ $shared_config['site_name']?$shared_config['site_name']->value:'Default' }}</div>
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
@@ -98,12 +98,15 @@
                 </li>
             @endforeach
 
-            <hr class="sidebar-divider">
 
-            <div class="sidebar-heading">
-                <h6>Game</h6>
-            </div>
+            @if(auth()->user()->role == 1)
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    <h6>Game</h6>
+                </div>
+            @endif
             <div id="menuAccordion">
+                @if(auth()->user()->role == 1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.game.index') }}">
                         <i class="fa-solid fa-users"></i>
@@ -188,9 +191,9 @@
                     <div id="rerollSubCate" class="menu-dropdown collapse" data-parent="#rerollSubCate">
                         <ul class="nav nav-sm flex-column">
                             @foreach ($rerollCategories as $item)
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('admin.rerollSubCategory.index', $item->id) }}">{{ $item->name }}</a>
-                                </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.rerollSubCategory.index', $item->id) }}">{{ $item->name }}</a>
+                            </li>
                             @endforeach
                         </ul>
                     </div>
@@ -238,11 +241,16 @@
                         </ul>
                     </div>
                 </li>
+                @endif
             </div>
 
             <!-- Divider -->
+            <li class="nav-item {{ Request::is('settings') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.settings.index') }}">
+                    <i class="fas fa-fw fa-gear"></i>
+                    <span>Cài đặt</span></a>
+            </li>
             <hr class="sidebar-divider d-none d-md-block">
-
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="d-none d-md-inline text-center">
                 <button id="sidebarToggle" class="rounded-circle border-0"></button>
