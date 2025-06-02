@@ -54,9 +54,9 @@ Route::get('/my-account', function () {
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
 // role:1,2 means only admin, collaborator can access this route
-Route::middleware(['auth', 'role:1,2'])->group(function () {
+Route::middleware(['auth', 'role:1'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
 
         require __DIR__ . '/admin/game/index.php';
         require __DIR__ . '/admin/game/item_type.php';
@@ -65,7 +65,6 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
         require __DIR__ . '/admin/game/category.php';
         require __DIR__ . '/admin/game/recharge.php';
         require __DIR__ . '/admin/game/rechargePackage.php';
-        require __DIR__ . '/admin/game/account.php';
         require __DIR__ . '/admin/reroll/category.php';
         require __DIR__ . '/admin/reroll/subCategory.php';
         require __DIR__ . '/admin/reroll/package.php';
@@ -78,5 +77,13 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
         Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('balanceRechargeCardBill.index');
 
         require __DIR__ . '/admin/user.php';
+    });
+});
+
+Route::middleware(['auth', 'role:1,2'])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        require __DIR__ . '/admin/game/account.php';
+        require __DIR__ . '/admin/settings.php';
     });
 });
