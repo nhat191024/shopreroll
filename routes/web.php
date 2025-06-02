@@ -57,7 +57,6 @@ Route::get('/my-account', function () {
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
 
-
         require __DIR__ . '/admin/game/index.php';
         require __DIR__ . '/admin/game/item_type.php';
         require __DIR__ . '/admin/game/item.php';
