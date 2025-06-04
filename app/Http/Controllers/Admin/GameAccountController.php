@@ -10,7 +10,7 @@ use App\Http\Requests\StoreGameAccountRequest;
 use App\Http\Requests\UpdateGameAccountRequest;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +19,7 @@ class GameAccountController extends Controller
 {
     public function index(Game $game, Request $request)
     {
+        $userId = Auth::user()->id;
         $categoryId = $request->get('category_id');
         $status = $request->get('status', 1);
 
@@ -27,7 +28,8 @@ class GameAccountController extends Controller
 
         $accountsQuery = GameAccount::with(['gameCategory', 'creator'])
             ->where('game_id', $game->id)
-            ->where('status', $status);
+            ->where('status', $status)
+            ->where('creator_id', $userId);
 
         if ($categoryId) {
             $accountsQuery->where('game_category_id', $categoryId);
@@ -101,6 +103,7 @@ class GameAccountController extends Controller
     public function edit($id)
     {
         $account = GameAccount::findOrFail($id)->load('AccountItem', 'AccountAttribute', 'AccountImage');
+        $this->authorizationCheck($account);
         $game = $account->Game;
         $categories = GameCategory::where('game_id', $game->id)->get();
         $itemTypes = $game->GameItemType;
@@ -115,6 +118,7 @@ class GameAccountController extends Controller
         try {
             $account = GameAccount::findOrFail($account);
 
+            $this->authorizationCheck($account);
             $account->update([
                 'game_category_id' => $request->game_category_id,
                 'title' => $request->title,
@@ -175,6 +179,7 @@ class GameAccountController extends Controller
     {
         try {
             $account = GameAccount::findOrFail($id);
+            $this->authorizationCheck($account);
             $account->AccountAttribute()->delete();
             $account->AccountItem()->delete();
             foreach ($account->AccountImage as $image) {
@@ -188,6 +193,23 @@ class GameAccountController extends Controller
             return redirect()->back()->with('success', 'Xóa tài khoản game thành công');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Lỗi: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Checks if the current user has the right to edit the given GameAccount
+     *
+     * Only the creator of the account or an admin can edit the account.
+     * If the user does not have the rights, a 401 Unauthorized response is thrown.
+     *
+     * @param GameAccount $account The GameAccount to check
+     * @return void
+     */
+    private function authorizationCheck(GameAccount $account) {
+        $user = Auth::user();
+        if ($account->creator_id != $user->id && $user->role != User::ADMIN) {
+            // avoid an collaborator somehow edit other accounts that they do not own
+            return back()->with('error', 'Bạn không có quyền truy cập.');
         }
     }
 }
