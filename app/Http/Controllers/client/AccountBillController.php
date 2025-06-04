@@ -46,9 +46,28 @@ class AccountBillController extends Controller
         $balanceRechargeBankBills = $user->BalanceRechargeBankBill; //
         $balanceRechargeCardBills = $user->BalanceRechargeCardBill; //
 
+        $collaboratorCommissionBills = $user->CollaboratorCommissionBill; //
+        // dd($collaboratorCommissionBills);
         $allBills = [];
 
         // -{{ number_format($data->balance_added ?? 'N/A', 0, ',', '.') }} VND
+        foreach ($collaboratorCommissionBills as $bill) {
+            $allBills[] = [
+                'id' => $bill->id,
+                'balance_change' => '+' . number_format($bill->price ?? 'N/A', 0, ',', '.'),
+                'is_decrease' => false,
+                'balance_before' => number_format($bill->balance_before ?? 'N/A', 0, ',', '.'),
+                'balance_after' => number_format($bill->balance_after ?? 'N/A', 0, ',', '.'),
+                'content' => "<b>Loại: </b>".($bill->GameAccount->GameCategory->name ?? 'N/A')
+                    ."<br><b>Tên game: </b>".($bill->GameAccount->Game->name ?? 'N/A')
+                    ."<br><b>Tài khoản game:</b> ".($bill->GameAccount->title ?? 'N/A')
+                    ."<br> <b>Ghi chú:</b> ".($bill->GameAccount->title?? 'N/A')
+                    ."<br> <b>Phí hoa hồng: ".($bill->commission_fee?? '0').'%',
+                'type' => "Người dùng mua acc của bạn",
+                'created_at' => $bill->created_at->format('d/m/Y H:i:s'),
+            ];
+        }
+
         foreach ($accountBills as $bill) {
             $allBills[] = [
                 'id' => $bill->id,
@@ -170,7 +189,7 @@ class AccountBillController extends Controller
                 // dd('Acc nây không có sẵn!');
                 return redirect()->back()->with('error', 'Acc nây không có sẵn!');
             }
-            $user = auth()->user();
+            $user = Auth::user();
             $user->balance -= $gameAccount->price_out;
             if ($user->balance < 0) {
                 DB::rollBack();
@@ -188,12 +207,14 @@ class AccountBillController extends Controller
             $gameAccount->status = 2;
             $gameAccount->save();
             $user->save();
+            new CollaboratorController()->collaboratorCommissionConfirm($gameAccount);
             DB::commit();
             return redirect()->route('client.account.all')->with('success', 'Thanh toán thành công!');
         } catch (\Throwable $th) {
             DB::rollback();
             // dd($th, $gameAccountId, $th->getMessage());
-            return redirect()->back()->with('error', 'Đã xảy ra lỗi!');
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi!'. $th->getMessage());
         }
     }
+
 }
