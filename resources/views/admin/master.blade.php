@@ -203,7 +203,7 @@
                 <hr class="sidebar-divider">
 
                 <div class="sidebar-heading">
-                    <h6>Chức năng khác</h6>
+                    <h6>Khác</h6>
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.gameRecharge.index') }}">
