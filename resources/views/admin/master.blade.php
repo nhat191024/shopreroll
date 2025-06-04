@@ -484,11 +484,13 @@
             }
             // 104
             // 224
-            $('.sidebar-item').on('click', (e) => {
+            $('.nav-item').on('click', (e) => {
                 $('.sidebar').width(expanedSidebarWidth);
+                $('.sidebar-divider').width('30%');
             });
             $('#content').on('click', (e) => {
                 $('.sidebar').width(collapsedSidebarWidth);
+                $('.sidebar-divider').width('70%');
             });
         });
 
