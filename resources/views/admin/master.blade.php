@@ -40,6 +40,7 @@
 
     <!--  styles  -->
     <link href="{{ url('') . '/' }}css/sb-admin-2.css" rel="stylesheet">
+    <link href="{{ url('') . '/' }}css/sb-admin-2-custom.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
 </head>
 
@@ -60,7 +61,7 @@
 
 <body id="page-top">
     <div id="wrapper">
-        <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+        <ul id="menuAccordion" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
                 <div class="sidebar-brand-icon">
                     <img src="{{ asset('/image/avatar/logo.png') }}" width="100" style="max-height: 70px">
@@ -79,7 +80,7 @@
             </div>
             @foreach ($games as $item)
                 <li class="nav-item">
-                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="account">
+                    <a class="nav-link menu-link sidebar-item" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="game-{{ str_replace(' ', '-', $item->name) }}">
                         <i class="fa-solid fa-gamepad"></i>
                         <span data-key="t-layouts">{{ $item->name }}</span>
                     </a>
@@ -244,15 +245,17 @@
                 @endif
             </div>
 
+            @if(auth()->user()->role == 1)
             <!-- Divider -->
             <li class="nav-item {{ Request::is('settings') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.settings.index') }}">
                     <i class="fas fa-fw fa-gear"></i>
                     <span>Cài đặt</span></a>
             </li>
+            @endif
             <hr class="sidebar-divider d-none d-md-block">
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="d-none d-md-inline text-center">
+            <div class="d-sm-none d-md-inline text-center">
                 <button id="sidebarToggle" class="rounded-circle border-0"></button>
             </div>
 
@@ -297,7 +300,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a id="alertsDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
@@ -326,10 +329,10 @@
                                 <a class="dropdown-item small text-center text-gray-600" href="#">Xem toàn bộ
                                     đơn hàng</a>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a id="messagesDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
@@ -345,7 +348,7 @@
                                     <p id="message-id" class="d-none">0</p>
                                     <a id="message-link" class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="{{ url('') . '/' }}img/undraw_profile_1.svg" alt="...">
+                                            <img class="rounded-circle" src="{{ asset('image/avatar/DefaultAvatar.png')}}" alt="...">
                                             <div class="status-indicator">
                                                 <div id="message-index" style="font-size: 10px; transform: translate(1px, -5px)"></div>
                                             </div>
@@ -360,15 +363,15 @@
                                     nhắn
                                 </a>
                             </div>
-                        </li>
+                        </li> --}}
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a id="userDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-none d-lg-inline small mr-2 text-gray-600">#</span>
-                                <img class="img-profile rounded-circle" src="{{ url('') . '/' }}img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('image/avatar/DefaultAvatar.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="userDropdown">
@@ -434,6 +437,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        const collapsedSidebarWidth = 104;
+        const expanedSidebarWidth = 400;
         // Document ready function
         $(document).ready(function() {
             // Initialize Select2
@@ -477,6 +482,68 @@
             } else {
                 console.error('DataTables plugin is not available');
             }
+            // 104
+            // 224
+            $('.sidebar-item').on('click', (e) => {
+                $('.sidebar').width(expanedSidebarWidth);
+            });
+            $('#content').on('click', (e) => {
+                $('.sidebar').width(collapsedSidebarWidth);
+            });
+        });
+
+        // the code below is for optimizing mobile experience, please keep it
+        $(document).ready(() => {
+            var accordionContainerSelector = '#menuAccordion';
+            var $accordionContainer = $(accordionContainerSelector);
+
+            if (!$accordionContainer.length) {
+                var firstCollapseItem = $('.menu-dropdown.collapse[data-parent]').first();
+                if (firstCollapseItem.length) {
+                    var parentSelectorFromData = firstCollapseItem.data('parent');
+                    if (parentSelectorFromData) {
+                        $accordionContainer = $(parentSelectorFromData);
+                        if ($accordionContainer.length) {} else {
+                            return;
+                        }
+                    }
+                } else {
+                    return;
+                }
+            }
+            $accordionContainer.on('click', 'a.sidebar-item[data-toggle="collapse"]', function(e) {
+                var $clickedTrigger = $(this);
+                var $targetPanel = $($clickedTrigger.attr('href'));
+
+                if (!$targetPanel.length) {
+                    return;
+                }
+
+                if ($targetPanel.hasClass('show')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                var $currentlyOpenPanels = $accordionContainer.find('.collapse.show').not($targetPanel);
+
+                if ($currentlyOpenPanels.length > 0) {
+                    $currentlyOpenPanels.collapse('hide');
+                    // avoid janky or weird animation
+                    $currentlyOpenPanels.one('hidden.bs.collapse', function() {
+                        if (!$targetPanel.hasClass('show')) {
+                            $targetPanel.collapse('show');
+                        }
+                    });
+                } else {
+                    if (!$targetPanel.hasClass('show')) {
+                        $targetPanel.collapse('show');
+                    }
+                }
+            });
         });
     </script>
 
