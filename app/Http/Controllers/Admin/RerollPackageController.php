@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\RerollPackage;
 use App\Models\RerollSubCategory;
@@ -12,15 +12,19 @@ class RerollPackageController extends Controller
 {
     public function index($subCategory)
     {
-        $packages = $subCategory == 0 ? RerollPackage::all() : RerollPackage::where('reroll_sub_category_id', $subCategory)->get();
-        $subCategoryName = $subCategory == 0 ? "" : RerollSubCategory::find($subCategory)->name;
-        return view('admin.RerollPackage.RerollPackage', compact('subCategory', 'subCategoryName', 'packages'));
+        $packages = RerollPackage::where('reroll_sub_category_id', $subCategory)->get();
+        $subCategory = RerollSubCategory::find($subCategory);
+        $subCategoryName = $subCategory ? $subCategory->name : null;
+        $subCategoryId = $subCategory ? $subCategory->id : null;
+        $categoryId = $subCategory ? $subCategory->reroll_category_id : null;
+
+        return view('admin.RerollPackage.RerollPackage', compact('categoryId', 'subCategoryName', 'packages', 'subCategoryId'));
     }
 
-    public function create()
+    public function create($subCategory)
     {
-        $subCategories = RerollSubCategory::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollPackage.addRerollPackage', compact('subCategories'));
+        $subCategoryName = RerollSubCategory::find($subCategory)->name;
+        return view('admin.RerollPackage.addRerollPackage', compact('subCategory', 'subCategoryName'));
     }
 
     public function store(Request $request)
@@ -43,8 +47,9 @@ class RerollPackageController extends Controller
     public function edit($id)
     {
         $package = RerollPackage::find($id);
-        $subCategories = RerollSubCategory::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollPackage.editRerollPackage', compact('package', 'subCategories'));
+        $subCategoryName = $package->RerollSubCategory->name;
+        $subCategoryId = $package->RerollSubCategory->id;
+        return view('admin.RerollPackage.editRerollPackage', compact('package', 'subCategoryId', 'subCategoryName'));
     }
 
     public function update($id, Request $request)
@@ -70,7 +75,7 @@ class RerollPackageController extends Controller
     {
         $package = RerollPackage::find($id);
         if (!$package) {
-            return redirect(route('admin.rerollPackage.index', $package->reroll_sub_category_id))->with('error', 'Gói reroll không tồn tại');
+            return redirect()->back()->with('error', 'Gói reroll không tồn tại');
         }
 
         $package->delete();

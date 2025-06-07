@@ -1,7 +1,7 @@
 @extends('admin.master')
 @section('main')
     <div class="container-fluid">
-        <h1 class="h3 mb-2 text-gray-800">Sửa gói reroll - {{ $package->name }}</h1>
+        <h1 class="h3 mb-2 text-gray-800">Sửa gói reroll - {{ $subCategoryName }}</h1>
         <div class="card mb-4 shadow">
             <div class="card-body">
                 <div class="table-responsive">
@@ -15,14 +15,7 @@
                             <label for="">Giá gói reroll</label>
                             <input id="" class="form-control" name="price" type="number" required value="{{ old('price', $package->price ?? '') }}" aria-describedby="" placeholder="Nhập giá gói sản phẩm">
                         </div>
-                        <div class="form-group">
-                            <label for="categorySelect">Chọn danh mục</label>
-                            <select id="categorySelect" class="form-control" name="reroll_sub_category_id" required>
-                                @foreach ($subCategories as $id => $name)
-                                    <option value="{{ $id }}" {{ $id == $package->reroll_sub_category_id ? 'selected' : '' }}>{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                        <input name="reroll_sub_category_id" type="text" value="{{ $subCategoryId }}" hidden>
                         <a class="btn btn-primary mt-4" onclick="history.back()">Quay lại</a>
                         <button class="btn btn-success mt-4" type="submit">Lưu</button>
                     </form>

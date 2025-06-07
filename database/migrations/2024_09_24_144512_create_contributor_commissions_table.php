@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contributor_commissions', function (Blueprint $table) {
-            $table->id();
-            $table->string('game');
-            $table->integer('commission_percentage')->default(100);
-            $table->unsignedBigInteger('contributor_id');
-            $table->timestamps();
+        // Schema::create('contributor_commissions', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('game');
+        //     $table->integer('commission_percentage')->default(100);
+        //     $table->unsignedBigInteger('contributor_id');
+        //     $table->timestamps();
 
-            $table->foreign('contributor_id')->references('id')->on('users')->onDelete('cascade');
-        });
+        //     $table->foreign('contributor_id')->references('id')->on('users')->onDelete('cascade');
+        // });
     }
 
     /**

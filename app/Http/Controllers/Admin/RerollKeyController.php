@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\RerollKey;
 use App\Models\RerollPackage;
@@ -12,15 +12,18 @@ class RerollKeyController extends Controller
 {
     public function index($idPackage)
     {
-        $rerollKeys = $idPackage == 0 ? RerollKey::all() : RerollKey::where('reroll_package_id', $idPackage)->get();
-        $packageName = $idPackage == 0 ? "" : RerollPackage::find($idPackage)->name;
-        return view('admin.RerollKey.rerollKey', compact('rerollKeys', 'packageName', 'idPackage'));
+        $rerollKeys = RerollKey::where('reroll_package_id', $idPackage)->get();
+        $rerollPackage = RerollPackage::find($idPackage);
+        $packageName = $rerollPackage ? $rerollPackage->name : null;
+        $idSubCategory = $rerollPackage ? $rerollPackage->reroll_sub_category_id : null;
+
+        return view('admin.RerollKey.rerollKey', compact('rerollKeys', 'packageName', 'idSubCategory', 'idPackage'));
     }
 
     public function create($package)
     {
-        $rerollPackage = RerollPackage::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.addRerollKey', compact('rerollPackage', 'package'));
+        $rerollPackageName = RerollPackage::find($package)->name;
+        return view('admin.RerollKey.addRerollKey', compact('rerollPackageName', 'package'));
     }
 
     public function store(Request $request)
@@ -41,8 +44,9 @@ class RerollKeyController extends Controller
     public function edit($id)
     {
         $key = RerollKey::find($id);
-        $rerollPackage = RerollPackage::all()->pluck('name', 'id')->toArray();
-        return view('admin.RerollKey.editRerollKey', compact('key', 'rerollPackage'));
+        $rerollPackageName = $key->RerollPackage->name;
+        $rerollPackage = $key->reroll_package_id;
+        return view('admin.RerollKey.editRerollKey', compact('key', 'rerollPackage', 'rerollPackageName'));
     }
 
     public function update(Request $request, $id)
@@ -66,7 +70,7 @@ class RerollKeyController extends Controller
     {
         $key = RerollKey::find($id);
         if (!$key) {
-            return redirect(route('admin.rerollKey.index', $key->reroll_package_id))->with('error', 'Key không tồn tại');
+            return redirect()->back()->with('error', 'Key không tồn tại');
         }
 
         $key->delete();

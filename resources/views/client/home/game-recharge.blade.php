@@ -16,6 +16,21 @@
         <h1 class="guide__title">Shop bán acc Honkai Star Rail và Genshin uy tín hàng đầu Việt Nam</h1>
         <div>
             <div class="card card-solid offset-lg-1 col-lg-10">
+                @if (session()->has('error'))
+                    <marquee direction="right" behavior="alternate" class="alert alert-danger">
+                        <i class="fa fa-quote-left"></i> {{ session('error') }}
+                    </marquee>
+                @endif
+                @if (session()->has('message'))
+                    <marquee direction="right" behavior="alternate" class="alert alert-info">
+                        <i class="fa fa-quote-left"></i> {{ session('message') }}
+                    </marquee>
+                @endif
+                @if (session()->has('success'))
+                    <marquee direction="right" behavior="alternate" class="alert alert-success">
+                        <i class="fa fa-quote-left"></i> {{ session('success') }}
+                    </marquee>
+                @endif
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-lg-6">
@@ -217,7 +232,7 @@
                     }
                 ],
                 order: [
-                    [0, "desc"]
+                    [6, "desc"]
                 ],
                 columnDefs: [{
                     targets: [0, 1, 2, 3, 4, 5, 6],

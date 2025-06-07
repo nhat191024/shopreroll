@@ -147,3 +147,7 @@ div.dataTables_wrapper div.dataTables_paginate {
 .copy-tooltip.show {
     opacity: 1;
 }
+
+.btn-pretty:hover {
+    background-color: #0057b300 !important;
+}

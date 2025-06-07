@@ -1,79 +1,74 @@
 @extends('admin.master')
 @section('main')
-    <!-- Content Wrapper -->
-
-
-    <!-- Begin Page Content -->
     <div class="container-fluid">
-
-        <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Thêm mới tài khoản</h1>
-        <!-- DataTales Example -->
-        <div class="card shadow mb-4">
+        <div class="card mb-4 shadow">
             <div class="card-body">
-                <div class="row">
-                    <form action="" method="post" {{ route('admin.user.add') }} enctype="multipart/form-data">
-                        @csrf
-                        <div class="row ">
-                            <div class="form-group col-6 ">
-                                <label for="">Tên đăng nhập</label>
-                                <input required type="text" class="form-control"
-                                    name="username" placeholder="Nhập tài khoản ">
-                            </div>
-                            <div class="form-group col-6 ">
-                                <label for="">Mật khẩu</label>
-                                <input required type="text" class="form-control"
-                                    name="password" placeholder="Nhập mật khẩu">
-                            </div>
-                            <div class="form-group col-6 ">
-                                <label for="">Tên người dùng</label>
-                                <input required type="text" class="form-control"
-                                    name="name" placeholder="Nhập họ và tên">
-                            </div>
-                            <div class="form-group col-6 ">
-                                <label for="">Vai trò  </label>
-                                <select name="role" class="form-control" aria-label="Default select example" required>
-                                    <option value="">Chọn Vai trò </option>
-                                    <option value="1">Quản trị viên</option>
-                                    <option value="2">Cộng tác viên</option>
-                                    <option value="0">Khách Hàng</option>
-                                    <option value="3">Bị chặn</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-6 ">
-                                <label for="">Số dư </label>
-                                <input type="number" class="form-control"  name="balance"
-                                    placeholder="Nhập số dư (Không bắt buộc)" value="0">
-                            </div>
-                            <div class="form-group col-6 ">
-                                <label for="">E-mail</label>
-                                <input required type="email" class="form-control"
-                                    name="email" placeholder="Nhập E-mail">
-                            </div>
-                            <div class="form-group col-6 ">
-                                <label for="">Số điện thoại</label>
-                                <input required type="text" class="form-control"
-                                    name="phone" placeholder="Nhập số điện thoại">
-                            </div>
-                        </div>
-                        <button class="btn btn-success mt-4" type="submit">Thêm</button>
-
-
-                    </form>
-
-                </div>
+                <form action="{{ route('admin.user.add') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="">Tên đăng nhập</label>
+                        <input class="form-control" name="username" type="text" placeholder="Nhập tài khoản ">
+                        @error('username')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mật khẩu</label>
+                        <input class="form-control" name="password" type="text" placeholder="Nhập mật khẩu">
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tên người dùng</label>
+                        <input class="form-control" name="name" type="text" placeholder="Nhập họ và tên">
+                        @error('name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Vai trò </label>
+                        <select class="form-control" name="role" aria-label="Default select example">
+                            <option value="" disabled>Chọn Vai trò </option>
+                            <option value="1">Quản trị viên</option>
+                            <option value="0">Khách Hàng</option>
+                            <option value="3">Bị chặn</option>
+                        </select>
+                        @error('role')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Số dư </label>
+                        <input class="form-control" name="balance" type="number" value="0" placeholder="Nhập số dư (Không bắt buộc)">
+                        @error('balance')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">E-mail</label>
+                        <input class="form-control" name="email" type="email" placeholder="Nhập E-mail">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="">Số điện thoại</label>
+                        <input class="form-control" name="phone" type="text" placeholder="Nhập số điện thoại">
+                        @error('phone')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <button class="btn btn-success mt-4" type="submit">Thêm</button>
+                </form>
             </div>
         </div>
 
     </div>
-    <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
-
-    <!-- End of Content Wrapper -->
+@endsection
+@section('scripts')
     <script>
-        // Add the following code if you want the name of the file appear on select
         $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

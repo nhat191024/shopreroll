@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\RechargePackage;
 use App\Models\GameRecharge;
@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 
 class GameRechargePackageController extends Controller
 {
-    public function index($id)
+    public function index($recharge)
     {
-        $rechargePackages = RechargePackage::where('game_recharge_id', $id)->get();
-        $rechargeName = GameRecharge::find($id)->name;
-        return view('admin.gameRechargePackage.GameRechargePackage', compact('id', 'rechargePackages', 'rechargeName'));
+        $rechargePackages = RechargePackage::where('game_recharge_id', $recharge)->get();
+        $rechargeName = GameRecharge::find($recharge)->name;
+        return view('admin.gameRechargePackage.GameRechargePackage', compact('recharge', 'rechargePackages', 'rechargeName'));
     }
 
     public function create()

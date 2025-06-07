@@ -12,3 +12,16 @@ services:
       - .:/var/www/html
       - /var/www/html/vendor
       - /var/www/html/storage
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: shop-reroll
+    container_name: shop-reroll-worker
+    restart: unless-stopped
+    volumes:
+      - .:/var/www/html
+      - /var/www/html/vendor
+      - /var/www/html/storage
+    command: php artisan queue:work --tries=3

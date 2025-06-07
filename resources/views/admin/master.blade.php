@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link type="image/png" rel="icon" href="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
+    <link rel="icon" type="image/png" href="{{ asset($shared_config['site_favicon']?$shared_config['site_favicon']->value:'https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png') }}">
     <title>Shop game- Quản lý</title>
 
     <!-- Load jQuery FIRST (single version) -->
@@ -40,6 +40,7 @@
 
     <!--  styles  -->
     <link href="{{ url('') . '/' }}css/sb-admin-2.css" rel="stylesheet">
+    <link href="{{ url('') . '/' }}css/sb-admin-2-custom.css" rel="stylesheet">
     <link href="{{ url('') . '/' }}css/styles.css" rel="stylesheet">
 </head>
 
@@ -52,44 +53,20 @@
 </style>
 
 @inject('game', 'App\Models\Game')
+@inject('rerollCategory', 'App\Models\RerollCategory')
 @php
     $games = $game::with('GameCategory')->get();
+    $rerollCategories = $rerollCategory::all();
 @endphp
 
 <body id="page-top">
-    <div id="importExcelModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="importExcelModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <form action="{{ route('admin.game_account.excel') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="modal-header">
-                        <h5 id="importExcelModalLabel" class="modal-title">Nhập tài khoản từ Excel</h5>
-                        <button class="close" data-dismiss="modal" type="button" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="excelFile">Chọn file Excel</label>
-                            <input id="excelFile" class="form-control" name="excel_file" type="file" required accept=".xls,.xlsx,.csv">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
-                        <button class="btn btn-primary" type="submit">Tải lên</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div id="wrapper">
-        <ul id="accordionSidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
+        <ul id="menuAccordion" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion">
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('') . '/' }}admin">
                 <div class="sidebar-brand-icon">
-                    <img src="https://img.upanh.tv/2023/05/17/image84b9fdeeb04998fd.png">
+                    <img src="{{ asset('/image/avatar/logo.png') }}" width="100" style="max-height: 70px">
                 </div>
-                <div class="sidebar-brand-text mx-3">Shop game</div>
+                <div class="sidebar-brand-text mx-3">{{ $shared_config['site_name']?$shared_config['site_name']->value:'Default' }}</div>
             </a>
             <hr class="sidebar-divider my-0">
             <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
@@ -101,15 +78,9 @@
             <div class="sidebar-heading">
                 <h6>Tài Khoản Game</h6>
             </div>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#importExcelModal" type="button">
-                    <i class="fa-solid fa-gamepad"></i>
-                    <span data-key="t-layouts">Nhập từ Excel</span>
-                </a>
-            </li>
             @foreach ($games as $item)
                 <li class="nav-item">
-                    <a class="nav-link menu-link" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="account">
+                    <a class="nav-link menu-link sidebar-item" data-toggle="collapse" href="#game-{{ str_replace(' ', '-', $item->name) }}" role="button" aria-expanded="false" aria-controls="game-{{ str_replace(' ', '-', $item->name) }}">
                         <i class="fa-solid fa-gamepad"></i>
                         <span data-key="t-layouts">{{ $item->name }}</span>
                     </a>
@@ -128,12 +99,15 @@
                 </li>
             @endforeach
 
-            <hr class="sidebar-divider">
 
-            <div class="sidebar-heading">
-                <h6>Game</h6>
-            </div>
+            @if(auth()->user()->role == 1)
+                <hr class="sidebar-divider">
+                <div class="sidebar-heading">
+                    <h6>Game</h6>
+                </div>
+            @endif
             <div id="menuAccordion">
+                @if(auth()->user()->role == 1)
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.game.index') }}">
                         <i class="fa-solid fa-users"></i>
@@ -211,25 +185,25 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.rerollSubCategory.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
+                    <a class="nav-link menu-link" data-toggle="collapse" href="#rerollSubCate" role="button" aria-expanded="false" aria-controls="account">
+                        <i class="fa-solid fa-dice"></i>
                         <span data-key="t-layouts">Reroll Sub Category</span>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.rerollPackage.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
-                        <span data-key="t-layouts">Reroll Package</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="{{ route('admin.rerollKey.index', 0) }}" role="button"><i class="fa-solid fa-dice"></i>
-                        <span data-key="t-layouts">Reroll Key</span>
-                    </a>
+                    <div id="rerollSubCate" class="menu-dropdown collapse" data-parent="#rerollSubCate">
+                        <ul class="nav nav-sm flex-column">
+                            @foreach ($rerollCategories as $item)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.rerollSubCategory.index', $item->id) }}">{{ $item->name }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
 
                 <hr class="sidebar-divider">
 
                 <div class="sidebar-heading">
-                    <h6>Chức năng khác</h6>
+                    <h6>Khác</h6>
                 </div>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.gameRecharge.index') }}">
@@ -268,13 +242,20 @@
                         </ul>
                     </div>
                 </li>
+                @endif
             </div>
 
+            @if(auth()->user()->role == 1)
             <!-- Divider -->
+            <li class="nav-item {{ Request::is('settings') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.settings.index') }}">
+                    <i class="fas fa-fw fa-gear"></i>
+                    <span>Cài đặt</span></a>
+            </li>
+            @endif
             <hr class="sidebar-divider d-none d-md-block">
-
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="d-none d-md-inline text-center">
+            <div class="d-sm-none d-md-inline text-center">
                 <button id="sidebarToggle" class="rounded-circle border-0"></button>
             </div>
 
@@ -319,7 +300,7 @@
                         </li>
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a id="alertsDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
@@ -348,10 +329,10 @@
                                 <a class="dropdown-item small text-center text-gray-600" href="#">Xem toàn bộ
                                     đơn hàng</a>
                             </div>
-                        </li>
+                        </li> --}}
 
                         <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
+                        {{-- <li class="nav-item dropdown no-arrow mx-1">
                             <a id="messagesDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
@@ -367,7 +348,7 @@
                                     <p id="message-id" class="d-none">0</p>
                                     <a id="message-link" class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="{{ url('') . '/' }}img/undraw_profile_1.svg" alt="...">
+                                            <img class="rounded-circle" src="{{ asset('image/avatar/DefaultAvatar.png')}}" alt="...">
                                             <div class="status-indicator">
                                                 <div id="message-index" style="font-size: 10px; transform: translate(1px, -5px)"></div>
                                             </div>
@@ -382,21 +363,21 @@
                                     nhắn
                                 </a>
                             </div>
-                        </li>
+                        </li> --}}
 
-                        <div class="topbar-divider d-none d-sm-block"></div>
+                        {{-- <div class="topbar-divider d-none d-sm-block"></div> --}}
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a id="userDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span class="d-none d-lg-inline small mr-2 text-gray-600">#</span>
-                                <img class="img-profile rounded-circle" src="{{ url('') . '/' }}img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="{{ asset('image/avatar/DefaultAvatar.png')}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right animated--grow-in shadow" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Đăng xuất
                                 </a>
                             </div>
                         </li>
@@ -428,16 +409,17 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 id="exampleModalLabel" class="modal-title">Ready to Leave?</h5>
+                            <h5 id="exampleModalLabel" class="modal-title">Đăng xuất?</h5>
                             <button class="close" data-dismiss="modal" type="button" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        <div class="modal-body">
+                            Xác nhận bạn muốn đăng xuất khỏi tài khoản này?
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Cancel</button>
-                            <a class="btn btn-primary" href="#">Logout</a>
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Hủy</button>
+                            <a class="btn btn-primary" href="{{ route('logout') }}">Đăng xuất</a>
                         </div>
                     </div>
                 </div>
@@ -455,6 +437,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script>
+        const collapsedSidebarWidth = 104;
+        const expanedSidebarWidth = 400;
         // Document ready function
         $(document).ready(function() {
             // Initialize Select2
@@ -498,6 +482,70 @@
             } else {
                 console.error('DataTables plugin is not available');
             }
+            // 104
+            // 224
+            $('.nav-item').on('click', (e) => {
+                $('.sidebar').width(expanedSidebarWidth);
+                $('.sidebar-divider').width('30%');
+            });
+            $('#content').on('click', (e) => {
+                $('.sidebar').width(collapsedSidebarWidth);
+                $('.sidebar-divider').width('70%');
+            });
+        });
+
+        // the code below is for optimizing mobile experience, please keep it
+        $(document).ready(() => {
+            var accordionContainerSelector = '#menuAccordion';
+            var $accordionContainer = $(accordionContainerSelector);
+
+            if (!$accordionContainer.length) {
+                var firstCollapseItem = $('.menu-dropdown.collapse[data-parent]').first();
+                if (firstCollapseItem.length) {
+                    var parentSelectorFromData = firstCollapseItem.data('parent');
+                    if (parentSelectorFromData) {
+                        $accordionContainer = $(parentSelectorFromData);
+                        if ($accordionContainer.length) {} else {
+                            return;
+                        }
+                    }
+                } else {
+                    return;
+                }
+            }
+            $accordionContainer.on('click', 'a.sidebar-item[data-toggle="collapse"]', function(e) {
+                var $clickedTrigger = $(this);
+                var $targetPanel = $($clickedTrigger.attr('href'));
+
+                if (!$targetPanel.length) {
+                    return;
+                }
+
+                if ($targetPanel.hasClass('show')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+
+                e.preventDefault();
+                e.stopPropagation();
+
+                var $currentlyOpenPanels = $accordionContainer.find('.collapse.show').not($targetPanel);
+
+                if ($currentlyOpenPanels.length > 0) {
+                    $currentlyOpenPanels.collapse('hide');
+                    // avoid janky or weird animation
+                    $currentlyOpenPanels.one('hidden.bs.collapse', function() {
+                        if (!$targetPanel.hasClass('show')) {
+                            $targetPanel.collapse('show');
+                        }
+                    });
+                } else {
+                    if (!$targetPanel.hasClass('show')) {
+                        $targetPanel.collapse('show');
+                    }
+                }
+            });
         });
     </script>
 

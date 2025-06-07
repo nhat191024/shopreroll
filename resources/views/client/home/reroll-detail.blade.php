@@ -9,12 +9,27 @@
             <main>
                 <div>
                     <div class="container-lg">
+                        @if (session()->has('error'))
+                            <marquee direction="right" behavior="alternate" class="alert alert-danger">
+                                <i class="fa fa-quote-left"></i> {{ session('error') }}
+                            </marquee>
+                        @endif
+                        @if (session()->has('message'))
+                            <marquee direction="right" behavior="alternate" class="alert alert-info">
+                                <i class="fa fa-quote-left"></i> {{ session('message') }}
+                            </marquee>
+                        @endif
+                        @if (session()->has('success'))
+                            <marquee direction="right" behavior="alternate" class="alert alert-success">
+                                <i class="fa fa-quote-left"></i> {{ session('success') }}
+                            </marquee>
+                        @endif
                         <div class="row item-container">
                             @foreach ($rerollSubCategory as $data)
                                 <div class="col-md-3">
                                     <div class="item-bounder">
                                         <div class="item-image-key">
-                                            <a href="{{ route('client.reroll.detail.tutorial', ['id' => $data->id]) }}"><img src="{{ asset($data->image) }}" onerror="this.src='https://placehold.co/300x300'" class="square-image" alt="..."></a>
+                                            <a href="{{ route('client.reroll.detail.tutorial', ['id' => $data->id]) }}"><img src="{{ asset($data->image) }}" onerror="this.src='https://fakeimg.pl/300x300'" class="square-image" alt="..."></a>
                                         </div>
                                         <div class="item-caption">
                                             <h3 class="title_cate text-center">{{ $data->name }}</h3>
@@ -31,7 +46,7 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-2" data-toggle="tooltip" data-original-title="Số lượng" title="" style="padding-right: 3.5px;padding-left: 3.5px;">
-                                                    <input class="form-control" name="amount" type="number" required="" value="1" min="1" style="padding: 0.375rem 0.6rem;">
+                                                    <input class="form-control" name="amount" type="number" required="" value="1" min="1" style="padding: 0.375rem 0.6rem; min-width: 50px;">
                                                 </div>
                                                 <div class="col-5" style="padding-right: 3.5px;padding-left: 3.5px;">
                                                     <button class="buy-now btn btn-primary" type="submit" style="width: 100%">Mua ngay

@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\admin\ApiController;
-use App\Http\Controllers\admin\BalanceRechargeBankBillController;
-use App\Http\Controllers\admin\BalanceRechargeCardBillController;
-use App\Http\Controllers\admin\DashboardController;
-use App\Http\Controllers\admin\RechargeBillController;
-use App\Http\Controllers\admin\RerollBillController;
+use App\Http\Controllers\Admin\ApiController;
+use App\Http\Controllers\Admin\BalanceRechargeBankBillController;
+use App\Http\Controllers\Admin\BalanceRechargeCardBillController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RechargeBillController;
+use App\Http\Controllers\Admin\RerollBillController;
 use App\Http\Controllers\client\AccountBillController;
 use App\Http\Controllers\client\HomeController;
 use App\Http\Controllers\client\MyKeyController;
 use App\Http\Controllers\client\RechargeShopController;
 use App\Http\Controllers\client\UserAccountController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
@@ -32,11 +33,11 @@ Route::post('/user/forgot/confirm', [UserAccountController::class, 'confirmForgo
 // Note: route 0=userClient, 1=admin, 2=collaborator
 // role:0,1,2 means all userClient, admin, collaborator can access this route
 Route::get('/', [HomeController::class, 'index'])->name('client.home');
-Route::middleware(['auth', 'role:0,1,2'])->group(function () {
+Route::middleware(['auth', 'role:'. User::CLIENT . User::ADMIN . User::COLLABORATOR])->group(function () {
     Route::get('/myAcc/genshin', [AccountBillController::class, 'genshin'])->name('client.myAccGenshin');
     Route::get('/myAcc/balance-history', [AccountBillController::class, 'balanceHistory'])->name('client.user.balance-history');
     Route::get('/myAcc/all', [AccountBillController::class, 'allAccount'])->name('client.account.all');
-    Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.MyKey.index');
+    Route::get('/my-key', [MyKeyController::class, 'index'])->name('client.myKey.index');
     Route::get('/user/change', [UserAccountController::class, 'changePassword'])->name('client.user.change');
     Route::post('/user/change/confirm', [UserAccountController::class, 'confirmChangePassword'])->name('client.user.change.confirm');
     Route::get('/user/topup/bank', [UserAccountController::class, 'topupByBank'])->name('client.user.topup.bank');
@@ -54,9 +55,8 @@ Route::get('/my-account', function () {
 
 // Note: route 0=userClient, 1=admin, 2=collaborator
 // role:1,2 means only admin, collaborator can access this route
-Route::middleware(['auth', 'role:1,2'])->group(function () {
+Route::middleware(['auth', 'role:'. User::ADMIN ])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         require __DIR__ . '/admin/game/index.php';
         require __DIR__ . '/admin/game/item_type.php';
@@ -65,17 +65,25 @@ Route::middleware(['auth', 'role:1,2'])->group(function () {
         require __DIR__ . '/admin/game/category.php';
         require __DIR__ . '/admin/game/recharge.php';
         require __DIR__ . '/admin/game/rechargePackage.php';
-        require __DIR__ . '/admin/game/account.php';
         require __DIR__ . '/admin/reroll/category.php';
         require __DIR__ . '/admin/reroll/subCategory.php';
         require __DIR__ . '/admin/reroll/package.php';
         require __DIR__ . '/admin/reroll/key.php';
+        require __DIR__ . '/admin/settings.php';
 
         Route::get('/recharge-bill', [RechargeBillController::class, 'index'])->name('rechargeBill.index');
+        Route::get('/recharge-bill/change-status/{id}/{status}', [RechargeBillController::class, 'changeStatus'])->name('rechargeBill.changeStatus');
         Route::get('/reroll-bill', [RerollBillController::class, 'index'])->name('rerollBill.index');
         Route::get('/bank-bill', [BalanceRechargeBankBillController::class, 'index'])->name('balanceRechargeBankBill.index');
         Route::get('/card-bill', [BalanceRechargeCardBillController::class, 'index'])->name('balanceRechargeCardBill.index');
 
         require __DIR__ . '/admin/user.php';
+    });
+});
+
+Route::middleware(['auth', 'role:'. User::ADMIN . User::COLLABORATOR ])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        require __DIR__ . '/admin/game/account.php';
     });
 });

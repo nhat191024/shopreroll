@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('account_id');
-            $table->integer('price');
-            $table->integer('balance_before');
-            $table->integer('balance_after');
+            $table->integer('price')->default(0);
+            $table->integer('balance_before')->default(0);
+            $table->integer('balance_after')->default(0);
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
 

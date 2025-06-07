@@ -2,6 +2,21 @@
 
 @section('main')
     <section class="content">
+        @if (session()->has('error'))
+            <marquee direction="right" behavior="alternate" class="alert alert-danger">
+                <i class="fa fa-quote-left"></i> {{ session('error') }}
+            </marquee>
+        @endif
+        @if (session()->has('message'))
+            <marquee direction="right" behavior="alternate" class="alert alert-info">
+                <i class="fa fa-quote-left"></i> {{ session('message') }}
+            </marquee>
+        @endif
+        @if (session()->has('success'))
+            <marquee direction="right" behavior="alternate" class="alert alert-success">
+                <i class="fa fa-quote-left"></i> {{ session('success') }}
+            </marquee>
+        @endif
         <div class="container-fluid">
             <div class="mb-4 text-center">
                 <img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" alt="City Icon">
@@ -21,7 +36,7 @@
                         <div class="hr-product"></div>
                         <div class="row info-line">
                             <section class="col-12 text-center">
-                                <span class="more-detail">
+                                <span class="more-detail" style="font-size: 17px">
                                     {{ $gameAccount->note }}
                                 </span>
                             </section>
@@ -33,7 +48,7 @@
                                     <h4 class="pb-2">{{ $data['type']->name }}</h4>
                                     @foreach ($data['items'] as $itemData)
                                         <span class="hero-details">
-                                            <i class="hero-icon-detail" data-toggle="tooltip" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" onerror="this.src='https://placehold.co/600x300'" title="{{ $itemData->name }}"></i>
+                                            <i class="hero-icon-detail" data-toggle="tooltip" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" onerror="this.src='https://fakeimg.pl/600x300'" title="{{ $itemData->name }}"></i>
                                         </span>
                                     @endforeach
                                 </section>
@@ -56,9 +71,9 @@
                                 <div class="col-12">
                                     @once
                                         <h1 class="title-shine h2 text-center">Hình ảnh chi tiết acc</h1>
-                                        <p class="title-shine text-center">{{ $gameAccount->title }}</p>
+                                        <p class="title-shine text-center" style="font-size: 17px">{{ $gameAccount->title }}</p>
                                     @endonce
-                                    <img class="product-image" src="{{ asset($data->image) }}" alt="Ảnh acc Genshin" onerror="this.src='https://placehold.co/600x300'" />
+                                    <img class="product-image" src="{{ asset($data->image) }}" alt="Ảnh acc Genshin" onerror="this.src='https://fakeimg.pl/600x300'" />
                                 </div>
                             @endforeach
                         </div>

@@ -23,6 +23,7 @@ use App\Models\AccountItem;
 use App\Models\BalanceRechargeCardBill;
 use App\Models\BalanceRechargeBankBill;
 use App\Models\GameItem;
+use App\Models\SettingConfig;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -141,6 +142,10 @@ class DatabaseSeeder extends Seeder
 
         foreach ($dataArray['account_bills'] as $data) {
             AccountBill::create($data);
+        }
+
+        foreach ($dataArray['setting_configs'] as $data) {
+            SettingConfig::create($data);
         }
     }
 }

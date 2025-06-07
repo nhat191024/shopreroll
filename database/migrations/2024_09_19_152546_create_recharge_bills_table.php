@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('character_name');
             $table->string('phone');
             $table->string('note');
-            $table->integer('balance_before');
-            $table->integer('balance_after');
+            $table->integer('balance_before')->default(0);
+            $table->integer('balance_after')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
 

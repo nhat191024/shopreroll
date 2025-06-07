@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\RerollCategory;
 
@@ -90,7 +90,7 @@ class RerollCategoryController extends Controller
             $rerollCategory->update(['status' => 1]);
             return redirect()->back()->with('success', 'Hiện danh mục thành công');
         } else {
-            $rerollCategory->update(['status' => 1]);
+            $rerollCategory->update(['status' => 0]);
             return redirect()->back()->with('success', 'Ẩn danh mục thành công');
         }
     }

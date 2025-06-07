@@ -70,13 +70,13 @@ class HomeController extends Controller
             }
 
             if (!empty($searchAttributes)) {
-                $query->whereHas('AccountAttribute', function($q) use ($searchAttributes) {
+                $query->whereHas('AccountAttribute', function ($q) use ($searchAttributes) {
                     $q->whereIn('id', $searchAttributes);
                 });
             }
 
             if (!empty($searchGameItems)) {
-                $query->whereHas('AccountItem', function($q) use ($searchGameItems) {
+                $query->whereHas('AccountItem', function ($q) use ($searchGameItems) {
                     $q->whereIn('game_item_id', $searchGameItems);
                 });
             }
@@ -112,18 +112,18 @@ class HomeController extends Controller
         $gameAccount = $this->homeService->getGameAccountDetail($accountId);
         $accountAttributes = $gameAccount->AccountAttribute;
         $accountItems = $gameAccount->AccountItem
-            ->groupBy(function($item) {
+            ->groupBy(function ($item) {
                 return $item->GameItem->gameItemType->id;
             })
-            ->map(function($items, $typeId) {
+            ->map(function ($items, $typeId) {
                 return [
                     'type' => GameItemType::find($typeId),
-                    'items' => $items->map(function($item) {
+                    'items' => $items->map(function ($item) {
                         return $item->GameItem;
                     })
                 ];
             });
-        return view('client.account-shop.detail', compact('gameAccount', 'accountAttributes','accountItems'));
+        return view('client.account-shop.detail', compact('gameAccount', 'accountAttributes', 'accountItems'));
     }
 
     public function rerollTutorial($idSubRerollCategory)
@@ -135,44 +135,64 @@ class HomeController extends Controller
 
     public function buyRerollDetail(Request $request)
     {
-        $payTotal = RerollSubCategory::find($request->reroll_sub_category_id)->RerollPackage->where('id', $request->packet_id)->first()->price;
+        $buyCount = $request->amount;
+        $buyItem = RerollSubCategory::find($request->reroll_sub_category_id);
+        if (!$buyItem) {
+            return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
+        }
+        $payTotal = $buyItem->RerollPackage->where('id', $request->packet_id)->first()->price;
         $availableKeys = RerollKey::where('reroll_package_id', $request->packet_id)
             ->where('status', 1)
             ->get();
-        if ($availableKeys->count() == 0) {
+        $availableKeyCount = $availableKeys->count();
+        if ($availableKeyCount == 0) {
             return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
         }
-        $chosenRandomKey = $availableKeys->random();
+        if ($availableKeyCount < $buyCount) {
+            return redirect()->back()->with('error', 'Hiện tại shop chỉ còn ' . $availableKeyCount . ' gói. Vui lòng giảm số lượng mua');
+        }
 
+        DB::beginTransaction();
         try {
-            DB::beginTransaction();
-            $this->homeService->createRerollBill($request->packet_id, $chosenRandomKey->id, $payTotal);
-            // if no reroll key available
-            if ($availableKeys->count() == 0) {
-                DB::rollBack();
-                return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
+            for ($i = 1; $i <= $buyCount; $i++) {
+                // if no reroll key available
+                if ($availableKeyCount == 0) {
+                    DB::rollBack();
+                    return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
+                }
+
+                $chosenRandomKey = $availableKeys->random();
+
+                // remove bought item from the list (if the user buy more than 1)
+                $availableKeys = $availableKeys->filter(function($key) use ($chosenRandomKey) {
+                    return $key->id !== $chosenRandomKey->id;
+                });
+                $availableKeyCount = $availableKeys->count();
+                $this->homeService->createRerollBill($request->packet_id, $chosenRandomKey->id, $payTotal);
+
+                // update status của key đã chọn
+                $rerollKey = RerollKey::find($chosenRandomKey->id);
+                if ($rerollKey->status != 1) {
+                    DB::rollBack();
+                    return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
+                }
+                $rerollKey->status = 2;
+                $rerollKey->save();
+
+                // trừ tiền trong tài khoản của user
+                $user = auth()->user();
+                $user->balance -= $payTotal;
+                if ($user->balance < 0) {
+                    DB::rollBack();
+                    return redirect()->back()->with('error', 'Số dư tài khoản không đủ để thanh toán!');
+                }
+                $user->save();
             }
-            // update status của key đã chọn
-            $rerollKey = RerollKey::find($chosenRandomKey->id);
-            if ($rerollKey->status != 1) {
-                DB::rollBack();
-                return redirect()->back()->with('error', 'Không còn gói reroll nào khả dụng!');
-            }
-            $rerollKey->status = 2;
-            $rerollKey->save();
-            // trừ tiền trong tài khoản của user
-            $user = auth()->user();
-            $user->balance -= $payTotal;
-            if ($user->balance < 0) {
-                DB::rollBack();
-                return redirect()->back()->with('error', 'Số dư tài khoản không đủ để thanh toán!');
-            }
-            $user->save();
             DB::commit();
-            return redirect()->route('client.MyKey.index')->with('success', 'Thanh toán thành công!');
+            return redirect()->route('client.myKey.index')->with('success', 'Thanh toán thành công!');
         } catch (\Throwable $th) {
             DB::rollBack();
-            dd('Đã xảy ra lỗi trong quá trình thanh toán: ', $th->getMessage());
+            return redirect()->back()->with('error', 'Đã xảy ra lỗi trong quá trình thanh toán!');
         }
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\RerollCategoryController;
+use App\Http\Controllers\Admin\RerollCategoryController;
 
 Route::prefix('/reroll-category')->name('rerollCategory.')->group(function () {
     Route::get('/', [RerollCategoryController::class, 'index'])->name('index');

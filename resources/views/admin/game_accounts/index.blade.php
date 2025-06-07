@@ -6,10 +6,6 @@
             <div class="card-header d-flex align-items-center justify-content-between py-3">
                 <div>
                     <a class="btn btn-primary" href="{{ route('admin.game_account.create', $game->id) }}">Thêm tài khoản</a>
-                    <!-- Nút tải lên file Excel -->
-                    <button class="btn btn-secondary" data-toggle="modal" data-target="#importExcelModal" type="button">
-                        Nhập từ Excel
-                    </button>
                 </div>
                 <div>
                     <!-- Form lọc danh mục và trạng thái -->

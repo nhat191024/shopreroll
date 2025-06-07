@@ -1,0 +1,7 @@
+.sidebar .sidebar-heading {
+    text-align: left !important;
+}
+
+.bg-gradient-primary {
+  background-image: linear-gradient(180deg, #c4605f 10%, #a27a00 100%) !important;
+}

@@ -75,7 +75,7 @@
                             <div id="image_thumbnails" class="row">
                                 @foreach ($account->AccountImage as $image)
                                     <div class="col-4 mb-3">
-                                        <img class="img-fluid img-thumbnail" src="{{ asset($image->image) }}" style="width: 220px; height: 220px; object-fit: contain;">
+                                        <img class="img-fluid img-thumbnail" src="{{ asset($image->image) }}" style="object-fit: contain;">
                                     </div>
                                 @endforeach
                             </div>

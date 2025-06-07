@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{ asset('css/shop-acc-list-custom.css') }}">
     <section class="content">
         <div class="container-fluid">
-            <center><img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://placehold.co/600x600'"></center>
+            <center><img class="city__icon" src="https://uploadstatic-sea.mihoyo.com/contentweb/20200319/2020031919242255224.png" onerror="this.src='https://fakeimg.pl/600x600'"></center>
             <h1 class="guide__title"> Acc {{ $title }} </h1>
             <main>
                 <div>
@@ -137,18 +137,21 @@
                                                 <div class="product-code">#{{ $data->id }}</div>
                                                 <div class="wrapper product-wrapper">
                                                     <a href="{{ route('client.game.account.detail', $data->id) }}">
-                                                        <img class="img-banner shadow-sm" src="{{ asset($data->AccountImage??$data->AccountImage->first()->image) }}" onerror="this.src='https://placehold.co/600x600'">
+                                                        @foreach ($data->AccountImage as $image)
+                                                            <img class="img-banner shadow-sm" src="{{ asset($image->image) }}" onerror="this.src='https://fakeimg.pl/600x600'">
+                                                            @break
+                                                        @endforeach
                                                     </a>
 
                                                     <div class="row mt-1">
                                                         <div class="col-6">
                                                             <div class="btn btn-warning font-weight-bold">
-                                                                <span class="text-danger">{{ number_format($data->price_out) }}<sup></sup></span>
+                                                                <span class="text-danger">{{ number_format($data->price_out) }}đ<sup></sup></span>
                                                             </div>
                                                         </div>
                                                         <div class="col-6">
                                                             <div class="btn btn-secondary" style="margin-right: 12px;">
-                                                                <s>{{ number_format($data->price_out * 1.15) }}</s><sup></sup>
+                                                                <s>{{ number_format($data->price_out * 1.15) }}đ</s><sup></sup>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,7 +194,7 @@
                                                                     {{ $items['items']->count() }}</label>
                                                                 <span class="col hero-details">
                                                                     @foreach ($items['items'] as $itemData)
-                                                                        <i class="hero-icon" data-toggle="tooltip" data-original-title="Alhaitham" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" title="{{ $itemData->title }}" onerror="this.src='https://placehold.co/600x300'">
+                                                                        <i class="hero-icon" data-toggle="tooltip" data-original-title="Alhaitham" style="background-image: url('{{ '/' . $itemData->image ?? 'null' }}')" title="{{ $itemData->title }}" onerror="this.src='https://fakeimg.pl/600x300'">
                                                                         </i>
                                                                     @endforeach
                                                                 </span>

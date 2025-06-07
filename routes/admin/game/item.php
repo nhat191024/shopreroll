@@ -10,6 +10,4 @@ Route::prefix('/game_item')->name('game_item.')->group(function () {
     Route::get('/edit/{id}', [GameItemController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [GameItemController::class, 'update'])->name('update');
     Route::get('/destroy/{id}', [GameItemController::class, 'destroy'])->name('destroy');
-}); 
-
-
+});

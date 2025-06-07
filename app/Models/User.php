@@ -11,6 +11,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use SoftDeletes;
+    public const CLIENT = 0;
+    public const USER = 0;
+    public const ADMIN = 1;
+    public const COLLABORATOR = 2;
 
     /**
      * The attributes that are mass assignable.
@@ -81,8 +85,13 @@ class User extends Authenticatable
         return $this->hasMany(BalanceRechargeCardBill::class);
     }
 
-    public function ContributorCommission()
+    public function CollaboratorCommissionBill()
     {
-        return $this->hasMany(ContributorCommission::class);
+        return $this->hasMany(CollaboratorCommissionBill::class, 'collaborator_id');
     }
+
+    // public function ContributorCommission()
+    // {
+    //     return $this->hasMany(ContributorCommission::class);
+    // }
 }

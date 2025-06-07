@@ -113,7 +113,7 @@
                     }
                 ],
                 order: [
-                    [0, "asc"]
+                    [6, "desc"]
                 ],
                 responsive: true,
                 columnDefs: [{

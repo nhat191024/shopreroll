@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\RerollKeyController;
+use App\Http\Controllers\Admin\RerollKeyController;
 
 Route::prefix('/reroll-key')->name('rerollKey.')->group(function () {
     Route::get('/{id}', [RerollKeyController::class, 'index'])->name('index');
