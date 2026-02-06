@@ -30,16 +30,16 @@
                                         <th style="width: 10%;">Mua lúc</th>
                                     </tr>
                                 </thead>
-                            <tbody>
+                                <tbody>
                                     @foreach ($allBills as $data)
                                         @if (array_key_exists('id', $data))
                                             <tr>
                                                 <td style="width: 5%;">{{ $data['id'] }}</td>
                                                 <td class="copy-cell text-{{ $data['is_decrease'] ? 'danger' : 'success' }} font-weight-bold" data-copy="{{ $data['balance_change'] ?? 'N/A' }}" style="width: 15%;">
-                                                    {{$data['balance_change'] }} VND
+                                                    {{ $data['balance_change'] }} VND
                                                 </td>
-                                                <td class="copy-cell text-info font-weight-bold" data-copy="{{ $data['balance_before'] ?? 'N/A', 0, ',', '.' }} - {{ $data['balance_after'] ?? 'N/A', 0, ',', '.' }}" style="width: 15%;">
-                                                    Trước: {{ $data['balance_before'] ?? 'N/A', 0, ',', '.' }} VND <br> Sau: {{ $data['balance_after'] ?? 'N/A', 0, ',', '.' }} VND
+                                                <td class="copy-cell text-info font-weight-bold" data-copy="{{ isset($data['balance_before']) ? number_format($data['balance_before'], 0, ',', '.') : 'N/A' }} - {{ isset($data['balance_after']) ? number_format($data['balance_after'], 0, ',', '.') : 'N/A' }}" style="width: 15%;">
+                                                    Trước: {{ isset($data['balance_before']) ? number_format($data['balance_before'], 0, ',', '.') : 'N/A' }} VND <br> Sau: {{ isset($data['balance_after']) ? number_format($data['balance_after'], 0, ',', '.') : 'N/A' }} VND
                                                 </td>
                                                 <td style="width: 25%;">
                                                     {!! $data['content'] ?? 'N/A' !!}

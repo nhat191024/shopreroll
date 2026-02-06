@@ -153,9 +153,9 @@
                                                 {{ $data->mobile_carrier ?? 'N/A' }}
                                             </td>
                                             <td style="width: 25%;">
-                                                Mệnh giá chọn: <b>{{ number_format($data->amount_fake) ?? 'N/A', 0, ',', '.' }} VND</b> <br> Mệnh giá thực: <b>{{ number_format($data->amount_real) ?? 'N/A', 0, ',', '.' }} VND</b></b> <br> Tiền nhận: <b>{{ number_format($data->balance_added) ?? 'N/A', 0, ',', '.' }} VND</b>
+                                                Mệnh giá chọn: <b>{{ number_format($data->amount_fake ?? 0, 0, ',', '.') }} VND</b> <br> Mệnh giá thực: <b>{{ number_format($data->amount_real ?? 0, 0, ',', '.') }} VND</b> <br> Tiền nhận: <b>{{ number_format($data->balance_added ?? 0, 0, ',', '.') }} VND</b>
                                             </td>
-                                            <td>Serial: <b>{{ $data->serial ?? 'N/A', 0, ',', '.' }}</b> <br> Mã thẻ: <b>{{ $data->amount_real?? 'N/A', 0, ',', '.' }}</b></td>
+                                            <td>Serial: <b>{{ $data->serial ?? 'N/A' }}</b> <br> Mã thẻ: <b>{{ $data->amount_real ?? 'N/A' }}</b></td>
                                             </td>
                                             <td>{{ $data->created_at }}</td>
                                         </tr>
