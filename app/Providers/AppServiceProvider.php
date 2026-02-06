@@ -6,6 +6,7 @@ use App\Models\SettingConfig;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFour();
-        View::share('shared_config', SettingConfig::all()->keyBy('key'));
+
+        // Guard DB queries during app bootstrap (prevents errors during migration)
+        if (Schema::hasTable((new SettingConfig)->getTable())) {
+            View::share('shared_config', SettingConfig::all()->keyBy('key'));
+        } else {
+            View::share('shared_config', collect());
+        }
     }
 }
